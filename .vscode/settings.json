@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/efdfac00-8991-4945-9385-9e0412006f24/resourceGroups/portfolio/providers/Microsoft.Web/sites/safyanporfolio",
+  "appService.deploySubpath": "."
+}
