@@ -274,36 +274,6 @@ const newProjects = [
     source_code_link: "#",
   },
 
-  {
-    id: 10,
-    name: "P2G Global Services",
-    description:
-      "Large-scale e-commerce operations managing 130,000+ products with automation scripts, SEO implementation, Google Analytics segmentation, and Didadi API order tracking integration.",
-    category: "website",
-    dimensionsCategory: "website",
-    tags: [
-      {
-        name: "Node.js",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "automation",
-        color: "green-text-gradient",
-      },
-      {
-        name: "SEO",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "analytics",
-        color: "yellow-text-gradient",
-      },
-    ],
-    image: port, // Placeholder - need to replace
-    images: [],
-    source_code_link: "#",
-  },
-
   // ============================================
   // MOBILE PROJECTS
   // ============================================

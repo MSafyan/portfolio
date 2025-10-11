@@ -9,13 +9,26 @@ const Tech = () => {
   return (
     <>
       {isDesktop && (
-        <div className="flex flex-row flex-wrap justify-center gap-10">
-          {technologies.map((technology) => (
-            <div className="w-28 h-28" key={technology.name}>
-              <BallCanvas icon={technology.icon} />
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="text-center mb-16">
+            <p className="text-accent-light text-sm uppercase tracking-wider mb-2">
+              Technologies
+            </p>
+            <h2 className="text-white font-black text-4xl">
+              Tech Stack<span className="text-accent-light">.</span>
+            </h2>
+          </div>
+          <div className="flex flex-row flex-wrap justify-center gap-10">
+            {technologies.map((technology) => (
+              <div
+                className="w-28 h-28 hover:scale-110 transition-transform duration-300"
+                key={technology.name}
+              >
+                <BallCanvas icon={technology.icon} />
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </>
   );

@@ -73,7 +73,8 @@ const Contact = () => {
           setModalData({
             isOpen: true,
             type: "success",
-            message: "Thank you for reaching out 🎉 \n Your message has been received. I truly appreciate you taking the time to connect. I'll get back to you as soon as possible. Until then, have an amazing day! 🌟",
+            message:
+              "Thank you for reaching out 🎉 \n Your message has been received. I truly appreciate you taking the time to connect. I'll get back to you as soon as possible. Until then, have an amazing day! 🌟",
           });
           setForm({ name: "", email: "", message: "" });
         },
@@ -112,23 +113,25 @@ const Contact = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="What's your name?"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-accent/50 transition-all"
             />
-            {errors.name && <span className="text-red-500">{errors.name}</span>}
+            {errors.name && (
+              <span className="text-red-400 text-sm mt-1">{errors.name}</span>
+            )}
           </label>
           <label className="flex flex-col">
-            <span className="text-white font-medium mb-4">Your email</span>
+            <span className="text-white font-medium mb-4">Your Email</span>
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="your@email.com"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-accent/50 transition-all"
             />
             {errors.email && (
-              <span className="text-red-500">{errors.email}</span>
+              <span className="text-red-400 text-sm mt-1">{errors.email}</span>
             )}
           </label>
           <label className="flex flex-col">
@@ -138,19 +141,22 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="What you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="What would you like to say?"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-accent/50 transition-all resize-none"
             />
             {errors.message && (
-              <span className="text-red-500">{errors.message}</span>
+              <span className="text-red-400 text-sm mt-1">
+                {errors.message}
+              </span>
             )}
           </label>
 
           <button
             type="submit"
-            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
+            disabled={loading}
+            className="bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent py-3 px-8 rounded-lg w-fit text-white font-bold shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg"
           >
-            {loading ? "Sending..." : "Send"}
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
       </motion.div>
@@ -167,22 +173,65 @@ const Contact = () => {
         isOpen={modalData.isOpen}
         onRequestClose={closeModal}
         contentLabel="Alert"
-        className="bg-white p-8 rounded-lg max-w-sm mx-auto shadow-lg relative"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+        className="bg-tertiary p-8 rounded-2xl max-w-sm mx-auto shadow-xl relative border border-secondary/20"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
       >
         <button
           onClick={closeModal}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          className="absolute top-3 right-3 text-gray-400 hover:text-white transition-colors"
         >
-          <img src={closeIcon} alt="failure" className="w-5 h-5" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
         </button>
         <div className="flex flex-col items-center text-center">
           {modalData.type === "success" ? (
-            <img src={successIcon} alt="success" className="w-20 h-20" />
+            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 text-accent"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
           ) : (
-            <img src={failureIcon} alt="failure" className="w-20 h-20" />
+            <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 text-red-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </div>
           )}
-          <p className="text-lg font-semibold mt-4 text-gray-700">
+          <p className="text-white text-base leading-relaxed whitespace-pre-line">
             {modalData.message}
           </p>
         </div>

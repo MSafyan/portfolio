@@ -5,7 +5,7 @@ const ProjectsTabs = ({ activeTab, onTabClick }) => {
     { key: "all", label: "All" },
     { key: "first", label: "Websites" },
     { key: "second", label: "Mobile Applications" },
-    { key: "third", label: "Designs" },
+    { key: "third", label: "Ware Housing" },
   ];
 
   return (
@@ -14,14 +14,14 @@ const ProjectsTabs = ({ activeTab, onTabClick }) => {
         {tabs.map((tab) => (
           <button
             key={tab.key}
-            className={`px-6 py-3 rounded-full font-medium transition-colors duration-300 shadow-md ${
+            className={`relative px-6 py-3 font-bold uppercase tracking-wider transition-all duration-300 overflow-hidden border-3 ${
               activeTab === tab.key
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                ? "bg-accent border-accent text-primary shadow-neon scale-105"
+                : "glass-effect border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-primary hover:scale-105"
             }`}
             onClick={() => onTabClick(tab.key)}
           >
-            {tab.label}
+            <span className="relative z-10">{tab.label}</span>
           </button>
         ))}
       </div>

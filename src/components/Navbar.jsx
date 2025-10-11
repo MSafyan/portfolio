@@ -28,8 +28,8 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+      } w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${
+        scrolled ? "glass-effect shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -41,12 +41,19 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={myLogo} alt="logo" className="w-9 h-9 object-contain" />
+          <img
+            src={myLogo}
+            alt="logo"
+            className="w-9 h-9 object-contain transition-transform duration-300 hover:scale-110"
+          />
           <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            Safyan &nbsp;
+            <span className="bg-gradient-to-r from-accent-light to-pink-500 bg-clip-text text-transparent">
+              Safyan
+            </span>{" "}
+            &nbsp;
             <span className="sm:block hidden">
               {" "}
-              | &nbsp; Frontend Developer
+              | &nbsp; Full‑Stack & Cloud Data Engineer
             </span>
           </p>
         </Link>
@@ -56,11 +63,14 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-white" : "text-white-100"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+                active === nav.title ? "text-accent-light" : "text-white-100"
+              } hover:text-accent-light text-[18px] font-medium cursor-pointer transition-colors duration-300 relative group`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`}>
+                {nav.title}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-light to-pink-500 group-hover:w-full transition-all duration-300"></span>
+              </a>
             </li>
           ))}
           <div className="flex gap-3 rounded-full">
@@ -69,11 +79,12 @@ const Navbar = () => {
                 console.log("clicked");
                 window.open(myResume, "_blank");
               }}
-              className="bg-transparent hover:opacity-80 active:opacity-60 transition-opacity border border-white p-1 rounded-full"
+              className="bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent p-1.5 rounded-full transition-all duration-300 hover:shadow-glow hover:scale-110"
+              title="View Resume"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-4 w-4 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -93,11 +104,12 @@ const Navbar = () => {
                 link.download = "Safyan_Akram_Resume.pdf";
                 link.click();
               }}
-              className="bg-transparent hover:opacity-80 active:opacity-60 transition-opacity border border-white p-1 rounded-full"
+              className="bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent p-1.5 rounded-full transition-all duration-300 hover:shadow-glow hover:scale-110"
+              title="Download Resume"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-4 w-4 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -124,14 +136,16 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } p-6 glass-effect absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-glow`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
+                  className={`font-medium cursor-pointer text-[16px] transition-colors duration-300 ${
+                    active === nav.title
+                      ? "text-accent-light"
+                      : "text-secondary hover:text-accent-light"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
@@ -147,11 +161,12 @@ const Navbar = () => {
                   onClick={() => {
                     window.open(myResume, "_blank");
                   }}
-                  className="bg-transparent hover:opacity-80 active:opacity-60 transition-opacity border border-white p-1 rounded-full"
+                  className="bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent p-1.5 rounded-full transition-all duration-300 hover:shadow-glow hover:scale-110"
+                  title="View Resume"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
+                    className="h-4 w-4 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -171,11 +186,12 @@ const Navbar = () => {
                     link.download = "Safyan_Akram_Resume.pdf";
                     link.click();
                   }}
-                  className="bg-transparent hover:opacity-80 active:opacity-60 transition-opacity border border-white p-1 rounded-full"
+                  className="bg-gradient-to-r from-accent to-accent-dark hover:from-accent-dark hover:to-accent p-1.5 rounded-full transition-all duration-300 hover:shadow-glow hover:scale-110"
+                  title="Download Resume"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
+                    className="h-4 w-4 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

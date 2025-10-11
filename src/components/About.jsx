@@ -11,7 +11,7 @@ const ServiceCard = ({ index, title, icon }) => (
   <Tilt className="xs:w-[250px] w-full">
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
+      className="w-full group"
     >
       <div
         options={{
@@ -19,15 +19,18 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
+        className="glass-card rounded-[20px] py-8 px-12 min-h-[280px] flex justify-evenly items-center flex-col relative overflow-hidden"
       >
-        <img
-          src={icon}
-          alt="web-development"
-          className="w-16 h-16 object-contain"
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="relative z-10 w-20 h-20 flex items-center justify-center bg-tertiary border-4 border-accent shadow-brutal mb-4 group-hover:border-accent-orange group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300">
+          <img
+            src={icon}
+            alt="web-development"
+            className="w-12 h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+          />
+        </div>
 
-        <h3 className="text-white text-[20px] font-bold text-center">
+        <h3 className="relative z-10 text-white text-[18px] font-bold text-center uppercase tracking-wide group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>
       </div>
@@ -39,31 +42,40 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
+        <p
+          className={`${styles.sectionSubText} text-accent uppercase tracking-widest`}
+        >
+          /// Introduction
+        </p>
+        <h2 className={`${styles.sectionHeadText} uppercase`}>
+          Overview<span className="text-accent-orange">_</span>
+        </h2>
       </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-white text-[17px] max-w-3xl leading-[30px]"
       >
-        I'm Safyan, a <strong>Senior Mobile App Developer</strong> with 5+
-        years of experience building scalable, cross-platform apps using{" "}
-        <strong>Flutter and React Native</strong>. I specialize in{" "}
-        <strong>state management</strong> (Redux, GetX, BLoC), real-time
-        features, and smooth API integrations with{" "}
-        <strong>Stripe, Firebase, Twilio</strong>, and custom backends. AWS
-        Certified, I’ve led full-cycle development, optimized performance for
-        100K+ users, and built CI/CD pipelines for faster releases. I also work
-        with <strong>Shopify, WordPress, and modern web stacks</strong>. Focused
-        on clean <strong>UI/UX</strong> and strong team collaboration, I love
-        solving problems and delivering seamless mobile experiences.
+        I'm Safyan, an{" "}
+        <strong>AWS-Certified Full-Stack & Cloud Engineer</strong> with 5+ years
+        of experience building scalable backend systems, cloud infrastructure,
+        and data pipelines. I specialize in{" "}
+        <strong>Node.js, NestJS, and TypeScript</strong> for microservices
+        architecture, with expertise in <strong>AWS (EKS, RDS, S3, ECR)</strong>{" "}
+        and <strong>Azure (Data Factory, SQL, Databricks)</strong>. I've built{" "}
+        <strong>AI/ML platforms</strong> using OpenAI, LangChain, and Pinecone,
+        achieving 99.9% cost optimization. My experience includes enterprise
+        data warehouses managing $40M+ portfolios, payment integrations with{" "}
+        <strong>Stripe and Twilio</strong>, and complete DevOps infrastructure
+        using <strong>Terraform and Kubernetes</strong>. I thrive on solving
+        complex technical challenges and delivering high-performance,
+        production-ready solutions.
         <br />
         {/* <br />
         📩 <strong>Email:</strong>{" "}
         <a
           href="mailto:msafyan080@gmail.com"
-          className="text-blue-500 underline hover:text-orange-600 transition-colors duration-300 ease-in-out cursor-pointer"
+          className="text-accent-light underline hover:text-pink-400 transition-colors duration-300 ease-in-out cursor-pointer"
 
         >
           msafyan080@gmail.com
@@ -74,7 +86,7 @@ const About = () => {
           href="https://github.com/MSafyan"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 underline hover:text-orange-600 transition-colors duration-300 ease-in-out cursor-pointer"
+          className="text-accent underline hover:text-accent-orange transition-colors duration-300 ease-in-out cursor-pointer font-bold"
         >
           github.com/MSafyan
         </a>
