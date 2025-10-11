@@ -1,0 +1,29 @@
+I looking for support with data engineering tasks, including building and optimizing data pipelines in Python and Airflow. Experience with API integration, ETL processes, and Google Sheets is preferred. The scope of work will include extracting data from multiple sources, cleaning and transforming it, and delivering reliable outputs for reporting.
+
+
+
+PROPOSAL:
+
+Hey there,
+
+I can work for free for the first few days so you can validate my work before moving to contract. Your priority is reliable, maintainable pipelines that pull from multiple sources, clean/transform the data, and deliver trustworthy outputs for reporting—I’ll set up Airflow DAGs with clear retries/SLAs, idempotent loads/backfills, and data‑quality checks, with Google Sheets sync where needed.
+
+Relevant experience:
+- Multi‑source ETL/ELT for Palmetto Air Balance (NetSuite, Air1, UKG): robust logging, failure handling, daily refresh cycles
+- Retail data pipelines for Pink Chicken (Shopify + Apparel Magic): pagination, rate limits, incremental loads
+- Python‑based transformations (APIs, Databricks/PySpark) and strong SQL modeling on Azure SQL/Postgres
+
+Approach:
+- Source connectors (API/file/DB) with typed schemas and incremental bookmarks
+- Transformations with tests and DQ rules (row counts, null/uniqueness, referential checks)
+- Orchestration in Airflow (DAGs, sensors, retries) with alerting and runbook docs
+- Outputs to warehouse and Google Sheets for stakeholder reporting
+
+Two quick questions:
+1) Which sources are in scope first (API names/DBs/files) and target destinations (warehouse, Sheets, both)?
+2) Where will Airflow run (Composer/MWAA/self‑hosted) and what schedule/SLAs do you want for the first pipelines?
+
+I can start this week and deliver the first DAG (source → cleaned table → Sheets export) during the free trial so you can see progress fast.
+
+
+

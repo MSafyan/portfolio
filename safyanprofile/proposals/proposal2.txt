@@ -1,0 +1,27 @@
+JOB DETAILS:
+We are seeking a skilled developer to integrate a point card authorization service into our existing Node.js application running on AWS Lambda with the Serverless Framework. The ideal candidate will have experience in payment processing integrations and serverless architectures. You will be responsible for ensuring secure transactions, optimizing performance, and providing documentation for the integration. If you are passionate about building robust solutions and have a strong understanding of AWS and Node.js, we would love to hear from you!
+
+
+
+-------------------------------------------------------------------------------------------------
+PROPOSAL:
+Hey there,
+
+You need a certified AWS and experienced full-stack developer. I will work for free for the first few days, so proceed to contract only if we are a good fit. I recently worked on an Image/Video lambda function deployed on AWS using the Serverless framework. It was written in Node.js. If an image is uploaded to bucket1 at any path, it will be replicated to bucket2 at a similar path with 2 versions for thumbnail and optimized quality.
+
+I have implemented a payment microservice in a project where we used Stripe and Swish payment methods for payments, and in another project, I built a marketplace payment pipeline. UserA buys from UserB, and our platform gets a commission, plus the person who referred gets a commission if they have a connected account.
+
+I am a certified AWS and Terraform Developer with 4+ years of experience in full-stack development. I use Next.js/Nest.js/PostgreSQL mainly and am moving toward cloud architecture for its better cost for startups.
+
+Feel free to contact me because I have experience with Cloud, Payment systems, and full-stack development, and this project has all these requirements.
+
+Describe your recent experience with similar projects
+Recently worked on lambda function to compress Images/video(short) used serverless framwork for deployement
+Worked on Stripe payment processing for simple and platform/marketplace meaning users can buy from other user on the platform
+Include a link to your GitHub profile and/or website
+github.com/MSafyan
+What frameworks have you worked with?
+Nodejs
+Expressjs
+Nestjs
+Serverless For deploying to AWS

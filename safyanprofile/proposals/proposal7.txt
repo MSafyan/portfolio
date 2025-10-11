@@ -1,0 +1,57 @@
+Summary
+Next.js/Vercel Developer for Affiliate Website + API Integration
+
+We’re building a standalone website (Next.js on Vercel) that will serve as a lifestyle hub. The site will showcase curated travel/tour experiences, integrate affiliate tracking, and connect into an existing mobile app through APIs.
+
+We already have a full technical specification, schema, and starter codebase (Next.js + Prisma + API routes scaffold). Your role is to take this starter, implement the features, and deploy production-ready on Vercel.
+
+
+Core Deliverables
+• Finish build of the site on Next.js (App Router) with Vercel Functions.
+• Implement Prisma/Postgres schema for Providers, Tours, Clicks, and Conversions.
+• Build secure Provider Portal with authentication (Clerk or Supabase) where operators can:
+– Create/update profile (company info, affiliate details, payout terms).
+– Upload/edit tour listings (strict image requirements, descriptions, URLs, media).
+– Upload CSV booking reports OR set up webhook endpoints.
+• Implement click tracking & redirect flow:
+– User must be logged in before outbound click.
+– Log click → redirect to affiliate URL with UTM.
+• Implement webhook endpoint for real-time booking confirmations with HMAC verification.
+• Build Admin Dashboard for reporting: clicks, conversions, commissions, CSV/XLSX export.
+• Integrate reward bridge: on booking confirmation, call external API to award XP/badges/perks.
+• Enforce media upload validation (dimensions, formats, size).
+• Secure APIs with JWT, HMAC, and CORS allowlists.
+
+Stack Requirements
+• Next.js 14+ on Vercel (App Router)
+• Prisma + Postgres (Supabase/Neon recommended)
+• Clerk or Supabase Auth for provider login
+• File storage (Supabase Storage or S3 compatible)
+• OpenAPI docs + Postman collection maintained
+
+We Provide
+• Full technical specification (documented)
+• OpenAPI YAML
+• Postman collection
+• Seed Prisma schema and starter repo (with routes scaffolded)
+• Branding and media guidelines
+
+Skills Needed
+• Strong experience with Next.js (App Router) and Vercel deployment
+• Prisma + Postgres database expertise
+• Secure API and webhook implementation (JWT, HMAC, etc.)
+• Experience with affiliate/e-commerce style integrations (tracking clicks + commissions)
+• Familiarity with file upload validation and storage integrations (Supabase/S3)
+• Optional but nice: experience building provider/partner dashboards
+
+Deliverables & Timeline
+• Deploy MVP version of website to Vercel (staging + production)
+• Provider Portal fully functional with auth and CRUD for tours
+• Click tracking, webhook flow, and admin reports live
+• API endpoints tested against Postman collection + mobile app integration
+• Estimated timeline: 2 weeks for first deployment
+Engagement: Fixed price  with milestones tied to functional deliverables.
+
+If you’ve deployed production apps on Vercel with Next.js + Prisma, and you’re comfortable building affiliate tracking flows with secure APIs, we’d love to see examples of your work. Please share:
+• Relevant Next.js/Vercel projects you’ve built
+• Any affiliate/e-commerce or partner portal projects

@@ -1,0 +1,47 @@
+Summary
+Description:
+We are seeking a highly skilled Terraform Engineer with extensive experience in Google Cloud Platform (GCP) to support our cloud infrastructure projects. The ideal candidate will have hands-on expertise in designing, implementing, and managing infrastructure as code (IaC) using Terraform.
+Responsibilities:
+• Design, implement, and maintain scalable infrastructure on Google Cloud using Terraform.
+• Manage and automate cloud resources including compute, networking, storage, and security.
+• Develop reusable Terraform modules and templates for standardized deployments.
+• Ensure best practices for IaC, version control, and environment management.
+• Troubleshoot infrastructure issues and optimize cloud performance.
+• Collaborate with DevOps and development teams to support CI/CD pipelines and deployment strategies.
+Requirements:
+• Proven experience with Terraform for cloud deployments (GCP).
+• Strong understanding of Google Cloud services (Compute Engine, VPC, Cloud Storage, IAM, GKE, etc.).
+• Experience creating and managing Terraform modules, workspaces, and state management.
+• Familiarity with CI/CD tools and integrating Terraform with pipelines.
+• Knowledge of cloud security best practices.
+• Strong problem-solving skills and attention to detail.
+• Excellent communication skills in English.
+
+
+---
+
+Proposal:
+
+Assalamualaikum,
+
+Terraform‑certified engineer (HashiCorp Terraform Associate) with 5+ years of IaC and cloud operations. While much of my recent delivery has been on AWS, the patterns map 1:1 to GCP and I’ve implemented the same foundations with Terraform: secure networking, container orchestration, managed databases, CI/CD, and observability.
+
+Relevant experience (mapped to GCP):
+- Helpicon DevOps (AWS, Terraform): Multi‑account infra with EKS, ECR, RDS PostgreSQL, S3, Jenkins/Kaniko CI, and IaC state in S3+DynamoDB. On GCP this translates to GKE (with Workload Identity), Artifact Registry, Cloud SQL for PostgreSQL, Cloud Storage, and Cloud Build (Kaniko). We enforced environment isolation, rollout strategies, and documented runbooks—practices I’ll replicate on GCP.
+- Security & operations: Least‑privilege IAM, private networking, secrets management, audit logging, and SLO‑driven monitoring. In GCP: IAM roles, VPC/Subnets + NAT, Secret Manager, Cloud Logging/Monitoring, alerting, error budgets.
+
+What I will deliver
+- Terraform modules & workspaces: VPC (subnets, firewalls, NAT), GKE (Workload Identity, node pools, autoscaling), Cloud SQL (private IP, HA), Artifact Registry, Secret Manager, Cloud Storage, and IAM bindings.
+- CI/CD for IaC: Plan/apply pipelines (GitHub Actions/Cloud Build) with policy checks, state backends (GCS), and environment promotion.
+- Platform guardrails: org/folder/project structure, budget alerts, centralized logging/metrics, backup/restore, disaster‑recovery docs.
+- Documentation & handover: architecture diagrams, variable catalogs, runbooks, and security baselines.
+
+Quick questions
+- Do you already have an org/folder/project hierarchy in GCP, or should I set one up?
+- Preferred regions, networking constraints (peering/VPN), and compliance requirements?
+- CI/CD preference (Cloud Build vs GitHub Actions) and secrets strategy?
+
+Happy to start immediately and shape the Terraform module stack around your governance and security needs.
+
+Best regards,
+Muhammad Safyan

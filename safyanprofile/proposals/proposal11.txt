@@ -1,0 +1,34 @@
+I am looking for an experienced tutor to guide me through the process of coding and deploying applications using AI technologies. The ideal candidate should have a solid understanding of programming languages, AI frameworks, and deployment strategies. Sessions will be interactive and tailored to my learning pace, focusing on practical applications and real-world scenarios. If you have a passion for teaching and the necessary expertise to empower me with these skills, please apply with your experience and approach to tutoring. 
+-------------------------------------------------------------------------------------------------
+PROPOSAL:
+
+You want practical AI tutoring that ships real apps, not theory—I’ll start with a free first session to prove fit and momentum, then move to paid sessions once you’re confident.
+
+What you’ll get in every session depending on needs:
+- Excalidraw diagrams to explain architectures, prompt flows, tool/function-calling, and RAG pipelines
+- Hands-on pair programming in Cursor with Claude Code to accelerate iteration and code quality
+- A living Plan.md after each session: goals, steps taken, code snippets/links, and next tasks
+- Clear model guidance: when to use Claude 3.5 Sonnet (deep reasoning/coding), GPT-4o (multimodal + robust tools)
+
+Real‑world experience I bring:
+- Abundance Movement: AI matching and recommendations (OpenAI, LangChain, Pinecone, NestJS, PostgreSQL) with aggressive cost optimization
+- Helpicon: Production microservices on AWS with payments (Stripe/Swish) and Twilio chat; secure APIs and CI/CD
+- Data platforms (Palmetto, Pink Chicken): Complex ETL, API integrations, Azure SQL/ADF—useful for building data‑aware AI apps
+
+What we’ll build together (customized to your pace):
+1) Foundations: modern app stack (Next.js/NestJS or your choice), API patterns, auth, storage
+2) LLM Basics: structured prompting, tool/function calling, eval loops, prompt versioning
+3) RAG: embeddings, vector DB (Pinecone/pgvector), retrieval strategies, caching
+4) Automations & Agents: task orchestration (LangGraph/Temporal basics)
+5) Deployment: Vercel/AWS/Azure
+
+Format and cadence:
+- 60–90 min live sessions (pair coding + Q&A), 1–2 times per week
+- Homework/practice tasks with feedback in between; async support window
+
+Quick questions to tailor the plan:
+- What’s your primary goal (SaaS feature, internal tool, mobile companion, data agent)?
+- Preferred stack/cloud (Next.js/NestJS, Python/FastAPI, AWS/Azure/Vercel)?
+- Any models/accounts already set up (OpenAI/Anthropic), and a budget target?
+
+If you’re ready, I’ll send a first session outline and a seed repo; we’ll diagram the target architecture in Excalidraw, generate the initial Plan.md, and ship a small working feature in session one.

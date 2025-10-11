@@ -1,0 +1,167 @@
+1. Global Error Message Handling
+Objective
+
+Improve system‑wide error handling so that end users see clear, meaningful messages instead of technical or confusing alerts.
+
+Tasks
+
+Audit existing alerts
+
+Review all error messages surfaced in the front end and back end (e.g., API responses, network failures, expired sessions).
+
+Identify and document alerts that expose system‑level terms (e.g., “Unauthorized Access Token”, “Axios Error: Network Error”).
+
+Define user‑friendly messages
+
+Draft replacement messages that are easily understood by non‑technical users (e.g., “Your session has expired, please log in again.”, “We’re having trouble connecting. Check your internet connection and try again.”).
+
+Decide how to handle unexpected errors (e.g., display a generic apology and log details internally).
+
+Implement global error handling
+
+Front end: Use a central error handling mechanism (e.g., Axios interceptors or a custom hook) to intercept HTTP errors and map them to the new messages.
+
+Back end: Ensure API endpoints return standardized error objects and avoid leaking implementation details.
+
+Session and network issues: Implement specific handling for expired tokens and connectivity problems.
+
+Testing and validation
+
+Verify that technical messages are no longer visible to end users.
+
+Confirm that new messages trigger under appropriate conditions.
+
+Deliverables
+
+Documented list of existing vs. new messages.
+
+Updated front‑end and back‑end code implementing the new error handling logic.
+
+Test plan and results demonstrating correct behavior.
+
+F
+fiverdoitforme
+
+09 Oct, 23:10
+2. Improved Course Progression User Journey (Backend)
+Objective
+
+Modify backend logic to allow learners to access the next course after three unsuccessful attempts at the current course, regardless of Strapi configuration.
+
+Tasks
+
+Review current progression logic
+
+Examine how the system currently restricts access to subsequent courses based on completion status.
+
+Identify where the “max attempts” logic is or isn’t implemented.
+
+Design progression update
+
+Define how attempts are counted (e.g., per user per assessment or per course).
+
+Decide whether attempt counts reset after a certain time or remain permanent.
+
+Implement logic change
+
+Add or update database fields as needed (e.g., store number of attempts per user/course).
+
+Update API endpoints or services to grant access to the next course once a user has failed the previous course three times.
+
+Ensure that this logic is managed in custom back‑end code rather than via Strapi’s admin configuration.
+
+Testing and verification
+
+Simulate users with varying numbers of attempts and confirm that access is correctly granted or restricted.
+
+Deliverables
+
+Updated backend code implementing the revised progression rules.
+
+Database migration scripts (if new fields/tables are required).
+
+Documentation outlining how attempts are recorded and reset.
+
+Test cases covering typical and edge scenarios.
+
+F
+fiverdoitforme
+
+09 Oct, 23:10
+3. Error Message Handling in Video Modules (Frontend + Strapi)
+Objective
+
+Improve user experience across all video modules by eliminating premature “No recordings available” messages and adding proper loading indicators.
+
+Affected modules
+
+Video Coaching Module
+
+Webinar Library Module
+
+Live Q&A Module
+
+Tasks
+
+Evaluate current loading behavior
+
+Observe how each module currently fetches and displays video recordings.
+
+Identify why “No recordings available yet” appears before the API call finishes.
+
+Implement loading indicators
+
+Add loaders (spinners or skeleton components) while content is being fetched.
+
+Ensure the loader persists until the API returns data or an error.
+
+Refine empty‑state handling
+
+Only show “No recordings available” if the API returns zero items after the data is fully loaded.
+
+Remove or hide empty‑state messaging during initial fetches.
+
+Apply consistently across modules
+
+Standardize the loading and empty‑state components so that all three modules behave similarly.
+
+Deliverables
+
+Updated React components for video modules with loading and empty‑state logic.
+
+Documentation of the data flow and how errors/no‑content states are handled.
+
+Test results confirming that users no longer see confusing messages before content loads.
+
+F
+fiverdoitforme
+
+09 Oct, 23:11
+4. Error Handling in Shop – Sticks & Whips Module (Frontend + Strapi)
+Objective
+
+Fix the bug where the “Sticks & Whips” shop module initially shows “No product matches your profile” even when products exist, only to display products on a subsequent load.
+
+Tasks
+
+Analyze current product loading logic
+
+Investigate how product data is retrieved on first page load.
+
+Identify any asynchronous sequencing issues or incorrect filtering based on user profile.
+
+Correct the fetch and display logic
+
+Ensure the first API call fetches and displays available products without requiring a page refresh or second call.
+
+Adjust filters or conditions so that products are not prematurely filtered out.
+
+Test with different user profiles
+
+Confirm that new logic works for all user roles (e.g., subscriber, guest, admin) and location settings if applicable.
+
+Deliverables
+
+Patched backend or front‑end code that properly displays products on the first load.
+
+Test scenarios proving that the bug is resolved.

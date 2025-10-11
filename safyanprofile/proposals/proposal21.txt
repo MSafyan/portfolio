@@ -1,0 +1,34 @@
+We’re looking for a Backend Developer with strong experience in React, Next.js, and web scraping using Puppeteer. The ideal candidate leverages AI-powered development tools (like Cursor or GitHub Copilot) daily to build efficient, scalable backend systems and robust data extraction pipelines.
+
+Deliverables
+Maintain and extend Next.js-based backend services and API routes
+Develop and manage reliable, ethical web scraping solutions using Puppeteer
+Integrate scraped data into internal databases and workflows
+Write clean, performant, and well-documented code—enhanced with AI coding assistants
+Troubleshoot and optimize scraping pipelines against anti-bot measures and site changes
+
+---
+
+Proposal:
+
+Hey there,
+
+AWS Solutions Architect–certified full‑stack engineer (Next.js/React/Node) with daily AI‑assisted development using Cursor, Claude Code. I’m happy to work FREE for the first few days so we can validate fit and value quickly. Been using LLMs, Vector Databases and Langchain. 
+
+
+Fit for your needs:
+- Next.js backend/API routes: typed endpoints, auth, rate limits, logging, and clean module structure.
+- Puppeteer scraping: stealth plugins, proxy/UA rotation, human‑like interactions, captcha/anti‑bot handling, resilient retry/backoff.
+- Data pipeline: transform/clean, upsert to PostgreSQL/Mongo (Prisma/Mongoose), queue/webhook ingestion, audit trails.
+- Quality & Ops: Sentry/CloudWatch observability, CI/CD, clear docs, and maintainable code.
+
+Use of LLMs, Prompting, Vector database
+In one project we matched users where flow was UserData -> GPT-3.5 for summary/strengths/keyWords -> text Embedding using OpenAI embedding-text-3 -> vectors stored in PineCone. Then other users asks for similar user and we make an api call to pinecone and get similar Users.
+
+projects:
+- Wesion/Abundance (AI + Next.js): RAG services, Pinecone, cost‑optimized LLM pipelines; built user‑centric UIs and data workflows.
+- Helpicon (marketplace microservices): Payments (Stripe/Swish), chat (Twilio Conversations), robust APIs, CI/CD on AWS.
+- CVR Sports Analytics: Data modeling and insight dashboards with complex filtering and performance focus.
+
+Best regards,
+Muhammad Safyan

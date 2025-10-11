@@ -1,0 +1,12 @@
+My role. Senior Backend Developer
+
+Project description.
+
+Helpicon is a Swedish company based in Malmö, operating as Helpicon AB. It’s a digital platform (app and website, helpicon.se) that connects people and businesses with verified local "Helpers" for tasks like cleaning, babysitting, pet care, deliveries, and minor repairs. With secure payments, transparent reviews, and a user-friendly interface, it aims to simplify task outsourcing while offering flexible work opportunities, primarily for young people. Helpicon is focused on Scandinavia with plans to expand across Europe.
+Skills and deliverables
+
+Node.js
+Stripe
+PostgreSQL
+Twilio
+Microservice

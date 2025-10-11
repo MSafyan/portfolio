@@ -1,0 +1,155 @@
+# Pink Chicken Data Warehouse Engineering Project
+## Enterprise Data Integration & Analytics Solution
+
+### **Project Overview**
+Architected and implemented a comprehensive data warehouse solution for Pink Chicken, a multi-channel children's apparel retailer, integrating disparate systems (Shopify POS/E-commerce and Apparel Magic WMS) into a unified analytics platform supporting 10+ retail locations and e-commerce operations.
+
+### **Technical Architecture**
+
+#### **Cloud Infrastructure (Microsoft Azure)**
+- **Azure Data Factory (ADF)**: `adf-pinkchicken-eus2` - Orchestrated ETL pipelines with complex API integrations
+- **Azure SQL Database**: `asqldb-pinkchicken-eus2` - Centralized data warehouse with optimized schemas
+- **Azure Storage Account**: `sapinkchicken` - Staging area for JSON data transformation
+- **Virtual Network**: `vnet-pinkchicken-eus2` - Secure private network with endpoints
+- **Resource Group**: `rg-pinkchicken-eus2` - Consolidated resource management in East US 2
+
+#### **Data Integration Strategy**
+**Multi-Source Integration Challenge**: Unified inventory and sales data from:
+- **Shopify REST API**: 10 retail store locations + e-commerce platform
+- **Apparel Magic API**: Warehouse management system with virtual warehouses
+- **Complex Deduplication**: Prevented double-counting of e-commerce inventory across systems
+
+### **Technical Implementation**
+
+#### **Advanced ETL Pipeline Architecture**
+**Azure Data Factory Pipelines Developed**:
+- `AM_Copy_Customer` - Apparel Magic customer data with nested JSON transformation
+- `Copy_Endpoint_Data_Incremental` - Incremental data loading with timestamp-based controls
+- `PL_Shopify_To_SQL` - Shopify API integration with rate limiting and pagination
+- `Copy_Data_Product` / `Copy_Data_Order` - Specialized product and order data pipelines
+
+#### **API Integration Complexities Solved**
+**Shopify API Integration**:
+- Implemented pagination with RFC 5988 standard (Link headers)
+- Managed rate limiting (40 requests/app/minute bucket)
+- Complex inventory level queries requiring location_ids batching
+- Historical data extraction with date range filtering
+
+**Apparel Magic API Integration**:
+- Unix timestamp + API token authentication
+- New mandatory pagination system with `last_id` mechanism
+- Rate limiting management (4 requests/second)
+- Virtual warehouse reconciliation logic
+
+#### **Data Warehouse Schema Design**
+**Dimensional Modeling Approach**:
+- **Fact Tables**: Sales transactions, inventory snapshots, order details
+- **Dimension Tables**: Products, customers, locations, time dimensions
+- **Bridge Tables**: Complex many-to-many relationships for product variants
+- **Control Tables**: `data_load_control` for incremental processing tracking
+
+#### **Advanced Data Processing Features**
+**Incremental Data Loading**:
+```sql
+-- Data load control mechanism
+Select * from data_load_control where table_name = '@{pipeline().parameters.table_name}'
+```
+
+**Snapshot Strategy for Historical Analysis**:
+- Implemented daily inventory snapshots with date stamping
+- Enabled month-over-month and year-over-year trending analysis
+- Addressed lack of historical data in source systems
+
+**JSON Data Transformation**:
+- Complex nested JSON parsing from both APIs
+- Dynamic schema mapping with auto-table creation
+- Parameterized table names for flexible pipeline execution
+
+### **Business Intelligence Requirements Met**
+
+#### **Multi-Perspective Inventory Valuation**
+- **Finance View**: Inventory valued at cost basis
+- **D2C Planning**: Inventory valued at retail prices
+- **Wholesale Operations**: Inventory valued at wholesale prices
+- **Location-Specific**: 10 retail stores + e-commerce + warehouse views
+
+#### **PowerBI Integration**
+- Prepared dimensional model for PowerBI consumption
+- Collaborated with BI developer (Sanjie Sharma) for report specifications
+- Optimized SQL queries for real-time dashboard performance
+
+### **Technical Challenges Overcome**
+
+#### **Data Quality & Consistency**
+- **Shopify Data Issues**: Resolved stale inventory data (last updated May 2022)
+- **API Rate Limiting**: Implemented robust retry logic and backoff strategies
+- **Virtual Warehouse Logic**: Reconciled complex Apparel Magic virtual inventory
+
+#### **Performance Optimization**
+- **Pagination Handling**: Efficient large dataset processing with `HasMorePages` variables
+- **Stored Procedure Integration**: `sp_update_data_load_control` for transaction integrity
+- **Parallel Processing**: Concurrent pipeline execution with dependency management
+
+#### **Security & Compliance**
+- **Private Endpoints**: Implemented for SQL and Storage account access
+- **Network Security Groups**: Configured for ADF, SQL, and VM resources
+- **Private DNS Zones**: Established for secure internal name resolution
+
+### **Development Methodology**
+
+#### **DevOps Practices**
+- **Version Control**: Pipeline definitions stored as JSON with timestamps
+- **Environment Management**: Parameterized configurations for dev/prod
+- **Monitoring**: Implemented comprehensive logging and error handling
+
+#### **Testing Strategy**
+- **API Connection Testing**: Validated all endpoint integrations
+- **Data Validation**: Implemented data quality checks and reconciliation
+- **Performance Testing**: Optimized for large dataset processing
+
+### **Business Impact**
+
+#### **Operational Efficiency**
+- **Unified Reporting**: Single source of truth for inventory and sales data
+- **Real-Time Analytics**: Eliminated manual data consolidation processes
+- **Historical Trending**: Enabled strategic planning with historical comparisons
+
+#### **Scalability**
+- **Future-Proof Architecture**: Designed for additional API integrations
+- **Modular Pipeline Design**: Easy addition of new data sources
+- **Resource Optimization**: Cost-effective Azure resource utilization
+
+### **Technical Skills Demonstrated**
+
+#### **Database Technologies**
+- **Azure SQL Database**: Advanced T-SQL, stored procedures, performance tuning
+- **Data Modeling**: Dimensional modeling, star schema design
+- **ETL Development**: Complex data transformation and loading processes
+
+#### **Cloud Platforms**
+- **Microsoft Azure**: Data Factory, SQL Database, Storage, Networking
+- **API Integration**: REST APIs, authentication, rate limiting, pagination
+- **JSON Processing**: Complex nested data structure transformation
+
+#### **Development Tools**
+- **Azure Data Factory**: Pipeline orchestration, data flow activities
+- **SQL Server Management Studio**: Database design and optimization
+- **PowerBI**: Data model preparation and optimization
+
+### **Project Outcomes**
+- **Successfully integrated** 2 complex API systems with 10+ retail locations
+- **Implemented** enterprise-grade data warehouse with historical tracking
+- **Delivered** unified analytics platform supporting multiple business units
+- **Established** scalable architecture for future data source additions
+- **Enabled** real-time inventory and sales reporting across all channels
+
+### **Key Metrics**
+- **Data Sources**: 2 primary systems (Shopify + Apparel Magic)
+- **Locations**: 10+ retail stores + e-commerce integration
+- **Pipeline Complexity**: 5+ specialized ETL pipelines
+- **Processing Volume**: Daily incremental loads with historical snapshots
+- **API Integrations**: Complex rate-limited REST API implementations
+
+---
+
+*This project demonstrates expertise in enterprise data warehouse engineering, cloud architecture, API integration, and business intelligence solution development.*

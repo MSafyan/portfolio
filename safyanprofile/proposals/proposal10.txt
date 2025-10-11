@@ -1,0 +1,36 @@
+tions
+Number of form fields and validation rules
+Specific Keitaro tracking requirements
+Testing and revisions needed
+
+Realistic timeline: 1-2 days for an experienced developer
+At $10/hour, this is quite budget-friendly for this scope of work. You'd typically see this kind of project range from $100-300+ at market rates.
+Would you like me to create a sample landing page structure so you can see what's possible within this budget? I can build something you could use as a starting template.
+
+
+
+PROPOSAL:
+
+Hey there,
+
+To start fast, please share: Figma (or wireframe) + brand assets/copy, Keitaro access/API key and event names, Telegram bot token + target chat ID, and domain/staging details if you want a hosted preview or we can deploy on vercel in staging version. I have solid frontend experience with Next.js/React, Tailwind/CSS, responsive layouts, form validation, and turning Figma designs into clean, accessible.
+
+What you’ll get quickly:
+- Responsive landing page structure with your sections and clean validation
+- Keitaro tracking integrated (events/UTM), tested on a staging link
+- Lead forwarding to Telegram bot (form payload → chat message with retry)
+- Clear handoff: lightweight docs + a short Loom walkthrough
+
+Timeline & cost:
+- 1–2 days for a polished MVP based on your sections and assets
+- I’ll start with the hero + form, show progress, then proceed after your green light
+
+Questions to confirm:
+- Exact fields/validation rules and any dynamic show/hide logic?
+- Keitaro event names/parameters you want fired?
+- Telegram bot token and target chat ID/channel?
+- Telegram message format (plain text summary vs JSON), and any PII to omit?
+
+Ready to start today—send the sections/assets and I’ll get the first build up for review.
+
+

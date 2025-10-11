@@ -1,0 +1,113 @@
+We are building a modular dashboard application similar to Monday.com.
+The dashboard will support widgets such as Charts (ECharts) and Metrics (KPIs), with drag & drop, resize, filters, themes (light/dark), and accessibility features.
+
+Stack required: Next.js + React + Tailwind CSS + TypeScript.
+AI-First Development: We use CODEX integrated with our GitHub repo, and the majority of the code must be generated via AI. Your role is to prompt, supervise, refine, and test AI output — not to write everything manually.
+
+Mandatory Requirement:
+Applicants must provide a working prototype URL of a similar application (dashboard with drag & drop and charts).
+
+* If no prototype URL is provided → the application will be automatically rejected.
+* Screenshots or descriptions are not enough — we require a live demo link.
+
+---
+
+Responsibilities
+
+* Implement the Dashboard Builder (12-column grid) with drag & drop, resize, duplication/removal, full screen.
+* Integrate Apache ECharts with the following chart types:
+  • Line (basic, area, stacked)
+  • Bar (basic, stacked vertical, stacked horizontal, mixed line+bar)
+  • Pie (basic, doughnut)
+* Chart features: interactive legend, tooltips, dataZoom, export (PNG/CSV), responsive layout.
+* Implement KPI widgets:
+  • Aggregations (SUM/AVG/MIN/MAX/COUNT on mock JSON data)
+  • Comparison vs previous period or target (delta % and absolute)
+  • Sparkline trend line
+  • RAG (Red/Amber/Green) status indicators
+* Build filters: global and per-widget (date range, list, numeric, boolean).
+* Ensure accessibility: ARIA, keyboard navigation, focus states, high contrast.
+* Provide light/dark themes.
+* Use JSON templates for all chart and KPI configs (reusable across dashboards).
+
+---
+
+Deliverables
+
+1. Next.js (TypeScript) app with Tailwind, clean structure.
+2. Dashboard Builder with widget library, drag & drop, resize, persistent layout.
+3. ECharts integration (all types listed above).
+4. KPI widgets: compact/large, delta, sparkline, RAG.
+5. Filter system: global + per-widget.
+6. Documentation: setup guide, how to add widgets, how prompts were used for AI codegen.
+7. Basic tests (React Testing Library / Vitest) for key components.
+
+---
+
+AI-First Development Expectation
+
+* We use CODEX AI in our GitHub repo.
+* Most code must be generated with AI.
+* Your role: design prompts, supervise AI output, review/refactor, test.
+* Time estimates should reflect less manual coding, more AI iteration + QA.
+* Deliverables must include:
+  • Commit history showing AI usage
+  • Prompt logs/examples
+  • Reviewed final code
+
+---
+
+Acceptance Criteria
+
+* Layout persists (localStorage).
+* Mixed line+bar chart supports dual Y axes, zoom, interactive legend.
+* Global filters apply to all widgets; widget filters apply locally.
+* KPIs: value + delta + sparkline + RAG; “N/A” if no baseline.
+* Responsive (desktop, tablet, mobile).
+* Clear states (loading/empty/error).
+* Meets accessibility guidelines.
+* AI-driven workflow demonstrated in repo history.
+
+---
+
+What to Include in Your Proposal
+
+1. Prototype URL (mandatory): link to a working app you’ve built with drag & drop dashboard and charts.
+
+   * Without this → application is automatically rejected.
+2. Technical approach: how you’ll structure JSON templates, handle global vs widget filters, optimize ECharts imports.
+3. AI experience: how you’ve used AI/Codex for real-world coding.
+4. Portfolio: GitHub repos or apps (with live links).
+5. Timeline & milestones: effort broken down.
+6. Availability & timezone.
+
+---
+
+Proposal:
+
+Hey there,
+
+Senior full‑stack engineer (AWS Solutions Architect + Terraform Certified) with 5+ years building Next.js/React/Tailwind/TypeScript dashboards. I work AI‑first using Claude Code and Cursor with a structured planning.md and multi‑agent prompting flow to rapidly scaffold, iterate, and test. I’m happy to work FREE for the first few days to ensure fit.
+
+Relevant experience mapped to your needs:
+- Next.js dashboards: SSR/SSG, App Router, responsive layouts, accessibility, light/dark themes.
+- Charts: Have been using Highcharts package for different charts like Line/Bar/K
+- Production charts: mixed Column+Spline period charts, dual-axis trends, KPI scatter, sparklines.
+- KPIs: aggregations (SUM/AVG/MIN/MAX/COUNT), deltas vs baseline/target, sparklines, RAG states.
+
+projects:
+- Wesion/Abundance (AI + Next.js): RAG services, Pinecone, cost‑optimized LLM pipelines; built user‑centric UIs and data workflows.
+- Helpicon (marketplace microservices): Payments (Stripe/Swish), chat (Twilio Conversations), robust APIs, CI/CD on AWS.
+- CVR Sports Analytics: Data modeling and insight dashboards with complex filtering and performance focus.
+
+
+Technical approach (brief):
+- Grid: 12‑col builder via dnd‑kit + resizable handles; persisted layouts per dashboard.
+- Charts: ECharts with on‑demand imports, typed option builders, CSV/PNG export.
+- State: lightweight store (Zustand/Context) + React Query for async data; strict TypeScript.
+- Filters: shared context for global filters; per‑widget predicates merged at query time.
+- Theming/a11y: Tailwind design tokens, high‑contrast mode, focus rings, keyboard nav.
+
+Availability: Immediate | Timezone: flexible for overlap
+
+Happy to share a live prototype and walk through architecture, prompts, and workflows.

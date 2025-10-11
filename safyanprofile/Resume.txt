@@ -1,0 +1,75 @@
+Muhammad Safyan
+
+GitHub:  github.com/MSafyan                    Email: msafyan080@gmail.com
+Cell  No: +9231499457000
+Location: Gujranwala, Pakistan             LinkedIn:linkedin.com/in/safyan-akram-975631b4  
+
+
+
+
+
+
+
+
+BS Software Engineering
+
+
+COMSATS University Islamabad, Lahore Campus.
+
+
+
+
+
+
+EXPERIENCE
+
+
+Abundance Movement, Full Stack Developer		       April 2023 - Present
+
+Managed the entire development lifecycle, from frontend and backend development to DevOps, ensuring all technical decisions aligned with the project's goals and requirements
+Used LLMs, vector database and tokenize indexes for smart search
+Implemented NestJS-based backend and database design/implementation.
+Integrated with ATM contract integration and TypeORM PostgreSQL, location based indexes.
+
+Helpicon — Backend Developer		  September 2023 - Present
+Integrated Swish/Stripe/Workoma in payment service and Twilio conversation in chat service.
+Worked on microservices deployed on AWS via pipelines.
+Developed Common Services for communication and optimizations for data transfer.
+
+
+Frizhub, Lahore, Lahore — Full Stack Web Developer	     November 2022 - August 2023
+Worked on NFT explorer application (CHAINSCAN) including data from Ethereum to PostgreSQL.
+Utilized Alchemy Graph API, optimized PostgreSQL queries for data indexing, and developed 
+Query Optimizations for millions of records
+Angular modules including Web3-based subscription, Auth using Web3.
+
+  P2G Global Services, Remote — Contract Developer                                                                 November 2020 - 2023
+Developed and optimized hundreds of thousands of products for the website.
+Implemented SEO-friendly features and segment with Google Analytics for user flow tracking.
+Created scripts for managing & updating 130k+  products, order shipment tracking with Didadi APIs, and maintained multiple payment methods and continuous inventory updates.
+Certifications
+AWS Certified Solutions Architect – Associate (2024)
+Verified via Credly
+
+HashiCorp Certified: Terraform Associate | 2024
+Verified via Credly
+
+TECHNICAL SOFTWARE SKILLS
+
+
+
+Languages & Frameworks: JavaScript, TypeScript, Node.js, React.js, Next.js, Angular, HTML5, CSS3, Sass
+Backend Technologies: MongoDB, Nestjs,  PostgreSQL, Strapi, AWS, Stripe, PayPal, Twilio, SendGrid
+Tools & Platforms: AWS, Azure, terraform, GitHub, Expo, Figma, Microservices, Alchemy, Graph API, Jira
+
+
+LANGUAGES
+Professional Proficiency: Node.js, TypeScript
+
+PERSONAL PROJECTS
+Employee & Resource Management System
+Developed a React-native app for small-scale business management, reducing paperwork and errors.
+Implemented multilingual support and a demo video: Demo Video.
+
+INTERESTS
+Anime, DevOps, Cooking, Learning, Blockchain, Cloud

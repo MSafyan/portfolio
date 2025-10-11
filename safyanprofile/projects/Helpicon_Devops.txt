@@ -1,0 +1,452 @@
+# DevOps Infrastructure Summary - Helpicon Payment Service
+
+## Executive Summary
+
+This payment microservice uses a modern cloud-native DevOps setup with **Jenkins** triggering builds via **Kaniko** (containerized Docker builds), deploying to **AWS EKS** (Kubernetes) with infrastructure managed by **Terraform**. The system operates across three AWS accounts (DevOps, Staging, Production) in the EU-North-1 region.
+
+---
+
+## Architecture Overview
+
+### Tech Stack
+- **CI/CD:** Jenkins + Kaniko (ECS Fargate)
+- **Container Registry:** AWS ECR
+- **Orchestration:** AWS EKS (Kubernetes)
+- **Infrastructure:** Terraform
+- **Database:** AWS RDS PostgreSQL 14
+- **Storage:** AWS S3
+- **Region:** EU-North-1 (Stockholm, Sweden)
+
+### AWS Account Structure
+| Environment | Account ID | Purpose |
+|-------------|------------|---------|
+| DevOps | 040177454831 | Jenkins, Kaniko builder |
+| Staging | 733489377550 | Testing environment |
+| Production | 200256115389 | Live production |
+
+---
+
+## How It Works
+
+### 1. Deployment Trigger
+
+**For Staging:**
+```bash
+git tag -f staging
+git push -uf origin staging
+export ENV=staging && make k8s_apply
+```
+
+**For Production:**
+```bash
+export ENV=production && make k8s_apply
+```
+
+The system monitors:
+- **Staging:** Git tag `refs/tags/staging`
+- **Production:** Git branch `refs/heads/main`
+
+### 2. Build Pipeline (Kaniko)
+
+When a deployment is triggered:
+
+1. **Preparation Phase:**
+   - Fetches Kaniko task templates from BitBucket DevOps repository
+   - Creates/updates IAM role `kaniko_ecs_role` with ECR push permissions
+   - Gathers all secrets from environment files (`staging.mk`, `production.mk`)
+
+2. **Build Phase (ECS Fargate):**
+   - Runs Kaniko builder in DevOps AWS account
+   - CPU: 2048, Memory: 4096 MB
+   - Clones code from BitBucket
+   - Builds Docker image with:
+     - Node.js 20
+     - Puppeteer + Chromium (for PDF generation)
+     - Prisma ORM
+     - All environment variables baked in
+   - Resources: 2 vCPU, 4 GB RAM
+   - Timeout: Polls until task stops
+
+3. **Push Phase:**
+   - Pushes image to target environment's ECR
+   - Image tag: `helpicon-payments:latest`
+
+### 3. Kubernetes Deployment
+
+Once the image is built:
+
+1. **Cluster Access:**
+   - Discovers EKS cluster in target AWS account
+   - Updates local kubeconfig with credentials
+
+2. **Secret Management:**
+   - Deletes old ECR pull secret
+   - Creates new `regcred` secret with fresh ECR token
+
+3. **Application Deployment:**
+   - Applies all Kubernetes manifests from `infra/k8s/{env}/`
+   - Performs rolling restart: `kubectl rollout restart deployment payments-depl`
+
+### 4. What Gets Deployed
+
+**Main Application:**
+- **Deployment:** `payments-depl` (1 replica)
+- **Service:** `payments-srv` (ClusterIP on port 3000)
+- **Image:** Always pulls latest from ECR
+- **Startup:** Runs Prisma migrations → starts Node.js server
+
+**Automated Jobs:**
+1. **Payment Release Cron** (every hour):
+   - Checks and updates payment statuses
+   - Processes Workamo releases
+   - Command: `node src/crons/checkAndUpdatePayments.js`
+
+2. **Workamo User Sync** (every 5 minutes):
+   - Verifies contractor accounts in Workamo
+   - Command: `node src/crons/checkWorkamoUsers.js`
+
+---
+
+## Infrastructure Components (Terraform)
+
+### Database (RDS)
+- **Engine:** PostgreSQL 14
+- **Database Name:** `HelpiconpaymentsRds`
+- **Instance Class:**
+  - Staging: `db.t4g.micro`
+  - Production: (defined in production.tfvars)
+- **Credentials:** `helpicon` / `Helpicon`
+- **Network:** Private subnets, VPC security group
+- **Backups:** Daily at 21:00-22:00 UTC (2-day retention in staging)
+
+### Container Registry (ECR)
+- **Repository:** `helpicon-payments`
+- **Features:** Image scanning, mutable tags
+- **Policy:** Open access for push/pull (all AWS principals)
+
+### Storage (S3)
+- **Bucket:** `helpicon-service-payments-{env}`
+- **ACL:** Public read (for receipts and documents)
+- **Purpose:** PDF receipts, invoice storage
+
+### State Management
+- **Backend:** S3 bucket + DynamoDB locking
+- **State Bucket:** `helpicon-payments-tf-state-{env}`
+- **Lock Table:** `tf-lock-payments-{env}`
+- **Encryption:** Enabled
+
+---
+
+## Available Commands
+
+### Infrastructure Setup
+```bash
+# Initialize Terraform (first time only)
+make init
+
+# Preview changes
+make plan
+
+# Apply infrastructure changes
+make tf_apply
+
+# Destroy all infrastructure
+make tf_delete
+```
+
+### Building & Publishing
+```bash
+# Build Docker image via Kaniko
+make build
+
+# Full pipeline: terraform + build + deploy
+make publish
+```
+
+### Kubernetes Operations
+```bash
+# Deploy to Kubernetes
+export ENV=staging && make k8s_apply
+
+# Deploy everything (Terraform + Kubernetes)
+export ENV=staging && make apply
+
+# View running pods
+kubectl get pods
+
+# Check logs
+kubectl logs -f <pod_name>
+```
+
+---
+
+## Configuration Files
+
+### Environment-Specific Settings
+- `common.mk` - Shared constants (service name, DevOps account)
+- `staging.mk` - Staging AWS account, API keys, Stripe test keys
+- `production.mk` - Production AWS account, live API keys
+- `infra/tf/staging.tfvars` - Terraform variables for staging
+- `infra/tf/production.tfvars` - Terraform variables for production
+
+### Infrastructure Code
+- `infra/tf/*.tf` - Terraform modules (RDS, ECR, S3)
+- `infra/k8s/{env}/*.yaml` - Kubernetes manifests
+- `infra/kaniko.mk` - Kaniko build orchestration
+
+---
+
+## Security Overview
+
+### Current Setup
+✅ **Good Practices:**
+- Infrastructure as Code (Terraform)
+- Separate AWS accounts per environment
+- VPC isolation for databases
+- Encrypted Terraform state
+- Image scanning enabled on ECR
+
+⚠️ **Security Concerns:**
+1. **Secrets in Git:**
+   - API keys stored in `staging.mk` and `production.mk`
+   - Database credentials hardcoded
+   - BitBucket access token in `kaniko.mk`
+
+2. **Access Controls:**
+   - ECR policy allows all AWS principals (`*`)
+   - S3 buckets are public-read
+   - No secrets rotation mechanism
+
+3. **Build-Time Secrets:**
+   - All secrets baked into Docker image as environment variables
+   - Secrets passed as Kaniko build args
+
+### Recommended Improvements
+1. **Migrate to AWS Secrets Manager or Parameter Store**
+2. **Use IAM Roles for Service Accounts (IRSA) in EKS**
+3. **Implement secrets rotation**
+4. **Restrict ECR policy to specific AWS accounts**
+5. **Use runtime secret injection instead of build-time**
+6. **Enable AWS CloudTrail and GuardDuty**
+
+---
+
+## High Availability & Resilience
+
+### Current State
+- **Replicas:** 1 (single instance)
+- **Deployment Strategy:** Rolling update (but only 1 replica)
+- **Database:** Single RDS instance
+- **Backup:** Automated daily backups
+
+### Limitations
+⚠️ No high availability (single pod)
+⚠️ No load balancing across multiple replicas
+⚠️ No multi-AZ database setup visible
+⚠️ No disaster recovery plan documented
+
+### Recommendations
+1. **Increase replicas to 2-3** for production
+2. **Enable RDS Multi-AZ** deployment
+3. **Configure pod disruption budgets**
+4. **Implement health checks and readiness probes**
+5. **Add horizontal pod autoscaling (HPA)**
+
+---
+
+## Monitoring & Observability
+
+### Current Setup
+- Basic Morgan HTTP logging (from codebase)
+- Kubernetes pod logs via `kubectl logs`
+
+### Missing Components
+⚠️ No centralized logging (ELK, CloudWatch Logs Insights)
+⚠️ No application performance monitoring (APM)
+⚠️ No metrics/dashboards (Prometheus, Grafana, CloudWatch)
+⚠️ No alerting configured
+⚠️ No distributed tracing
+
+### Recommendations
+1. **Enable CloudWatch Container Insights**
+2. **Set up centralized logging** (CloudWatch Logs or ELK)
+3. **Implement metrics collection** (Prometheus/CloudWatch)
+4. **Configure alerting** for critical failures
+5. **Add distributed tracing** (X-Ray or Jaeger)
+
+---
+
+## Environment Variables & Configuration
+
+### Build-Time Variables (Baked into Image)
+All secrets are injected during Docker build:
+- `DATABASE_URL` - PostgreSQL connection string
+- `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` - AWS credentials
+- `STRIPE_SECRET_KEY` - Stripe API keys (test/prod)
+- `STRIPE_WEBHOOK_SECRET` - Stripe webhook verification
+- `WORKAMO_*_BASE_URL` / `WORKAMO_*_API_KEY` - Workamo integration
+- `CMS_API_KEY` - Content management system
+- `AWS_S3_BUCKET` - S3 bucket for file storage
+
+### Runtime Variables (Kubernetes)
+Only environment indicator:
+- `ENV=staging` or `ENV=production`
+
+---
+
+## Deployment Flow Diagram
+
+```
+┌─────────────────┐
+│  Git Push/Tag   │
+│  (Developer)    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  make publish   │
+│  (Manual/CI)    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Terraform Apply │
+│ (ECR, RDS, S3)  │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│     Kaniko Build (ECS)      │
+│  • Fetch templates          │
+│  • Clone repo               │
+│  • Build Docker image       │
+│  • Push to ECR              │
+└────────┬────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│   Kubernetes Deploy         │
+│  • Update kubeconfig        │
+│  • Create ECR secret        │
+│  • Apply manifests          │
+│  • Rollout restart          │
+└────────┬────────────────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│   Service Running           │
+│  • Main API (1 pod)         │
+│  • CronJobs (2)             │
+│  • Connected to RDS         │
+└─────────────────────────────┘
+```
+
+---
+
+## Cost Considerations
+
+### Current Resources (Staging)
+- **EKS Cluster:** ~$75/month (cluster fee)
+- **RDS db.t4g.micro:** ~$15-20/month
+- **ECS Fargate (Kaniko):** Pay per build (~$0.10-0.20 per build)
+- **S3 Storage:** Variable based on usage
+- **ECR Storage:** ~$0.10/GB per month
+- **Data Transfer:** Variable
+
+**Estimated Monthly Cost (Staging):** $100-150
+
+### Production Considerations
+- Should use larger RDS instance (db.t4g.small or larger)
+- Consider Reserved Instances or Savings Plans
+- Enable RDS Multi-AZ (+100% RDS cost)
+- Multiple pod replicas (+EC2 node costs)
+
+---
+
+## Troubleshooting Guide
+
+### Build Failures
+```bash
+# Check Kaniko task status
+aws ecs describe-tasks --cluster default-cluster \
+  --tasks <task-arn> --profile helpicon-devops-jenkins
+
+# View build logs (if CloudWatch configured)
+aws logs tail /ecs/kaniko-task --follow
+```
+
+### Deployment Issues
+```bash
+# Check pod status
+kubectl get pods
+
+# View pod logs
+kubectl logs -f payments-depl-<pod-id>
+
+# Check pod events
+kubectl describe pod payments-depl-<pod-id>
+
+# Manual rollout restart
+kubectl rollout restart deployment payments-depl
+```
+
+### Database Connection Issues
+```bash
+# Test RDS connectivity from pod
+kubectl exec -it payments-depl-<pod-id> -- bash
+nc -zv <rds-endpoint> 5432
+
+# Check security groups
+aws ec2 describe-security-groups \
+  --filters "Name=group-name,Values=helpicon-payments-postgres-sg"
+```
+
+---
+
+## Key Strengths
+
+✅ **Infrastructure as Code** - Everything defined in Terraform
+✅ **Immutable Deployments** - Fresh builds every time
+✅ **Multi-Account Strategy** - Proper environment isolation
+✅ **Automated Background Jobs** - CronJobs for async processing
+✅ **Container-Based Builds** - Reproducible via Kaniko
+✅ **Git-Based Deployment** - Tag/branch-driven releases
+
+---
+
+## Improvement Roadmap
+
+### Short-Term (1-2 weeks)
+1. ✅ Move secrets to AWS Secrets Manager
+2. ✅ Increase production replicas to 3
+3. ✅ Add health check endpoints
+4. ✅ Enable CloudWatch Container Insights
+5. ✅ Document runbooks
+
+### Medium-Term (1-2 months)
+1. ✅ Implement blue-green deployment
+2. ✅ Set up monitoring dashboards
+3. ✅ Configure alerting rules
+4. ✅ Enable RDS Multi-AZ
+5. ✅ Add horizontal pod autoscaling
+
+### Long-Term (3-6 months)
+1. ✅ Implement GitOps (ArgoCD/Flux)
+2. ✅ Add comprehensive observability
+3. ✅ Set up disaster recovery
+4. ✅ Implement canary deployments
+5. ✅ Security audit and hardening
+
+---
+
+## Contact & Support
+
+**Repository:** `helpicon-service-payment` (BitBucket)
+**DevOps Infra:** `helpicon-devops-infra` (BitBucket)
+**AWS Region:** EU-North-1
+**Kubernetes Service:** `payments-srv.default.svc.cluster.local:3000`
+
+---
+
+*Generated: 2025-10-08*
+*Last Updated: Check git history of this file*

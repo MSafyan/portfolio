@@ -1,0 +1,18 @@
+We are seeking a skilled Retool developer to transform an existing Excel tool with 12 tabs into a functional app. It's not a 1 to 1 migration, a bit of new functionality will be added and some existing functionality removed. The app will involve complex calculations and are basically one long workflow, with results stored in Retool's internal database. The final output should be exportable to PDF.
+Deep understanding of Retool and Excel is mandatory.
+
+Deliverables
+Develop Retool app from Excel tool
+Implement complex calculations
+Store results in Retool DB
+Enable PDF export of results
+Testing
+Quick documentation
+
+Proposal:
+Hey Dario.
+
+Have been working on Retool for Helpicon (a swedish startup) showing users/tasks/payments stats. it was linked with APIs, external database in AWS VPC. The requirements you mentioned are acheible in retool JS functions and Retool DB. We will be able to keep using Retool hosting and would not our own server because your data will be stored in Retool DB.
+
+I am AWS certified solution architect with 5+ years of expereince in Fullstack development so if we needed some external APIs or service will be able to do that aswell.
+

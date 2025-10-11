@@ -1,0 +1,46 @@
+Overview
+We are a medical transportation company building our own modular dispatch and operations platform to replace legacy systems. Our vision is a secure, HIPAA-compliant, and scalable ecosystem with:
+
+• Dispatcher/supervisor dashboards (clean, intuitive, real-time views).
+
+• Driver iOS app (simple, mobile-friendly, offline-ready).
+
+• Integrated billing/insurance workflows (Office Ally clearinghouse).
+
+• AI-powered automation (Amazon Bedrock + Amazon Q).
+
+• Fleet tracking integration (AT&T Unity, but must remain modular).
+
+• Asset maintenance & supply management with QR-based reporting.
+
+This is a long-term project, so we want someone who can lay a solid foundation with modularity and scalability in mind.
+
+-------------------------------------------------------------------------------------------------
+PROPOSAL:
+
+Hey there,
+
+AWS Certified Solutions Architect here—I build modular platforms on AWS/Azure with React Native driver apps, secure audit logging, and clean service boundaries for integrations; that aligns tightly with your dispatcher + driver + billing ecosystem.
+
+I can work for free for the first few days as a trial so you can evaluate fit and velocity before moving to a contract.
+
+Relevant experience:
+- Helped ship microservices on AWS with strict logging and auditability; designed versioned APIs between services
+- React Native experience for offline‑first mobile flows (background sync, queued events)
+- Secure data handling (RBAC, encryption in transit/at rest), CI/CD, environment isolation
+- Practical AI enablement on AWS/OpenAI where it adds real value (triage, routing suggestions)
+
+Approach I’d take:
+- Foundation: domain model + service contracts; HIPAA‑minded data partitioning and audit logging
+- Dispatcher dashboards: real‑time views (WebSockets/SSE), filters, role‑based access
+- Driver app: offline‑ready iOS (Expo/React Native), background location + queued events
+- Integrations: Office Ally for billing/claims, AT&T Unity behind a modular adapter to avoid lock‑in
+- Cloud: Terraform IaC, CI/CD, monitoring/alerts, backups/DR
+
+Budget note: based on scope, $5k is tight for a full build (web dispatcher, iOS app, integrations, HIPAA‑grade infra). I recommend an MVP milestone within budget (e.g., dispatcher MVP + driver trip flow + basic billing export), then phase the rest.
+
+Two quick questions:
+1) What’s the must‑have MVP slice for first release (dispatcher features, driver trip flow, which integration)?
+2) Any existing data sources we must migrate or integrate on day one?
+
+I can start immediately. During the free trial, I’ll deliver a clickable dispatcher prototype and a skeleton service with auth, audit logs, and one integration stub so you can see momentum right away.

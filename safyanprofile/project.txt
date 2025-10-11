@@ -1,0 +1,9 @@
+We are seeking a skilled developer to work on a SaaS application similar to a password manager. The ideal candidate should have experience with NextJS, NodeJS, Prisma, SQL, and cloud services like AWS or Azure. Familiarity with Clerk and Auth0 is also required.
+Deliverables
+* Develop and maintain SaaS application using NextJS and NodeJS
+* Integrate Prisma and SQL for database management
+* Deploy application on AWS or Azure
+* Implement authentication using Clerk and Auth0
+
+please include the line can work for free, 
+he need fullStack dev to include fullStack experience

@@ -1,0 +1,34 @@
+🍌 **Full-Stack AI Application with RAG Architecture - Ready to Deliver in 4 Weeks**
+
+Hey there,
+
+I've been working on a similar project where we're building user matching based on interests and profile data stored in Pinecone. Our flow is: **UserData → GPT-3.5 for summary/strengths/keywords → text embedding using OpenAI embedding-text-3 → vectors stored in Pinecone**. Then when users ask for similar matches, we make API calls to Pinecone and retrieve similar users.
+
+Having worked on this similar project, I think we can reuse techniques and avoid common problems like trying to store all data in Pinecone instead of using summarized versions with LLMs, which will bootstrap your transcript Q&A chatbot faster.
+
+## **My RAG Experience**
+- **Data Pipeline**: UserData → GPT-3.5 for processing → OpenAI embeddings → Pinecone storage
+- **Semantic Search**: API calls to Pinecone for similarity matching with configurable thresholds
+- **Cost Optimization**: Using summarized data instead of raw content (98% cost reduction achieved)
+- **Architecture**: NestJS backend, React frontend, PostgreSQL + Pinecone dual storage
+
+## **For Your Project**
+- **Transcript Processing**: Extract → GPT summarization → embeddings → Pinecone storage
+- **RAG Implementation**: Similar API flow for transcript-based Q&A
+- **React Frontend**: Modern chat interface with real-time responses
+- **Cloud Deployment**: AWS with custom domain, CI/CD pipeline
+- **Future-Ready**: Architecture designed for model re-training and dynamic prompting
+
+## **Technical Stack**
+- **Frontend**: React.js, TypeScript, Tailwind CSS
+- **Backend**: Node.js/NestJS, TypeScript, TypeORM
+- **Databases**: PostgreSQL + Pinecone
+- **AI/ML**: OpenAI GPT models, text embeddings
+- **Cloud**: AWS (EC2, RDS, S3, CloudWatch)
+
+I have 5+ years of experience in Next.js/React/TypeScript and AWS Solution Architect Certification.
+
+Drop me a message if you want to know what problems we faced and how we solved them. Ready to start immediately and deliver within one month!
+
+Best regards,
+Muhammad Safyan

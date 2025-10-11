@@ -1,0 +1,8 @@
+We are seeking a skilled developer to build an AI Agent that interacts with users, processes data, and integrates with external services. The project involves creating a Telegram Bot using Python, integrating with LangChain/OpenAI API, and setting up a backend on FastAPI or Flask. Experience with data automation, web scraping, and optionally building a simple dashboard is required.
+
+Deliverables
+Develop Telegram Bot using Python
+Integrate LangChain/OpenAI API
+Set up backend on FastAPI or Flask
+Implement data automation and web scraping
+Optionally create a simple dashboard

@@ -1,0 +1,37 @@
+Develop and enhance our enterprise compliance management platform built with Next.js 15, TypeScript, and Supabase. Work on multi-tenant architecture, Zustand state management, and modern React patterns.
+
+  Must-Have Skills
+
+  - 5+ years React/Next.js development
+  - 3+ years Next.js with App Router
+  - TypeScript & Supabase experience
+  - Multi-tenant applications
+  - Zustand or similar state management
+  - Radix UI & Tailwind CSS
+  - Form validation & testing
+
+  To Apply
+
+  Share your GitHub portfolio showing Next.js enterprise applications and explain your most complex multi-tenant or state management implementation.
+
+---
+
+Proposal:
+
+Hey there,
+
+I’m excited to help evolve your enterprise compliance platform on Next.js 15 (App Router) + TypeScript and Supabase. In the past few years I’ve shipped modern React patterns (Server Components + client islands) kept the UI fast without getting brittle. For state, I tend to start small with Zustand and only reach for Redux when cross‑team conventions or dev‑tools really matter.
+
+Two quick stories so you see how I work:
+- At jsdealerconnect, its car listing website for dealers so user can apply make/model etc and it should load on URL bar, if user search the url it shall load the Make = "BMW", relavent features. so updating state from Selected filters -> URL -> Filters dropdown.
+- At fashionXotics, we rendered the product grid on the server for speed and SEO, then hydrated that payload straight into a tiny client store so filters felt instant without a second fetch. It sounds simple, but getting hydration and selectors right is what made it feel “native.”
+- At Wesion, users kept multiple tabs open. Updating state in one tab and seeing it reflected everywhere became essential, so we added cross‑tab sync (BroadcastChannel/localStorage events) with guards against stale rehydration. It quietly removed a whole class of “why doesn’t this update?” tickets.
+
+On the platform side, I’m comfortable designing tenant‑aware schemas, wiring RLS policies, and keeping a typed SDK between server and client. For the UI, I like Radix + Tailwind with Zod + react‑hook‑form so forms are both accessible and resilient. And I bring a pragmatic testing approach—target the critical paths with RTL/Vitest and keep the suite fast so it actually runs.
+
+I also led Helpicon’s backend work (payments, chat, CI/CD) where we balanced product speed with reliability—useful in compliance contexts where correctness and auditability matter.
+
+Can start immediately.
+
+Best regards,
+Muhammad Safyan
