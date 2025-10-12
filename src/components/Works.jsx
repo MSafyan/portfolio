@@ -307,7 +307,7 @@ const ProjectCard = ({
                 e.stopPropagation();
                 window.open(source_code_link, "_blank");
               }}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-2"
+              className="bg-gradient-to-r from-accent to-accent-dark hover:to-accent py-3 px-8 rounded-lg  text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-2"
             >
               <span>
                 {dimensionsCategory === "website"
