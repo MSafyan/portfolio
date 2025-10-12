@@ -184,41 +184,63 @@ const ProjectCard = ({
     const isMobile = window.innerWidth <= 768; // Detect mobile devices
 
     if (isMobile && dimensionsCategory === "website") {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const image = imageRef.current;
-              const container = containerRef.current;
+      const image = imageRef.current;
 
-              if (image && container) {
-                const imageHeight = image.offsetHeight;
-                const containerHeight = container.offsetHeight;
+      // Function to setup scroll animation after image loads
+      const setupScrollAnimation = () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const image = imageRef.current;
+                const container = containerRef.current;
 
-                if (imageHeight > containerHeight) {
-                  const scrollDistance = imageHeight - containerHeight;
-                  image.style.transition =
-                    "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)";
-                  image.style.transform = `translateY(-${scrollDistance}px)`;
+                if (image && container) {
+                  const imageHeight = image.offsetHeight;
+                  const containerHeight = container.offsetHeight;
+
+                  if (imageHeight > containerHeight) {
+                    const scrollDistance = imageHeight - containerHeight;
+                    image.style.transition =
+                      "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)";
+                    image.style.transform = `translateY(-${scrollDistance}px)`;
+                  }
+                }
+              } else {
+                if (imageRef.current) {
+                  imageRef.current.style.transition = "transform 0.5s ease-out";
+                  imageRef.current.style.transform = "translateY(0)";
                 }
               }
-            } else {
-              if (imageRef.current) {
-                imageRef.current.style.transition = "transform 0.5s ease-out";
-                imageRef.current.style.transform = "translateY(0)";
-              }
-            }
-          });
-        },
-        { threshold: 0.5 } // Trigger when 50% of the card is visible
-      );
+            });
+          },
+          { threshold: 0.5 } // Trigger when 50% of the card is visible
+        );
 
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
+        if (containerRef.current) {
+          observer.observe(containerRef.current);
+        }
+
+        return observer;
+      };
+
+      let observer;
+
+      // Wait for image to load before setting up observer
+      if (image) {
+        if (image.complete) {
+          // Image already loaded
+          observer = setupScrollAnimation();
+        } else {
+          // Wait for image to load
+          image.addEventListener('load', () => {
+            observer = setupScrollAnimation();
+          });
+        }
       }
 
       return () => {
-        if (containerRef.current) {
+        if (observer && containerRef.current) {
           observer.unobserve(containerRef.current);
         }
       };
