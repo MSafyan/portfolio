@@ -84,13 +84,12 @@ const Experience = () => {
 
         {/* Toggle Button */}
         {!showAll && experiences.length > 2 && (
-          <div
+          <button
             onClick={() => setShowAll(true)}
-            className="mt-10 self-center bg-white text-primary font-medium py-3 px-6 rounded-full hover:bg-opacity-90 active:scale-95 transition-all duration-200"
-            typeof="button"
+            className="btn-primary mt-10 self-center"
           >
             Show All Experiences
-          </div>
+          </button>
         )}
       </div>
     </>

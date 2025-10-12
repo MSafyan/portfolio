@@ -30,10 +30,7 @@ const Certifications = () => {
 
       {!showAll && certifications.length > 3 && (
         <div className="mt-10 flex justify-center">
-          <button
-            onClick={() => setShowAll(true)}
-            className="px-8 py-3 rounded-full font-semibold bg-[#06b6d4] text-white transition-all duration-300 hover:scale-105 hover:bg-[#22d3ee] flex items-center gap-2"
-          >
+          <button onClick={() => setShowAll(true)} className="btn-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

@@ -329,7 +329,7 @@ const ProjectCard = ({
                 e.stopPropagation();
                 window.open(source_code_link, "_blank");
               }}
-              className="bg-gradient-to-r from-accent to-accent-dark hover:to-accent py-3 px-8 rounded-lg  text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-2"
+              className="btn-primary"
             >
               <span>
                 {dimensionsCategory === "website"

@@ -89,7 +89,7 @@ const Feedbacks = () => {
               "noopener,noreferrer"
             )
           }
-          className="px-8 py-3 rounded-full font-semibold bg-green-600 text-white transition-all duration-300 hover:scale-105 hover:bg-green-500 flex items-center gap-2"
+          className="btn-secondary"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +115,7 @@ const Feedbacks = () => {
               "noopener,noreferrer"
             )
           }
-          className="px-8 py-3 rounded-full font-semibold bg-[#06b6d4] text-white transition-all duration-300 hover:scale-105 hover:bg-[#22d3ee] flex items-center gap-2"
+          className="btn-primary"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
