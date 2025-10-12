@@ -600,7 +600,7 @@ const projects = [
     ],
     image: wesion,
     images: [wesion, wesion2, wesion3],
-    source_code_link: "#",
+    source_code_link: "https://www.app.wesion.world/",
   },
   {
     id: 3,
@@ -629,7 +629,7 @@ const projects = [
     ],
     image: cvr1,
     images: [cvr1, cvr2, cvr3, cvr4, cvr5, cvr6],
-    source_code_link: "#",
+    source_code_link: "http://cvr-analysis.com/",
   },
   {
     id: 14,
@@ -658,7 +658,7 @@ const projects = [
     ],
     image: legacy1,
     images: [legacy1, legacy2, legacy3, legacy4],
-    source_code_link: "#",
+    source_code_link: "https://www.legacysuite.com/",
   },
   {
     id: 4,
@@ -717,6 +717,39 @@ const projects = [
     image: pinkchicken1,
     images: [pinkchicken1, pinchicken2],
     source_code_link: "#",
+  },
+  {
+    id: 99,
+    name: "Helpicon Mobile App",
+    description:
+      "Helpicon simplifies life by seamlessly connecting people with trusted, vetted Helpers for task completion. With a focus on reliability, secure payments, and fast responses, Helpicon ensures convenience and quality for every task, saving you time and making life easier.",
+    category: "mobile",
+    dimensionsCategory: "mobile",
+
+    tags: [
+      {
+        name: "react-native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "twilio",
+        color: "green-text-gradient",
+      },
+      {
+        name: "google maps",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "agora",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: h2,
+    images: [h1, h2, h8, h3, h4, h5, h6, h7],
+    android_link:
+      "https://play.google.com/store/apps/details?id=com.helpicon.app&hl=en",
+    source_code_link:
+      "https://apps.apple.com/se/app/helpicon/id6450137041?l=en-GB",
   },
   {
     id: 6,
@@ -826,7 +859,7 @@ const projects = [
     ],
     image: xotics,
     images: [],
-    source_code_link: "https://fashionxotics.com/",
+    source_code_link: "#",
   },
   {
     id: 11,
@@ -851,7 +884,7 @@ const projects = [
     ],
     image: wind,
     images: [wind],
-    source_code_link: "https://wandycleaning.com/",
+    source_code_link: "#",
   },
 
   // ============================================
