@@ -173,6 +173,28 @@ import rescue4 from "./rescue/rescue4.webp";
 import rescue5 from "./rescue/rescue5.webp";
 import rescue6 from "./rescue/rescue6.webp";
 import myResume from "./resume/resume.pdf";
+import legacy1 from "./legacy1.png";
+import legacy2 from "./legacy2.png";
+import legacy3 from "./legacy3.png";
+import legacy4 from "./legacy4.png";
+import palmetto1 from "./palmetto1.png";
+import palmetto2 from "./palmetto2.png";
+import palmetto3 from "./palmetto3.png";
+import pinkchicken1 from "./pinkchicken1.png";
+import pinchicken2 from "./pinchicken2.png";
+import erma from "./erma.png";
+import terraform from "./terraform.png";
+import udemyAWS from "./udemyAWS.png";
+import udemyCKAD from "./udemyCKAD.png";
+import wesion from "./wesion.png";
+import wesion2 from "./wesion2.png";
+import wesion3 from "./wesion3.png";
+import cvr1 from "./cvr1.png";
+import cvr2 from "./cvr2.png";
+import cvr3 from "./cvr3.png";
+import cvr4 from "./cvr4.png";
+import cvr5 from "./cvr5.png";
+import cvr6 from "./cvr6.png";
 
 export {
   logo,
@@ -364,4 +386,27 @@ export {
   rescue6,
   helpiWeb,
   myResume,
+  // mapped public assets
+  wesion,
+  wesion2,
+  wesion3,
+  cvr1,
+  cvr2,
+  cvr3,
+  cvr4,
+  cvr5,
+  cvr6,
+  legacy1,
+  legacy2,
+  legacy3,
+  legacy4,
+  palmetto1,
+  palmetto2,
+  palmetto3,
+  pinkchicken1,
+  pinchicken2,
+  erma,
+  terraform,
+  udemyAWS,
+  udemyCKAD,
 };

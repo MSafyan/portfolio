@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
@@ -42,8 +41,10 @@ const Works = () => {
   };
 
   const handleCardClick = (images) => {
-    setModalImages(images);
-    setIsModalOpen(true);
+    if (images && images.length > 0) {
+      setModalImages(images);
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
@@ -53,7 +54,7 @@ const Works = () => {
 
   return (
     <>
-      <div >
+      <div>
         <p className={styles.sectionSubText}>My work</p>
         <h2 className={styles.sectionHeadText}>Projects.</h2>
       </div>
@@ -94,7 +95,6 @@ const Works = () => {
   );
 };
 
-
 const ProjectCard = ({
   index,
   name,
@@ -104,6 +104,7 @@ const ProjectCard = ({
   source_code_link,
   android_link,
   dimensionsCategory,
+  images,
   onCardClick,
 }) => {
   const imageRef = useRef(null);
@@ -126,7 +127,8 @@ const ProjectCard = ({
 
                 if (imageHeight > containerHeight) {
                   const scrollDistance = imageHeight - containerHeight;
-                  image.style.transition = "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)";
+                  image.style.transition =
+                    "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)";
                   image.style.transform = `translateY(-${scrollDistance}px)`;
                 }
               }
@@ -184,8 +186,12 @@ const ProjectCard = ({
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
       onClick={() => {
-        if (dimensionsCategory === "mobile") {
-          onCardClick(); 
+        if (
+          ["mobile", "website"].includes(dimensionsCategory) &&
+          images &&
+          images.length > 0
+        ) {
+          onCardClick();
         }
       }}
       className="cursor-pointer"
@@ -207,7 +213,9 @@ const ProjectCard = ({
             src={image}
             alt="project_image"
             className={`w-full ${
-              dimensionsCategory === "website" ? "h-auto scroll-on-hover" : "h-full object-cover"
+              dimensionsCategory === "website"
+                ? "h-auto scroll-on-hover"
+                : "h-full object-cover"
             } rounded-2xl`}
           />
 
@@ -235,7 +243,5 @@ const ProjectCard = ({
     </motion.div>
   );
 };
-
-
 
 export default SectionWrapper(Works, "works");

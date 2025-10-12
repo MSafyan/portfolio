@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
@@ -6,7 +6,6 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 import Modal from "react-modal";
-import { successIcon, failureIcon, closeIcon } from "../assets";
 
 const Contact = () => {
   const formRef = useRef();
@@ -22,6 +21,20 @@ const Contact = () => {
     type: "success",
     message: "",
   });
+  const [emailJsConfigured, setEmailJsConfigured] = useState(true);
+
+  // Check if EmailJS is configured
+  useEffect(() => {
+    const serviceId = import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey ||
+        serviceId.includes('your_') || templateId.includes('your_') || publicKey.includes('your_')) {
+      setEmailJsConfigured(false);
+      console.warn('EmailJS is not configured. Please set up your .env file with valid credentials.');
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +65,18 @@ const Contact = () => {
       setErrors(newErrors);
       return;
     }
+
+    // Check if EmailJS is configured
+    if (!emailJsConfigured) {
+      setModalData({
+        isOpen: true,
+        type: "error",
+        message:
+          "Email service is not configured yet. Please check back later or reach out via LinkedIn.",
+      });
+      return;
+    }
+
     setLoading(true);
 
     emailjs
@@ -74,18 +99,41 @@ const Contact = () => {
             isOpen: true,
             type: "success",
             message:
-              "Thank you for reaching out 🎉 \n Your message has been received. I truly appreciate you taking the time to connect. I'll get back to you as soon as possible. Until then, have an amazing day! 🌟",
+              "Thank you for reaching out! Your message has been received. I truly appreciate you taking the time to connect. I'll get back to you as soon as possible. Until then, have an amazing day!",
           });
           setForm({ name: "", email: "", message: "" });
         },
         (error) => {
           setLoading(false);
+          let errorMessage = "Something went wrong. Please try again.";
+
+          // Provide more specific error messages
+          if (error.text) {
+            if (error.text.includes("Invalid grant") || error.text.includes("reconnect")) {
+              errorMessage = "Email service needs to be reconnected. I've been notified and will fix this shortly. Please reach out via LinkedIn in the meantime!";
+            } else if (error.text.includes("service")) {
+              errorMessage = "Email service configuration error. Please contact via LinkedIn.";
+            } else if (error.text.includes("template")) {
+              errorMessage = "Email template error. Please contact via LinkedIn.";
+            } else if (error.text.includes("publicKey") || error.text.includes("userId")) {
+              errorMessage = "Email authentication error. Please contact via LinkedIn.";
+            } else if (error.text.includes("limit") || error.text.includes("quota")) {
+              errorMessage = "Email service has reached its monthly limit. Please contact via LinkedIn.";
+            }
+          }
+
+          // Log the full error for debugging
+          console.error("EmailJS Error:", {
+            status: error.status,
+            text: error.text,
+            error: error
+          });
+
           setModalData({
             isOpen: true,
             type: "error",
-            message: "Something went wrong. Please try again.",
+            message: errorMessage,
           });
-          console.error(error);
         }
       );
   };
@@ -100,6 +148,14 @@ const Contact = () => {
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+
+        {!emailJsConfigured && (
+          <div className="mt-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+            <p className="text-yellow-400 text-sm">
+              ⚠️ Email service is currently not configured. The form will not send emails, but you can still reach out via LinkedIn or other social channels.
+            </p>
+          </div>
+        )}
 
         <form
           ref={formRef}

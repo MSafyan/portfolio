@@ -34,6 +34,29 @@ import {
   megaverses,
   flutter,
   firebase,
+  // mapped public assets
+  wesion,
+  wesion2,
+  wesion3,
+  cvr1,
+  cvr2,
+  cvr3,
+  cvr4,
+  cvr5,
+  cvr6,
+  legacy1,
+  legacy2,
+  legacy3,
+  legacy4,
+  palmetto1,
+  palmetto2,
+  palmetto3,
+  pinkchicken1,
+  pinchicken2,
+  erma,
+  terraform,
+  udemyAWS,
+  udemyCKAD,
   climateIq,
   wireguardVpn,
   hanti,
@@ -459,7 +482,7 @@ const testimonials = [
   {
     testimonial:
       "BEST software developer on upwork, followed the brief perfectly and executed within timelines, great communication and would HIGHLY recommend for any technical project.",
-    name: "Video Processing Pipeline Client",
+    name: "Nick Jarvis",
     designation: "Upwork Client",
     company: "Upwork - $200 Fixed Price",
     image: "https://randomuser.me/api/portraits/men/1.jpg",
@@ -469,7 +492,7 @@ const testimonials = [
   {
     testimonial:
       "I had the pleasure of working with Safyan on the development of a Sports Analytics Data Warehouse and Reporting System. From the outset, Safyan demonstrated strong technical expertise, professionalism, and a clear understanding of the project's objectives. He effectively designed and implemented a robust data warehouse architecture, ensuring scalability and efficiency. His attention to detail in data modeling, ETL processes, and integration was outstanding. Beyond his technical skills, Safyan's communication, reliability, and proactive approach stood out. I highly recommend Safyan for any data engineering, analytics, or reporting projects.",
-    name: "Sports Analytics Client",
+    name: "Will Badel",
     designation: "Upwork Client - 5.0 ⭐",
     company: "Upwork - $780 Fixed Price",
     image: "https://randomuser.me/api/portraits/men/5.jpg",
@@ -575,8 +598,8 @@ const projects = [
         color: "yellow-text-gradient",
       },
     ],
-    image: "/wesion.png",
-    images: ["/wesion.png", "/wesion2.png", "/wesion3.png"],
+    image: wesion,
+    images: [wesion, wesion2, wesion3],
     source_code_link: "#",
   },
   {
@@ -604,15 +627,37 @@ const projects = [
         color: "yellow-text-gradient",
       },
     ],
-    image: "/cvr1.png",
-    images: [
-      "/cvr1.png",
-      "/cvr2.png",
-      "/cvr3.png",
-      "/cvr4.png",
-      "/cvr5.png",
-      "/cvr6.png",
+    image: cvr1,
+    images: [cvr1, cvr2, cvr3, cvr4, cvr5, cvr6],
+    source_code_link: "#",
+  },
+  {
+    id: 14,
+    name: "Legacy Suite",
+    description:
+      "Digital legacy and estate platform with non-custodial digital asset management, wallet monitoring, password sharing, and end-of-life planning. Built using Angular frontend and NestJS backend with Web3 integration and PostgreSQL.",
+    category: "website",
+    dimensionsCategory: "website",
+    tags: [
+      {
+        name: "Angular",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "NestJS",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Web3",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "PostgreSQL",
+        color: "yellow-text-gradient",
+      },
     ],
+    image: legacy1,
+    images: [legacy1, legacy2, legacy3, legacy4],
     source_code_link: "#",
   },
   {
@@ -640,8 +685,8 @@ const projects = [
         color: "yellow-text-gradient",
       },
     ],
-    image: "/palmetto1.png",
-    images: ["/palmetto1.png", "/palmetto2.png", "/palmetto3.png"],
+    image: palmetto1,
+    images: [palmetto1, palmetto2, palmetto3],
     source_code_link: "#",
   },
   {
@@ -669,8 +714,8 @@ const projects = [
         color: "yellow-text-gradient",
       },
     ],
-    image: "/pinkchicken1.png",
-    images: ["/pinkchicken1.png", "/pinchicken2.png"],
+    image: pinkchicken1,
+    images: [pinkchicken1, pinchicken2],
     source_code_link: "#",
   },
   {
@@ -813,6 +858,35 @@ const projects = [
   // MOBILE PROJECTS
   // ============================================
   {
+    id: 15,
+    name: "Fashion Xotics App",
+    description:
+      "Mobile e-commerce application for Fashion Xotics featuring intuitive product browsing, shopping cart, secure checkout, user authentication, and order tracking. Built with React Native for seamless cross-platform experience.",
+    category: "mobile",
+    dimensionsCategory: "mobile",
+    tags: [
+      {
+        name: "react-native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "redux",
+        color: "green-text-gradient",
+      },
+      {
+        name: "strapi",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "e-commerce",
+        color: "yellow-text-gradient",
+      },
+    ],
+    image: x1,
+    images: [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11],
+    source_code_link: "#",
+  },
+  {
     id: 12,
     name: "Res Ihop Mobile App",
     description:
@@ -868,8 +942,8 @@ const projects = [
         color: "orange-text-gradient",
       },
     ],
-    image: "/erma.png",
-    images: ["/erma.png"],
+    image: erma,
+    images: [erma],
     source_code_link:
       "https://www.linkedin.com/feed/update/urn:li:activity:6970775478383054848/",
   },
@@ -893,10 +967,17 @@ const certifications = [
   },
   {
     name: "Ultimate AWS Certified Solutions Architect Associate 2025",
-    image: "/udemyAWS.png",
+    image: udemyAWS,
     date: "October 2025",
     provider: "Udemy - Stephane Maarek",
     link: "https://www.udemy.com/certificate/UC-f4d9818d-2da3-4ae6-ae1c-b9c71e768e96/",
+  },
+  {
+    name: "Kubernetes Certified Application Developer (CKAD) with Tests",
+    image: udemyCKAD,
+    date: "October 2025",
+    provider: "Udemy - Mumshad Mannambeth",
+    link: "https://www.udemy.com/certificate/UC-c8097aab-62db-4e52-b25a-6f37361e8d58/",
   },
 ];
 
