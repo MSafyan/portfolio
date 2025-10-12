@@ -507,7 +507,7 @@ const testimonials = [
     company: "Fiverr - 5.0 ⭐",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
     platform: "fiverr",
-    platformUrl: "https://www.fiverr.com/sellers/safyan08",
+    platformUrl: "https://www.fiverr.com/s/P216loL",
   },
   {
     testimonial:
@@ -517,7 +517,7 @@ const testimonials = [
     company: "Fiverr - Custom Websites",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
     platform: "fiverr",
-    platformUrl: "https://www.fiverr.com/sellers/safyan08",
+    platformUrl: "https://www.fiverr.com/s/P216loL",
   },
   {
     testimonial: "Excellent worker. Hard and quick. Will buy again.",
@@ -526,7 +526,7 @@ const testimonials = [
     company: "Fiverr - 5.0 ⭐",
     image: "https://randomuser.me/api/portraits/men/4.jpg",
     platform: "fiverr",
-    platformUrl: "https://www.fiverr.com/sellers/safyan08",
+    platformUrl: "https://www.fiverr.com/s/P216loL",
   },
   {
     testimonial:
@@ -536,7 +536,7 @@ const testimonials = [
     company: "Fiverr - $800-$1000",
     image: "https://randomuser.me/api/portraits/men/3.jpg",
     platform: "fiverr",
-    platformUrl: "https://www.fiverr.com/sellers/safyan08",
+    platformUrl: "https://www.fiverr.com/s/P216loL",
   },
 ];
 

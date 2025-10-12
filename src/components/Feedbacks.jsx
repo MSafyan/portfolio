@@ -90,7 +90,7 @@ const Feedbacks = () => {
         <button
           onClick={() =>
             window.open(
-              "https://www.fiverr.com/sellers/safyan08",
+              "https://www.fiverr.com/s/P216loL",
               "_blank",
               "noopener,noreferrer"
             )
