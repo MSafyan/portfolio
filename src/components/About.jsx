@@ -19,18 +19,17 @@ const ServiceCard = ({ index, title, icon }) => (
           scale: 1,
           speed: 450,
         }}
-        className="glass-card rounded-[20px] py-8 px-12 min-h-[280px] flex justify-evenly items-center flex-col relative overflow-hidden"
+        className="glass-card rounded-[20px] py-8 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="relative z-10 w-20 h-20 flex items-center justify-center bg-tertiary border-4 border-accent shadow-brutal mb-4 group-hover:border-accent-orange group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300">
+        <div className="w-20 h-20 flex items-center justify-center bg-tertiary border-2 border-[#06b6d4] mb-4 group-hover:border-[#22d3ee] transition-all duration-300">
           <img
             src={icon}
             alt="web-development"
-            className="w-12 h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="w-12 h-12 object-contain group-hover:scale-110 transition-all duration-300"
           />
         </div>
 
-        <h3 className="relative z-10 text-white text-[18px] font-bold text-center uppercase tracking-wide group-hover:text-accent transition-colors duration-300">
+        <h3 className="text-white text-[18px] font-bold text-center uppercase tracking-wide group-hover:text-[#06b6d4] transition-colors duration-300">
           {title}
         </h3>
       </div>

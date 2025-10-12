@@ -51,7 +51,7 @@ const FeedbackCard = ({
         </div>
 
         <div className="mt-4 flex items-center justify-center">
-          <span className="text-accent-light text-sm font-medium group-hover:text-pink-400 transition-colors duration-200">
+          <span className="text-accent-light text-sm font-medium group-hover:text-[#06b6d4] transition-colors duration-200">
             Click to view on {platform === "fiverr" ? "Fiverr" : "Upwork"} →
           </span>
         </div>
@@ -89,27 +89,23 @@ const Feedbacks = () => {
               "noopener,noreferrer"
             )
           }
-          className="group relative px-8 py-3 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105"
+          className="px-8 py-3 rounded-full font-semibold bg-green-600 text-white transition-all duration-300 hover:scale-105 hover:bg-green-500 flex items-center gap-2"
         >
-          <span className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600"></span>
-          <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          <span className="relative text-white flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            View Reviews on Fiverr
-          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          View Reviews on Fiverr
         </button>
         <button
           onClick={() =>
@@ -119,27 +115,23 @@ const Feedbacks = () => {
               "noopener,noreferrer"
             )
           }
-          className="group relative px-8 py-3 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105"
+          className="px-8 py-3 rounded-full font-semibold bg-[#06b6d4] text-white transition-all duration-300 hover:scale-105 hover:bg-[#22d3ee] flex items-center gap-2"
         >
-          <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600"></span>
-          <span className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-          <span className="relative text-white flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            View Reviews on Upwork
-          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          View Reviews on Upwork
         </button>
       </div>
     </div>

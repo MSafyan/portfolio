@@ -993,7 +993,7 @@ const certifications = [
   },
   {
     name: "HashiCorp Certified: Terraform Associate",
-    image: "/terraform.png",
+    image: terraform,
     date: "2024",
     provider: "HashiCorp",
     link: "https://www.credly.com/badges/41cf43ff-e454-4191-8174-e54ee6856a14",
