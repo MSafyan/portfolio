@@ -161,7 +161,11 @@ const CustomModal = ({ isModalOpen, closeModal, modalImages, category }) => {
 
         {/* Main Image Display */}
         <div
-          className="flex-1 relative bg-black overflow-hidden"
+          className="relative bg-black overflow-hidden"
+          style={{
+            height: category === "website" ? "calc(95vh - 200px)" : "calc(95vh - 180px)",
+            minHeight: "400px",
+          }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
@@ -181,8 +185,13 @@ const CustomModal = ({ isModalOpen, closeModal, modalImages, category }) => {
               <img
                 src={modalImages[currentIndex]}
                 alt={`Showcase ${currentIndex + 1}`}
-                className="max-w-full max-h-full object-contain select-none"
+                className="select-none"
                 style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  width: "auto",
+                  height: "auto",
+                  objectFit: "contain",
                   transform: isZoomed ? "scale(2)" : "scale(1)",
                   transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
                   transition: isZoomed ? "none" : "transform 0.3s ease",

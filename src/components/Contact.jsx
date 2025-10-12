@@ -29,10 +29,18 @@ const Contact = () => {
     const templateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
 
-    if (!serviceId || !templateId || !publicKey ||
-        serviceId.includes('your_') || templateId.includes('your_') || publicKey.includes('your_')) {
+    if (
+      !serviceId ||
+      !templateId ||
+      !publicKey ||
+      serviceId.includes("your_") ||
+      templateId.includes("your_") ||
+      publicKey.includes("your_")
+    ) {
       setEmailJsConfigured(false);
-      console.warn('EmailJS is not configured. Please set up your .env file with valid credentials.');
+      console.warn(
+        "EmailJS is not configured. Please set up your .env file with valid credentials."
+      );
     }
   }, []);
 
@@ -109,16 +117,30 @@ const Contact = () => {
 
           // Provide more specific error messages
           if (error.text) {
-            if (error.text.includes("Invalid grant") || error.text.includes("reconnect")) {
-              errorMessage = "Email service needs to be reconnected. I've been notified and will fix this shortly. Please reach out via LinkedIn in the meantime!";
+            if (
+              error.text.includes("Invalid grant") ||
+              error.text.includes("reconnect")
+            ) {
+              errorMessage =
+                "Email service needs to be reconnected. I've been notified and will fix this shortly. Please reach out via LinkedIn in the meantime!";
             } else if (error.text.includes("service")) {
-              errorMessage = "Email service configuration error. Please contact via LinkedIn.";
+              errorMessage =
+                "Email service configuration error. Please contact via LinkedIn.";
             } else if (error.text.includes("template")) {
-              errorMessage = "Email template error. Please contact via LinkedIn.";
-            } else if (error.text.includes("publicKey") || error.text.includes("userId")) {
-              errorMessage = "Email authentication error. Please contact via LinkedIn.";
-            } else if (error.text.includes("limit") || error.text.includes("quota")) {
-              errorMessage = "Email service has reached its monthly limit. Please contact via LinkedIn.";
+              errorMessage =
+                "Email template error. Please contact via LinkedIn.";
+            } else if (
+              error.text.includes("publicKey") ||
+              error.text.includes("userId")
+            ) {
+              errorMessage =
+                "Email authentication error. Please contact via LinkedIn.";
+            } else if (
+              error.text.includes("limit") ||
+              error.text.includes("quota")
+            ) {
+              errorMessage =
+                "Email service has reached its monthly limit. Please contact via LinkedIn.";
             }
           }
 
@@ -126,7 +148,7 @@ const Contact = () => {
           console.error("EmailJS Error:", {
             status: error.status,
             text: error.text,
-            error: error
+            error: error,
           });
 
           setModalData({
@@ -144,7 +166,7 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
+        className="flex-[0.85] bg-black-100 p-8 rounded-2xl"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -152,7 +174,9 @@ const Contact = () => {
         {!emailJsConfigured && (
           <div className="mt-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
             <p className="text-yellow-400 text-sm">
-              ⚠️ Email service is currently not configured. The form will not send emails, but you can still reach out via LinkedIn or other social channels.
+              ⚠️ Email service is currently not configured. The form will not
+              send emails, but you can still reach out via LinkedIn or other
+              social channels.
             </p>
           </div>
         )}

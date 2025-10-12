@@ -14,9 +14,9 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const Works = () => {
-  const [selectedCategory, setSelectedCategory] = useState("mobile");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [filteredProjects, setFilteredProjects] = useState([]);
-  const [activeTab, setActiveTab] = useState("second");
+  const [activeTab, setActiveTab] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImages, setModalImages] = useState([]);
 
@@ -33,9 +33,10 @@ const Works = () => {
   const handleTabClick = (tabKey) => {
     setActiveTab(tabKey);
     const categoryMap = {
+      all: "all",
       first: "website",
       second: "mobile",
-      third: "design",
+      third: "Ware Housing",
     };
     handleCategoryChange(categoryMap[tabKey] || "all");
   };
@@ -74,16 +75,86 @@ const Works = () => {
 
       <ProjectsTabs activeTab={activeTab} onTabClick={handleTabClick} />
 
-      <div className="mt-20 flex flex-wrap gap-7">
-        {filteredProjects.map((project, index) => (
-          <ProjectCard
-            key={`project-${index}`}
-            index={index}
-            {...project}
-            onCardClick={() => handleCardClick(project.images)}
-          />
-        ))}
-      </div>
+      {selectedCategory === "all" ? (
+        <div className="mt-20">
+          {/* Website Projects */}
+          {filteredProjects.filter((p) => p.category === "website").length >
+            0 && (
+            <div className="mb-16">
+              <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
+                Websites & Backend
+              </h3>
+              <div className="flex flex-wrap gap-7">
+                {filteredProjects
+                  .filter((p) => p.category === "website")
+                  .map((project, index) => (
+                    <ProjectCard
+                      key={`project-${project.id}`}
+                      index={index}
+                      {...project}
+                      onCardClick={() => handleCardClick(project.images)}
+                    />
+                  ))}
+              </div>
+            </div>
+          )}
+
+          {/* Data Warehouse Projects */}
+          {filteredProjects.filter((p) => p.category === "Ware Housing")
+            .length > 0 && (
+            <div className="mb-16">
+              <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
+                Data Warehousing
+              </h3>
+              <div className="flex flex-wrap gap-7">
+                {filteredProjects
+                  .filter((p) => p.category === "Ware Housing")
+                  .map((project, index) => (
+                    <ProjectCard
+                      key={`project-${project.id}`}
+                      index={index}
+                      {...project}
+                      onCardClick={() => handleCardClick(project.images)}
+                    />
+                  ))}
+              </div>
+            </div>
+          )}
+
+          {/* Mobile Projects */}
+          {filteredProjects.filter((p) => p.category === "mobile").length >
+            0 && (
+            <div className="mb-16">
+              <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
+                Mobile Applications
+              </h3>
+              <div className="flex flex-wrap gap-7">
+                {filteredProjects
+                  .filter((p) => p.category === "mobile")
+                  .map((project, index) => (
+                    <ProjectCard
+                      key={`project-${project.id}`}
+                      index={index}
+                      {...project}
+                      onCardClick={() => handleCardClick(project.images)}
+                    />
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="mt-20 flex flex-wrap gap-7">
+          {filteredProjects.map((project, index) => (
+            <ProjectCard
+              key={`project-${project.id}`}
+              index={index}
+              {...project}
+              onCardClick={() => handleCardClick(project.images)}
+            />
+          ))}
+        </div>
+      )}
 
       <CustomModal
         isModalOpen={isModalOpen}
@@ -99,7 +170,6 @@ const ProjectCard = ({
   index,
   name,
   description,
-  tags,
   image,
   source_code_link,
   android_link,
