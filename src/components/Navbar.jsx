@@ -47,10 +47,7 @@ const Navbar = () => {
             className="w-9 h-9 object-contain transition-transform duration-300 hover:scale-110"
           />
           <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            <span className="bg-gradient-to-r from-accent-light to-pink-500 bg-clip-text text-transparent">
-              Safyan
-            </span>{" "}
-            &nbsp;
+            <span className="text-accent font-semibold">Safyan</span> &nbsp;
             <span className="sm:block hidden">
               {" "}
               | &nbsp; Full‑Stack & Cloud Data Engineer

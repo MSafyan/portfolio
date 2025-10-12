@@ -23,7 +23,7 @@ const FeedbackCard = ({
   return (
     <motion.div
       variants={fadeIn("", "spring", index * 0.5, 0.75)}
-      className="glass-card p-10 rounded-3xl xs:w-[320px] w-full cursor-pointer transition-all duration-300 hover:scale-105 group"
+      className="bg-tertiary p-10 rounded-3xl xs:w-[320px] w-full cursor-pointer transition-all duration-300 hover:scale-105 group"
       onClick={handleClickMore}
     >
       <p className="text-accent-light font-black text-[48px]">"</p>
@@ -62,25 +62,31 @@ const FeedbackCard = ({
 
 const Feedbacks = () => {
   return (
-    <div className="mt-12 glass-effect rounded-[20px]">
-      <div className={`rounded-2xl ${styles.padding} min-h-[300px]`}>
-        <motion.div variants={textVariant()}>
-          <p className={`${styles.sectionSubText} text-accent-light`}>
-            What others say
-          </p>
-          <h2 className={styles.sectionHeadText}>
-            Testimonials<span className="text-accent-light">.</span>
-          </h2>
-        </motion.div>
+    <>
+      <div>
+        <p className={styles.sectionSubText}>What others say</p>
+        <h2 className={styles.sectionHeadText}>Testimonials.</h2>
       </div>
 
-      <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
+      <div className="w-full flex">
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
+          Here are some testimonials from clients who have worked with me on
+          various projects. These reviews reflect my commitment to delivering
+          quality work and maintaining professional relationships with clients
+          across different platforms.
+        </motion.p>
+      </div>
+
+      <div className="mt-20 flex flex-wrap gap-7">
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 pb-10">
+      <div className="mt-20 flex flex-wrap justify-center gap-4">
         <button
           onClick={() =>
             window.open(
@@ -89,7 +95,7 @@ const Feedbacks = () => {
               "noopener,noreferrer"
             )
           }
-          className="btn-secondary"
+          className="btn-outline"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +140,7 @@ const Feedbacks = () => {
           View Reviews on Upwork
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

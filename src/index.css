@@ -451,13 +451,13 @@ body::before {
 
 /* Outline Button - Less prominent action */
 .btn-outline {
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  font-weight: 600;
+  font-weight: 500;
   background-color: transparent;
-  color: #06b6d4;
-  border: 2px solid #06b6d4;
-  transition: all 0.3s ease;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -466,9 +466,12 @@ body::before {
 }
 
 .btn-outline:hover {
-  background-color: #06b6d4;
-  color: white;
-  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.btn-outline:active {
+  transform: scale(0.95);
 }
 
 /* Small Button Variant */
