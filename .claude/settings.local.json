@@ -21,7 +21,8 @@
       "Bash(cwebp -q 65 chez.webp -o chez_tmp.webp -quiet)",
       "Bash(cwebp -q 65 fawkess.webp -o fawkess_tmp.webp -quiet)",
       "Bash(sips:*)",
-      "Bash(du -sh /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/*.webp /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/xotics/*.webp /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/resume/kubernetesCert.webp)"
+      "Bash(du -sh /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/*.webp /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/xotics/*.webp /Users/capital/Documents/Lancing/muzammil/Portfolio/src/assets/resume/kubernetesCert.webp)",
+      "Bash(yarn dev:*)"
     ],
     "deny": [],
     "ask": []
