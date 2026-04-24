@@ -186,6 +186,7 @@ import erma from "./erma.png";
 import terraform from "./terraform.png";
 import udemyAWS from "./udemyAWS.png";
 import udemyCKAD from "./udemyCKAD.png";
+import kubernetesCert from "./resume/kubernetesCert.png";
 import wesion from "./wesion.png";
 import wesion2 from "./wesion2.png";
 import wesion3 from "./wesion3.png";
@@ -409,4 +410,5 @@ export {
   terraform,
   udemyAWS,
   udemyCKAD,
+  kubernetesCert,
 };

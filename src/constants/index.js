@@ -57,6 +57,7 @@ import {
   terraform,
   udemyAWS,
   udemyCKAD,
+  kubernetesCert,
   climateIq,
   wireguardVpn,
   hanti,
@@ -760,7 +761,7 @@ const projects = [
     dimensionsCategory: "website",
     tags: [
       {
-        name: "Angular",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
@@ -921,7 +922,7 @@ const projects = [
   },
   {
     id: 12,
-    name: "Res Ihop Mobile App",
+    name: "ResIhop Mobile App",
     description:
       "Carpooling platform allowing drivers and passengers to share rides, reduce carbon emissions, and create recurring travel schedules. Built with React Native, Google Maps integration, and Node.js backend.",
     category: "mobile",
@@ -999,18 +1000,11 @@ const certifications = [
     link: "https://www.credly.com/badges/41cf43ff-e454-4191-8174-e54ee6856a14",
   },
   {
-    name: "Ultimate AWS Certified Solutions Architect Associate 2025",
-    image: udemyAWS,
-    date: "October 2025",
-    provider: "Udemy - Stephane Maarek",
-    link: "https://www.udemy.com/certificate/UC-f4d9818d-2da3-4ae6-ae1c-b9c71e768e96/",
-  },
-  {
-    name: "Kubernetes Certified Application Developer (CKAD) with Tests",
-    image: udemyCKAD,
-    date: "October 2025",
-    provider: "Udemy - Mumshad Mannambeth",
-    link: "https://www.udemy.com/certificate/UC-c8097aab-62db-4e52-b25a-6f37361e8d58/",
+    name: "CKAD: Certified Kubernetes Application Developer",
+    image: kubernetesCert,
+    date: "2026",
+    provider: "The Linux Foundation",
+    link: "https://www.credly.com/badges/bea98d78-b0ee-4171-9e06-146ebde91bbf/public_url",
   },
 ];
 
