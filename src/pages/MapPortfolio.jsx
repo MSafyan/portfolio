@@ -502,13 +502,15 @@ const MapPortfolio = () => {
 
   return (
     <div style={{
-      width: "100vw", height: "100vh", overflow: "hidden", position: "relative",
+      width: "100vw", height: "100vh", position: "relative",
+      overflow: isMobile ? "auto" : "hidden",
+      WebkitOverflowScrolling: "touch",
       fontFamily: "'Nunito','Poppins',sans-serif", background: "#f0d9a0",
     }}>
 
       {/* ── Header ── */}
       <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, zIndex: 30,
+        position: isMobile ? "sticky" : "absolute", top: 0, left: 0, right: 0, zIndex: 30,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: isMobile ? "10px 12px" : "14px 24px",
         background: "rgba(240,217,160,0.88)",
@@ -546,8 +548,16 @@ const MapPortfolio = () => {
       </div>
 
       {/* ── SVG World Map ── */}
-      <svg viewBox="0 0 1200 700" style={{ width: "100%", height: "100%", display: "block" }}
-        preserveAspectRatio="xMidYMid slice">
+      <svg
+        viewBox="0 0 1200 700"
+        preserveAspectRatio={isMobile ? "xMidYMid meet" : "xMidYMid slice"}
+        style={{
+          display: "block",
+          width: isMobile ? "850px" : "100%",
+          height: isMobile ? "auto" : "100%",
+          minHeight: isMobile ? "auto" : undefined,
+        }}
+      >
 
         <defs>
           <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
