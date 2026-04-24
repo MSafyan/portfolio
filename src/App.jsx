@@ -35,7 +35,7 @@ const MainPortfolio = () => (
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<MainPortfolio />} />
+      <Route path="/" element={<MapPortfolio />} />
       <Route path="/map" element={<MapPortfolio />} />
     </Routes>
   </BrowserRouter>
