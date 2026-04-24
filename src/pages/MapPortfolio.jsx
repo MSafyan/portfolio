@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { resumeData, experiences, projects, certifications } from "../constants";
@@ -489,6 +489,8 @@ const FLOWERS = [
 const MapPortfolio = () => {
   const [active, setActive] = useState(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
+  const containerRef = useRef(null);
   const loc = LOCATIONS.find(l => l.id === active);
   const Panel = active ? PANELS[active] : null;
 
@@ -498,10 +500,41 @@ const MapPortfolio = () => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  // Auto-scroll tour + swipe hint on mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const svgW = 850;
+    const vw = window.innerWidth;
+    const maxScroll = svgW - vw;
+    const center = maxScroll / 2;
+
+    // Start at left edge
+    el.scrollLeft = 0;
+    setShowSwipeHint(true);
+
+    // Scroll right
+    const t1 = setTimeout(() => {
+      el.scrollTo({ left: maxScroll, behavior: "smooth" });
+    }, 700);
+
+    // Scroll back to center
+    const t2 = setTimeout(() => {
+      el.scrollTo({ left: center, behavior: "smooth" });
+    }, 1900);
+
+    // Hide hint after tour ends
+    const t3 = setTimeout(() => setShowSwipeHint(false), 3800);
+
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [isMobile]);
+
   const toggle = (id) => setActive(prev => prev === id ? null : id);
 
   return (
-    <div style={{
+    <div ref={containerRef} style={{
       width: "100vw", height: "100vh", position: "relative",
       overflow: isMobile ? "auto" : "hidden",
       WebkitOverflowScrolling: "touch",
@@ -855,6 +888,46 @@ const MapPortfolio = () => {
               zIndex: 40,
             }}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile swipe hint */}
+      <AnimatePresence>
+        {isMobile && showSwipeHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              position: "fixed", bottom: 28, left: "50%", transform: "translateX(-50%)",
+              zIndex: 60, pointerEvents: "none",
+              background: "rgba(61,43,31,0.82)",
+              borderRadius: 24, padding: "10px 20px",
+              display: "flex", alignItems: "center", gap: 10,
+              boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+              backdropFilter: "blur(6px)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {/* Left arrow animation */}
+            <motion.span
+              animate={{ x: [-4, 0, -4] }}
+              transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+              style={{ fontSize: 18, color: "#ffb7c5" }}
+            >←</motion.span>
+
+            <span style={{ color: "white", fontWeight: 800, fontSize: 13, letterSpacing: 0.3 }}>
+              Swipe to explore the map
+            </span>
+
+            {/* Right arrow animation */}
+            <motion.span
+              animate={{ x: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+              style={{ fontSize: 18, color: "#ffb7c5" }}
+            >→</motion.span>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
