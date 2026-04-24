@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { resumeData, experiences, projects, certifications } from "../constants";
@@ -484,12 +484,180 @@ const FLOWERS = [
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
+// ─── Main Component ───────────────────────────────────────────────────────────
+
+const UNUSED = (
+  <div style={{
+    minHeight: "100vh", background: "#f0d9a0",
+    fontFamily: "'Nunito','Poppins',sans-serif",
+  }}>
+    {/* Header */}
+    <div style={{
+      position: "sticky", top: 0, zIndex: 30,
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: "12px 16px",
+      background: "rgba(240,217,160,0.95)",
+      backdropFilter: "blur(10px)",
+      borderBottom: "2px solid rgba(192,86,33,0.28)",
+    }}>
+      <Link to="/" style={{
+        color: "#7b4f2e", fontWeight: 800, textDecoration: "none", fontSize: 12,
+        padding: "5px 12px", borderRadius: 20, border: "2px solid #c05621",
+        background: "rgba(255,255,255,0.7)",
+      }}>← Back</Link>
+      <div style={{ textAlign: "center" }}>
+        <h1 style={{ margin: 0, fontSize: 16, fontWeight: 900, color: "#3d2b1f" }}>
+          🗺️ Safyan's Village
+        </h1>
+        <p style={{ margin: 0, fontSize: 10, color: "#7b4f2e", fontWeight: 700 }}>
+          Full-Stack &amp; Cloud Engineer
+        </p>
+      </div>
+      <div style={{ width: 60 }} />
+    </div>
+
+    {/* Decorative banner */}
+    <div style={{
+      background: "linear-gradient(135deg,#c05621,#e67e22)",
+      padding: "18px 20px", textAlign: "center",
+    }}>
+      <p style={{ margin: 0, color: "white", fontWeight: 800, fontSize: 15 }}>
+        🌸 Tap any location to explore
+      </p>
+      <p style={{ margin: "4px 0 0", color: "rgba(255,255,255,0.82)", fontSize: 12 }}>
+        6 destinations · Interactive village
+      </p>
+    </div>
+
+    {/* Location cards grid */}
+    <div style={{ padding: "16px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+      {LOCATIONS.map((l, i) => {
+        const colors = LOCATION_COLORS[l.id] || { bg: "#c05621", light: "#fff3e0" };
+        return (
+          <motion.div key={l.id}
+            onClick={() => toggle(l.id)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.07 }}
+            whileTap={{ scale: 0.96 }}
+            style={{
+              background: colors.light,
+              borderRadius: 16,
+              padding: "18px 12px",
+              border: `2px solid ${colors.bg}`,
+              textAlign: "center",
+              cursor: "pointer",
+              boxShadow: "0 3px 12px rgba(0,0,0,0.1)",
+            }}
+          >
+            <div style={{ fontSize: 40, marginBottom: 8 }}>{l.emoji}</div>
+            <p style={{ margin: "0 0 4px", fontWeight: 900, color: "#3d2b1f", fontSize: 14 }}>
+              {l.label}
+            </p>
+            <p style={{ margin: 0, color: colors.bg, fontSize: 11, fontWeight: 700 }}>
+              {l.name}
+            </p>
+          </motion.div>
+        );
+      })}
+    </div>
+
+    {/* Cherry blossom decoration */}
+    <div style={{ textAlign: "center", padding: "8px 0 24px", color: "#c05621", fontSize: 22 }}>
+      🌸 🍃 🌸
+    </div>
+
+    {/* Bottom sheet overlay */}
+    <AnimatePresence>
+      {active && loc && Panel && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => toggle(active)}
+            style={{
+              position: "fixed", inset: 0,
+              background: "rgba(61,43,31,0.45)",
+              zIndex: 40,
+            }}
+          />
+          <motion.div
+            initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 28, stiffness: 220 }}
+            style={{
+              position: "fixed", bottom: 0, left: 0, right: 0,
+              height: "85vh", background: "#fffbf2",
+              borderRadius: "20px 20px 0 0",
+              zIndex: 50, display: "flex", flexDirection: "column",
+              boxShadow: "0 -8px 32px rgba(61,43,31,0.22)",
+            }}
+          >
+            {/* Drag handle */}
+            <div style={{ padding: "12px 0 0", display: "flex", justifyContent: "center" }}>
+              <div style={{
+                width: 44, height: 5, background: "#c05621",
+                borderRadius: 3, opacity: 0.4,
+              }} />
+            </div>
+
+            {/* Sheet header */}
+            <div style={{
+              background: "linear-gradient(135deg,#c05621,#e67e22)",
+              padding: "14px 20px 16px", flexShrink: 0,
+            }}>
+              <button onClick={() => toggle(active)} style={{
+                background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.4)",
+                color: "white", padding: "4px 14px", borderRadius: 20,
+                cursor: "pointer", fontSize: 13, fontWeight: 700, marginBottom: 10,
+                display: "block", fontFamily: "inherit",
+              }}>
+                ✕ Close
+              </button>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 28 }}>{loc.emoji}</span>
+                <div>
+                  <h2 style={{ color: "white", margin: 0, fontSize: 20, fontWeight: 900 }}>
+                    {loc.label}
+                  </h2>
+                  <p style={{ color: "rgba(255,255,255,0.82)", margin: 0, fontSize: 12, fontWeight: 600 }}>
+                    📍 {loc.name}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Sheet content */}
+            <div style={{
+              flex: 1, overflowY: "auto", padding: "16px",
+              scrollbarWidth: "thin", scrollbarColor: "#c05621 #f5e6c8",
+            }}>
+              <Panel />
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  </div>
+);
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
 const MapPortfolio = () => {
   const [active, setActive] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const loc = LOCATIONS.find(l => l.id === active);
   const Panel = active ? PANELS[active] : null;
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const toggle = (id) => setActive(prev => prev === id ? null : id);
+
+  if (isMobile) {
+    return <MobileLayout active={active} toggle={toggle} loc={loc} Panel={Panel} />;
+  }
 
   return (
     <div style={{
