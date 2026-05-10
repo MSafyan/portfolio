@@ -202,3 +202,7 @@ The project is configured for Vercel deployment (`vercel.json` present).
 - Canvas components check window width to conditionally render on mobile
 - Consider reducing polygon count on 3D models for mobile devices
 - The `isDesktop` check in Hero.jsx (Hero.jsx:6) controls model positioning
+
+## Notes
+
+- The `/map` route is a discontinued experiment — ignore it.

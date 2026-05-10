@@ -1,3 +1,13 @@
+## Quick Reference — Helpicon DevOps (EKS + Terraform + Jenkins)
+- Designed and maintained a 3-account AWS strategy (DevOps / Staging / Production) with full infrastructure-as-code via Terraform covering EKS, RDS, ECR, and S3
+- Implemented a Jenkins + Kaniko (ECS Fargate) build pipeline — no Docker-in-Docker, reproducible container builds triggered by git tag (staging) or main branch push (production)
+- Automated Prisma database migrations as part of every deployment startup sequence, ensuring schema and application code stay in sync across environments
+- Deployed two Kubernetes CronJobs for background automation: hourly payment status checks and 5-minute Workamo contractor sync — decoupled from the main API pod
+- Managed Terraform remote state with S3 + DynamoDB locking and encrypted state files; parameterized all environment differences via `.tfvars` for zero-code-change environment promotion
+- Stack: Jenkins, Kaniko, AWS EKS, Terraform, ECR, RDS PostgreSQL 14, S3, Kubernetes
+
+---
+
 # DevOps Infrastructure Summary - Helpicon Payment Service
 
 ## Executive Summary
@@ -450,3 +460,69 @@ aws ec2 describe-security-groups \
 
 *Generated: 2025-10-08*
 *Last Updated: Check git history of this file*
+
+---
+
+## Additional DevOps & CI/CD Experience Summary
+
+### Bitbucket + Jira Workflow
+- Bitbucket Pipelines for CI/CD automation
+- Branch naming convention with Jira tickets: `PROJ-123-feature-name`
+- Smart commits automatically update Jira ticket status
+- Jira automation rules:
+  - PR created → move ticket to "In Review"
+  - PR merged → "Ready for Testing"
+  - Deployed → "Done"
+- Bitbucket-Jira integration for automatic issue linking
+
+### GitHub Actions Experience
+- Automated testing on every PR (unit tests, integration tests, linting)
+- Multi-environment deployments (dev/staging/prod)
+- Docker image builds with multi-stage optimization
+- AWS deployment automation (ECS, Elastic Beanstalk)
+- Secrets management with GitHub Secrets
+- Slack/Teams notifications for build status
+
+### Jenkins Experience
+- Build automation and job orchestration
+- Integration with Bitbucket for webhook triggers
+- Pipeline-as-code (Jenkinsfile)
+- Artifact management and deployment
+- Used at Helpicon for Kaniko builds on ECS Fargate
+
+### AWS Deployment Patterns
+- **ECS** (Elastic Container Service) with auto-scaling
+- **EKS** (Elastic Kubernetes Service) for container orchestration
+- **Elastic Beanstalk** with automatic GitHub integration:
+  - EBS automatically pulls from configured branch
+  - Builds and deploys on each commit
+  - Blue/green deployment support
+  - Health checks and automatic rollback
+- RDS for PostgreSQL databases
+- S3 for artifact storage
+- CloudWatch for monitoring and alerting
+
+### Docker Best Practices
+- Multi-stage builds for optimized image sizes
+- Layer caching strategies
+- Security scanning of images
+- Container Registry management (ECR, Azure Container Registry)
+
+### Deployment Achievements
+- Zero-downtime deployments with health checks
+- Automated database migrations before deployments
+- Automatic rollback on health check failures
+- Comprehensive logging and error tracking
+
+### Infrastructure as Code
+- Terraform for AWS and Azure resources
+- State management with remote backends (S3 + DynamoDB)
+- Modular Terraform configurations
+- HashiCorp Terraform Certified (2024)
+
+### Monitoring & Observability
+- CloudWatch for AWS resources
+- Azure Monitor for Azure resources
+- Application Insights for application-level monitoring
+- Custom dashboards and alerts
+- Log aggregation and analysis

@@ -79,7 +79,7 @@ export const resumeData = {
   name: "Safyan Akram",
   title: "Full-Stack & Cloud Engineer",
   summary:
-    "AWS-certified Full-Stack Engineer specializing in backend development, cloud architecture, data engineering, and AI/ML integration. Proven track record of building scalable microservices, optimizing infrastructure costs by 99.9%, and delivering enterprise data solutions managing $40M+ portfolios.",
+    "AWS-certified Full-Stack Engineer specializing in backend development, cloud architecture, data engineering, and AI/ML integration. Proven track record of building scalable microservices, optimizing infrastructure costs by 95%, and delivering enterprise data solutions managing $40M+ portfolios.",
   skills: [
     "Backend: Node.js | NestJS | Express | TypeScript | JavaScript | Microservices Architecture | RESTful APIs | GraphQL | WebSocket | Background Jobs",
     "Cloud & DevOps: AWS (EKS, RDS, S3, ECR, EC2) | Azure (Data Factory, SQL, Databricks) | Terraform | Kubernetes | Docker | Jenkins CI/CD | Infrastructure as Code",
@@ -105,7 +105,7 @@ export const resumeData = {
     {
       role: "Data Engineer",
       company: "Palmetto Air Balance (Remote)",
-      duration: "12/2024 – 06/2024",
+      duration: "12/2024 – 01/2026",
       details: [
         "Designed Azure-based data warehouse with ADF pipelines integrating NetSuite ERP, Air1 CRM, and UKG HRIS with complex reconciliation logic.",
         "Developed Python scripts in Databricks for NetSuite data migration to Azure Storage Account with automated daily runs.",
@@ -120,7 +120,7 @@ export const resumeData = {
       details: [
         "Built AI-powered social learning platform with semantic user matching using OpenAI GPT, LangChain, and Pinecone vector database for personality-based recommendations.",
         "Developed 11 specialized AI services including video recommendations, goal suggestions, and intelligent content analysis with context-aware responses.",
-        "Achieved 99.9% cost reduction ($750→$0.75/month) through intelligent model selection strategies (GPT-4o vs GPT-4o-mini) and optimization techniques.",
+        "Achieved 95% cost reduction (95% reduction) through intelligent model selection strategies (GPT-4o vs GPT-4o-mini) and optimization techniques.",
         "Architected microservices backend with NestJS, PostgreSQL, TypeScript, and implemented semantic search with vector embeddings.",
         "Designed custom LangChain chains for multi-step AI workflows and built scalable infrastructure for high-volume AI operations.",
       ],
@@ -291,7 +291,7 @@ const experiences = [
     company_name: "Palmetto Air Balance, Remote",
     icon: alpha,
     iconBg: "#383E56",
-    date: "December 2024 - June 2024",
+    date: "December 2024 - January 2026",
     points: [
       "Designed Azure-based data warehouse with ADF pipelines integrating NetSuite ERP, Air1 CRM, and UKG HRIS with complex reconciliation logic.",
       "Developed Python scripts in Databricks for NetSuite data migration to Azure Storage Account with automated daily runs.",
@@ -308,7 +308,7 @@ const experiences = [
     points: [
       "Built AI-powered social learning platform with semantic user matching using OpenAI GPT, LangChain, and Pinecone vector database.",
       "Developed 11 specialized AI services including video recommendations, personality-based goal suggestions, and intelligent content analysis.",
-      "Achieved 99.9% cost reduction ($750→$0.75/month) through intelligent model selection (GPT-4o vs GPT-4o-mini) and optimization strategies.",
+      "Achieved 95% cost reduction (95% reduction) through intelligent model selection (GPT-4o vs GPT-4o-mini) and optimization strategies.",
       "Architected microservices backend with NestJS, PostgreSQL, and TypeScript for scalable AI operations.",
       "Implemented semantic search with vector embeddings and built custom LangChain chains for context-aware AI responses.",
     ],
@@ -320,11 +320,11 @@ const experiences = [
     iconBg: "#383E56",
     date: "September 2023 - Present",
     points: [
-      "Developed backend microservices architecture on AWS using Node.js, PostgreSQL, and TypeScript for Swedish marketplace platform.",
-      "Built payment integration with Stripe, Swish, and Workamo, implementing webhooks and secure transaction flows.",
-      "Designed and deployed complete AWS infrastructure using Terraform, Kubernetes (EKS), RDS, S3, and ECR with Jenkins CI/CD pipelines.",
-      "Implemented real-time chat functionality using Twilio Conversations API with background job processing for notifications.",
-      "Architected database schema, stored procedures, and optimized queries for high-traffic marketplace operations.",
+      "Served 10,000+ active users and 500+ verified providers with 99.8% payment success rate; API p50 <200ms and DB queries consistently <50ms.",
+      "Built payment integration with Stripe, Swish, and Workamo — marketplace commission splits, payout scheduling, webhook-driven booking state machine, and dispute handling.",
+      "CI/CD pipeline cut deployment time 75% (45 min → 11 min automated); MTTR improved from 2 hours to 15 minutes; AWS costs reduced 30% via right-sized instances.",
+      "Docker image optimized from 1.2 GB to 180 MB via multi-stage builds; deployed EKS + Terraform + Jenkins infrastructure across 3 AWS accounts.",
+      "Implemented real-time chat via Twilio Conversations with multi-tenant isolation, S3 file attachments, and full message audit trail in PostgreSQL.",
     ],
   },
   {
@@ -425,7 +425,7 @@ const projects = [
     id: 1,
     name: "Helpicon Backend & DevOps",
     description:
-      "Swedish marketplace backend with microservices architecture on AWS. Built payment integration (Stripe, Swish, Workamo), real-time chat (Twilio), and complete DevOps infrastructure using Terraform, Kubernetes, and Jenkins CI/CD pipelines.",
+      "Swedish marketplace backend on AWS/EKS/Terraform — deployment time cut 75% (45 min → 11 min), MTTR reduced from 2h to 15 min, and AWS costs down 30%. Serves 10,000+ users with 99.8% payment success via Stripe/Swish integrations, Twilio real-time chat, and Jenkins CI/CD pipelines.",
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -454,7 +454,7 @@ const projects = [
     id: 2,
     name: "Abundance Movement",
     description:
-      "AI-powered social learning platform with semantic user matching and video recommendations using OpenAI GPT, LangChain, and Pinecone vector database. Achieved 99.9% cost reduction ($750→$0.75/month) through intelligent model selection and optimization.",
+      "AI-powered social learning platform with 11 specialized AI services — semantic user matching, video recommendations, personality-based goal suggestions, and weekly chat summarization (7-day windows via NestJS cron). Multi-index Pinecone architecture with namespace-based user profiles across 5+ attributes. Reduced monthly LLM cost 95% (95% reduction) through model selection and token limiting.",
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -483,7 +483,7 @@ const projects = [
     id: 3,
     name: "CVR Sports Analytics",
     description:
-      "Professional rugby league analytics platform processing NRL, Super League, and NSW Cup data. Features complex performance metrics (CVG scores), yardage analysis, and 7 interactive chart types for coaches and analysts.",
+      "Rugby league analytics platform for NRL, Super League, and NSW Cup with CQRS-style architecture — metrics materialized at XML ingestion, not recomputed on read. Upgraded Angular 9→17, added async XML upload with background job polling, and implemented PDF export across all report views using html2canvas + jsPDF.",
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -541,7 +541,7 @@ const projects = [
     id: 4,
     name: "Palmetto Air Balance Data Warehouse",
     description:
-      "Enterprise Azure data warehouse integrating NetSuite, Air1, and UKG with 20+ ETL pipelines. Delivers real-time dashboards for revenue, backlog, and resource utilization tracking $40M+ project portfolio.",
+      "Enterprise Azure data warehouse integrating NetSuite, Air1, and UKG across a $40M+ project portfolio. 50+ ADF pipelines with dynamic MERGE procedures and self-healing schema detection. Processes 1M+ records/day at sub-second latency with 99.95% data quality; cut manual reporting effort 60% and reporting time from days to minutes.",
     category: "Ware Housing",
     dimensionsCategory: "website",
     tags: [
@@ -570,7 +570,7 @@ const projects = [
     id: 5,
     name: "Pink Chicken Data Integration",
     description:
-      "Multi-channel retail data platform unifying Shopify (10+ stores) with Apparel Magic WMS. Features complex API integration, multi-perspective inventory valuation, and real-time analytics for comprehensive business intelligence.",
+      "Unified Shopify (10+ retail stores + e-commerce) with Apparel Magic WMS into Azure SQL. Cut Azure Monitor cost ~99.99% ($1,000/mo → $0.10/mo, ~$12K/year saved). Root-caused a persistent 1–3% monthly sales divergence traced to gift-card refund misclassification in Shopify's REST API — resolved via GraphQL order-changes API.",
     category: "Ware Housing",
     dimensionsCategory: "website",
     tags: [
@@ -856,6 +856,68 @@ const projects = [
     images: [erma],
     source_code_link:
       "https://www.linkedin.com/feed/update/urn:li:activity:6970775478383054848/",
+  },
+
+  // ============================================
+  // DATA / ETL PLATFORMS
+  // ============================================
+  {
+    id: 16,
+    name: "EcomInvestigator — Snowflake ETL",
+    description:
+      "Snowflake + Snowpark (Python) ETL platform enriching 50k–100k+ e-commerce products per run from Keepa and ScaleSERP into a canonical entity/attribute model. Increased catalog coverage ~15%→75%+ via 6-strategy pagination engine. Achieved 10–20x faster DB loads via batched INSERT patterns. Idempotent terminate-then-reactivate semantics with token-based API rate limiting.",
+    category: "Ware Housing",
+    dimensionsCategory: "website",
+    tags: [
+      {
+        name: "Snowflake",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Snowpark",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Python",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "Keepa API",
+        color: "yellow-text-gradient",
+      },
+    ],
+    image: alpha,
+    images: [],
+    source_code_link: "#",
+  },
+  {
+    id: 17,
+    name: "CarLister — Automotive Intelligence",
+    description:
+      "Full-stack automotive pricing intelligence platform integrating 6 providers (MarketCheck, vAuto, AccuTrade, MMR, Carfax, SendGrid). DB-backed configurable good-deal engine with runtime pricing-source switching. Cron-driven saved-filter automation for continuous inventory monitoring. 4 cache layers, provider health probes, and PostgreSQL connection-pool fixes via shared Prisma client + PgBouncer. 112 TS/TSX files, 21 API endpoints.",
+    category: "website",
+    dimensionsCategory: "website",
+    tags: [
+      {
+        name: "Next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Express",
+        color: "green-text-gradient",
+      },
+      {
+        name: "PostgreSQL",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "TypeScript",
+        color: "yellow-text-gradient",
+      },
+    ],
+    image: wind,
+    images: [],
+    source_code_link: "#",
   },
 ];
 

@@ -1,3 +1,13 @@
+## Quick Reference — Palmetto Air Balance (Enterprise Data Warehouse, Azure)
+- Architected an enterprise Azure data warehouse integrating NetSuite, Air1, and UKG, providing real-time visibility into a $40M+ project portfolio
+- Designed and deployed 50+ Azure Data Factory pipelines with dynamic MERGE stored procedures, self-healing schema-change detection, and automated email alerting
+- Reduced manual reporting effort by 60% and cut reporting time from days to minutes; achieved 99.95% data quality score with automated validation
+- Processed 1M+ records daily at sub-second query latency using optimized T-SQL, indexed star-schema models, and parallel ADF execution
+- Delivered real-time Power BI dashboards for revenue, backlog, and resource utilization with weekly automated snapshots for historical trending
+- Stack: Azure Data Factory, Azure SQL, Databricks/Spark, Power BI, T-SQL, REST APIs
+
+---
+
 # Database Warehouse Engineering Project
 ## Enterprise Data Platform Implementation for Palmetto Air Balance
 
@@ -218,7 +228,7 @@ WHERE pm.project_status = 'Active'
 
 ### **Technical Excellence**
 - **System Integration**: Successfully integrated 2 disparate business systems (NetSuite, Air1)
-- **Data Volume**: Processing 100K+ records daily with sub-second latency
+- **Data Volume**: Processing 1M+ records daily with sub-second latency
 - **Complex Logic**: Implemented multi-dimensional financial calculations with stored procedures
 - **Error Handling**: Comprehensive logging and email notification system with 99.9% reliability
 - **Scalable Design**: Architecture supports 10x growth without major changes

@@ -1,0 +1,91 @@
+## Quick Reference — EcomInvestigator (Snowflake/Snowpark ETL Platform)
+- Architected a Snowflake + Snowpark (Python) ETL platform enriching 50k–100k+ e-commerce products per run from Keepa, ScaleSERP, and other APIs into a canonical entity/attribute model
+- Increased catalog coverage from ~15% to ~75%+ per run by designing a multi-strategy pagination engine with 6 configurable sort strategies and a global ASIN deduplication set
+- Achieved 10–20x faster database loads by replacing row-by-row inserts with batched `INSERT … UNION ALL` patterns (20–100 rows per statement) and smarter per-product cleanup SQL
+- Implemented idempotent terminate-then-reactivate semantics: procedures can be rerun safely without accumulating duplicates; state is always "current as of last successful run"
+- Built token-based Keepa API rate limiting to sustain thousands of product calls per run without hitting 429 errors
+- Developed a schema sync tool exporting tables, views, and procedures to versioned SQL/CSV/JSON under git, ensuring Snowflake schema and codebase stay aligned across environments
+- Stack: Snowflake, Snowpark (Python), Keepa API, ScaleSERP, pytest
+
+---
+
+### CV-ready project summary (senior ETL / data engineer angle)
+
+You can paste this as a single project under “Senior Data / ETL Engineer” and tweak wording as you like.
+
+**One-line title**
+
+- **Snowflake / Snowpark ETL platform for large-scale e‑commerce product enrichment (Keepa, ScaleSERP, etc.)**
+
+**3–4 line overview**
+
+- Led the architecture and implementation of a Snowflake + Snowpark–based ETL platform that ingests, normalizes, and enriches large e‑commerce product catalogs from external APIs (Keepa, ScaleSERP and others) into a unified `ENTITY` / `ATTRIBUTES` model.  
+- Designed multi-phase, API-aware workflows that reliably process 50k–100k+ products per run, with aggressive batching, idempotent patterns, and end‑to‑end observability via execution logs and TEMP_STAGE tables.  
+- Built a local‑first Snowpark development model with automated packaging into Snowflake stored procedures, schema sync tooling, and test harnesses to keep code, database schema, and production behavior tightly aligned.
+
+---
+
+### Key architectural decisions & patterns
+
+- **Snowflake-centric, Snowpark-powered ETL**  
+  - Standardized on **Snowflake + Snowpark (Python)** as the execution platform so heavy lifting (joins, aggregation, JSON processing) happens in-database, not on an app server.  
+  - Encapsulated business logic in Snowpark workflows (`src/snowpark_workflows/workflows/*`) with **dual entry points**:  
+    - `main(session, ...)` for production stored procedures.  
+    - `__main__` blocks for local debugging against a real Snowflake session.  
+  - **Benefit**: single code path runs identically in dev and prod, simplifying debugging and reducing “works locally but not in Snowflake” issues.
+
+- **Canonical entity / attribute model**  
+  - Modeled the domain around an `ENTITY` table (e.g. `ECOMMERCE / PRODUCT / ASIN`) and an `ATTRIBUTES` table for semi-structured payloads (e.g. Keepa JSON under `ATTR_SUB_TYPE='KEEPA'`).  
+  - All workflows (product ingestion, enrichment, API calls) write into this model with clear lifecycle timestamps (`LOAD`, `END`, `"UPDATE"`).  
+  - **Benefit**: this creates a single, extensible hub for all e‑commerce entities and attributes, making downstream analytics and future integrations straightforward.
+
+- **Idempotent, restartable ETL design**  
+  - Implemented a **terminate-then-reactivate** pattern in `CAT_TO_PRODUCTS`:  
+    - Phase 1: mark all active product entities `END = CURRENT_TIMESTAMP()`.  
+    - Phase 2: insert new ASINs, reactivate existing ones (`END = NULL`) based on the latest Keepa snapshot.  
+  - In `PRODUCT_TO_ATTRIBUTES`, new KEEPA attribute rows are inserted, then older rows for those products are cleaned up in a single batched delete.  
+  - **Benefit**: procedures can be rerun safely (nightly or on demand) without accumulating duplicates; state is always “current as of last successful run” while preserving history via timestamps.
+
+- **API-aware, multi-strategy ingestion architecture**  
+  - For category ingestion (`CAT_TO_PRODUCTS`), designed a **multi-strategy query engine** around Keepa’s 10-page limit:  
+    - 6 configurable sort strategies (sales and monthly sold ascending/descending + combinations).  
+    - Each strategy fetches up to 10 pages; a **global ASIN set** deduplicates across all strategies.  
+  - Achieved ~50k–60k unique products per full run (≈75%+ coverage of the catalog) vs ≈10k (~15%) with a single strategy.  
+  - **Benefit**: dramatically higher catalog coverage without breaking API constraints, while keeping the logic transparent and configurable.
+
+- **Throughput and cost optimization (batching and rate limiting)**  
+  - Replaced row-by-row inserts with **batched `INSERT … UNION ALL`** patterns for both `ENTITY` and `ATTRIBUTES`, grouping 20–100 records per statement depending on payload size.  
+  - Eliminated per-row `MAX(ID)` lookups for attributes by using smarter “keep latest per product” cleanup SQL, reducing unnecessary queries by an order of magnitude.  
+  - Implemented **token-based rate limiting** around the Keepa API (short waits when token balance is healthy, longer refill waits when low), tuned for thousands of products per run without hitting 429s.  
+  - **Result**: end-to-end runtime for large batches improved from “tens of minutes with high variance” to **predictable, stable runs often 10–20x more efficient** at the database layer, while keeping API token usage under control.
+
+- **Dynamic environment & schema handling**  
+  - Enforced a **no hardcoded database/schema** rule: all SQL uses `session.get_current_database()` and `session.get_current_schema()` to build fully qualified table references at runtime.  
+  - Mapped secrets and external access integrations (for outbound HTTP) via Snowflake constructs instead of embedding credentials in code.  
+  - **Benefit**: the same procedures can be promoted from dev → test → prod with zero code changes; environment differences are handled by Snowflake roles, context, and secrets.
+
+- **Schema synchronization and governance**  
+  - Built a **schema sync tool** (`sync_snowflake_schema.py`) that exports tables, views, procedures, integrations, and secret metadata into versioned SQL/CSV/JSON under `data/schema_sync/` and `sql/tables/ddl/`.  
+  - Integrated this into the workflow so developers can run a sync before/after changes and review diffs (e.g. table/column changes, new procedures) in git.  
+  - **Benefit**: strong transparency and governance — the Snowflake environment is always backed by a human-readable, version-controlled snapshot, which greatly reduces drift and surprises during deployments.
+
+- **Deployment pipeline & testing strategy**  
+  - Developed deployment tooling in `infra/deploy/` to **bundle Snowpark workflows into single-file stored procedures** (`*_AUTO.sql`), automatically inlining dependencies and stripping local-only code.  
+  - Extended this with targeted deployment scripts (e.g. for `EXC_SQL_STEPS` and other procedures) that:  
+    - Create or replace the procedure.  
+    - Load test data.  
+    - Execute the procedure and validate return codes and logs (e.g. from `PROC_EXECUTION_LOG`).  
+  - Set up `pytest` tests and SQL test scripts so each procedure has a repeatable verification path.  
+  - **Benefit**: confident, low-friction deployments; procedures are treated much like application code with packaging, tests, and automated promotion.
+
+---
+
+### How to compress this into bullets on your CV
+
+You could shorten the above into 3–5 high-impact bullets like:
+
+- **Architected and led** a Snowflake/Snowpark-based ETL platform for e‑commerce, ingesting and enriching 50k–100k+ products per run from Keepa/ScaleSERP into a canonical entity/attribute model with robust logging and monitoring.  
+- Designed **multi-phase, idempotent workflows** (`CAT_TO_PRODUCTS`, `PRODUCT_TO_ATTRIBUTES`) with terminate/reactivate semantics, dynamic schema resolution, and batched `INSERT … UNION ALL` patterns, delivering 10–20x faster loads and safe reruns across environments.  
+- Implemented **API-aware ingestion** with multi-strategy pagination, global deduplication, and token-based rate limiting to maximize catalog coverage (≈75%+ of available products) under strict external API constraints.  
+- Built **schema synchronization and deployment tooling** (Python + SQL) to bundle Snowpark workflows into stored procedures, manage secrets/integrations, and keep Snowflake schemas version-controlled and aligned with the codebase.  
+- Established a **local-first Snowpark development workflow** (VS Code debugging, `.env`-backed connections, SQL + `pytest` tests) so engineers can iterate quickly and deploy confidently to Snowflake.

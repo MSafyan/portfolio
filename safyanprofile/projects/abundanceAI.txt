@@ -1,3 +1,13 @@
+## Quick Reference — Abundance Movement (AI Matching & Recommendations)
+- Built 11 specialized AI services including semantic user matching, video recommendations, personality-based goal suggestions, content analysis, and automated chat summarization
+- Achieved 95% AI cost reduction by strategically switching from o1-mini to gpt-4o-mini with token limiting — maintained output quality while cutting monthly spend
+- Designed a multi-index Pinecone vector architecture with namespace-based user profile storage across 5+ attributes (strengths, weaknesses, interests, values, keywords) for nuanced semantic matching
+- Implemented a weekly chat summarization pipeline via NestJS cron job: collects 7-day message windows, generates narrative summaries and action items via OpenAI, and exposes REST endpoints for on-demand and historical digests
+- Built real-time cost monitoring with sub-cent precision, model configuration utilities, and automated optimization recommendations across all AI service calls
+- Stack: NestJS, TypeScript, TypeORM, PostgreSQL, OpenAI GPT, Pinecone, LangChain
+
+---
+
 ## **AI/ML Engineering Work Summary**
 
 ### **Overview**
@@ -20,7 +30,7 @@ Developed a comprehensive AI-powered recommendation and matching system using Op
 **3. Advanced Cost Optimization Framework**
 - Developed comprehensive cost monitoring utilities with real-time expense tracking
 - Implemented model configuration system with use-case-specific optimizations
-- Achieved **99.9% cost reduction** by strategically switching from `o1-mini` to `gpt-4o-mini`
+- Achieved **95% cost reduction** by strategically switching from `o1-mini` to `gpt-4o-mini`
 - Built cost estimation tools and automated optimization recommendations
 
 ### **AI-Powered Features Implemented**
@@ -72,16 +82,15 @@ Developed a comprehensive AI-powered recommendation and matching system using Op
 ### **Cost Optimization Achievements**
 
 **Specific Optimizations Implemented:**
-- Model selection optimization reducing costs by 99.9%
+- Model selection optimization reducing costs by 95%
 - Token limiting strategies (300-2000 tokens based on use case)
 - Temperature optimization for focused responses (0.1-0.3)
 - Batch processing and caching strategies
 - Real-time cost monitoring with alert thresholds
 
 **Business Impact:**
-- Reduced monthly AI costs from projected $750 to $0.75 (99.9% savings)
-- Annual cost savings of approximately $8,991
-- Maintained quality while achieving massive cost efficiency
+- Reduced monthly AI costs by 95% through strategic model switching and token optimization
+- Maintained quality while achieving significant cost efficiency
 
 ### **Technologies & Tools Used**
 - **AI/ML**: OpenAI GPT models, LangChain, Text embeddings
@@ -98,3 +107,58 @@ Developed a comprehensive AI-powered recommendation and matching system using Op
 - **Multi-dimensional user profiling** with 5+ attributes per user
 
 This work demonstrates expertise in **production AI system design**, **cost optimization**, **vector database management**, **prompt engineering**, and **scalable ML architecture**.
+
+---
+
+## Chat Summarization Feature
+
+### Feature Overview
+I implemented a weekly chat summarization pipeline that runs via a NestJS cron job, filters chats for recent activity, and delegates to a shared SimpleChatSummaryService that collects the last 7 days (or any on-demand window) of messages, feeds them into our OpenAI-backed chatAnalysisService, and stores both the narrative summary and derived action items with consistent metadata.
+
+The ChatSummaryController then exposes guarded endpoints for fetching summaries, generating ad-hoc or selected-message digests, viewing history, and backfilling historical weeks so product teams can surface concise recaps on demand.
+
+### Key Components
+
+**1. Automated Pipeline:**
+- NestJS cron job runs weekly for automated summarization
+- Filters chats based on recent activity (last 7 days by default)
+- Configurable time windows for custom date ranges
+
+**2. SimpleChatSummaryService:**
+- Collects messages from specified time windows
+- Handles pagination for large message volumes
+- Integrates with OpenAI chatAnalysisService for AI-powered analysis
+
+**3. AI Analysis:**
+- Uses OpenAI GPT models to generate narrative summaries
+- Extracts action items automatically from conversations
+- Structured prompts for consistent output format
+- Stores summaries with metadata (date range, participants, chat ID)
+
+**4. ChatSummaryController Endpoints:**
+- `GET /summaries` - Fetch existing summaries with filters
+- `POST /summaries/generate` - Generate ad-hoc summaries for custom date ranges
+- `POST /summaries/selected` - Generate digests from selected messages
+- `GET /summaries/history` - View historical summaries
+- `POST /summaries/backfill` - Backfill summaries for historical weeks
+
+**5. Storage & Metadata:**
+- Summaries stored in PostgreSQL with TypeORM
+- Metadata includes: chat ID, date range, participant list, message count
+- Action items stored separately with links to parent summary
+- Versioning support for summary updates
+
+### Technologies
+- NestJS (cron jobs, services, controllers)
+- OpenAI GPT (text analysis and summarization)
+- TypeORM + PostgreSQL (data persistence)
+- REST API with authentication guards
+
+### Use Cases
+- Weekly team chat recaps
+- Project update summaries
+- Customer conversation digests
+- Meeting notes generation
+- Historical backfilling for missed summaries
+
+**Applicable to:** Microsoft Teams bots, Slack bots, customer service platforms, project management tools, any chat-based application requiring automated summarization.

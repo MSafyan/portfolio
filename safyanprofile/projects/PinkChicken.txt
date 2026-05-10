@@ -1,3 +1,13 @@
+## Quick Reference — Pink Chicken (Retail Data Integration, Azure)
+- Unified Shopify (10+ retail stores + e-commerce) with Apparel Magic WMS into a single Azure SQL data warehouse, eliminating manual data consolidation across all channels
+- Reduced Azure Monitor cost by ~99.99% — from ~$1,000/month to $0.10/month (~$12,000/year saved) by eliminating redundant alert rules with no loss of operational visibility
+- Root-caused a persistent 1–3% monthly sales divergence traced to gift card refund misclassification in Shopify's REST API; resolved by querying GraphQL order-changes API and applying explicit transaction classification logic
+- Resolved a REST vs. GraphQL schema mismatch for incoming inventory data — a field that only existed in GraphQL — requiring pipeline redesign and cross-API field normalization
+- Implemented dimensional modeling with inventory valued from cost, retail, and wholesale perspectives per location, supporting multi-team reporting needs
+- Stack: Azure Data Factory, Azure SQL, REST APIs (Shopify + Apparel Magic), Power BI, T-SQL
+
+---
+
 # Pink Chicken Data Warehouse Engineering Project
 ## Enterprise Data Integration & Analytics Solution
 
@@ -80,6 +90,21 @@ Select * from data_load_control where table_name = '@{pipeline().parameters.tabl
 
 ### **Technical Challenges Overcome**
 
+#### **Schema Drift & Upstream Data Issues (Real Examples)**
+
+**Inventory API Schema Mismatch — REST vs GraphQL**
+- Initial ETL pulled inventory stock from Shopify REST API. Incoming inventory (stock in transit) was missing from REST responses.
+- After days of investigation, discovered the incoming inventory field only existed in Shopify's GraphQL API — the REST endpoint simply didn't expose it.
+- Had to redesign the inventory pipeline to call GraphQL for incoming stock and merge it with REST data, normalizing fields across both response shapes.
+
+**Sales Number Mismatch — Gift Card Refund Classification**
+- Monthly sales were in the millions. Each month there was a consistent 1-3% divergence between our REST API pipeline numbers and Shopify's own dashboard reports.
+- Exported raw data from the Shopify dashboard, manually checked individual orders — some had returns/refunds but those didn't always explain the gap. Checking order-by-order from the dashboard didn't surface the pattern.
+- Raised with Shopify support. Got a generic response. One support developer eventually hinted at GraphQL order changes as a potential source of truth discrepancy.
+- Built Python scripts to query the affected orders through GraphQL's order changes API, populated the relevant fields, and compared against the REST data.
+- Root cause: refunds processed as gift cards were being classified inconsistently — sometimes a refund was issued as a gift card, sometimes a gift card was itself used as a refund, and sometimes it was just a standalone gift card. The REST API didn't distinguish these cases reliably, causing the pipeline to either double-count or miss amounts depending on transaction type.
+- Fixed by mapping gift card transactions through GraphQL and applying explicit classification logic before loading into the sales fact table.
+
 #### **Data Quality & Consistency**
 - **Shopify Data Issues**: Resolved stale inventory data (last updated May 2022)
 - **API Rate Limiting**: Implemented robust retry logic and backoff strategies
@@ -89,6 +114,12 @@ Select * from data_load_control where table_name = '@{pipeline().parameters.tabl
 - **Pagination Handling**: Efficient large dataset processing with `HasMorePages` variables
 - **Stored Procedure Integration**: `sp_update_data_load_control` for transaction integrity
 - **Parallel Processing**: Concurrent pipeline execution with dependency management
+
+#### **Azure Monitor Cost Optimization**
+- Identified excessive Azure Monitor alert rules generating redundant metric signals across ADF pipelines
+- Consolidated and eliminated unnecessary time series monitoring, reducing alert rule count dramatically
+- Reduced Azure Monitor estimated monthly cost by ~99.99% — from ~$1,000/month to $0.10/month (single essential `ActivityFailedRuns > 0` alert retained)
+- Annual saving of approximately $12,000 in monitoring costs with no loss in operational visibility
 
 #### **Security & Compliance**
 - **Private Endpoints**: Implemented for SQL and Storage account access
@@ -149,6 +180,29 @@ Select * from data_load_control where table_name = '@{pipeline().parameters.tabl
 - **Pipeline Complexity**: 5+ specialized ETL pipelines
 - **Processing Volume**: Daily incremental loads with historical snapshots
 - **API Integrations**: Complex rate-limited REST API implementations
+
+---
+
+### **Proposal Notes — Daily Sync / Migration Strategy (ADF)**
+
+We completed a PostgreSQL to MSSQL migration using Azure Data Factory (ADF) copy activities with daily synchronization, giving us direct hands-on experience with this pattern.
+
+**Key questions that determine the right daily sync approach:**
+
+- **Timestamp Strategy**: Do source tables have `updated_at` or `modified_date` columns? Critical for incremental syncs to identify new and changed records without full-table scans.
+- **Deletion Handling**: Are deletes hard (physical remove) or soft (flags like `is_deleted` / `is_archived`)? This determines how change tracking is implemented.
+- **Schema Flexibility**: Can timestamp columns be added to existing tables, or must we work with the current schema? If not, database-level triggers can track changes without touching the application.
+
+**Solution recommendations by complexity:**
+
+- **ADF only** — best for straightforward data movement; handles scheduling, copy, and incremental loads with minimal custom code. Used this successfully for RDS → MSSQL migration.
+- **Custom Node.js script** — better when complex business logic, custom validation, or edge-case transformations are needed that ADF pipelines can't express cleanly.
+- **Hybrid** — ADF for bulk/incremental loads, Node.js for transformation logic that sits outside ADF's native capability.
+
+**Additional scoping questions before design:**
+- What is the data volume per full sync? (Determines whether weekly full syncs are feasible vs. daily incremental only)
+- Where is the target MSSQL server hosted? (Affects IR selection and network topology in ADF)
+- Is a read replica available for sync operations to avoid production performance impact?
 
 ---
 

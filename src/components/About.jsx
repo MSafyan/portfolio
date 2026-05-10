@@ -56,19 +56,23 @@ const About = () => {
         className="mt-4 text-white text-[17px] max-w-3xl leading-[30px]"
       >
         I'm Safyan, an{" "}
-        <strong>AWS-Certified Full-Stack & Cloud Engineer</strong> with 5+ years
-        of experience building scalable backend systems, cloud infrastructure,
-        and data pipelines. I specialize in{" "}
-        <strong>Node.js, NestJS, and TypeScript</strong> for microservices
-        architecture, with expertise in <strong>AWS (EKS, RDS, S3, ECR)</strong>{" "}
-        and <strong>Azure (Data Factory, SQL, Databricks)</strong>. I've built{" "}
-        <strong>AI/ML platforms</strong> using OpenAI, LangChain, and Pinecone,
-        achieving 99.9% cost optimization. My experience includes enterprise
-        data warehouses managing $40M+ portfolios, payment integrations with{" "}
-        <strong>Stripe and Twilio</strong>, and complete DevOps infrastructure
-        using <strong>Terraform and Kubernetes</strong>. I thrive on solving
-        complex technical challenges and delivering high-performance,
-        production-ready solutions.
+        <strong>AWS-Certified Full-Stack & Cloud Engineer</strong> (also CKAD &
+        Terraform certified) with 5+ years building scalable backend systems,
+        cloud infrastructure, data pipelines, and AI platforms. I specialize in{" "}
+        <strong>Node.js, NestJS, and TypeScript</strong> for microservices, with
+        deep expertise in <strong>AWS (EKS, RDS, S3, ECR)</strong> and{" "}
+        <strong>Azure (Data Factory, SQL, Databricks, Snowflake)</strong>. Key
+        highlights: built a Swedish marketplace serving{" "}
+        <strong>10,000+ users with 99.8% payment success</strong>; achieved{" "}
+        <strong>95% AI cost reduction</strong> on an OpenAI/Pinecone platform;
+        designed enterprise data warehouses tracking{" "}
+        <strong>$40M+ project portfolios</strong>; architected a
+        Snowflake/Snowpark ETL pipeline enriching{" "}
+        <strong>50k–100k+ products per run</strong>; and built a full-stack{" "}
+        <strong>automotive pricing intelligence platform</strong> with 6
+        provider integrations and cron-driven deal discovery. I thrive on
+        solving complex technical challenges and delivering production-ready
+        solutions.
         <br />
         {/* <br />
         📩 <strong>Email:</strong>{" "}

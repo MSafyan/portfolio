@@ -274,6 +274,14 @@ body {
   overflow-x: hidden;
   perspective: 10px;
 }
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(24px); }
+}
+.scroll-bounce {
+  animation: scrollBounce 1.5s ease-in-out infinite;
+  will-change: transform;
+}
 .parallax__stars {
   --parallax-speed: 320;
   z-index: 2;

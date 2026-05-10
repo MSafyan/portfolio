@@ -128,7 +128,7 @@ const newProjects = [
     id: 5,
     name: "Abundance Movement",
     description:
-      "AI-powered social learning platform with semantic user matching, video recommendations, and personality-based goal suggestions. Achieved 99.9% cost reduction through intelligent OpenAI model selection.",
+      "AI-powered social learning platform with semantic user matching, video recommendations, and personality-based goal suggestions. Achieved 95% cost reduction through intelligent OpenAI model selection.",
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -188,7 +188,7 @@ const newProjects = [
     id: 7,
     name: "Palmetto Air Balance Data Warehouse",
     description:
-      "Enterprise data warehouse on Azure integrating NetSuite, Air1, and UKG systems with 20+ ETL pipelines. Delivers real-time dashboards for revenue, backlog, and resource utilization tracking $40M+ portfolio.",
+      "Enterprise data warehouse on Azure integrating NetSuite, Air1, and UKG systems with 50+ ETL pipelines. Delivers real-time dashboards for revenue, backlog, and resource utilization tracking $40M+ portfolio.",
     category: "website",
     dimensionsCategory: "website",
     tags: [

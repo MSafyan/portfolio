@@ -1,95 +1,94 @@
 Muhammad Safyan
 
-GitHub:  github.com/MSafyan                    Email: msafyan080@gmail.com
-Cell  No: +9231499457000
-Location: Gujranwala, Pakistan             LinkedIn:linkedin.com/in/safyan-akram-975631b4  
+Email: msafyan080@gmail.com    GitHub: github.com/MSafyan        LinkedIn: linkedin.com/in/safyanakram/     Cell: +923012772000                         Location: Gujranwala, Pakistan     Portfolio: https://safyan-portfolio.vercel.app 
 
 
-
-
-
-
-
-
-BS Software Engineering
-
-
-COMSATS University Islamabad, Lahore Campus.
-
-
-
-
-
+SUMMARY
+Full-stack and data engineer with 5+ years owning systems end-to-end: architecture, DevOps, and delivery. Shipped cloud-native backends, enterprise data warehouses, and AI/LLM platforms with measurable outcomes: 95% LLM cost reduction, 1M+ records/day ETL, $40M portfolio visibility, 99.8%+ reliability.
 
 EXPERIENCE
 
+Pink Chicken (USA)                                                                                                                          Mar 2025 – Jan 2026
+Data Engineer  |  Azure · ADF · Shopify · Apparel Magic · Python · MsSQL · Dataflow
+
+Architected enterprise data warehouse on Azure integrating Shopify (10+ retail + e-commerce locations) with Apparel Magic WMS; designed virtual warehouse reconciliation logic to eliminate inventory double-counting
+Diagnosed 1–3% monthly sales divergence on multi-million-dollar revenue. Root cause: gift card refunds classified inconsistently across Shopify REST vs GraphQL; built reconciliation pipeline using GraphQL order changes API with explicit transaction classification logic; fixed discrepancy permanently
+Discovered incoming stock only exposed in Shopify GraphQL (not REST); redesigned inventory pipeline to merge both endpoints, resolving schema drift without disrupting existing incremental loads
+Reduced Azure Monitor costs by 99.99%, from ~$1,000/month to $0.10/month (~$12,000/year saved) by eliminating redundant alert rules and consolidating to a single essential pipeline failure alert
+Implemented daily incremental loads, daily inventory snapshots, and dimensional model (fact/dimension/bridge tables) for multi-perspective inventory valuation across finance, D2C, and wholesale views
+
+Palmetto Air Balance (USA)                                                                                                                   Dec 2024 – Jan 2026
+Data Engineer  |  Azure · ADF · NetSuite · UKG · Air1 · T-SQL
+
+Architected Azure-based enterprise warehouse: 50+ ADF pipelines integrating NetSuite (ERP), Air1 (project management), and UKG (workforce) with complex cross-system key mapping and financial reconciliation
+Delivered real-time visibility into $40M+ project portfolio (revenue, backlog, utilization dashboards); reduced manual reporting effort by 70% across the business
+Built dynamic MERGE stored procedures with intelligent primary key detection, TRY-CATCH error handling, pipeline-level + database-level logging, email alerts with failure categorization, and audit trails
+Processed 1M+ records daily with sub-second query latency using composite indexing, table partitioning, and materialized views; implemented weekly automated backlog snapshots for historical trending
+
+Wesion World  (UK)                                                                                                                Apr 2023 – Present
+Full-Stack + AI Engineer  |  NestJS · OpenAI · LangChain · Pinecone · TypeORM · PostgreSQL · AWS
+
+Owned full development lifecycle: designed and built NestJS backend from scratch with TypeORM + PostgreSQL, schema design, location-based indexes, ATM contract integration, and AWS deployment; Python Lambda for automated image/video compression on S3 with event triggers
+Architected 11-service AI recommendation and matching platform using OpenAI GPT, LangChain, and Pinecone; multi-index namespace architecture storing 5+ profile dimensions per user (strengths, weaknesses, interests, values, keywords) enabling semantic similarity matching at 35%+ threshold
+Reduced LLM costs by 95% through strategic model switching (o1-mini → gpt-4o-mini), token limiting (300–2,000 tokens per use case), and temperature optimization; maintained output quality throughout
+Built automated chat summarization pipeline: NestJS cron collects 7-day message windows, generates narrative summaries + action items via OpenAI, with REST endpoints for on-demand and historical digests
+
+Helpicon  (SWEDEN)                                                                                                                              Sep 2023 – Mar 2026
+Senior Backend + DevOps Engineer  |  Node.js · AWS ECS/EKS · Terraform · Jenkins · Docker
+
+Integrated Stripe and Swish (Nordic mobile payments) marketplace flows: automated provider commission splits, subscription tiers, and webhook handlers (payment_intent, subscriptions, refunds); achieved 99.8% payment success rate across 10,000+ active users and 500+ verified service providers
+Cut Twilio messaging costs by 90% via Conversations API shared-service architecture; improved API response times 2–3x to under 200ms via selective field projection, caching, and composite indexes; DB queries <50ms
+ECS auto-scaling (min 2 → max 10 at 70% CPU); Multi-AZ RDS PostgreSQL; RDS backup and snapshots; 
+Deployed payment microservice on AWS EKS with Jenkins CI/CD across 3 isolated AWS accounts (DevOps / Staging / Production); Terraform IaC for RDS, ECR, S3, VPC; automated Prisma migrations
 
 
-Pink Chicken		            Mar 2025 - Present 
+CVR Sports Analytics  (AUS)                                                                                                             2022 – 2026
+Full-Stack + Data Engineer  |  Node.js · MongoDB · Angular 17 · Express
 
-Unified Shopify (10+ retail + e‑commerce) with Apparel Magic WMS; virtual warehouse logic
-Million records migrated daily with incremental and fullSync based timestamps so pipeline run  is under 4hours
-Python scripts comparing NetSales/GrossSales of millions of dollars in Shopify dashboard and mySQL views
-Fast queries using composite Indexes, MultiStep procedures, Utility tables for 10’s Millions of records
-Stack: Azure Data Factory, Azure SQL, Python, Dataflow
-
-Palmetto Air Balance		          Dec 2024 - Jun 2024
-
-Designed Azure‑based warehouse: ADF pipelines, Integrated NetSuite, Air1, UKG; complex reconciliation
-Python scripts in databricks for netsuite data migration to StorageAccount and daily run
-Dynamic MERGE procedures, logging/monitoring, email alerts, failure categorization
-Delivered real‑time dashboards (revenue, backlog, utilization) and snapshot architecture
+Designed analytics platform for NRL, Super League, and NSW Cup with a CQRS-like architecture: materialized read models at player/team/quarter/10-min grains. Event-derived KPIs computed once at XML ingestion, eliminating repeated recalculation on every report query
+MongoDB: compound indexes on real access patterns, parallel Promise.all for independent reads, distinct() for filter endpoints, lean() on non-hydration paths, aggregation pipelines close to data, self-join via $lookup for team-vs-opponent metrics, allowDiskUse + maxTimeMS guardrails on heavy pipelines
+Led Angular 9 → 17 upgrade: removed legacy OpenSSL dependency, pruned unused packages, updated AG Grid with scoped theme overrides to fix visual regressions
+Engineered PDF export (html2canvas + jsPDF) across all report views; identified DOM rasterization as dominant cost; used onclone mutation to inject page-break spacers without touching the live page
 
 
-Abundance Movement, Full Stack Developer		       April 2023 - Present
+E-Commerce Intelligence Platform  (USA)                                                                                       2025
+Data Engineer  |  Snowflake · Snowpark Python · Keepa API · ScaleSERP
 
-Managed the entire development lifecycle, from frontend and backend development to DevOps, ensuring all technical decisions aligned with the project's goals and requirements
-Used LLMs AI, Langchain, vector database and tokenize indexes for smart search, decreased LLM cost by 95%
-Implemented NestJS-based backend and database design/implementation.
-Integrated with ATM contract integration and TypeORM PostgreSQL, location based indexes.
-Python based Lambda function for images/video compression in AWS S3 Bucket using automated Triggers
+Designed idempotent ETL on Snowflake + Snowpark processing 50k–100k+ products per run; achieved 75%+ catalog coverage vs 15% with single-strategy ingestion by implementing 6 configurable sort strategies around Keepa's API pagination constraints
+Batch INSERT…UNION ALL patterns eliminated per-row MAX(ID) lookups, achieving 10–20x performance improvement; canonical ENTITY/ATTRIBUTE model for semi-structured payloads; token-based dynamic rate limiting
 
-Helpicon — Backend Developer		  September 2023 - Present
-Integrated Swish/Stripe/Workoma in payment service, Twilio conversation and 90% cost reduction for twilio
-Api speed optimization by 2-3x under 800ms using necessary fields only, caches, indexes
-Worked on microservices deployed on AWS via jenkins pipelines over EKS cluster
-Developed Common Services for communication and optimizations for data transfer.
+Frizhub   (PAK)                                                                                                                            Nov 2022 – Aug 2023
+Full-Stack Developer  |  Angular · Next.js · Web3.js · PostgreSQL · Alchemy API
 
+Built CHAINSCAN Ethereum NFT analytics platform: migrated millions of blockchain records from Alchemy Graph API into PostgreSQL with composite index optimization; implemented Web3 auth and wallet connectivity
 
-Frizhub, Lahore, Lahore — Full Stack Web Developer	     November 2022 - August 2023
-Worked on NFT explorer application (CHAINSCAN) including data from Ethereum to PostgreSQL.
-Migrating millions of Ethereum contracts/tokens, Utilized Alchemy Graph API, 
-Query Optimizations for millions of records in PostgreSQL
-Angular modules including Web3-based subscription, Auth using Web3.
-
-  P2G Global Services, Remote — Contract Developer                                                                 November 2020 - 2023
-Developed and optimized hundreds of thousands of products for the website.
-Implemented SEO-friendly features and segment with Google Analytics for user flow tracking.
-Created scripts for managing & updating 130k+  products, order shipment tracking with Didadi APIs, and maintained multiple payment methods and continuous inventory updates.
-Certifications
-AWS Certified Solutions Architect – Associate (2024)
-https://www.credly.com/badges/9f649e53-5fca-4a2b-9d32-935d3da280f1
-
-HashiCorp Certified: Terraform Associate | 2024
-Verified via Credly
-https://www.credly.com/badges/41cf43ff-e454-4191-8174-e54ee6856a14
-
-TECHNICAL SOFTWARE SKILLS
+P2G Global Services  (USA)                                                                                                    Nov 2021 – 2023
+Automated management of 130k+ product catalog; Python scripts for inventory updates, order shipment tracking (Didadi APIs), SEO features, and Google Analytics segmentation
 
 
+CERTIFICATIONS
+AWS Certified Solutions Architect – Associate (2025) Verified via Credly
+HashiCorp Certified: Terraform Associate (2024)  Verified via Credly
+Certified Kubernetes Application Developer – CKAD (2026) Verified via Credly
 
-Languages & Frameworks: JavaScript, TypeScript, Node.js, React.js, Next.js, Angular, HTML5, CSS3, Sass, Python
-Backend Technologies: MongoDB, Nestjs,  PostgreSQL, Strapi, AWS, Stripe, PayPal, Twilio, SendGrid
-Tools & Platforms: AWS, Azure, terraform, GitHub, Expo, Figma, Microservices, Alchemy, Graph API, Jira,LLMs, Langchain, Pinecone, Vector Database, ADF, Databricks, Azure, 
+TECHNICAL SKILLS
+Languages:
+TypeScript, JavaScript, Python, T-SQL
+Backend: 
+Node.js, NestJS, Express, REST APIs, Microservices, GraphQL
+Frontend: 
+React.js, Next.js, Angular, TanStack Query, Redux, HTML5, CSS3/Sass
+Databases: 
+PostgreSQL, Azure SQL, MongoDB, Snowflake, Redis, Pinecone (vector DB)
+Cloud & DevOps:
+AWS (EKS, ECS, RDS, S3, Lambda, CloudWatch), Azure (ADF, SQL, Storage), Terraform, Docker, Kubernetes,, GitHub Actions, Bitbucket Pipelines
+AI/ML: 
+OpenAI GPT, LangChain, Pinecone, text embeddings, prompt engineering, cost optimization
+Data & ETL:
+Azure Data Factory, Snowpark, dimensional modeling
+Commons:
+Stripe, Swish, PayPal, Twilio Conversations, SendGrid
 
 
-LANGUAGES
-Professional Proficiency: Node.js, TypeScript
-
-PERSONAL PROJECTS
-Employee & Resource Management System
-Developed a React-native app for small-scale business management, reducing paperwork and errors.
-Implemented multilingual support and a demo video: Demo Video.
-
-INTERESTS
-Anime, DevOps, Cooking, Youtube, Cloud
+EDUCATION
+BS Software Engineering, COMSATS University Islamabad, Lahore Campus

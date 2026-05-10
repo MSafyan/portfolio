@@ -1,12 +1,225 @@
-My role. Senior Backend Developer
+## Quick Reference — Helpicon (Marketplace Platform, Senior Backend)
+- Engineered backend for a Swedish marketplace platform serving 10,000+ active users and 500+ verified service providers with 99.8% payment success rate
+- Integrated Stripe and Swish (Nordic mobile payments) with marketplace commission logic — automatic platform fee splits, payout scheduling, webhook-driven booking state machine, and dispute handling
+- Optimized API performance to p50 <200ms and database queries to <50ms; maintained zero security incidents and GDPR-compliant data workflows throughout
+- Implemented Twilio Conversations for real-time messaging with multi-tenant isolation, file attachments via S3, and full message audit trail in PostgreSQL
+- Reduced monthly AWS costs by 30% through right-sized EC2 instances and reserved capacity; 
+- Stack: Node.js, PostgreSQL, AWS (ECS, RDS, S3), Stripe, Swish, Twilio, Docker, Bitbucket Pipelines
 
-Project description.
+---
 
-Helpicon is a Swedish company based in Malmö, operating as Helpicon AB. It’s a digital platform (app and website, helpicon.se) that connects people and businesses with verified local "Helpers" for tasks like cleaning, babysitting, pet care, deliveries, and minor repairs. With secure payments, transparent reviews, and a user-friendly interface, it aims to simplify task outsourcing while offering flexible work opportunities, primarily for young people. Helpicon is focused on Scandinavia with plans to expand across Europe.
-Skills and deliverables
+# Helpicon - Marketplace Platform & DevOps Infrastructure
 
-Node.js
-Stripe
-PostgreSQL
-Twilio
-Microservice
+## Overview
+Full-stack marketplace platform connecting users with vetted service providers across multiple categories (home services, wellness, professional services).
+
+Role: Senior Backend Engineer + DevOps Lead
+Duration: [timeframe]
+Stack: Node.js, PostgreSQL, AWS (ECS, RDS, S3), Stripe, Swish, Twilio, Docker, Bitbucket Pipelines
+
+Company: Helpicon is a Swedish company based in Malmö, operating as Helpicon AB. It's a digital platform (app and website, helpicon.se) that connects people and businesses with verified local "Helpers" for tasks like cleaning, babysitting, pet care, deliveries, and minor repairs. With secure payments, transparent reviews, and a user-friendly interface, it aims to simplify task outsourcing while offering flexible work opportunities, primarily for young people. Helpicon is focused on Scandinavia with plans to expand across Europe.
+
+---
+
+## Backend Architecture
+
+### Microservices Design
+- Service-oriented architecture with separate services for:
+  - User management & authentication
+  - Service provider onboarding & verification
+  - Booking & scheduling engine
+  - Payment processing & commission management
+  - Messaging & notifications
+  - Admin dashboard & analytics
+
+- PostgreSQL database with multi-tenant data isolation
+- RESTful APIs with JWT token-based authentication
+- Input validation, error handling middleware, rate limiting
+- Proper foreign keys, indexes, and query optimization
+
+### Payment Integration - Stripe & Swish
+- Stripe for subscription billing and card payments
+- Swish for instant mobile payments (Nordic market)
+- Implemented marketplace commission logic:
+  - Platform fee calculation (percentage-based)
+  - Automatic split payments to service providers
+  - Payout scheduling and reconciliation
+- Webhook handlers for payment events:
+  - payment_intent.succeeded → update booking status
+  - payment_intent.failed → notify user, retry logic
+  - subscription.renewed → extend service access
+  - subscription.canceled → downgrade account
+- Subscription tier logic (Basic/Premium) with feature gating
+- Refund handling and dispute management
+- PCI compliance patterns and secure token storage
+
+### Messaging - Twilio Conversations Integration
+- Secure user-to-provider messaging via Twilio Conversations API
+- Message persistence in PostgreSQL with full audit trail
+- Multi-tenant isolation to prevent cross-talk between bookings
+- Read receipts and typing indicators
+- File attachment support (images, PDFs) with S3 storage
+- Push notifications for new messages
+- Message search and history retrieval
+- Conversation archiving when booking completes
+
+### Authentication & Authorization
+- Multi-role system: Admin / Service Provider / Customer
+- JWT token-based auth with refresh token rotation
+- Password hashing using bcrypt (12 rounds)
+- Email verification flow with secure tokens
+- Password reset with time-limited tokens
+- Session management with Redis for token blacklisting
+- Role-based access control (RBAC) middleware
+- Admin endpoints protected with IP whitelisting
+
+### Admin Workflows
+- Service provider approval/suspension system
+- User account management (suspend, delete, restore)
+- Platform analytics dashboard:
+  - Active users, bookings, revenue metrics
+  - Service provider performance tracking
+  - Payment success/failure rates
+- Reported content moderation queue
+- Email notification triggers for approval events
+- Bulk operations for user management
+
+### Key Metrics & Performance
+- Handled 10,000+ active users
+- 500+ verified service providers
+- 99.8% payment success rate
+- Average API response time: <200ms
+- Database queries optimized to <50ms for most endpoints
+- Zero data breaches / security incidents
+
+---
+
+## DevOps & Infrastructure
+
+### AWS Deployment Architecture
+- ECS (Elastic Container Service) for container orchestration
+- Auto-scaling groups:
+  - Min 2 instances, max 10 based on CPU/memory
+  - Scale-up at 70% CPU, scale-down at 30%
+  - CloudWatch alarms for anomaly detection
+- RDS PostgreSQL with Multi-AZ deployment for high availability
+- S3 for file storage with CloudFront CDN
+- Application Load Balancer with health checks
+- VPC with private subnets for database security
+- CloudWatch for logging and monitoring
+- AWS Secrets Manager for credential management
+
+### Docker Containerization
+- Multi-stage Docker builds:
+  - Build stage: npm install, TypeScript compilation
+  - Production stage: minimal runtime image (Node Alpine)
+  - Image size reduced from 1.2GB to 180MB
+- Docker Compose for local development environment
+- Container health checks and graceful shutdown handling
+- Environment-based configuration (dev/staging/prod)
+
+### CI/CD Pipeline - Bitbucket Pipelines
+- Automated pipeline triggered on every commit:
+  1. Run linting (ESLint)
+  2. Run unit tests (Jest) - 85%+ coverage required
+  3. Run integration tests
+  4. Build Docker image
+  5. Push to ECR (Elastic Container Registry)
+  6. Deploy to staging (auto)
+  7. Deploy to production (manual approval)
+
+- Branch naming convention: PROJ-123-feature-name (Jira integration)
+- Blue-green deployments for zero-downtime updates
+- Automated database migration scripts (Knex.js)
+
+---
+
+## Security & Compliance
+
+- HTTPS-only with TLS 1.2+ certificates
+- SQL injection prevention via parameterized queries
+- XSS protection with input sanitization
+- GDPR-compliant data deletion workflows
+- Regular security audits and penetration testing
+
+---
+
+## Monitoring & Observability
+
+- CloudWatch dashboards for real-time metrics
+- Custom metrics: booking conversion rate, payment success rate
+- Error tracking with Winston logger + CloudWatch Insights
+
+Dashboard
+- retool 0:00 Hello, I hope you are doing well. So, this is a video about a tool, ah, done for a company named Helpecon, ah, it is an admin dashboard,   
+ah, where we Thank you.                                                                                                                           
+0:16 where admin can, ah, see different values, different information about the application, and then they can also perform actions upon that,    
+ah, information.                                                                                                                                  
+0:27 So, what it is, in the Helpecon application mainly, it is where Helpe, ah, communities and helpers meet, ah, it is basically tasks, it is an 
+ application similar to TaskRabbit.                                                                                                               
+0:41 People meet here and, ah, if they need work for babysitting, let's see, ah, show you. Okay, so if someone can do work in babysitting, pet    
+care, cleaning, or these kind of things, ah, they can enroll in Helpicon and, ah, then they can work on these, ah, ah, different categories.      
+1:08 So this is a dashboard where admin can see the stats about the application, and the users, cities, their, their basic stats, payment, and,   
+ah, like this is a overview.                                                                                                                      
+1:20 Then, ah, they can see tasks, ok, here you would see reports, reports is like, ah, some people may post bad tasks, ah, like like, ah,        
+explicit ones, or, ah, they want to get hired, instead of hiring people, they want to get hired themselves to get reviews, so it could            
+automatically be detected by AI,                                                                                                                  
+1:48 and, ah, earlier, it was for, it was done manually, but, ah, now it is like, ah, by AI, so admin can cancel the task or do that stuff.       
+2:05 Then, let's go to, our task view, this is the other one, task tables, let's see here, so a task can have a posted view, helper hired,        
+completed or not, payment release, those statuses.                                                                                                
+2:23 So, these are the like grouped by a view of that, so admin can see which task is in which status, for example the task is disputed, so he    
+would see all the disputed tasks here, ok.                                                                                                        
+2:36 Then, let's see, They can also get all details about the task, so for example, let's see this one, so one, if you want to see more details   
+about the task, you can click on that and then you would be redirected here, so this is the timeline about the task, and, ah, more details about  
+the proposal, so,                                                                                                                                 
+2:59 helpers send proposal on task, ah, here the, this proposal, this task is a dummy task, so it only has one proposal, but otherwise multiple   
+people would be sending proposals like on a fork or another platform.                                                                             
+3:12 So, it would be displayed here, then details about the payment, ok, they can see different percentage shares and different stuff, then       
+detail about the helper.                                                                                                                          
+3:28 Ok, user information is displayed, this is a dummy user, so, yeah, then, let's see, let's see.                                               
+3:38 Uh, hm, hm, hm, I can click the user as well, but, uh, yeah, that's not needed, then, this is like, first, I have shown you task, and I have 
+ shown you, yeah, next I will show you, uh, marketing team that is also very important.                                                           
+4:00 So, marketing team wanted to be able to schedule the notifications and send them to different groups. So, they wanted to send that, okay, I  
+only want to send a notification, specific notification to people who are between 18 and 25 years old.                                            
+4:16 And they are male, or, uhh, they are unverified or different kind of things. So, marketing team could, uh, come to this portal.              
+4:27 They see the users, then they can decide, from this filter panel, this is a really tool-based feature. So, they can decide, based on         
+different, uh, information available, what information, uh, what notification they would like users to receive.                                   
+4:43 So, this is connected to a backend API. So, the API would receive the information. So, they schedule the notification and do the work.       
+4:51 So, this is connected to database, backend, different things. The view is built into YouTube. Uh, and, uh, let's go back.                    
+5:02 Let's go from here. One thing I saw with ReTool is that it, uh, in the basic version, it only allows one person to read.                     
+5:13 So, multiple times we had the issue with that. Uh, one person was working. He saves the information. Then, someone else, uh, also is         
+working, but, uh, he has a different version of ReTool.                                                                                           
+5:26 So, once he clicks the save, the previous person's, uh, data is lost. So, whenever you are working with ReTool, always, if multiple people   
+are working, always refresh, save, refresh, save.                                                                                                 
+5:40 That was our technique then. Just, uh, like, thing about ReTool. So, yeah, that's it. I hope you, uh, you, if you have any question about    
+this or anything like that.                                                                                                                       
+5:52 Please let me know. And, uh, yeah, see you soon. Have a good day. And, uh, bye. this the video transcript  
+
+---
+
+## Use This Project For
+
+✅ Microservices architecture discussions
+✅ Payment integrations (Stripe, Swish, marketplace logic)
+✅ Messaging systems (Twilio, real-time communication)
+✅ AWS infrastructure (ECS, auto-scaling, RDS)
+✅ DevOps/CI-CD (Docker, Bitbucket Pipelines, automated deployment)
+✅ Multi-role authentication and RBAC
+✅ Admin dashboard and approval workflows
+✅ PostgreSQL optimization and multi-tenant patterns
+
+---
+
+## Key Technical Workflows to Reference
+
+Payment Flow:
+User books service → Stripe payment intent → webhook confirmation → update booking status → split payment (platform fee + provider payout) → provider notification
+
+Messaging Flow:
+User initiates chat → Twilio Conversation created → messages persisted to PostgreSQL → push notification → provider responds → S3 file upload for attachments
+
+Deployment Flow:
+Code commit → Bitbucket Pipeline triggered → tests run → Docker build → ECR push → ECS rolling update → health check validation → complete (11 min total)
+
+Admin Approval Flow:
+Provider submits profile → enters approval queue → admin reviews → approve/reject action → email notification → provider status updated → analytics dashboard updates

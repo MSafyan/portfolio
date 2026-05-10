@@ -1,3 +1,13 @@
+## Quick Reference — Facebook Group Scraper (Playwright Automation)
+- Built a fully automated headless Playwright scraper that collects user engagement points across multiple Facebook groups with no manual intervention required
+- Handled device-based 2FA by detecting the verification step and waiting for push-approval on a secondary device before proceeding — making the flow resilient without storing SMS codes
+- Implemented configurable concurrency (5 parallel Chromium pages by default) for throughput across large user lists while managing browser resource limits
+- Aggregated points per user across multiple groups, deduplicated entries, and bulk-synced results to the backend via a single authenticated API call
+- Saved timestamped JSON audit files locally per run for traceability and debugging
+- Stack: Node.js, Playwright (Chromium), Axios, REST APIs
+
+---
+
 We created a scraper using headless where we get thousands of user points from many groups and its runs automatically in from user broswer.
 no manual process needed.
 

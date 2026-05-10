@@ -58,7 +58,7 @@ import playStoreIcon from "./playstore.webp";
 import appStoreIcon from "./appstore.webp";
 import webIcon from "./web.webp";
 import port from "./port.webp";
-import myResume from "./resume/resume.pdf";
+import myResume from "./resume/SafyanResume.pdf";
 import legacy1 from "./legacy1.webp";
 import legacy2 from "./legacy2.webp";
 import legacy3 from "./legacy3.webp";

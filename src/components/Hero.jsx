@@ -1,9 +1,7 @@
-import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { ComputersCanvas, SpacemanCanvas } from "./canvas";
 import { myResume } from "../assets";
+
 const Hero = () => {
-  const isDesktop = window.innerWidth > 768;
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
@@ -109,47 +107,17 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <img className="parallax__stars" src="./parallax/1Stars.svg" alt="" />
-      <img className="parallax__planets" src="./parallax/2Planets.svg" alt="" />
-      <img className="parallax__sun" src="./parallax/6Sun.svg" alt="" />
-      <img
-        className="parallax__mountain1"
-        src="./parallax/3Mountain.svg"
-        alt=""
-      />
-      <img
-        className="parallax__mountain2"
-        src="./parallax/4Mountain.svg"
-        alt=""
-      />
-      <img className="parallax__crater" src="./parallax/5Crater.svg" alt="" />
-
-      {/* Canvas adjusted to avoid blocking */}
-      {/* {window.innerWidth > 768 && ( */}
-      <div
-        className={`absolute inset-0 z-0 pointer-events-none ${
-          isDesktop ? "mt-20" : "mt-0"
-        }`}
-      >
-        {/* <ComputersCanvas /> */}
-        <SpacemanCanvas />
-      </div>
-      {/* )} */}
+      <img className="parallax__stars" src="./parallax/1Stars.svg" alt="" width="1920" height="1080" />
+      <img className="parallax__planets" src="./parallax/2Planets.svg" alt="" width="1920" height="1080" />
+      <img className="parallax__sun" src="./parallax/6Sun.svg" alt="" width="1920" height="1080" />
+      <img className="parallax__mountain1" src="./parallax/3Mountain.svg" alt="" width="1920" height="1080" />
+      <img className="parallax__mountain2" src="./parallax/4Mountain.svg" alt="" width="1920" height="1080" />
+      <img className="parallax__crater" src="./parallax/5Crater.svg" alt="" width="1920" height="1080" />
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
-        <a href="#works">
+        <a href="#works" aria-label="Scroll to projects">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className="w-3 h-3 rounded-full bg-secondary mb-1"
-            />
+            <div className="w-3 h-3 rounded-full bg-secondary mb-1 scroll-bounce" />
           </div>
         </a>
       </div>

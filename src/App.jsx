@@ -1,17 +1,15 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  About,
-  Contact,
-  Experience,
-  Feedbacks,
-  Hero,
-  Navbar,
-  Tech,
-  Works,
-  StarsCanvas,
-} from "./components";
-import Certifications from "./components/Certifications";
+import { Hero, Navbar, StarsCanvas } from "./components";
 import MapPortfolio from "./pages/MapPortfolio";
+
+const About = lazy(() => import("./components/About"));
+const Experience = lazy(() => import("./components/Experience"));
+const Certifications = lazy(() => import("./components/Certifications"));
+const Works = lazy(() => import("./components/Works"));
+const Tech = lazy(() => import("./components/Tech"));
+const Feedbacks = lazy(() => import("./components/Feedbacks"));
+const Contact = lazy(() => import("./components/Contact"));
 
 const MainPortfolio = () => (
   <div className="relative z-0 bg-primary">
@@ -19,16 +17,18 @@ const MainPortfolio = () => (
       <Navbar />
       <Hero />
     </div>
-    <About />
-    <Experience />
-    <Certifications />
-    <Works />
-    <Tech />
-    <Feedbacks />
-    <div className="relative z-0">
-      <Contact />
-      <StarsCanvas />
-    </div>
+    <Suspense fallback={null}>
+      <About />
+      <Experience />
+      <Certifications />
+      <Works />
+      <Tech />
+      <Feedbacks />
+      <div className="relative z-0">
+        <Contact />
+        <StarsCanvas />
+      </div>
+    </Suspense>
   </div>
 );
 

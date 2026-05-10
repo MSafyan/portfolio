@@ -1,0 +1,72 @@
+.css-earth {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    inset -35px -15px 60px rgba(0, 0, 0, 0.55),
+    inset 12px 12px 40px rgba(100, 181, 246, 0.15),
+    0 0 80px rgba(59, 130, 246, 0.2),
+    0 0 140px rgba(21, 101, 192, 0.1);
+}
+
+.css-earth__surface {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 28% 28%, #60a5fa 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 65%, #1d4ed8 0%, transparent 45%),
+    linear-gradient(160deg, #1e40af 0%, #1565c0 30%, #0d47a1 60%, #002171 100%);
+  will-change: transform;
+}
+
+/* Continent-like patches */
+.css-earth__surface::before {
+  content: "";
+  position: absolute;
+  top: 22%;
+  left: 18%;
+  width: 30%;
+  height: 22%;
+  background: rgba(34, 197, 94, 0.45);
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  box-shadow: 55px 30px 0 rgba(34, 197, 94, 0.3), 90px -10px 0 rgba(34, 197, 94, 0.2);
+}
+
+.css-earth__surface::after {
+  content: "";
+  position: absolute;
+  bottom: 20%;
+  right: 15%;
+  width: 22%;
+  height: 18%;
+  background: rgba(34, 197, 94, 0.4);
+  border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%;
+  box-shadow: -40px 20px 0 rgba(34, 197, 94, 0.25);
+}
+
+.css-earth__clouds {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 60% 20%, rgba(255,255,255,0.18) 0%, transparent 35%),
+    radial-gradient(ellipse at 25% 75%, rgba(255,255,255,0.12) 0%, transparent 30%),
+    radial-gradient(ellipse at 80% 60%, rgba(255,255,255,0.10) 0%, transparent 25%);
+  animation: cloudDrift 18s linear infinite;
+}
+
+.css-earth__glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+@keyframes cloudDrift {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

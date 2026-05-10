@@ -1,0 +1,260 @@
+## Quick Reference — CarLister (Automotive Pricing Intelligence Platform)
+- Architected a full-stack automotive pricing intelligence platform integrating 6 external providers (MarketCheck, vAuto, AccuTrade, MMR, Carfax, SendGrid) into a unified search, valuation, and alerting workflow
+- Designed a configurable good-deal engine backed by database settings — pricing source (vAuto vs. MMR) and deal thresholds switchable at runtime without redeployment
+- Built cron-driven saved-filter automation: refresh listings → enrich with MMR/vAuto pricing → score deals → send email alerts, turning one-off searches into continuous inventory monitoring pipelines
+- Implemented 4 dedicated cache layers (search, listings, MMR, price predictions) with expiry metadata and negative-result caching to reduce provider API costs and improve response times
+- Resolved PostgreSQL connection exhaustion in a multi-service Node environment by consolidating around a shared Prisma client and configuring PgBouncer connection limits
+- Added provider monitoring with daily health probes, failure-rate tracking, and automated alert emails when upstream degradation crosses threshold
+- Stack: Next.js 15, React 19, TypeScript, TanStack Query, Zustand, Express 5, Prisma, PostgreSQL, SendGrid
+
+---
+
+# CarLister Project Summary
+## Project Overview
+CarLister is a full-stack automotive pricing intelligence platform built to help identify high-potential vehicle buying opportunities.
+The platform aggregates car listings, enriches them with valuation data, and highlights inventory that appears underpriced relative to market benchmarks.
+It was designed around the practical workflow of searching large listing inventories, comparing vehicles against multiple pricing sources, and surfacing good deals quickly.
+Instead of relying on a single provider, the system supports multiple valuation inputs to make deal analysis more flexible and more commercially useful.
+The project combines listing search, price prediction, MMR analysis, good-deal scoring, saved filters, scheduled refresh jobs, provider monitoring, and email notifications.
+At a product level, it acts as a lightweight internal decision-support system for car sourcing and market opportunity analysis.
+At a technical level, it is a multi-service TypeScript application with a modern React frontend and an Express plus PostgreSQL backend.
+It also includes operational safeguards around caching, provider health checks, throttled cron execution, and database connection management, which makes it closer to a production workflow platform than a simple listings dashboard.
+
+## Problem Statement
+Used car sourcing is difficult because listings move fast, pricing changes frequently, and valuation tools do not always agree.
+Different providers expose different strengths, weaknesses, formats, and price expectations.
+Teams trying to evaluate inventory manually waste significant time jumping between listings, valuation tools, spreadsheets, and reports.
+This project was built to centralize that fragmented process into one workflow.
+The goal was to reduce manual comparison work and make good-deal discovery systematic instead of ad hoc.
+Another important objective was cost awareness.
+The project included research across many websites and automotive tools to compare vAuto with alternatives for both valuation quality and overall business viability.
+That research informed how the pricing layer was designed and why the system supports multiple provider strategies rather than hardcoding a single source.
+
+## Core Business Value
+The main value of CarLister is that it converts raw listing feeds into actionable buying intelligence.
+Users can search for vehicles, filter them deeply, attach pricing context, and prioritize opportunities using configurable deal thresholds.
+The platform can also save repeated searches and automate recurring refresh cycles through cron jobs.
+That makes it useful not only for one-off search sessions but also for continuous inventory monitoring.
+By integrating multiple data providers, the system gives users a better basis for judging whether a listed vehicle is actually attractive.
+By adding notifications, it reduces the lag between new inventory appearing and a human acting on it.
+
+## Main Product Capabilities
+- Advanced vehicle search with multi-parameter filters
+- Contextual filtering for make, model, trim, and related fields
+- Detailed listing retrieval for specific vehicles
+- Price prediction using multiple valuation providers
+- MMR lookup and MMR transactions support
+- Carfax summary and report access
+- Configurable good-deal scoring using pricing thresholds
+- Saved filters for repeated sourcing workflows
+- Cron-based refresh automation for saved searches
+- Automated email alerts for discovered good deals
+- Provider monitoring with failure-rate tracking and alerting
+- Cached search and pricing data for performance and cost control
+- Admin-configurable pricing-source switching between vAuto and MMR
+- Background health probes for external pricing providers
+- Operational alerting for degraded provider performance
+
+## User Experience Flow
+The frontend opens on the good-deals experience and can also drive advanced search flows.
+Users authenticate on the client side, then browse inventory with a filter-heavy interface.
+If no active search filters are applied, the app emphasizes the good-deals feed.
+If filters are applied, the app shifts into advanced search mode and returns vehicles matching the requested constraints.
+A user can save search criteria for reuse and optionally enable cron-based refresh on that saved filter.
+Once enabled, the backend periodically reruns the search, updates cached inventory, enriches records with pricing data, and emails deal alerts when opportunities are found.
+This creates a closed loop between discovery, monitoring, and notification.
+
+## System Architecture
+The project uses a split frontend and backend architecture.
+The frontend is a Next.js application responsible for rendering the UI, managing state, and calling backend APIs.
+The backend is an Express application that exposes API endpoints for listings, search, pricing, good deals, saved filters, cron operations, and MMR transactions.
+Persistent storage is handled with PostgreSQL through Prisma.
+The backend stores raw provider payloads and derived pricing information to support caching, analytics, and repeat lookups.
+The architecture favors operational pragmatism over heavy abstraction.
+It keeps the system small enough to iterate quickly while still supporting multiple providers and asynchronous workflows.
+From an engineering perspective, the backend behaves like an orchestration layer between external automotive APIs, cached persistence tables, internal pricing logic, and scheduled automation services.
+
+## Frontend Stack
+The frontend is built with Next.js 15, React 19, and TypeScript.
+Styling is handled with Tailwind CSS and component primitives from Radix UI.
+Remote data fetching and caching use TanStack Query.
+Global client state uses Zustand with persistence middleware.
+The interface is organized into reusable component modules for filters, home views, car details, good-deals panels, admin settings, Carfax dialogs, and saved filters.
+The frontend uses URL state handling and persisted client state so that search context is retained across navigation and refreshes.
+It also supports incremental loading patterns for longer result sets.
+
+## Backend Stack
+The backend is built with Node.js, Express 5, and TypeScript.
+It uses Prisma as the ORM and PostgreSQL as the primary database.
+HTTP and service integrations are handled with Axios.
+Security and operational middleware include Helmet, CORS handling, Morgan, and Winston logging.
+Scheduled jobs are managed with node-cron.
+Notification delivery is handled through SendGrid.
+The backend is structured around routes, controllers, services, models, and utility modules, which keeps external integration logic separated from request handling.
+The service layer includes provider-specific modules, cache services, cron orchestration, good-deal evaluation, and monitoring logic.
+
+## External Integrations
+The project integrates with multiple automotive and supporting services.
+MarketCheck is used for listings, search, facets, and pricing-related data access.
+vAuto is used as a pricing source in the good-deal workflow.
+AccuTrade is available as an alternative valuation source and was explicitly compared against vAuto during project research.
+MMR is integrated for pricing support and transaction analysis.
+Carfax is integrated for vehicle history summaries and full report access.
+SendGrid is used to notify users when automated jobs identify good deals.
+The multi-provider approach is one of the defining characteristics of the system.
+
+## Data Model
+The Prisma schema defines 10 core models.
+The `Car` model stores raw listing payloads and active-state metadata.
+The `SavedFilter` model stores reusable search definitions and cron enablement.
+The `SearchFilter` and `SearchFilterCar` models support search caching and listing associations.
+The `CarListing` model stores listing detail fetches with expiration tracking.
+The `PricePrediction` model stores VIN and mileage based valuation results.
+The `MmrData` model stores MMR lookup results and market range information.
+The `ApiUsage` model supports usage tracking.
+The `CircuitBreaker` model supports provider resilience patterns.
+The `GoodDealsSettings` model stores configurable thresholds and the active pricing source.
+
+## Good-Deal Engine
+
+One of the most important parts of the platform is the good-deal engine.
+Rather than treating deal quality as a fixed rule, the system stores threshold settings in the database.
+That lets the application switch between pricing sources such as vAuto and MMR without redeploying code.
+When listings are returned, the backend attaches the latest available pricing data and computes deal analysis fields.
+Those fields include price difference, percentage difference, pricing source, and threshold used.
+This design makes the output auditable.
+A user can see not only that a vehicle is considered a good deal, but also which market benchmark produced that conclusion.
+This is particularly important in domains where valuation tools can disagree materially.
+It also supports product experimentation because threshold behavior can be tuned from admin settings rather than being buried in code.
+
+## Search and Filtering Design
+
+Search functionality is more advanced than a basic keyword query.
+The system supports structured filters across make, model, trim, drivetrain, transmission, VIN, ZIP, radius, year range, mileage range, price range, and days-on-market range.
+It also supports date-based listing visibility fields such as first seen and last seen ranges.
+The backend normalizes filter input and validates multi-select structures before processing.
+The frontend keeps filter state synchronized with the URL and persisted local state.
+That combination improves usability for repeated research workflows and shareable filtered views.
+The filtering system is a meaningful part of the project because it turns provider data into a workable sourcing tool instead of just a raw API viewer.
+
+## Saved Filters and Automation
+
+Saved filters are central to the automation model.
+Users can store filter presets and enable cron execution on a per-filter basis.
+The backend then rebuilds the search, refreshes cached cars, updates missing MMR records, updates missing price predictions, evaluates good deals, and sends alerts when matches are found.
+This moves the platform from being reactive to being proactive.
+Instead of checking websites manually each day, users can let the system monitor opportunities continuously.
+The cron service also tracks processing stats such as processed filters, new cars added, prices updated, MMR updates, good deals found, emails sent, and errors.
+Those stats make the workflow operationally observable and easier to debug.
+
+## Cron Pipeline and Orchestration
+
+The cron subsystem is one of the most technically important parts of the project.
+It is not just a timer that reruns a search.
+It orchestrates a multi-stage backend workflow composed of search-filter refresh, MarketCheck listing sync, VIN collection, missing-price detection, MMR enrichment, vAuto enrichment, deal evaluation, and outbound notifications.
+The implementation includes provider-specific concurrency controls, batch throttling, failure thresholds, and progress logging.
+It also exposes a manual trigger endpoint for operational use and testing.
+This matters because the real value of the platform comes from turning saved searches into continuously refreshed sourcing pipelines.
+
+## Caching and Performance Strategy
+
+Automotive APIs can be expensive, rate-limited, and sometimes slow.
+Because of that, caching is a core architectural concern in this project.
+The backend includes dedicated cache services for search results, listings, price predictions, and MMR data.
+Search filter records store expiration windows and maximum cached positions.
+Listing and pricing records also track freshness with timestamps and expiry behavior.
+This reduces repeated provider calls, lowers cost, improves perceived UI speed, and makes scheduled jobs more efficient.
+Caching is not treated as an afterthought here.
+It is part of the product strategy because deal analysis depends on balancing freshness, API cost, and operational throughput.
+Negative-result caching is also used for provider misses such as vehicles not found in vAuto or MMR, which helps avoid wasteful repeated lookups.
+
+## Provider Monitoring and Observability
+
+The provider monitoring service adds another production-style layer to the system.
+It runs a daily monitoring job, probes both vAuto and MMR, computes provider success and failure metrics from persisted outcome rows, samples failed VIN examples, and sends operational email alerts when failure rates cross threshold.
+This design gives the application a basic observability loop around external dependency health.
+It is especially useful in third-party heavy systems where upstream failures can silently degrade product quality even when the application itself is still online.
+Combined with structured logging and cron stats, it gives the project stronger operational credibility than a typical CRUD dashboard.
+
+## Reliability and Operational Challenges
+
+The most significant technical challenges were around third-party dependency management and operational stability.
+The project had to deal with provider variability, data inconsistency, response latency, missing records, and integration-specific error modes.
+It also had to manage background jobs without overwhelming pricing providers.
+To address that, the cron system uses controlled concurrency, throttling, and provider-specific failure limits.
+The application also includes provider health probing and daily monitoring.
+Monitoring records failure rates, surfaces failed examples, and can trigger alert emails if a provider degrades beyond threshold.
+This is important because the product depends on external services that can fail independently of the application itself.
+Another challenge was protecting refresh workflows from operational regressions such as duplicate background runs, destructive cache refresh patterns, and inaccurate provider metrics.
+These concerns are typical of real automation systems and pushed the design beyond straightforward API integration work.
+
+## Database and Connection Pool Challenge
+
+Another major engineering challenge was PostgreSQL connection exhaustion.
+Earlier patterns caused too many concurrent client connections, especially when multiple Prisma clients or scripts were active.
+That is a common production issue in Node-based service environments that use scripts, cron jobs, and web APIs at the same time.
+The project addressed this by consolidating database access around a shared Prisma client and tuning connection pool behavior.
+PgBouncer mode and connection limits were also part of the solution.
+This improved reliability and prevented routine operational failures such as "too many clients" errors.
+Solving this problem matters on a resume because it demonstrates real backend production troubleshooting rather than only feature work.
+
+## Engineering Depth
+
+This project includes several details that make it technically stronger than a basic marketplace app.
+It uses database-backed configuration for pricing strategy, supports multiple provider paths for the same valuation workflow, maintains cache-expiry metadata, runs scheduled automation, and captures provider health metrics for operational alerting.
+It also deals with edge cases such as provider not-found responses, pagination limits, connection-pool failures, and asynchronous refresh sequencing.
+From a resume perspective, that combination shows backend systems thinking, third-party integration experience, and operational ownership.
+
+## Research and Tool Evaluation
+
+A notable non-trivial part of the project was valuation-tool research.
+The work did not stop at implementing APIs already chosen in advance.
+It included searching many websites and tools to evaluate vAuto and competing alternatives for cost effectiveness and deal-analysis quality.
+That research shaped both the technical design and the product positioning.
+It justified keeping the pricing layer configurable and provider-aware.
+It also created a stronger business case for comparing valuation outputs instead of assuming one source is sufficient.
+In practical terms, this meant the platform supports both engineering implementation and market/tool benchmarking.
+That combination is valuable in product-focused and technical consulting environments.
+
+## Codebase Scale
+
+The current codebase contains 112 TypeScript and TSX files.
+It includes 21 API endpoints exposed through backend routers.
+It defines 21 backend service modules and 38 frontend component files.
+The database schema currently contains 10 core Prisma models.
+There are two scheduled automation jobs configured at the application level.
+The backend contains four dedicated cache services for search, listings, MMR, and price predictions.
+The platform integrates at least six major external systems or providers across listings, pricing, history, and notifications.
+This is not a toy prototype.
+It is a medium-complexity full-stack application with multiple moving parts, external dependencies, and operational workflows.
+
+## Impact-Oriented Stats
+
+- 112 TypeScript and TSX source files
+- 21 backend API endpoints
+- 21 backend service modules
+- 38 frontend components
+- 10 Prisma models
+- 4 dedicated cache layers
+- 2 scheduled automation jobs
+- 6 major external integrations
+
+## Resume-Relevant Highlights
+
+- Built a full-stack automotive pricing intelligence platform for identifying undervalued vehicle inventory across multiple listing and valuation sources.
+- Integrated MarketCheck, vAuto, AccuTrade, MMR, Carfax, and SendGrid into a single search, pricing, and notification workflow.
+- Designed a configurable good-deal engine that can switch pricing sources and thresholds dynamically through database-driven settings.
+- Implemented saved filters, scheduled refresh jobs, and automated email alerts to support continuous inventory monitoring.
+- Added caching, provider monitoring, throttling, and connection-pool fixes to improve cost efficiency and production reliability.
+- Researched vAuto alternatives across many websites and tools to compare cost, pricing quality, and business fit for deal analysis workflows.
+- Built cron-driven backend orchestration for inventory refresh, valuation enrichment, good-deal detection, and operational alerting.
+- Improved reliability of a third-party dependent system by handling rate limits, negative-result caching, provider probes, and failure monitoring.
+
+## Short Resume Version
+
+CarLister is a full-stack automotive market intelligence platform that aggregates vehicle listings, compares them with valuation sources such as vAuto, AccuTrade, and MMR, and surfaces high-potential good deals through search, automation, and alerting workflows.
+I built the frontend and backend architecture, implemented multi-provider pricing analysis, added cron-driven saved-filter automation and provider monitoring, and researched alternative valuation tools to optimize both cost and deal-quality outcomes.
+
+## One-Line Portfolio Description
+
+Architected a multi-provider automotive pricing intelligence system that transformed raw listing feeds into configurable good-deal signals, cron-driven sourcing workflows, and production-aware valuation monitoring.
