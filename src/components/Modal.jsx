@@ -187,6 +187,9 @@ const ProjectModalContent = ({ project, closeModal }) => {
 
       {/* Scrollable Body */}
       <div className="overflow-y-auto flex-1 p-6 space-y-6 bg-[#050816]">
+        {/* Image Gallery — top */}
+        {hasImages && <ImageGallery project={projectWithImages} />}
+
         {/* Overview */}
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-secondary mb-2">Overview</p>
@@ -259,9 +262,6 @@ const ProjectModalContent = ({ project, closeModal }) => {
             </a>
           )}
         </div>
-
-        {/* Image Gallery (inline, scrollable) */}
-        {hasImages && <ImageGallery project={projectWithImages} />}
       </div>
     </div>
   );

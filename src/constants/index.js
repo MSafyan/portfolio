@@ -906,6 +906,13 @@ const projects = [
     name: "ResIhop Mobile App",
     description:
       "Carpooling platform allowing drivers and passengers to share rides, reduce carbon emissions, and create recurring travel schedules. Built with React Native, Google Maps integration, and Node.js backend.",
+    highlights: [
+      "Cross-platform React Native carpooling app live on App Store and Google Play.",
+      "Google Maps integration for route planning, real-time driver location, and estimated arrival times.",
+      "Recurring ride scheduling for daily commuters — set once, auto-match for every trip.",
+      "Driver and passenger matching algorithm based on route overlap and departure time.",
+      "Node.js backend for ride management, user matching, and in-app notifications.",
+    ],
     category: "mobile",
     dimensionsCategory: "mobile",
     tags: [
@@ -932,7 +939,15 @@ const projects = [
     id: 13,
     name: "Employee & Resource Management (ERMA)",
     description:
-      "FYP demo video - Employee and resource management (ERMA) mobile app for small scale clothing business to manage their budget, employees and projects/orders. Key features: Multilanguage support (Urdu/English), SMS/Email notifications, Dark mode, User roles management, and comprehensive business operations tracking.",
+      "Final Year Project — mobile app for small-scale clothing businesses to manage budget, employees, and orders. Features multilingual support (Urdu/English), SMS/email notifications, dark mode, and role-based access.",
+    highlights: [
+      "Final Year Project: full-stack mobile ERP for small clothing businesses built with React Native and Strapi.",
+      "Multilingual support (Urdu/English) with full RTL layout for Urdu, making it accessible for local Pakistani businesses.",
+      "Role-based access control: Owner, Manager, and Employee roles with different permission levels.",
+      "SMS and email notifications via Twilio for order updates, employee alerts, and budget thresholds.",
+      "Budget tracking, project/order management, and employee productivity reporting in one dashboard.",
+      "Dark mode with smooth theme switching throughout the app.",
+    ],
     category: "mobile",
     dimensionsCategory: "mobile",
     tags: [
