@@ -426,6 +426,17 @@ const projects = [
     name: "Helpicon Backend & DevOps",
     description:
       "Swedish marketplace backend on AWS/EKS/Terraform — deployment time cut 75% (45 min → 11 min), MTTR reduced from 2h to 15 min, and AWS costs down 30%. Serves 10,000+ users with 99.8% payment success via Stripe/Swish integrations, Twilio real-time chat, and Jenkins CI/CD pipelines.",
+    highlights: [
+      "Engineered microservices backend on AWS EKS serving 10,000+ active users and 500+ verified providers — API p50 <200ms, DB queries <50ms, zero security incidents throughout.",
+      "Integrated Stripe + Swish (Nordic mobile payments) with marketplace commission splits, automatic payout scheduling, webhook-driven booking state machine, and full dispute handling.",
+      "Implemented Twilio Conversations for real-time messaging with multi-tenant isolation, S3 file attachments, read receipts, typing indicators, and full audit trail in PostgreSQL.",
+      "Designed 3-account AWS strategy (DevOps / Staging / Production) with Terraform IaC covering EKS, RDS, ECR, S3, VPC, and CloudWatch monitoring.",
+      "Built Jenkins + Kaniko (ECS Fargate) CI/CD pipeline — no Docker-in-Docker, Prisma migrations automated on every deployment startup, full pipeline completes in 11 minutes.",
+      "Deployed 2 Kubernetes CronJobs for background automation: hourly payment status checks and 5-minute Workamo contractor sync — fully decoupled from the main API pod.",
+      "Multi-role RBAC system (Admin / Provider / Customer) with JWT refresh token rotation, Redis-based session blacklisting, bcrypt hashing, and admin IP whitelisting.",
+      "Reduced AWS costs 30% via right-sized EC2 instances and reserved capacity; Docker image size cut from 1.2GB → 180MB through multi-stage builds.",
+      "Built an internal admin dashboard (Retool) for task management, AI-powered content moderation, targeted push notification scheduling, and platform analytics.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -434,7 +445,7 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "AWS",
+        name: "AWS / EKS",
         color: "green-text-gradient",
       },
       {
@@ -445,6 +456,14 @@ const projects = [
         name: "PostgreSQL",
         color: "yellow-text-gradient",
       },
+      {
+        name: "Kubernetes",
+        color: "purple-text-gradient",
+      },
+      {
+        name: "Jenkins",
+        color: "orange-text-gradient",
+      },
     ],
     image: helpiWeb,
     images: [],
@@ -454,7 +473,15 @@ const projects = [
     id: 2,
     name: "Abundance Movement",
     description:
-      "AI-powered social learning platform with 11 specialized AI services — semantic user matching, video recommendations, personality-based goal suggestions, and weekly chat summarization (7-day windows via NestJS cron). Multi-index Pinecone architecture with namespace-based user profiles across 5+ attributes. Reduced monthly LLM cost 95% (95% reduction) through model selection and token limiting.",
+      "AI-powered social learning platform with 11 specialized AI services — semantic user matching, video recommendations, personality-based goal suggestions, and weekly chat summarization (7-day windows via NestJS cron). Multi-index Pinecone architecture with namespace-based user profiles across 5+ attributes. Reduced monthly LLM cost 95% through model selection and token limiting.",
+    highlights: [
+      "Built 11 specialized AI services including semantic user matching, video recommendations, personality-based goal suggestions, content analysis, and automated weekly chat summarization.",
+      "Designed multi-index Pinecone vector architecture with namespace-based user profile storage across 5+ attributes (strengths, weaknesses, interests, values, keywords) for nuanced semantic matching.",
+      "Achieved 95% AI cost reduction by strategically switching from o1-mini to gpt-4o-mini with token limiting — maintained output quality while cutting monthly spend from ~$X to near zero.",
+      "Implemented weekly chat summarization pipeline via NestJS cron: collects 7-day message windows, generates narrative summaries and action items via OpenAI, exposed via REST endpoints for on-demand digests.",
+      "Built real-time cost monitoring with sub-cent precision, model configuration utilities, and automated optimization recommendations across all AI service calls.",
+      "Advanced prompt engineering for consistent JSON output parsing, context-aware formatting, and token efficiency — semantic similarity threshold of 35%+ for match quality.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -484,6 +511,14 @@ const projects = [
     name: "CVR Sports Analytics",
     description:
       "Rugby league analytics platform for NRL, Super League, and NSW Cup with CQRS-style architecture — metrics materialized at XML ingestion, not recomputed on read. Upgraded Angular 9→17, added async XML upload with background job polling, and implemented PDF export across all report views using html2canvas + jsPDF.",
+    highlights: [
+      "CQRS-style architecture: event-derived metrics (yardage errors, penalties, team tackles) computed once at XML ingestion and persisted on team records — eliminates repeated raw-event scans on every read.",
+      "Upgraded frontend from Angular 9 → 17: removed legacy OpenSSL dependency, updated AG Grid, fixed visual regressions in competition tables, and modernized build tooling.",
+      "Async XML upload with background job polling (uploadJob model) — decouples upload latency from data processing and improves reliability for large match files.",
+      "PDF export across all major report views using html2canvas + jsPDF with cloned DOM mutation — the live page is never modified during export.",
+      "Designed compound MongoDB indexes aligned to real filter query shapes; used distinct() + parallel execution for filter endpoints to minimize UI latency.",
+      "Covers NRL, Super League, and NSW Cup competitions with player coverage (CVG) metrics, yardage error analysis, and field position tracking throughout matches.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -513,6 +548,13 @@ const projects = [
     name: "Legacy Suite",
     description:
       "Digital legacy and estate platform with non-custodial digital asset management, wallet monitoring, password sharing, and end-of-life planning. Built using Angular frontend and NestJS backend with Web3 integration and PostgreSQL.",
+    highlights: [
+      "Non-custodial digital asset management — users retain full ownership of wallet keys, with the platform providing monitoring without ever holding private keys.",
+      "Wallet monitoring across multiple blockchain addresses with real-time balance and transaction tracking.",
+      "Secure password vault with end-of-life sharing logic — designated beneficiaries gain access only upon verified trigger conditions.",
+      "End-of-life planning module covering document storage, estate instructions, and beneficiary management.",
+      "Web3 integration with Angular frontend and NestJS backend, backed by PostgreSQL for structured data and on-chain event indexing.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -542,6 +584,15 @@ const projects = [
     name: "Palmetto Air Balance Data Warehouse",
     description:
       "Enterprise Azure data warehouse integrating NetSuite, Air1, and UKG across a $40M+ project portfolio. 50+ ADF pipelines with dynamic MERGE procedures and self-healing schema detection. Processes 1M+ records/day at sub-second latency with 99.95% data quality; cut manual reporting effort 60% and reporting time from days to minutes.",
+    highlights: [
+      "Architected enterprise Azure data warehouse integrating NetSuite ERP, Air1 project management, and UKG workforce systems — providing real-time visibility into a $40M+ project portfolio.",
+      "Built 50+ Azure Data Factory pipelines with dynamic MERGE stored procedures, self-healing schema-change detection, and automated email alerting on pipeline failures.",
+      "Custom MergeTableFromStaging stored procedure with dynamic primary key detection, intelligent column mapping, and TRY-CATCH error logging — handles INSERT, UPDATE, DELETE automatically.",
+      "Processed 1M+ records daily at sub-second query latency using optimized T-SQL, indexed star-schema models, and parallel ADF execution.",
+      "Delivered real-time Power BI dashboards for revenue, backlog, and resource utilization with weekly automated snapshots for historical trending.",
+      "Backlog calculation engine: real-time computation of Contract Price + Change Orders - Invoices with cross-system financial reconciliation between NetSuite and Air1.",
+      "Achieved 99.95% data quality score with automated validation rules, comprehensive error logging, and tiered email notification system for failures.",
+    ],
     category: "Ware Housing",
     dimensionsCategory: "website",
     tags: [
@@ -571,6 +622,14 @@ const projects = [
     name: "Pink Chicken Data Integration",
     description:
       "Unified Shopify (10+ retail stores + e-commerce) with Apparel Magic WMS into Azure SQL. Cut Azure Monitor cost ~99.99% ($1,000/mo → $0.10/mo, ~$12K/year saved). Root-caused a persistent 1–3% monthly sales divergence traced to gift-card refund misclassification in Shopify's REST API — resolved via GraphQL order-changes API.",
+    highlights: [
+      "Unified Shopify POS (10+ retail stores) and e-commerce with Apparel Magic WMS into a single Azure SQL data warehouse — eliminating manual consolidation across all channels.",
+      "Cut Azure Monitor cost by ~99.99% — from ~$1,000/month to $0.10/month (~$12,000/year saved) by eliminating redundant alert rules with zero loss of operational visibility.",
+      "Root-caused a persistent 1–3% monthly sales divergence traced to gift card refund misclassification in Shopify's REST API — fixed by switching to GraphQL order-changes API with explicit transaction classification logic.",
+      "Resolved a REST vs. GraphQL schema mismatch for incoming inventory data — a field that only existed in GraphQL — requiring full pipeline redesign and cross-API field normalization.",
+      "Implemented dimensional inventory modeling valued from cost, retail, and wholesale perspectives per location, supporting multi-team reporting needs.",
+      "Azure Data Factory pipelines with complex API integrations, staging via Azure Blob Storage, and Power BI dashboards for sales, inventory, and channel performance.",
+    ],
     category: "Ware Housing",
     dimensionsCategory: "website",
     tags: [
@@ -599,7 +658,15 @@ const projects = [
     id: 99,
     name: "Helpicon Mobile App",
     description:
-      "Helpicon simplifies life by seamlessly connecting people with trusted, vetted Helpers for task completion. With a focus on reliability, secure payments, and fast responses, Helpicon ensures convenience and quality for every task, saving you time and making life easier.",
+      "React Native marketplace app (iOS & Android) connecting 10,000+ users with vetted local helpers for tasks like cleaning, babysitting, and pet care. Features real-time Twilio messaging, Stripe/Swish payments, Google Maps for location-based discovery, and Agora video calling.",
+    highlights: [
+      "Cross-platform React Native app live on App Store and Google Play with 10,000+ active users across Sweden.",
+      "Real-time in-app messaging via Twilio Conversations API with read receipts, typing indicators, and S3 file attachments.",
+      "Integrated Stripe and Swish (Nordic mobile payments) for secure in-app transactions with automatic commission splits.",
+      "Google Maps integration for location-based helper discovery, task tracking, and service area filtering.",
+      "Agora video/voice calling for provider verification, pre-task consultations, and customer support.",
+      "Multi-role authentication (Users and Helpers) with verified provider onboarding and AI-powered content moderation.",
+    ],
     category: "mobile",
     dimensionsCategory: "mobile",
 
@@ -633,6 +700,12 @@ const projects = [
     name: "CHAINSCAN - NFT Explorer",
     description:
       "Blockchain analytics platform for Ethereum NFT data with real-time indexing from Alchemy Graph API, Web3 authentication, and query optimization for millions of blockchain records. Built with Angular and PostgreSQL.",
+    highlights: [
+      "Real-time Ethereum NFT data indexing via Alchemy Graph API — tracks ownership, transfers, and on-chain metadata across millions of blockchain records.",
+      "Web3 wallet authentication (MetaMask/WalletConnect) allowing users to log in and explore their own NFT portfolio alongside market-wide data.",
+      "PostgreSQL query optimization for high-volume blockchain datasets — indexed filtering by collection, owner, transfer history, and floor price.",
+      "Angular frontend with dynamic collection explorer, holder analysis, and transaction timeline views.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -662,6 +735,13 @@ const projects = [
     name: "Facebook Group Scraper",
     description:
       "Headless Playwright automation tool for collecting user engagement points across multiple Facebook groups with concurrent scraping (5 parallel instances), 2FA handling, and bulk API synchronization.",
+    highlights: [
+      "Fully automated headless Playwright scraper collecting engagement points across multiple Facebook groups with zero manual intervention required.",
+      "Device-based 2FA handling — detects the verification step and waits for push-approval on a secondary device before proceeding, making the flow resilient without storing SMS codes.",
+      "Configurable concurrency with 5 parallel Chromium pages by default for throughput across large user lists while managing browser resource limits.",
+      "Aggregated points per user across multiple groups, deduplicated entries, and bulk-synced results to the backend via a single authenticated API call.",
+      "Saved timestamped JSON audit files locally per run for full traceability and debugging.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -689,6 +769,12 @@ const projects = [
     name: "Chez Chef",
     description:
       "Web application that enables users to search for recipes, view details, buy them and save them to their favorites. Built with React, Redux, and SCSS.",
+    highlights: [
+      "Recipe search and discovery with detailed ingredient lists, cooking steps, and nutritional info.",
+      "Favorites system with persistent user collections powered by Redux state management.",
+      "Strapi CMS backend for recipe content management, enabling non-technical editors to add and update recipes.",
+      "Responsive SCSS styling with clean card-based recipe layout.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -714,6 +800,12 @@ const projects = [
     name: "Fashion Xotics",
     description:
       "Comprehensive e-commerce platform for feminine clothing with advanced filtering, server-side rendering, and optimized performance using Next.js, Strapi CMS, and Redux Toolkit.",
+    highlights: [
+      "Server-side rendering with Next.js for fast initial load and SEO-optimized product pages.",
+      "Advanced product filtering by category, size, color, and price range with Redux Toolkit state management.",
+      "Strapi CMS headless backend for product catalog management, inventory, and content updates.",
+      "Optimized performance with image lazy loading, code splitting, and TypeScript throughout.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -743,6 +835,12 @@ const projects = [
     name: "Wand Cleaning",
     description:
       "Web-based platform that helps simplify maid services with scheduling, payment integration (Stripe), and satisfaction guarantee. Built with React and Node.js backend.",
+    highlights: [
+      "Booking and scheduling system for home cleaning services with date/time slot selection.",
+      "Stripe payment integration for secure online checkout with booking confirmation.",
+      "Satisfaction guarantee flow with customer feedback collection post-service.",
+      "React frontend with Node.js backend for booking management and service coordination.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
@@ -772,6 +870,13 @@ const projects = [
     name: "Fashion Xotics App",
     description:
       "Mobile e-commerce application for Fashion Xotics featuring intuitive product browsing, shopping cart, secure checkout, user authentication, and order tracking. Built with React Native for seamless cross-platform experience.",
+    highlights: [
+      "Cross-platform React Native app (iOS & Android) with full e-commerce functionality.",
+      "Product browsing with category filters, search, and detailed product views with image galleries.",
+      "Shopping cart with quantity management, saved items, and secure checkout flow.",
+      "User authentication with order history and real-time order tracking.",
+      "Strapi CMS backend synced with the web platform for consistent catalog across channels.",
+    ],
     category: "mobile",
     dimensionsCategory: "mobile",
     tags: [
@@ -866,6 +971,14 @@ const projects = [
     name: "EcomInvestigator — Snowflake ETL",
     description:
       "Snowflake + Snowpark (Python) ETL platform enriching 50k–100k+ e-commerce products per run from Keepa and ScaleSERP into a canonical entity/attribute model. Increased catalog coverage ~15%→75%+ via 6-strategy pagination engine. Achieved 10–20x faster DB loads via batched INSERT patterns. Idempotent terminate-then-reactivate semantics with token-based API rate limiting.",
+    highlights: [
+      "Architected a Snowflake + Snowpark (Python) ETL platform enriching 50k–100k+ e-commerce products per run from Keepa, ScaleSERP, and other APIs into a canonical entity/attribute model.",
+      "Increased catalog coverage from ~15% to ~75%+ per run by designing a multi-strategy pagination engine with 6 configurable sort strategies and a global ASIN deduplication set.",
+      "Achieved 10–20x faster database loads by replacing row-by-row inserts with batched INSERT … UNION ALL patterns (20–100 rows per statement) and smarter per-product cleanup SQL.",
+      "Implemented idempotent terminate-then-reactivate semantics: procedures can be re-run safely without accumulating duplicates — state is always 'current as of last successful run'.",
+      "Built token-based Keepa API rate limiting to sustain thousands of product calls per run without hitting 429 errors.",
+      "Developed a schema sync tool exporting tables, views, and procedures to versioned SQL/CSV/JSON under git — keeping Snowflake schema and codebase aligned across environments.",
+    ],
     category: "Ware Housing",
     dimensionsCategory: "website",
     tags: [
@@ -895,6 +1008,15 @@ const projects = [
     name: "CarLister — Automotive Intelligence",
     description:
       "Full-stack automotive pricing intelligence platform integrating 6 providers (MarketCheck, vAuto, AccuTrade, MMR, Carfax, SendGrid). DB-backed configurable good-deal engine with runtime pricing-source switching. Cron-driven saved-filter automation for continuous inventory monitoring. 4 cache layers, provider health probes, and PostgreSQL connection-pool fixes via shared Prisma client + PgBouncer. 112 TS/TSX files, 21 API endpoints.",
+    highlights: [
+      "Integrated 6 external data providers (MarketCheck, vAuto, AccuTrade, MMR, Carfax, SendGrid) into a unified search, valuation, and alerting workflow.",
+      "DB-backed configurable good-deal engine — pricing source (vAuto vs. MMR) and deal thresholds switchable at runtime without redeployment.",
+      "Cron-driven saved-filter automation: refresh listings → enrich with MMR/vAuto pricing → score deals → send email alerts, turning one-off searches into continuous inventory monitoring pipelines.",
+      "4 dedicated cache layers (search, listings, MMR, price predictions) with expiry metadata and negative-result caching to reduce provider API costs and improve response times.",
+      "Resolved PostgreSQL connection exhaustion in a multi-service Node environment by consolidating around a shared Prisma client and configuring PgBouncer connection limits.",
+      "Provider health monitoring with daily probes, failure-rate tracking, and automated alert emails when upstream degradation crosses threshold.",
+      "112 TypeScript/TSX files, 21 API endpoints, built on Next.js 15, React 19, TanStack Query, Zustand, and Express 5.",
+    ],
     category: "website",
     dimensionsCategory: "website",
     tags: [
