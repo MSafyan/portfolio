@@ -282,33 +282,114 @@ body {
   animation: scrollBounce 1.5s ease-in-out infinite;
   will-change: transform;
 }
-.parallax__stars {
-  --parallax-speed: 320;
+/* Parallax layers — stacked absolutely, moved by JS mousemove */
+.parallax__stars,
+.parallax__planets,
+.parallax__sun,
+.parallax__mountain1,
+.parallax__mountain2,
+.parallax__crater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 0.15s ease-out;
+}
+
+.parallax__stars   { z-index: 2; }
+.parallax__planets { z-index: 3; }
+.parallax__sun     { z-index: 4; }
+.parallax__mountain1 { z-index: 5; }
+.parallax__mountain2 { z-index: 6; }
+.parallax__crater  { z-index: 7; }
+
+/* ===== ASTRONAUT + ORBIT SCENE ===== */
+
+.astronaut-scene {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* Floating astronaut centered in scene */
+.astronaut-float {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 190px;
+  animation: astronautFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.5))
+          drop-shadow(0 0 6px rgba(96, 165, 250, 0.3));
   z-index: 2;
 }
 
-.parallax__planets {
-  --parallax-speed: 290;
-  z-index: 3;
+@keyframes astronautFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+  33%       { transform: translate(-50%, -50%) translateY(-12px) rotate(1deg); }
+  66%       { transform: translate(-50%, -50%) translateY(-6px) rotate(-1deg); }
 }
 
-.parallax__sun {
-  --parallax-speed: 270;
-  z-index: 4;
+/* Orbit ring — zero-size anchor at scene center, rotates */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: orbitSpin 18s linear infinite;
+  z-index: 1;
 }
 
-.parallax__mountain1 {
-  --parallax-speed: 250;
-  z-index: 5;
+/* Badge slot — anchors each badge at its orbital position */
+.badge-slot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.parallax__mountain2 {
-  --parallax-speed: 140;
-  z-index: 6;
+/* Badge pill — counter-rotates so text stays upright while badge orbits */
+.badge-pill {
+  animation: orbitSpinCentered 18s linear infinite reverse;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: rgba(5, 8, 22, 0.7);
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
 }
 
-.parallax__crater {
-  z-index: 7;
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitSpinCentered {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ===== TYPEWRITER CURSOR ===== */
+
+.typing-cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: #60a5fa;
+  animation: cursorBlink 0.8s ease-in-out infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 .modal-close-button {
   top: 10px;
@@ -528,4 +609,225 @@ body::before {
 .brutal-card:hover {
   transform: translate(-4px, -4px);
   box-shadow: 12px 12px 0px #06b6d4;
+}
+
+/* ===== HERO: LEFT CONTENT PANEL ===== */
+/* Glass panel only on mobile where mountains overlap the text */
+.hero-left-panel {
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 767px) {
+  .hero-left-panel {
+    background: rgba(5, 8, 22, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 20px;
+    padding: 22px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ===== HERO: CERT BADGES ===== */
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(5, 8, 22, 0.5);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.cert-badge:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.cert-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ===== HERO: SOCIAL LINKS ===== */
+.hero-social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(5, 8, 22, 0.5);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.hero-social-link:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===== HERO: METRICS STRIP ===== */
+.hero-metric {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-metric-sep {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+}
+
+/* ===== ABOUT: ACHIEVEMENT CHIPS ===== */
+.achievement-chip {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.achievement-chip:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ===== ABOUT: SERVICE CARD ===== */
+.service-card {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+  transform: translateY(-4px);
+}
+
+/* ===== TECH: ICON CARDS ===== */
+.tech-icon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  cursor: default;
+  width: 90px;
+}
+
+.tech-icon-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.tech-icon-label {
+  font-size: 11px;
+  color: #8892a6;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.tech-icon-card:hover .tech-icon-label {
+  opacity: 1;
+}
+
+/* ===== TESTIMONIALS: CARDS ===== */
+.testimonial-card {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+  transform: translateY(-4px);
+}
+
+.platform-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.platform-badge--fiverr {
+  background: rgba(29, 191, 115, 0.15);
+  color: #1dbf73;
+  border: 1px solid rgba(29, 191, 115, 0.3);
+}
+
+.platform-badge--upwork {
+  background: rgba(20, 179, 3, 0.15);
+  color: #6fda44;
+  border: 1px solid rgba(111, 218, 68, 0.3);
+}
+
+/* ===== CONTACT: FORM PANEL ===== */
+.contact-form-panel {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 20px;
+  padding: 36px;
+}
+
+.contact-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 10px;
+  padding: 14px 18px;
+  color: white;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+.contact-input::placeholder {
+  color: #8892a6;
+}
+
+.contact-input:focus {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 1);
 }

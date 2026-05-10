@@ -18,7 +18,7 @@ const Works = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImages, setModalImages] = useState([]);
+  const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
     const filtered =
@@ -41,16 +41,14 @@ const Works = () => {
     handleCategoryChange(categoryMap[tabKey] || "all");
   };
 
-  const handleCardClick = (images) => {
-    if (images && images.length > 0) {
-      setModalImages(images);
-      setIsModalOpen(true);
-    }
+  const handleCardClick = (project) => {
+    setActiveProject(project);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setModalImages([]);
+    setActiveProject(null);
   };
 
   return (
@@ -92,7 +90,7 @@ const Works = () => {
                       key={`project-${project.id}`}
                       index={index}
                       {...project}
-                      onCardClick={() => handleCardClick(project.images)}
+                      onCardClick={() => handleCardClick(project)}
                     />
                   ))}
               </div>
@@ -114,7 +112,7 @@ const Works = () => {
                       key={`project-${project.id}`}
                       index={index}
                       {...project}
-                      onCardClick={() => handleCardClick(project.images)}
+                      onCardClick={() => handleCardClick(project)}
                     />
                   ))}
               </div>
@@ -136,7 +134,7 @@ const Works = () => {
                       key={`project-${project.id}`}
                       index={index}
                       {...project}
-                      onCardClick={() => handleCardClick(project.images)}
+                      onCardClick={() => handleCardClick(project)}
                     />
                   ))}
               </div>
@@ -150,7 +148,7 @@ const Works = () => {
               key={`project-${project.id}`}
               index={index}
               {...project}
-              onCardClick={() => handleCardClick(project.images)}
+              onCardClick={() => handleCardClick(project)}
             />
           ))}
         </div>
@@ -159,8 +157,7 @@ const Works = () => {
       <CustomModal
         isModalOpen={isModalOpen}
         closeModal={closeModal}
-        modalImages={modalImages}
-        category={selectedCategory}
+        project={activeProject}
       />
     </>
   );
@@ -277,15 +274,7 @@ const ProjectCard = ({
   return (
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-      onClick={() => {
-        if (
-          ["mobile", "website"].includes(dimensionsCategory) &&
-          images &&
-          images.length > 0
-        ) {
-          onCardClick();
-        }
-      }}
+      onClick={onCardClick}
       className="cursor-pointer"
     >
       <Tilt
