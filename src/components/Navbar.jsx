@@ -46,16 +46,16 @@ const Navbar = () => {
             alt="logo"
             className="w-9 h-9 object-contain transition-transform duration-300 hover:scale-110"
           />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            <span className="text-accent font-semibold">Safyan</span> &nbsp;
-            <span className="sm:block hidden">
-              {" "}
-              | &nbsp; Full‑Stack & Cloud Data Engineer
+          <p className="text-white text-[18px] font-bold cursor-pointer flex whitespace-nowrap">
+            <span className="text-accent font-semibold">Safyan</span>
+            {/* Tagline only once there is room for it alongside the full nav. */}
+            <span className="hidden nav-wide:block">
+              &nbsp; | &nbsp; Full‑Stack &amp; Cloud Data Engineer
             </span>
           </p>
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        <ul className="list-none hidden lg:flex flex-row items-center lg:gap-7 xl:gap-10">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -122,7 +122,7 @@ const Navbar = () => {
           </div>
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        <div className="lg:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -133,7 +133,7 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 glass-effect absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-glow`}
+            } p-6 glass-panel absolute top-20 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (

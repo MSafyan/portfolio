@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
 import { figma, playStoreIcon, appStoreIcon, webIcon } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { ProjectsTabs } from "../components";
+import SectionHeading from "./SectionHeading";
 import CustomModal from "./Modal";
 import Modal from "react-modal";
 
@@ -54,8 +54,7 @@ const Works = () => {
   return (
     <>
       <div>
-        <p className={styles.sectionSubText}>My work</p>
-        <h2 className={styles.sectionHeadText}>Projects.</h2>
+        <SectionHeading eyebrow="My work" title="Projects" />
       </div>
 
       <div className="w-full flex">
@@ -82,7 +81,7 @@ const Works = () => {
               <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
                 Websites & Backend
               </h3>
-              <div className="flex flex-wrap gap-7">
+              <div className="card-grid">
                 {filteredProjects
                   .filter((p) => p.category === "website")
                   .map((project, index) => (
@@ -104,7 +103,7 @@ const Works = () => {
               <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
                 Data Warehousing
               </h3>
-              <div className="flex flex-wrap gap-7">
+              <div className="card-grid">
                 {filteredProjects
                   .filter((p) => p.category === "Ware Housing")
                   .map((project, index) => (
@@ -126,7 +125,7 @@ const Works = () => {
               <h3 className="text-white text-[24px] font-bold mb-8 pb-2 border-b border-secondary/30">
                 Mobile Applications
               </h3>
-              <div className="flex flex-wrap gap-7">
+              <div className="card-grid">
                 {filteredProjects
                   .filter((p) => p.category === "mobile")
                   .map((project, index) => (
@@ -142,7 +141,7 @@ const Works = () => {
           )}
         </div>
       ) : (
-        <div className="mt-20 flex flex-wrap gap-7">
+        <div className="mt-20 card-grid">
           {filteredProjects.map((project, index) => (
             <ProjectCard
               key={`project-${project.id}`}
@@ -265,7 +264,7 @@ const ProjectCard = ({
             }}
             className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer mr-2"
           >
-            <img src={icon} alt={alt} className="w-1/2 h-1/2 object-contain" />
+            <img src={icon} alt={alt} loading="lazy" decoding="async" className="w-1/2 h-1/2 object-contain" />
           </div>
         )
     );
@@ -273,13 +272,13 @@ const ProjectCard = ({
 
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.08, 0.6)}
       onClick={onCardClick}
-      className="cursor-pointer"
+      className="cursor-pointer h-full"
     >
       <Tilt
         options={{ max: 45, scale: 1, speed: 450 }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        className="glass-card p-5 rounded-2xl w-full h-full flex flex-col"
       >
         <div
           ref={containerRef}
@@ -292,7 +291,9 @@ const ProjectCard = ({
           <img
             ref={imageRef}
             src={image}
-            alt="project_image"
+            alt={`${name} screenshot`}
+            loading="lazy"
+            decoding="async"
             className={`w-full ${
               dimensionsCategory === "website"
                 ? "h-auto scroll-on-hover"
@@ -305,14 +306,14 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+        <div className="mt-5 flex-1">
+          <h3 className="text-white font-bold text-[20px] leading-snug">{name}</h3>
+          <p className="mt-2 text-secondary text-[14px] leading-relaxed">{description}</p>
         </div>
 
         {/* View Project Button */}
         {source_code_link && source_code_link !== "#" && (
-          <div className="mt-4">
+          <div className="mt-5">
             <button
               onClick={(e) => {
                 e.stopPropagation();

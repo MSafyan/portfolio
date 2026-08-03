@@ -16,39 +16,35 @@
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(6, 182, 212, 0.8) rgba(15, 23, 42, 0.8);
+  scrollbar-color: rgba(59, 130, 246, 0.5) transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
-  border-left: 2px solid #1e293b;
+  background: #0b1020;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4 0%, #f97316 100%);
-  border-radius: 0;
-  border: 2px solid #0f172a;
+  background: rgba(59, 130, 246, 0.45);
+  border-radius: 999px;
+  border: 2px solid #0b1020;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #22d3ee 0%, #fb923c 100%);
+  background: rgba(96, 165, 250, 0.7);
 }
 
 :root {
-  --glow-color: rgba(6, 182, 212, 0.8);
-  --gradient-1: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-  --gradient-2: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-  --gradient-3: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
-  --gradient-cyber: linear-gradient(
-    135deg,
-    #06b6d4 0%,
-    #f97316 50%,
-    #ec4899 100%
-  );
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --surface: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-accent: rgba(59, 130, 246, 0.22);
+  --hairline-hover: rgba(59, 130, 246, 0.5);
+  --glow-color: rgba(59, 130, 246, 0.5);
 }
 
 body {
@@ -66,39 +62,43 @@ body {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
+/* Hero rail: fades the accent line out downward */
 .violet-gradient {
-  background: linear-gradient(180deg, #06b6d4 0%, rgba(6, 182, 212, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    rgba(59, 130, 246, 0) 100%
+  );
 }
 
-.green-pink-gradient {
-  background: linear-gradient(135deg, #06b6d4 0%, #f97316 50%, #ec4899 100%);
-  position: relative;
-}
-
-.purple-gradient {
-  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-}
-
-.cyber-gradient {
-  background: linear-gradient(135deg, #06b6d4 0%, #f97316 50%, #ec4899 100%);
-}
-
+/* Real glass: translucent + blurred, with a hairline edge instead of a hard border box */
 .glass-effect {
-  background: #1e293b;
-  border: 3px solid #06b6d4;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  background: rgba(11, 16, 32, 0.72);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Floating glass surface (mobile menu, popovers) — edge on all sides */
+.glass-panel {
+  background: rgba(11, 16, 32, 0.9);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
 .glass-card {
-  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 2px solid #06b6d4;
-  transition: all 0.3s ease;
+  background: var(--surface);
+  border: 1px solid var(--hairline-accent);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(6, 182, 212, 0.5);
-  border-color: #22d3ee;
+  transform: translateY(-4px);
+  border-color: var(--hairline-hover);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.16);
 }
 
 .orange-text-gradient {
@@ -135,11 +135,6 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 700;
-}
-
-.glow-text {
-  text-shadow: 0 0 20px rgba(124, 58, 237, 0.8),
-    0 0 40px rgba(124, 58, 237, 0.5), 0 0 60px rgba(124, 58, 237, 0.3);
 }
 
 /* canvas- styles */
@@ -231,49 +226,6 @@ body {
   }
 }
 
-.images-grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(200px, 1fr)
-  ); /* Responsive grid */
-  gap: 10px;
-  padding: 10px;
-}
-
-.images-grid img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px; /* Rounded corners for images */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  max-height: 800px;
-}
-
-/* Custom scrollbar */
-.images-grid {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent; /* Adjust as needed */
-}
-
-.images-grid::-webkit-scrollbar {
-  width: 6px; /* Thin scrollbar width */
-}
-
-.images-grid::-webkit-scrollbar-track {
-  background: transparent; /* Transparent track */
-}
-
-.images-grid::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3); /* Scrollbar thumb color */
-  border-radius: 10px; /* Rounded thumb */
-}
-.wrapper {
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  perspective: 10px;
-}
 @keyframes scrollBounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(24px); }
@@ -345,16 +297,30 @@ body {
   z-index: 1;
 }
 
-/* Badge slot — anchors each badge at its orbital position */
+/* Badge slot — zero-size anchor rotated out to its orbital position */
 .badge-slot {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
 }
 
-/* Badge pill — counter-rotates so text stays upright while badge orbits */
+/* Cancels the slot's own static angle. Without this every pill sits permanently
+   tilted by however far around the ring it was placed. */
+.badge-upright {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Badge pill — counter-rotates the ring spin so text stays upright while orbiting */
 .badge-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
   animation: orbitSpinCentered 18s linear infinite reverse;
   padding: 4px 12px;
   border-radius: 20px;
@@ -418,77 +384,22 @@ body {
   transform: translateY(-100%); /* Scroll down smoothly on hover */
 }
 
-/* Button and Card Hover Effects */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
-}
-
-/* Gradient Border Animation */
-@keyframes gradient-border {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.gradient-border {
-  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #667eea);
-  background-size: 300% 300%;
-  animation: gradient-border 3s ease infinite;
-}
-
 /* Selection */
 ::selection {
-  background-color: rgba(6, 182, 212, 0.7);
+  background-color: rgba(59, 130, 246, 0.45);
   color: #fff;
 }
 
 ::-moz-selection {
-  background-color: rgba(6, 182, 212, 0.7);
+  background-color: rgba(59, 130, 246, 0.45);
   color: #fff;
 }
 
 /* Focus Visible */
 *:focus-visible {
-  outline: 3px solid #06b6d4;
-  outline-offset: 3px;
-  border-radius: 0;
-}
-
-/* Geometric Background Pattern */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 35px,
-      rgba(6, 182, 212, 0.03) 35px,
-      rgba(6, 182, 212, 0.03) 70px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 35px,
-      rgba(249, 115, 22, 0.03) 35px,
-      rgba(249, 115, 22, 0.03) 70px
-    );
-  pointer-events: none;
-  z-index: 0;
+  outline: 2px solid var(--accent-light);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 /* ===== STANDARDIZED BUTTON SYSTEM ===== */
@@ -575,57 +486,153 @@ body::before {
   font-size: 1.125rem;
 }
 
-/* Neon Button Effect - Special effect button */
-.neon-button {
-  position: relative;
-  padding: 12px 32px;
+/* ===== CARD GRIDS =====
+   1fr columns so every row fills the content width and the last card lands on
+   the right gutter. Fixed-width flex-wrap left up to 280px of dead space there,
+   and rows had unequal card heights. */
+.card-grid,
+.card-grid--sm,
+.card-grid--xs {
+  display: grid;
+  align-items: stretch;
+}
+
+/* min() guards against overflow when the container is narrower than the min track */
+.card-grid {
+  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+}
+
+/* auto-fit (not auto-fill) on the small grids: these hold few enough items to
+   sit on one row, and auto-fill would reserve empty trailing tracks, stopping
+   the row short of the right gutter. auto-fit collapses them so items stretch. */
+/* Exactly four service cards, so fix the column count instead of letting
+   auto-fit guess: 2-up matches the achievement grid directly above it, and a
+   partially-filled last row can never occur. */
+.card-grid--sm {
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .card-grid--sm {
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card-grid--xs {
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100px, 100%), 1fr));
+}
+
+/* ===== PROJECT FILTER: SEGMENTED CONTROL ===== */
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--hairline);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.segmented__item {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #8892a6;
   background: transparent;
-  border: 3px solid #06b6d4;
-  color: #22d3ee;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
-    inset 0 0 20px rgba(6, 182, 212, 0.1);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.neon-button:hover {
-  background: #06b6d4;
-  color: #0f172a;
-  box-shadow: 0 0 30px rgba(6, 182, 212, 1), 0 0 60px rgba(6, 182, 212, 0.7),
-    inset 0 0 30px rgba(6, 182, 212, 0.3);
-  transform: scale(1.05);
+.segmented__item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* Brutal Card Style */
-.brutal-card {
-  background: #1e293b;
-  border: 4px solid #06b6d4;
-  box-shadow: 8px 8px 0px #06b6d4;
-  transition: all 0.3s ease;
+.segmented__item--active {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
 }
 
-.brutal-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0px #06b6d4;
+.segmented__item--active:hover {
+  color: #fff;
+  background: var(--accent);
 }
 
-/* ===== HERO: LEFT CONTENT PANEL ===== */
-/* Glass panel only on mobile where mountains overlap the text */
-.hero-left-panel {
-  position: relative;
-  z-index: 10;
+/* Narrow screens: the control wraps to multiple rows, where a stadium radius
+   leaves dead corners. Square it off and let items share the width evenly. */
+@media (max-width: 639px) {
+  .segmented {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+    border-radius: 16px;
+    padding: 6px;
+  }
+
+  .segmented__item {
+    padding: 11px 10px;
+    font-size: 13px;
+    border-radius: 11px;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+/* ===== HERO ===== */
+/* min-height, never a fixed height: the content sits in normal flow, so a
+   short viewport grows the section instead of clipping the copy. */
+.hero-section {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* Legibility wash over the parallax art. Full-bleed rather than an inset card
+   so hero copy lands on the same gutter as every other section. */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(5, 8, 22, 0.82) 0%,
+    rgba(5, 8, 22, 0.6) 32%,
+    rgba(5, 8, 22, 0.18) 56%,
+    rgba(5, 8, 22, 0) 76%
+  );
 }
 
 @media (max-width: 767px) {
-  .hero-left-panel {
-    background: rgba(5, 8, 22, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 20px;
-    padding: 22px 18px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+  .hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 8, 22, 0.12) 0%,
+      rgba(5, 8, 22, 0.4) 38%,
+      rgba(5, 8, 22, 0.7) 72%,
+      rgba(5, 8, 22, 0.8) 100%
+    );
+  }
+}
+
+/* Short viewports: the scroll cue is the first thing to go, so the copy always
+   fits. Two-class selector on purpose — Tailwind emits its responsive utilities
+   after this file, so `sm:flex` would win a same-specificity tie on order. */
+@media (max-height: 720px) {
+  .hero-section .hero-scroll-cue {
+    display: none;
   }
 }
 
@@ -701,27 +708,27 @@ body::before {
 /* ===== ABOUT: ACHIEVEMENT CHIPS ===== */
 .achievement-chip {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid var(--hairline-accent);
   border-radius: 16px;
   padding: 16px;
   transition: all 0.3s ease;
 }
 
 .achievement-chip:hover {
-  border-color: rgba(59, 130, 246, 0.5);
+  border-color: var(--hairline-hover);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 /* ===== ABOUT: SERVICE CARD ===== */
 .service-card {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid var(--hairline-accent);
   transition: all 0.3s ease;
 }
 
 .service-card:hover {
-  border-color: rgba(59, 130, 246, 0.5);
+  border-color: var(--hairline-hover);
   box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
   transform: translateY(-4px);
 }
@@ -732,43 +739,47 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 16px;
-  border-radius: 14px;
-  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 8px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--hairline-accent);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
-  width: 90px;
+  width: 100%;
 }
 
 .tech-icon-card:hover {
-  border-color: rgba(59, 130, 246, 0.4);
+  border-color: var(--hairline-hover);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
   transform: translateY(-4px);
 }
 
+/* Always visible. It used to be opacity:0 until hover, which reserved layout
+   height and pushed the icon 24px off-centre — and left every label
+   permanently unreadable on touch devices, where there is no hover. */
 .tech-icon-label {
   font-size: 11px;
+  line-height: 1.2;
   color: #8892a6;
   text-align: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  transition: color 0.2s ease;
 }
 
 .tech-icon-card:hover .tech-icon-label {
-  opacity: 1;
+  color: #fff;
 }
 
 /* ===== TESTIMONIALS: CARDS ===== */
 .testimonial-card {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
+  border: 1px solid var(--hairline-accent);
+  border-radius: 16px;
   padding: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -777,7 +788,7 @@ body::before {
 }
 
 .testimonial-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: var(--hairline-hover);
   box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
   transform: translateY(-4px);
 }
@@ -805,7 +816,7 @@ body::before {
 /* ===== CONTACT: FORM PANEL ===== */
 .contact-form-panel {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  border: 1px solid var(--hairline-accent);
   border-radius: 20px;
   padding: 36px;
 }
@@ -816,7 +827,8 @@ body::before {
   border-radius: 10px;
   padding: 14px 18px;
   color: white;
-  font-size: 15px;
+  /* Must stay >= 16px: iOS Safari auto-zooms the page on focus below that. */
+  font-size: 16px;
   transition: all 0.2s ease;
   outline: none;
   width: 100%;

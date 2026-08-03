@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
+import SectionHeading from "./SectionHeading";
 import { fadeIn, textVariant } from "../utils/motion";
 import { Tilt } from "react-tilt";
 
@@ -15,16 +15,16 @@ const ACHIEVEMENTS = [
 ];
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className="xs:w-[220px] w-full">
-    <motion.div variants={fadeIn("right", "spring", index * 0.5, 0.75)} className="w-full group">
+  <Tilt className="w-full h-full">
+    <motion.div variants={fadeIn("right", "spring", index * 0.08, 0.6)} className="w-full h-full group">
       <div
         options={{ max: 45, scale: 1, speed: 450 }}
-        className="service-card rounded-2xl py-7 px-8 min-h-[240px] flex justify-evenly items-center flex-col"
+        className="service-card rounded-2xl py-6 px-4 h-full min-h-[150px] flex justify-center items-center gap-3 flex-col"
       >
         <div className="w-16 h-16 flex items-center justify-center rounded-xl bg-tertiary border border-accent/30 group-hover:border-accent transition-all duration-300">
-          <img src={icon} alt={title} className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300" />
+          <img src={icon} alt={title} loading="lazy" decoding="async" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300" />
         </div>
-        <h3 className="text-white text-[16px] font-bold text-center uppercase tracking-wide group-hover:text-accent transition-colors duration-300">
+        <h3 className="text-white text-[13px] sm:text-[14px] font-bold text-center uppercase tracking-wide leading-snug min-h-[2.75em] flex items-center group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>
       </div>
@@ -36,12 +36,7 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-accent uppercase tracking-widest`}>
-          /// Introduction
-        </p>
-        <h2 className={`${styles.sectionHeadText}`}>
-          Overview<span className="text-accent">.</span>
-        </h2>
+        <SectionHeading eyebrow="Introduction" title="Overview" />
       </motion.div>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -95,7 +90,7 @@ const About = () => {
       </div>
 
       {/* Service cards */}
-      <div className="mt-16 flex flex-wrap gap-8 justify-start">
+      <div className="mt-16 card-grid--sm">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { styles } from "../styles";
 import { certifications } from "../constants";
 import { SectionWrapper } from "../hoc";
 import CertificationCard from "../components/CertificationCard";
+import SectionHeading from "./SectionHeading";
 import { textVariant } from "../utils/motion";
 
 const Certifications = () => {
@@ -14,15 +14,10 @@ const Certifications = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-accent-light`}>
-          Achievements
-        </p>
-        <h2 className={styles.sectionHeadText}>
-          Certifications<span className="text-accent-light">.</span>
-        </h2>
+        <SectionHeading eyebrow="Achievements" title="Certifications" />
       </motion.div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-20 card-grid">
         {displayedCerts.map((cert, index) => (
           <CertificationCard key={index} index={index} {...cert} />
         ))}

@@ -82,7 +82,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen mx-auto overflow-hidden">
+    <section className="hero-section relative w-full mx-auto overflow-hidden flex items-center">
       <img ref={starsRef}   className="parallax__stars"     src="./parallax/1Stars.svg"    alt="" width="1920" height="1080" />
       <img ref={planetsRef} className="parallax__planets"   src="./parallax/2Planets.svg"  alt="" width="1920" height="1080" />
       <img ref={sunRef}     className="parallax__sun"       src="./parallax/6Sun.svg"      alt="" width="1920" height="1080" />
@@ -90,15 +90,16 @@ const Hero = () => {
       <img ref={m2Ref}      className="parallax__mountain2" src="./parallax/4Mountain.svg" alt="" width="1920" height="1080" />
       <img ref={craterRef}  className="parallax__crater"    src="./parallax/5Crater.svg"   alt="" width="1920" height="1080" />
 
-      <div className={`absolute inset-0 top-[100px] max-w-7xl mx-auto ${styles.paddingX} flex items-center`}>
-        <div className="flex flex-col justify-center items-center self-start mt-5 mr-5 flex-shrink-0">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-r from-accent-light to-pink-500 shadow-glow animate-pulse" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
-        </div>
+      <div className="hero-scrim" />
 
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-5 gap-6 items-center min-w-0">
+      {/* In normal flow (not absolute) so the section can grow past 100svh when
+          the copy needs more room. Top padding clears the fixed navbar. */}
+      <div
+        className={`relative z-10 w-full max-w-7xl mx-auto ${styles.paddingX} pt-[104px] pb-14 sm:pt-32 sm:pb-24`}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center min-w-0">
           {/* Left: heading + CTAs */}
-          <div className="hero-left-panel md:col-span-3">
+          <div className="md:col-span-3">
             <h1 className={`${styles.heroHeadText} text-white`}>
               Hi, I&apos;m{" "}
               <span className="text-accent font-semibold">Safyan</span>
@@ -109,7 +110,7 @@ const Hero = () => {
               cloud infrastructure & AI/ML solutions.
             </p>
 
-            <div className="flex flex-wrap gap-4 mt-8">
+            <div className="flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8">
               <a href="mailto:msafyan080@gmail.com" className="btn-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -124,7 +125,7 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-3 sm:gap-4 mt-5 sm:mt-6">
               <button
                 onClick={() => window.open(myResume, "_blank")}
                 className="bg-white p-2.5 rounded-full transition-all duration-200 hover:bg-opacity-90 active:scale-95"
@@ -162,7 +163,7 @@ const Hero = () => {
             </div>
 
             {/* Certification badges */}
-            <div className="flex flex-wrap gap-2 mt-6">
+            <div className="flex flex-wrap gap-2 mt-5 sm:mt-6">
               <a href="https://www.credly.com/badges/9f649e53-5fca-4a2b-9d32-935d3da280f1/public_url" target="_blank" rel="noopener noreferrer" className="cert-badge">
                 <span className="cert-badge-dot" style={{ background: "#FF9900" }} />
                 AWS Certified
@@ -178,7 +179,7 @@ const Hero = () => {
             </div>
 
             {/* Key metrics strip */}
-            <div className="flex flex-wrap gap-x-6 gap-y-1 mt-5">
+            <div className="flex flex-wrap gap-x-6 gap-y-1 mt-4 sm:mt-5">
               <span className="hero-metric">10K+ users served</span>
               <span className="hero-metric-sep">·</span>
               <span className="hero-metric">95% AI cost reduction</span>
@@ -199,8 +200,10 @@ const Hero = () => {
                       className="badge-slot"
                       style={{ transform: `rotate(${angle}deg) translateX(130px)` }}
                     >
-                      <div className="badge-pill" style={{ borderColor: badge.color, color: badge.color }}>
-                        {badge.label}
+                      <div className="badge-upright" style={{ transform: `rotate(${-angle}deg)` }}>
+                        <div className="badge-pill" style={{ borderColor: badge.color, color: badge.color }}>
+                          {badge.label}
+                        </div>
                       </div>
                     </div>
                   );
@@ -214,10 +217,12 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-10">
+      {/* Scroll cue — decorative only. Hidden on small screens (it landed on top
+          of the cert badges) and on short viewports (see .hero-scroll-cue). */}
+      <div className="hero-scroll-cue absolute bottom-10 w-full justify-center items-center z-10 hidden sm:flex">
         <a href="#works" aria-label="Scroll to projects">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
-            <div className="w-3 h-3 rounded-full bg-secondary mb-1 scroll-bounce" />
+          <div className="w-[32px] h-[56px] rounded-full border-2 border-white/40 flex justify-center items-start p-2 hover:border-white/70 transition-colors">
+            <div className="w-2 h-2 rounded-full bg-white/70 scroll-bounce" />
           </div>
         </a>
       </div>

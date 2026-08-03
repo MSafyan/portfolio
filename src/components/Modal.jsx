@@ -127,7 +127,7 @@ const ImageGallery = ({ project }) => {
                 whileTap={{ scale: 0.95 }}
                 style={{ width: category === "website" ? "110px" : "70px", height: category === "website" ? "65px" : "70px" }}
               >
-                <img src={image} alt={`Thumb ${index + 1}`} className="w-full h-full object-cover" />
+                <img src={image} alt={`Thumb ${index + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </motion.button>
             ))}
           </div>

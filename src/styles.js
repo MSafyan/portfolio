@@ -10,8 +10,10 @@ const styles = {
 
   sectionHeadText:
     "text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
+  // Accent baked in rather than overridden per-section: two competing text-*
+  // utilities resolve by CSS source order, not by class-attribute order.
   sectionSubText:
-    "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
+    "sm:text-[16px] text-[13px] text-accent uppercase tracking-widest font-medium",
 };
 
 export { styles };

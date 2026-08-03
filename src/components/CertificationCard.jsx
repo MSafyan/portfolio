@@ -5,18 +5,20 @@ import { fadeIn } from "../utils/motion";
 const CertificationCard = ({ index, name, image, date, provider, link }) => {
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-      className="glass-card p-5 rounded-2xl sm:w-[360px] w-full hover:scale-[1.03] transition-all duration-300 cursor-pointer group"
+      variants={fadeIn("up", "spring", index * 0.08, 0.6)}
+      className="glass-card p-5 rounded-2xl w-full h-full flex flex-col cursor-pointer group"
       onClick={() => window.open(link, "_blank")}
     >
-      <div className="relative overflow-hidden rounded-lg mb-4 bg-white p-4">
+      <div className="relative overflow-hidden rounded-xl mb-4 p-5 bg-white/[0.94]">
         <img
           src={image}
           alt={name}
+          loading="lazy"
+          decoding="async"
           className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <h3 className="text-white text-[20px] font-bold group-hover:text-accent-light transition-colors duration-300">
+      <h3 className="text-white text-[18px] font-bold leading-snug flex-1 group-hover:text-accent-light transition-colors duration-300">
         {name}
       </h3>
       <p className="text-accent-light text-[14px] mt-1 font-semibold">

@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
+import SectionHeading from "./SectionHeading";
 
 const Stars = () => (
   <div className="flex gap-0.5">
@@ -72,10 +72,7 @@ const Feedbacks = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>What others say</p>
-        <h2 className={styles.sectionHeadText}>
-          Testimonials<span className="text-accent">.</span>
-        </h2>
+        <SectionHeading eyebrow="What others say" title="Testimonials" />
       </motion.div>
 
       <div className="mt-16 columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">

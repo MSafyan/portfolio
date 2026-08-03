@@ -1,7 +1,9 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Hero, Navbar, StarsCanvas } from "./components";
-import MapPortfolio from "./pages/MapPortfolio";
+
+// Discontinued experiment — lazy so it stays out of the main bundle.
+const MapPortfolio = lazy(() => import("./pages/MapPortfolio"));
 
 const About = lazy(() => import("./components/About"));
 const Experience = lazy(() => import("./components/Experience"));
@@ -36,7 +38,14 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<MainPortfolio />} />
-      <Route path="/map" element={<MapPortfolio />} />
+      <Route
+        path="/map"
+        element={
+          <Suspense fallback={null}>
+            <MapPortfolio />
+          </Suspense>
+        }
+      />
     </Routes>
   </BrowserRouter>
 );

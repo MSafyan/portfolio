@@ -1,17 +1,15 @@
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
+import SectionHeading from "./SectionHeading";
 
 const Tech = () => {
   return (
     <>
-      <div className="text-center mb-14">
-        <p className="text-accent text-sm uppercase tracking-widest mb-2">/// Tools & Languages</p>
-        <h2 className="text-white font-black text-4xl">
-          Tech Stack<span className="text-accent">.</span>
-        </h2>
-      </div>
+      <SectionHeading eyebrow="Tools & Languages" title="Tech Stack" />
 
-      <div className="flex flex-row flex-wrap justify-center gap-5">
+      {/* justify-start, not center: every other section left-aligns its content
+          under the heading, and a centred grid broke that rhythm. */}
+      <div className="mt-14 card-grid--xs">
         {technologies.map((technology) => (
           <div key={technology.name} className="tech-icon-card group" title={technology.name}>
             <img

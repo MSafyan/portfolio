@@ -27,6 +27,9 @@ module.exports = {
       },
       screens: {
         xs: "450px",
+        // Width at which the navbar tagline fits alongside the full link row.
+        // Below this it collides with "About" (xl/1280 is ~90px too narrow).
+        "nav-wide": "1380px",
       },
       backgroundImage: {
         "hero-pattern": "url('/herobg.webp')",

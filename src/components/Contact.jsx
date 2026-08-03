@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
+import SectionHeading from "./SectionHeading";
 import { slideIn } from "../utils/motion";
 import Modal from "react-modal";
 
@@ -87,10 +87,7 @@ const Contact = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.85] contact-form-panel"
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>
-          Contact<span className="text-accent">.</span>
-        </h3>
+        <SectionHeading eyebrow="Get in touch" title="Contact" />
 
         {!emailJsConfigured && (
           <div className="mt-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">

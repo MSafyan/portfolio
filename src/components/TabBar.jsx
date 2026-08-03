@@ -9,19 +9,20 @@ const ProjectsTabs = ({ activeTab, onTabClick }) => {
   ];
 
   return (
-    <div id="projects-tabs" className="mb-8 mt-10">
-      <div className="flex flex-wrap justify-center items-center gap-4">
+    <div id="projects-tabs" className="mb-8 mt-10 flex justify-start">
+      <div className="segmented" role="tablist" aria-label="Filter projects">
         {tabs.map((tab) => (
           <button
             key={tab.key}
-            className={`relative px-6 py-3 font-bold uppercase tracking-wider transition-all duration-300 overflow-hidden border-3 ${
-              activeTab === tab.key
-                ? "bg-accent border-accent text-primary shadow-neon scale-105"
-                : "glass-effect border-accent-orange text-accent-orange hover:bg-accent-orange hover:text-primary hover:scale-105"
+            type="button"
+            role="tab"
+            aria-selected={activeTab === tab.key}
+            className={`segmented__item ${
+              activeTab === tab.key ? "segmented__item--active" : ""
             }`}
             onClick={() => onTabClick(tab.key)}
           >
-            <span className="relative z-10">{tab.label}</span>
+            {tab.label}
           </button>
         ))}
       </div>
