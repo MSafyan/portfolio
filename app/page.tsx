@@ -47,7 +47,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <Eyebrow>Available for new projects</Eyebrow>
             <h1 className="mt-5 font-serif text-[2.6rem] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              Full-stack, AI and data engineer for teams that need it <em className="text-accent">shipped</em>.
+              Full-stack, AI and data engineer for teams that need it <span className="text-accent">shipped</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted text-pretty sm:text-xl">
               I&rsquo;m {SITE.name}. I build SaaS products end to end — Next.js and Node.js apps, AI features on
