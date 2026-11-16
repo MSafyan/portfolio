@@ -21,23 +21,25 @@ function BeforeAfter({ chart }: { chart: Extract<Chart, { type: "beforeAfter" }>
     { key: "After", ...chart.after, color: "var(--chart-strong)" },
   ];
   return (
-    <dl className="space-y-4">
-      {rows.map((r) => (
-        <div key={r.key}>
-          <dt className="flex items-baseline justify-between gap-3 text-sm">
-            <span className="text-muted">{r.key}</span>
-            <span className="font-semibold">{r.display}</span>
-          </dt>
-          <dd className="mt-1.5 h-3 rounded-full bg-line/60" title={`${r.key}: ${r.display}`}>
-            <span
-              className="block h-full rounded-full"
-              style={{ width: `${Math.max((r.value / max) * 100, 1.5)}%`, background: r.color }}
-            />
-          </dd>
-        </div>
-      ))}
-      {chart.change && <p className="pt-1 font-serif text-2xl font-medium text-accent">{chart.change}</p>}
-    </dl>
+    <>
+      <dl className="space-y-4">
+        {rows.map((r) => (
+          <div key={r.key}>
+            <dt className="flex items-baseline justify-between gap-3 text-sm">
+              <span className="text-muted">{r.key}</span>
+              <span className="font-semibold">{r.display}</span>
+            </dt>
+            <dd className="mt-1.5 h-3 rounded-full bg-line/60" title={`${r.key}: ${r.display}`}>
+              <span
+                className="block h-full rounded-full"
+                style={{ width: `${Math.max((r.value / max) * 100, 1.5)}%`, background: r.color }}
+              />
+            </dd>
+          </div>
+        ))}
+      </dl>
+      {chart.change && <p className="pt-5 font-serif text-2xl font-medium text-accent">{chart.change}</p>}
+    </>
   );
 }
 
@@ -51,41 +53,41 @@ function Series({ chart }: { chart: Extract<Chart, { type: "series" }> }) {
   const last = n - 1;
   return (
     <>
-      <svg viewBox={`0 0 ${W} ${H + 40}`} className="w-full" role="img" aria-label={`${chart.title}: ${chart.points.map((p) => `${p.label} ${p.display}`).join(", ")}`}>
-        <line x1="0" x2={W} y1={H} y2={H} stroke="var(--line)" strokeWidth="1" />
-        {chart.points.map((p, i) => {
-          const h = Math.max((p.value / max) * (H - 24), 3);
-          const x = i * (bw + gap);
-          const strong = i === last;
-          return (
-            <g key={p.label}>
-              <title>{`${p.label}: ${p.display}`}</title>
-              <path
-                d={`M${x},${H} v${-(h - 4)} q0,-4 4,-4 h${bw - 8} q4,0 4,4 v${h - 4} z`}
-                fill={strong ? "var(--chart-strong)" : "var(--chart-muted)"}
-              />
-              {(i === 0 || strong) && (
-                <text x={x + bw / 2} y={H - h - 8} textAnchor="middle" className="fill-ink text-[13px] font-semibold">
-                  {p.display}
+        <svg viewBox={`0 0 ${W} ${H + 40}`} className="w-full" role="img" aria-label={`${chart.title}: ${chart.points.map((p) => `${p.label} ${p.display}`).join(", ")}`}>
+          <line x1="0" x2={W} y1={H} y2={H} stroke="var(--line)" strokeWidth="1" />
+          {chart.points.map((p, i) => {
+            const h = Math.max((p.value / max) * (H - 24), 3);
+            const x = i * (bw + gap);
+            const strong = i === last;
+            return (
+              <g key={p.label}>
+                <title>{`${p.label}: ${p.display}`}</title>
+                <path
+                  d={`M${x},${H} v${-(h - 4)} q0,-4 4,-4 h${bw - 8} q4,0 4,4 v${h - 4} z`}
+                  fill={strong ? "var(--chart-strong)" : "var(--chart-muted)"}
+                />
+                {(i === 0 || strong) && (
+                  <text x={x + bw / 2} y={H - h - 8} textAnchor="middle" className="fill-ink text-[13px] font-semibold">
+                    {p.display}
+                  </text>
+                )}
+                <text x={x + bw / 2} y={H + 20} textAnchor="middle" className="fill-muted text-[11px]">
+                  {p.label}
                 </text>
-              )}
-              <text x={x + bw / 2} y={H + 20} textAnchor="middle" className="fill-muted text-[11px]">
-                {p.label}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-      <table className="sr-only">
-        <tbody>
-          {chart.points.map((p) => (
-            <tr key={p.label}>
-              <th scope="row">{p.label}</th>
-              <td>{p.display}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </g>
+            );
+          })}
+        </svg>
+        <table className="sr-only">
+          <tbody>
+            {chart.points.map((p) => (
+              <tr key={p.label}>
+                <th scope="row">{p.label}</th>
+                <td>{p.display}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </>
   );
 }
