@@ -2,6 +2,7 @@ import { SAME_AS, SITE, absoluteUrl } from "./site";
 import { CERTIFICATIONS } from "./profile";
 import { SERVICES, type Faq, type Service } from "./services";
 import type { CaseStudy } from "./work";
+import { type Video, thumb } from "./videos";
 
 // Stable entity ids. Every page refers to these instead of repeating the
 // Person and business objects.
@@ -140,5 +141,29 @@ export function caseStudyNode(study: CaseStudy) {
     publisher: { "@id": PERSON_ID },
     about: study.stack,
     inLanguage: "en",
+  };
+}
+
+// VideoObject with Clip parts, so Google can show "key moments" for chapters.
+export function videoNode(video: Video, pagePath: string) {
+  const watch = `https://www.youtube.com/watch?v=${video.id}`;
+  return {
+    "@type": "VideoObject",
+    "@id": absoluteUrl(`${pagePath}#video-${video.id}`),
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: thumb(video.id),
+    uploadDate: video.uploadDate,
+    duration: `PT${Math.floor(video.duration / 60)}M${video.duration % 60}S`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${video.id}`,
+    url: watch,
+    author: { "@id": PERSON_ID },
+    hasPart: video.chapters.map((c, i) => ({
+      "@type": "Clip",
+      name: c.label,
+      startOffset: c.t,
+      endOffset: video.chapters[i + 1]?.t ?? video.duration,
+      url: `${watch}&t=${c.t}`,
+    })),
   };
 }

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...SERVICES.map((s) => `/services/${s.slug}`),
     "/work",
     ...WORK.map((w) => `/work/${w.slug}`),
+    "/videos",
     "/about",
     "/contact",
   ];

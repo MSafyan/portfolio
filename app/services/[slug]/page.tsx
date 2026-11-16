@@ -4,9 +4,11 @@ import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { ButtonLink, Container, SectionHeading, Tag } from "@/components/ui";
-import { breadcrumbs, faqNode, graph, serviceNode } from "@/lib/schema";
+import { VideoBlock } from "@/components/VideoBlock";
+import { breadcrumbs, faqNode, graph, serviceNode, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES, getService } from "@/lib/services";
+import { videoForService } from "@/lib/videos";
 import { workForService } from "@/lib/work";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -34,10 +36,14 @@ export default async function ServicePage({ params }: Props) {
   ];
   const work = workForService(service.work);
   const others = SERVICES.filter((s) => s.slug !== service.slug);
+  const video = videoForService(service.slug);
+  const path = `/services/${service.slug}`;
 
   return (
     <>
-      <JsonLd data={graph(serviceNode(service), breadcrumbs(crumbs), faqNode(service.faqs))} />
+      <JsonLd
+        data={graph(serviceNode(service), breadcrumbs(crumbs), faqNode(service.faqs), ...(video ? [videoNode(video, path)] : []))}
+      />
       <PageHeader crumbs={crumbs} eyebrow={service.name} title={service.h1} intro={service.intro}>
         <div className="mt-8 flex flex-wrap gap-3">
           <ButtonLink href="/contact">Discuss your project</ButtonLink>
@@ -93,6 +99,17 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </Container>
       </section>
+
+      {video && (
+        <section aria-labelledby="video-heading" className="mt-24">
+          <Container>
+            <SectionHeading id="video-heading" eyebrow="Walkthrough" title="See the work, not just the list" />
+            <div className="mt-10">
+              <VideoBlock video={video} />
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section aria-labelledby="faq-heading" className="mt-24">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">

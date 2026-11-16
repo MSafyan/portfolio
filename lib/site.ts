@@ -28,6 +28,7 @@ export function absoluteUrl(path = "/") {
 export const NAV = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
+  { href: "/videos", label: "Videos" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

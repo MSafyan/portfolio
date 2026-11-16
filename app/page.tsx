@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { VideoBlock } from "@/components/VideoBlock";
 import { ContactCta } from "@/components/ContactCta";
 import { Arrow, ButtonLink, Container, Eyebrow, SectionHeading } from "@/components/ui";
 import { CERTIFICATIONS, REVIEWS } from "@/lib/profile";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 import { SITE } from "@/lib/site";
+import { VIDEOS } from "@/lib/videos";
 import { WORK } from "@/lib/work";
 
 export const metadata = buildMetadata({
@@ -144,6 +146,25 @@ export default function Home() {
             {WORK.slice(0, 4).map((w) => (
               <CaseStudyCard key={w.slug} study={w} />
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="intro-video-heading" className="mt-28">
+        <Container>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <Eyebrow>Three-minute intro</Eyebrow>
+              <h2 id="intro-video-heading" className="mt-3 font-serif text-3xl leading-tight font-medium tracking-tight text-balance sm:text-4xl">
+                See how I work before we talk
+              </h2>
+            </div>
+            <Link href="/videos" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+              All {VIDEOS.length} walkthroughs <Arrow />
+            </Link>
+          </div>
+          <div className="mt-10">
+            <VideoBlock video={VIDEOS[0]} />
           </div>
         </Container>
       </section>

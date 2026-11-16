@@ -6,9 +6,11 @@ import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { Arrow, Container, Tag } from "@/components/ui";
-import { breadcrumbs, caseStudyNode, graph } from "@/lib/schema";
+import { YouTube } from "@/components/YouTube";
+import { breadcrumbs, caseStudyNode, graph, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getService } from "@/lib/services";
+import { fmt, getVideo } from "@/lib/videos";
 import { WORK, getCaseStudy } from "@/lib/work";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -37,10 +39,13 @@ export default async function CaseStudyPage({ params }: Props) {
   ];
   const related = WORK.filter((w) => w.slug !== study.slug && w.service === study.service).slice(0, 2);
   const portrait = study.shots.every((s) => s.height > s.width);
+  const video = study.video && getVideo(study.video.id);
 
   return (
     <>
-      <JsonLd data={graph(caseStudyNode(study), breadcrumbs(crumbs))} />
+      <JsonLd
+        data={graph(caseStudyNode(study), breadcrumbs(crumbs), ...(video ? [videoNode(video, `/work/${study.slug}`)] : []))}
+      />
       <PageHeader crumbs={crumbs} eyebrow={study.client} title={study.name} intro={study.description} />
 
       <Container className="mt-12">
@@ -71,6 +76,18 @@ export default async function CaseStudyPage({ params }: Props) {
               </li>
             ))}
           </ol>
+
+          {video && (
+            <>
+              <h2 className="mt-14 font-serif text-3xl font-medium tracking-tight">Watch the walkthrough</h2>
+              <p className="mt-3 text-muted">
+                Starts at {fmt(study.video!.start)} in &ldquo;{video.title}&rdquo;.
+              </p>
+              <div className="mt-6">
+                <YouTube id={video.id} title={video.title} start={study.video!.start} />
+              </div>
+            </>
+          )}
 
           {study.shots.length > 0 && (
             <>

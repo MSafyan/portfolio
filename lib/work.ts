@@ -18,11 +18,14 @@ export type CaseStudy = {
   approach: string[];
   stack: string[];
   shots: Shot[];
+  /** Walkthrough video and the second its section starts. */
+  video?: { id: string; start: number };
 };
 
 export const WORK: CaseStudy[] = [
   {
     slug: "brickdistrict-seo-ecommerce",
+    video: { id: "d364a4WmzAg", start: 14 },
     client: "BrickDistrict",
     name: "58x more Google impressions for a LEGO e-commerce store",
     title: "BrickDistrict: WooCommerce SEO, Speed and Automation",
@@ -89,6 +92,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "wesion-ai-matching",
+    video: { id: "YMJ4e0TEcTU", start: 209 },
     client: "Wesion (Abundance Movement)",
     name: "AI matching and recommendations at 5% of the cost",
     title: "Wesion: AI Matching Platform with OpenAI and Pinecone",
@@ -125,6 +129,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "helpicon-marketplace",
+    video: { id: "3rp6xjwwaK0", start: 166 },
     client: "Helpicon",
     name: "A Swedish services marketplace with 99.8% payment success",
     title: "Helpicon: Marketplace Back End, Payments and DevOps on AWS",
@@ -167,6 +172,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "palmetto-data-warehouse",
+    video: { id: "qYOXeFOOdjY", start: 10 },
     client: "Palmetto Air Balance",
     name: "One warehouse for a $40M project portfolio",
     title: "Palmetto: Azure Data Warehouse for NetSuite, UKG and Air1",
@@ -208,6 +214,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "pink-chicken-retail-data",
+    video: { id: "qYOXeFOOdjY", start: 165 },
     client: "Pink Chicken",
     name: "Retail numbers that finally match",
     title: "Pink Chicken: Shopify and Apparel Magic Data Warehouse",
@@ -244,6 +251,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "ecommerce-intelligence-etl",
+    video: { id: "qYOXeFOOdjY", start: 684 },
     client: "E-commerce intelligence platform",
     name: "From 15% to 75% catalogue coverage on Snowflake",
     title: "Snowflake and Snowpark ETL for E-commerce Product Data",
@@ -272,6 +280,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "cvr-sports-analytics",
+    video: { id: "3rp6xjwwaK0", start: 283 },
     client: "CVR Sports Analytics",
     name: "Rugby league analytics that answer in seconds",
     title: "CVR: Rugby League Analytics Platform (Node, MongoDB, Angular)",
@@ -313,6 +322,7 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "carlister-pricing-platform",
+    video: { id: "3rp6xjwwaK0", start: 19 },
     client: "CarLister",
     name: "Automotive pricing intelligence from six data providers",
     title: "CarLister: Automotive Pricing Platform in Next.js and Express",
