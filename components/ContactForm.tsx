@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
+import { track } from "@/lib/track";
 import { sendEnquiry, type ContactState } from "@/app/contact/actions";
 import { SERVICES } from "@/lib/services";
 
@@ -11,6 +12,11 @@ const input =
 
 export function ContactForm() {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendEnquiry, { status: "idle" });
+
+  // GA4's recommended event for a lead, so it can be marked as a key event.
+  useEffect(() => {
+    if (state.status === "sent") track("generate_lead", { form: "contact" });
+  }, [state.status]);
 
   if (state.status === "sent") {
     return (

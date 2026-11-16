@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { track } from "@/lib/track";
 import { thumb } from "@/lib/videos";
 
 // Click-to-load facade: a thumbnail and play button until the visitor asks for
@@ -21,7 +22,15 @@ export function YouTube({ id, title, start = 0, priority }: { id: string; title:
           className="absolute inset-0 size-full"
         />
       ) : (
-        <button type="button" onClick={() => setPlaying(true)} className="group absolute inset-0 size-full" aria-label={`Play video: ${title}`}>
+        <button
+          type="button"
+          onClick={() => {
+            setPlaying(true);
+            track("video_play", { video_id: id, video_title: title, start_seconds: start });
+          }}
+          className="group absolute inset-0 size-full"
+          aria-label={`Play video: ${title}`}
+        >
           <Image src={thumb(id)} alt="" fill sizes="(min-width: 1024px) 720px, 100vw" priority={priority} className="object-cover" />
           <span className="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/5" />
           <span className="absolute top-1/2 left-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-accent text-accent-ink shadow-xl transition-transform group-hover:scale-110">
