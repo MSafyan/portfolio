@@ -652,3 +652,53 @@ export function workForService(slugs: string[]) {
         body: "Scheduled refreshes opened more connections than the managed PostgreSQL allowed, and queries started timing out. One shared Prisma client behind PgBouncer, with a fixed connection limit, fixed it.",
       },
     ],
+
+// Earlier and smaller projects, shown as a list on /work.
+export const MORE_PROJECTS: {
+  name: string;
+  summary: string;
+  stack: string[];
+  shot?: Shot;
+}[] = [
+  {
+    name: "Helpicon mobile app",
+    summary: "React Native app for the Swedish services marketplace: Twilio chat, Agora video calls, Google Maps, secure payments, tasks and reviews. Published on the App Store and Google Play.",
+    stack: ["React Native", "Twilio", "Agora", "Google Maps"],
+  },
+  {
+    name: "LegacySuite",
+    summary: "Digital legacy and estate planning: wills, beneficiaries, secure password sharing and non-custodial crypto wallet monitoring, with role-based access.",
+    stack: ["Angular", "NestJS", "PostgreSQL", "Web3.js"],
+    shot: {
+      src: "/images/work/legacysuite.webp",
+      alt: "LegacySuite home page with the legacy planning dashboard",
+      width: 1600,
+      height: 871,
+    },
+  },
+  {
+    name: "CHAINSCAN NFT explorer",
+    summary: "Ethereum NFT analytics: millions of records indexed from Alchemy into PostgreSQL with composite indexes, plus Web3 sign-in and wallet connection.",
+    stack: ["Next.js", "PostgreSQL", "Alchemy", "Web3.js"],
+  },
+  {
+    name: "FashionXotics",
+    summary: "High-volume fashion store with server-rendered listings hydrated into Redux, large size and colour matrices, fast filters and Stripe and PayPal checkout.",
+    stack: ["Next.js", "Redux", "Strapi", "Stripe"],
+  },
+  {
+    name: "ResIhop carpooling app",
+    summary: "Ride-sharing app matching drivers and passengers: route planning and distance with Google Maps, recurring schedules, ride matching and in-app messages.",
+    stack: ["React Native", "Node.js", "PostgreSQL", "Google Maps"],
+  },
+  {
+    name: "Facebook group automation",
+    summary: "Headless Playwright pipeline that collects engagement points across Facebook groups, handles device-based 2FA, runs five pages in parallel and syncs results to a back end.",
+    stack: ["Node.js", "Playwright"],
+  },
+  {
+    name: "Amazon catalogue operations",
+    summary: "Automation for a 130,000+ product Amazon catalogue: inventory updates, listing SEO, shipment tracking and pricing analysis with Keepa data.",
+    stack: ["Python", "Node.js", "Amazon APIs", "Keepa"],
+  },
+];

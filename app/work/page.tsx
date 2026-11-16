@@ -7,7 +7,9 @@ import { breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 import { absoluteUrl } from "@/lib/site";
-import { WORK } from "@/lib/work";
+import Image from "next/image";
+import { MORE_PROJECTS, WORK } from "@/lib/work";
+import { Tag } from "@/components/ui";
 
 export const metadata = buildMetadata({
   title: "Case Studies: SaaS, AI and Data Engineering Projects",
@@ -39,7 +41,7 @@ export default function WorkPage() {
         crumbs={CRUMBS}
         eyebrow="Case studies"
         title="Production work, with the results measured"
-        intro="Every project here shipped to real users. Each case study covers the problem, what I built and what changed — in numbers."
+        intro={`${WORK.length} case studies from projects that shipped to real users — the problem, what I built, the hard parts and what changed, in numbers — plus ${MORE_PROJECTS.length} earlier builds.`}
       />
       {SERVICES.map((s) => {
         const items = WORK.filter((w) => w.service === s.slug);
@@ -58,6 +60,40 @@ export default function WorkPage() {
           </section>
         );
       })}
+      <section aria-labelledby="more-heading" className="mt-24">
+        <Container>
+          <h2 id="more-heading" className="font-serif text-3xl font-medium tracking-tight">
+            More projects
+          </h2>
+          <p className="mt-3 max-w-2xl text-lg text-muted">Earlier and smaller builds — web, mobile and automation.</p>
+          <ul className="mt-8 grid gap-5 md:grid-cols-2">
+            {MORE_PROJECTS.map((p) => (
+              <li key={p.name} className="flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
+                {p.shot && (
+                  <Image
+                    src={p.shot.src}
+                    alt={p.shot.alt}
+                    width={p.shot.width}
+                    height={p.shot.height}
+                    sizes="(min-width: 768px) 560px, 100vw"
+                    className="aspect-[16/9] w-full border-b border-line object-cover object-top"
+                  />
+                )}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-serif text-xl font-medium">{p.name}</h3>
+                  <p className="mt-2 flex-1 leading-relaxed text-muted">{p.summary}</p>
+                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                    {p.stack.map((t) => (
+                      <Tag key={t}>{t}</Tag>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
       <ContactCta />
     </>
   );
