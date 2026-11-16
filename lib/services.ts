@@ -24,12 +24,13 @@ export const SERVICES: Service[] = [
     name: "Full-stack web development",
     title: "Full-Stack Developer for Hire — Next.js, Node, AWS",
     description:
-      "Hire a senior full-stack developer to build or rescue your SaaS: Next.js and React front ends, Node.js/NestJS APIs, PostgreSQL, payments and AWS deployment.",
+      "Hire a senior full-stack developer to build or rescue your product: Next.js and Node.js apps, technical SEO and Core Web Vitals, payments and AWS deployment.",
     h1: "Full-stack development for SaaS products",
     summary: "Next.js front ends, Node.js and NestJS APIs, payments and the AWS they run on — built or rescued.",
     intro:
       "I design, build and ship complete web products — the interface, the API, the database and the cloud it runs on. Greenfield builds or taking over a codebase that has stalled, I own it end to end and leave it documented.",
     forYouIf: [
+      "Your site is slow or invisible on Google and you need it fixed at the code level.",
       "You need an MVP built properly the first time, not rewritten in six months.",
       "Your app works but is slow, fragile or expensive to run.",
       "You need payments, messaging or third-party integrations done right.",
@@ -49,6 +50,10 @@ export const SERVICES: Service[] = [
         body: "Stripe, Swish and PayPal flows with webhooks, commission splits and subscriptions; Twilio, SendGrid and partner APIs.",
       },
       {
+        title: "Technical SEO and Core Web Vitals",
+        body: "Server-rendered pages, structured data, sitemaps and Lighthouse scores in the high 90s — one store went from 137 to 8,020 weekly Google impressions.",
+      },
+      {
         title: "Cloud, CI/CD and DevOps",
         body: "AWS (ECS, EKS, RDS, S3, Lambda) with Terraform, Docker and automated pipelines — repeatable deploys and real monitoring.",
       },
@@ -66,7 +71,7 @@ export const SERVICES: Service[] = [
       "Docker",
       "Stripe",
     ],
-    work: ["helpicon-marketplace", "carlister-pricing-platform", "cvr-sports-analytics"],
+    work: ["brickdistrict-seo-ecommerce", "insurance-lead-gen-sites", "helpicon-marketplace", "carlister-pricing-platform"],
     faqs: [
       {
         q: "Can you take over an existing codebase?",

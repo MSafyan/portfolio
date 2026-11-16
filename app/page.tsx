@@ -19,8 +19,8 @@ export const metadata = buildMetadata({
 
 const PROOF = [
   { value: "95%", label: "LLM cost cut on a production AI platform" },
-  { value: "99.8%", label: "payment success for 10,000+ users" },
-  { value: "$40M+", label: "project portfolio made visible in one warehouse" },
+  { value: "58x", label: "more weekly Google impressions for an e-commerce store" },
+  { value: "19", label: "lead-gen sites running on one Next.js codebase" },
   { value: "5+ yrs", label: "shipping for clients in the US, UK, EU and Australia" },
 ];
 

@@ -22,6 +22,72 @@ export type CaseStudy = {
 
 export const WORK: CaseStudy[] = [
   {
+    slug: "brickdistrict-seo-ecommerce",
+    client: "BrickDistrict",
+    name: "58x more Google impressions for a LEGO e-commerce store",
+    title: "BrickDistrict: WooCommerce SEO, Speed and Automation",
+    description:
+      "A custom WordPress theme, structured data and catalogue automation for a WooCommerce LEGO store: Lighthouse 60 to 98 and weekly impressions 137 to 8,020.",
+    service: "full-stack-development",
+    role: "Full-stack developer and technical SEO",
+    region: "Remote",
+    published: "2026-11-16",
+    period: "2026 – present",
+    metrics: [
+      { value: "137 → 8,020", label: "weekly Google impressions" },
+      { value: "60 → 98", label: "mobile Lighthouse, home page" },
+      { value: "9 → 116", label: "weekly clicks from Google" },
+    ],
+    challenge:
+      "BrickDistrict sells rare and retired LEGO sets. In September 2026 the page-builder site scored 56 on mobile Lighthouse with a 9.7-second LCP and 14 MB home page, only 6 of 402 products had a description, Google had indexed 175 of 507 sitemap URLs, and the store had about 19 organic clicks in two months.",
+    approach: [
+      "Replaced the Beaver Builder site with a custom WordPress theme: mobile Lighthouse went from 60 to 98 on the home page (LCP 9.1 s to 2.2 s, 5.2 MB to 0.83 MB), 62 to 100 on categories and 71 to 99 on products — with a clean before-and-after SEO comparison across 519 pages.",
+      "Extended Product, Offer and BreadcrumbList structured data with brand, GTIN and return policy, wrote search titles that carry each set's status, and kept thin category pages out of the index.",
+      "Wrote a real description for all 402 products, generated from LEGO's own set text, and published 21 buying guides that now earn most of the store's search impressions.",
+      "Set up Search Console, GA4 e-commerce events, Bing Webmaster Tools, IndexNow, a Google Merchant Center feed and single-hop 301 redirects for every old URL.",
+      "Built the catalogue back end in Python and FastAPI on AWS (EC2, DynamoDB, CloudFront, SSM): retirement dates from Brickset, a daily site-health alarm, and product writes cut from about 34 s to 1.9 s.",
+      "Built a Flutter barcode-scanning app the team uses to receive, list and sell stock directly against WooCommerce.",
+    ],
+    stack: ["WordPress", "WooCommerce", "PHP", "Schema.org", "Search Console", "GA4", "Python", "FastAPI", "AWS", "Flutter"],
+    shots: [
+      {
+        src: "/images/work/brickdistrict-home.webp",
+        alt: "BrickDistrict home page with the hero for rare, retired and retiring LEGO sets",
+        width: 1440,
+        height: 900,
+      },
+    ],
+  },
+  {
+    slug: "insurance-lead-gen-sites",
+    client: "US marketing agency",
+    name: "19 insurance lead-generation sites from one Next.js codebase",
+    title: "Multi-Site Next.js Lead-Gen Platform with Programmatic SEO",
+    description:
+      "One Next.js template rendering 19 insurance lead-gen sites, with AI page generation, location pages and SEO data pipelines: 1,233 pages indexed and 27 page-1 rankings.",
+    service: "full-stack-development",
+    role: "Full-stack developer",
+    region: "United States",
+    published: "2026-11-16",
+    period: "2026 – present",
+    metrics: [
+      { value: "19", label: "live sites from one codebase" },
+      { value: "1,233", label: "pages indexed by Google" },
+      { value: "533 → 6,271", label: "weekly search impressions" },
+    ],
+    challenge:
+      "A US marketing agency builds lead-generation websites for local insurance agencies. Each new site meant hand-built pages and content, and there was no shared view of how the sites performed in search.",
+    approach: [
+      "Redesigned the multi-tenant Next.js template that renders every agency's site on its own domain: quote forms, a mobile call bar, estimate calculators, lead tracking and new site types.",
+      "Built AI page generation that writes one section at a time and validates and corrects its own output, plus automatic repair of broken links in published content.",
+      "Generated location and policy pages programmatically, with a queue that rewrites internal links when a page changes and redirects for retired URLs.",
+      "Pulled Search Console, SE Ranking, BrightLocal, GA4, Bing and Clarity data into one pipeline behind a site-performance dashboard, and submitted 2,342 URLs to Bing through IndexNow.",
+      "Shipped it as 128 pull requests across 15 repositories; as of 15 November 27 of 142 tracked keywords rank on page one, including one at #1.",
+    ],
+    stack: ["Next.js", "TypeScript", "Supabase", "Vercel", "Express", "OpenAI", "Search Console API", "IndexNow", "Stripe"],
+    shots: [],
+  },
+  {
     slug: "wesion-ai-matching",
     client: "Wesion (Abundance Movement)",
     name: "AI matching and recommendations at 5% of the cost",
