@@ -48,7 +48,7 @@ export function siteGraph() {
         "Azure Data Factory",
         "Snowflake",
       ],
-      hasCredential: CERTIFICATIONS.map((c) => ({
+      hasCredential: CERTIFICATIONS.filter((c) => !c.expired).map((c) => ({
         "@type": "EducationalOccupationalCredential",
         name: c.name,
         credentialCategory: "certification",

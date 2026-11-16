@@ -55,16 +55,23 @@ export const CERTIFICATIONS = [
     name: "AWS Certified Solutions Architect – Associate",
     issuer: "Amazon Web Services",
     url: "https://www.credly.com/badges/9f649e53-5fca-4a2b-9d32-935d3da280f1/public_url",
+    badge: "/images/certs/aws.webp",
+    expired: false,
   },
   {
     name: "HashiCorp Certified: Terraform Associate",
     issuer: "HashiCorp",
     url: "https://www.credly.com/badges/41cf43ff-e454-4191-8174-e54ee6856a14/public_url",
+    badge: "/images/certs/terraform.webp",
+    // Credly lists this badge as expired (checked 2026-11-16).
+    expired: true,
   },
   {
     name: "Certified Kubernetes Application Developer (CKAD)",
     issuer: "The Linux Foundation",
     url: "https://www.credly.com/badges/bea98d78-b0ee-4171-9e06-146ebde91bbf/public_url",
+    badge: "/images/certs/ckad.webp",
+    expired: false,
   },
 ] as const;
 

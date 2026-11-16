@@ -11,7 +11,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 export const metadata = buildMetadata({
   title: "About Muhammad Safyan — Experience and Certifications",
   description:
-    "Muhammad Safyan is a full-stack, AI and data engineer with 5+ years of experience, AWS, Terraform and Kubernetes (CKAD) certified, working remotely with teams worldwide.",
+    "Muhammad Safyan: full-stack, AI and data engineer with 5+ years of experience, AWS Solutions Architect and CKAD certified, working remotely worldwide.",
   path: "/about",
   type: "profile",
 });
@@ -93,10 +93,25 @@ export default function AboutPage() {
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
             {CERTIFICATIONS.map((c) => (
               <li key={c.name}>
-                <a href={c.url} target="_blank" rel="noopener" className="block h-full rounded-3xl border border-line p-6 transition-colors hover:border-ink">
-                  <p className="text-sm text-muted">{c.issuer}</p>
+                <a
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="flex h-full flex-col items-start rounded-3xl border border-line bg-surface p-6 transition-colors hover:border-ink"
+                >
+                  <Image
+                    src={c.badge}
+                    alt={`${c.name} badge`}
+                    width={120}
+                    height={120}
+                    className={`size-28 object-contain ${c.expired ? "opacity-50 grayscale" : ""}`}
+                  />
+                  <p className="mt-5 text-sm text-muted">{c.issuer}</p>
                   <p className="mt-2 font-serif text-xl leading-snug font-medium">{c.name}</p>
-                  <p className="mt-4 text-sm font-semibold text-accent">Verify badge ↗</p>
+                  {c.expired && (
+                    <p className="mt-2 rounded-full bg-line px-2.5 py-0.5 text-xs font-semibold text-muted">Expired</p>
+                  )}
+                  <p className="mt-auto pt-4 text-sm font-semibold text-accent">Verify on Credly ↗</p>
                 </a>
               </li>
             ))}

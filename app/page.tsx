@@ -180,7 +180,7 @@ export default function Home() {
               You work directly with the engineer writing the code. Certified on the platforms I deploy to:
             </p>
             <ul className="mt-6 space-y-3">
-              {CERTIFICATIONS.map((c) => (
+              {CERTIFICATIONS.filter((c) => !c.expired).map((c) => (
                 <li key={c.name}>
                   <a href={c.url} target="_blank" rel="noopener" className="group flex items-start gap-3 text-sm font-medium">
                     <svg aria-hidden="true" viewBox="0 0 20 20" className="mt-0.5 size-5 shrink-0 text-accent" fill="currentColor">
