@@ -4,6 +4,17 @@ Personal portfolio of Muhammad Safyan — built to rank for the services he sell
 (full-stack development, AI integration, data engineering) and to convert visitors
 into enquiries.
 
+## Knowledge base
+
+Start at [knowledge-base/MASTER-INDEX.md](knowledge-base/MASTER-INDEX.md).
+
+- `knowledge-base/plans/next-tasks.md` — the backlog (getting found, blog, analytics gaps). Check it first.
+- `knowledge-base/refined/seo-and-analytics.md` — domain/DNS, SEO layer, GA4/Clarity, contact form.
+  Read it before touching any of those.
+- After meaningful work: add to today's `knowledge-base/logs/session_YYYY-MM-DD.md` and a line in
+  `logs/INDEX.md`; update the refined doc if the setup changed.
+- Credentials: `keys/CREDENTIALS.md` (git-ignored — the repo is public; never put secrets in the KB).
+
 ## Stack
 
 Next.js 16 (App Router, every page statically generated), React 19, TypeScript,

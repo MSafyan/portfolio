@@ -1,0 +1,11 @@
+# Logs index — newest first
+
+## 2026-11-16 — [session_2026-11-16.md](session_2026-11-16.md)
+- 🔁 Vite SPA → static Next.js 16 site: services, 10 case studies, videos, about, contact.
+- 🔍 SEO layer (metadata builder, JSON-LD graph, sitemap/robots, OG images, IndexNow).
+- 🌐 Live on muhammadsafyan.com; redirects from old hosts; SPF `-all` + DMARC reject.
+- 📊 Search Console, Bing, GA4 (`G-DQ2H393P77`) and Clarity live; Lighthouse 100 across.
+- ✉️ Contact form via EmailJS; Gmail link reconnected; live test delivered.
+- 📈 Charts, "the hard parts", diagrams and screenshots on case studies; The Gala added.
+- ⚠️ Brief wrong-content deploy from a bad commit split (fixed a6a8445).
+- 🔒 CVR screenshot cropped (Stripe IDs); Terraform Associate marked expired.
