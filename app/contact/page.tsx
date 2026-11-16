@@ -9,7 +9,7 @@ import { SITE, absoluteUrl } from "@/lib/site";
 export const metadata = buildMetadata({
   title: "Hire Muhammad Safyan — Contact",
   description:
-    "Start a project with Muhammad Safyan: email a short brief about your SaaS, AI or data project, or hire through Upwork or Fiverr with payment protection.",
+    "Start a project with Muhammad Safyan: send a short brief about your SaaS, AI or data project by form or email, or hire through Upwork with payment protection.",
   path: "/contact",
 });
 
@@ -29,7 +29,6 @@ export default function ContactPage() {
   const channels = [
     { label: "Email", value: SITE.email, href: `mailto:${SITE.email}?subject=Project%20enquiry`, note: "Write directly from your inbox" },
     { label: "Upwork", value: "Hire on Upwork", href: SITE.profiles.upwork, note: "Payment protection, hourly or fixed price" },
-    { label: "Fiverr", value: "Order on Fiverr", href: SITE.profiles.fiverr, note: "Smaller, well-defined jobs" },
     { label: "LinkedIn", value: "Connect on LinkedIn", href: SITE.profiles.linkedin, note: "Full-time and contract roles" },
   ];
 

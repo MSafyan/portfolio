@@ -16,7 +16,6 @@ export const SITE = {
     github: "https://github.com/MSafyan",
     linkedin: "https://www.linkedin.com/in/safyanakram/",
     upwork: "https://www.upwork.com/freelancers/~0110ed1cc027d85e0f",
-    fiverr: "https://www.fiverr.com/s/P216loL",
   },
 } as const;
 

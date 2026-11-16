@@ -87,7 +87,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Do you work through Upwork or directly?",
-        a: "Either. Many clients start on Upwork or Fiverr for the payment protection and move to a direct contract later.",
+        a: "Either. Many clients start on Upwork for the payment protection and move to a direct contract later.",
       },
     ],
   },

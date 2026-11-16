@@ -9,7 +9,6 @@ export function Footer() {
     { href: SITE.profiles.github, label: "GitHub" },
     { href: SITE.profiles.linkedin, label: "LinkedIn" },
     { href: SITE.profiles.upwork, label: "Upwork" },
-    { href: SITE.profiles.fiverr, label: "Fiverr" },
   ];
 
   return (
