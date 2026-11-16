@@ -4,8 +4,16 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"] },
   async redirects() {
-    // Old SPA routes. /map was a discontinued experiment.
-    return [{ source: "/map", destination: "/", permanent: true }];
+    // The old vercel.app addresses send their links and rankings to the real
+    // domain. Preview deployments use other hostnames and are unaffected.
+    const oldHosts = ["safyan-portfolio.vercel.app", "portfolio-outc.vercel.app"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://muhammadsafyan.com/:path*",
+      permanent: true,
+    }));
+    // /map was a discontinued experiment on the old site.
+    return [...oldHosts, { source: "/map", destination: "/", permanent: true }];
   },
 };
 

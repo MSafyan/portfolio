@@ -2,7 +2,7 @@
 // entry, OG URL and JSON-LD @id is built from SITE.url — never from VERCEL_URL,
 // which would leak preview domains into search results.
 export const SITE = {
-  url: "https://safyan-portfolio.vercel.app",
+  url: "https://muhammadsafyan.com",
   name: "Muhammad Safyan",
   jobTitle: "Full-Stack, AI & Data Engineer",
   tagline: "Full-stack, AI and data engineer for SaaS teams",
