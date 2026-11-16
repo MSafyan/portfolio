@@ -670,8 +670,8 @@ export const WORK: CaseStudy[] = [
       {
         src: "/images/work/cvr2.webp",
         alt: "CVR rugby league analytics report view",
-        width: 1600,
-        height: 983,
+        width: 1360,
+        height: 820,
       },
     ],
   },
