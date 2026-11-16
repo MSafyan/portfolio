@@ -66,7 +66,7 @@ export default function WorkPage() {
             More projects
           </h2>
           <p className="mt-3 max-w-2xl text-lg text-muted">Earlier and smaller builds — web, mobile and automation.</p>
-          <ul className="mt-8 grid gap-5 md:grid-cols-2">
+          <ul className="mt-8 grid items-start gap-5 md:grid-cols-2">
             {MORE_PROJECTS.map((p) => (
               <li key={p.name} className="flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
                 {p.shot && (

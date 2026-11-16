@@ -24,7 +24,7 @@ export type CaseStudy = {
   stack: string[];
   shots: Shot[];
   /** The hard problems, in the order they came up: what went wrong and what fixed it. */
-  hardParts?: { title: string; body: string }[];
+  hardParts?: { title: string; body: string; figure?: Shot }[];
   charts?: Chart[];
   /** Walkthrough video and the second its section starts. */
   video?: { id: string; start: number };
@@ -73,6 +73,12 @@ export const WORK: CaseStudy[] = [
       {
         title: "We started with spreadsheets, and should have started with an app",
         body: "The first brief was to automate the inventory spreadsheets. After one or two weeks, a proper meeting about how the shop actually ran showed the spreadsheets were the problem. We switched to one app — scan, list, sell — with a two-way sync to WooCommerce: a sale in the shop updates the app, a change in the app updates the shop. It's why I now start every project with a meeting.",
+        figure: {
+          src: "/images/work/diagrams/automation.webp",
+          alt: "Diagram: before, a spreadsheet, Sortly and the online shop disagree; after, scan the box, identify the set, update stock and price, and sync with the shop",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "A 30-second save that wasn't our code",
@@ -216,8 +222,25 @@ export const WORK: CaseStudy[] = [
         title: "Money that has to add up",
         body: "Between the customer's payment and the provider's payout sit service fees, refunds, complaints and changed bank details. Each payout and refund is a record with a status and history, and a payout is held while a complaint is under review or for three days after a bank account change.",
       },
+      {
+        title: "Files anyone with the link could open",
+        body: "Invoices, identity documents and bank details sat in a public bucket. Now the bucket is private: the app checks the signed-in user may see a file, writes an audit row, then streams it. Bank numbers are encrypted, and personal fields never reach the logs.",
+        figure: {
+          src: "/images/work/diagrams/takeover-data.webp",
+          alt: "Diagram: before, a public bucket served invoices and identity documents to anyone with the link; after, a private bucket behind a permission check and an audit row",
+          width: 1600,
+          height: 900,
+        },
+      },
     ],
-    shots: [],
+    shots: [
+      {
+        src: "/images/work/gala-app.webp",
+        alt: "The Gala admin executive dashboard with customers, providers, bookings and revenue on staging data",
+        width: 1400,
+        height: 900,
+      },
+    ],
   },
   {
     slug: "wesion-ai-matching",
@@ -246,14 +269,32 @@ export const WORK: CaseStudy[] = [
       {
         title: "A score people can trust",
         body: "Vector search always returns something, even for a bad match, so anything under 40 out of 100 is dropped. The final score weights semantic similarity at 40%, strength-to-weakness pairing at 50% (someone strong at public speaking matched with someone who wants to improve it) and engagement at 10%.",
+        figure: {
+          src: "/images/work/diagrams/ai-matching.webp",
+          alt: "Diagram: a weekly job scores similar and complementary answers with OpenAI and Pinecone, combined 0.4 similar, 0.5 complementary, 0.1 engagement",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "A chatbot that never touches the database directly",
         body: "General questions about the platform are answered from documentation through RAG. Questions about a member's own data go through one narrow function per question type, so the model can never compose its own queries against production.",
+        figure: {
+          src: "/images/work/diagrams/ai-chatbot.webp",
+          alt: "Diagram: a question is classified, then answered from the help docs through RAG or from the member's own data through fixed lookups",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "The cheapest model that does the job",
         body: "One day of unexpected API cost led to measuring every feature on its own. Most tasks didn't need a reasoning model; moving them to a smaller one with token limits cut spend by 95% without a drop in output quality.",
+        figure: {
+          src: "/images/work/diagrams/ai-cost.webp",
+          alt: "Diagram: moving from o1-mini to gpt-4o-mini with token limits cut the AI bill by 95%; the bigger model kept only where it earns it",
+          width: 1600,
+          height: 900,
+        },
       },
     ],
     video: { id: "YMJ4e0TEcTU", start: 209 },
@@ -386,6 +427,12 @@ export const WORK: CaseStudy[] = [
       {
         title: "Schema changes without an empty table",
         body: "The source databases were still being developed, so columns and tables changed under the pipelines. Each load compares schemas first; when they differ it builds a staging table, loads it, then swaps it in — the warehouse never has a moment without the table.",
+        figure: {
+          src: "/images/work/diagrams/data-schema.webp",
+          alt: "Diagram: load to staging, compare columns, rebuild the table in one transaction if different, and log every sync",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "Incremental loads need two things from the source",
@@ -455,14 +502,32 @@ export const WORK: CaseStudy[] = [
       {
         title: "The 1–3% that took four months",
         body: "Gift cards and test orders explained part of the gap between Shopify's reports and the warehouse, but not all of it, and Shopify support couldn't say why. The answer was in GraphQL's order-change history, which the REST API doesn't expose: gift cards issued as refunds and then spent were being counted twice.",
+        figure: {
+          src: "/images/work/diagrams/data-reconcile.webp",
+          alt: "Diagram: tracing a 1–3% sales gap through Shopify support and GraphQL order history to gift cards sold, refunded onto cards and spent",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "A four-hour procedure",
         body: "One procedure loaded products, sales, refunds, tags, vendors and pricing at once. It grew from 30 minutes to four hours as tables were added. Split into six or seven procedures over a shared base table, each logging which step it reached, it runs in about 30 minutes.",
+        figure: {
+          src: "/images/work/diagrams/data-steps.webp",
+          alt: "Diagram: one query joining ten tables grew to over four hours; one parent now calls small procedures, one or two tables each",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "Columns you can't index",
         body: "Data Factory writes text as nvarchar(max), which SQL Server can't index. Each column was profiled for its real length and resized; product tags, up to 40 per product in two different formats, moved into their own table so they could be indexed and searched.",
+        figure: {
+          src: "/images/work/diagrams/data-tags.webp",
+          alt: "Diagram: product tags moved from one long text column into a table with one row per tag, indexed on tag and product",
+          width: 1600,
+          height: 900,
+        },
       },
     ],
     video: { id: "qYOXeFOOdjY", start: 165 },
@@ -515,6 +580,12 @@ export const WORK: CaseStudy[] = [
       {
         title: "An API that stops at page ten",
         body: "Keepa returns at most ten pages per query, so one query sees a fraction of a brand's catalogue. Running six different sort orders and de-duplicating the results lifted coverage from about 15% to over 75%.",
+        figure: {
+          src: "/images/work/diagrams/data-snowpark.webp",
+          alt: "Diagram: Keepa, ScaleSERP and SmartyStreets feed Snowpark stored procedures in Snowflake, with batched writes, safe re-runs and a run log",
+          width: 1600,
+          height: 900,
+        },
       },
       {
         title: "Is this seller legitimate?",
@@ -614,6 +685,12 @@ export const WORK: CaseStudy[] = [
       {
         title: "Cron jobs that took the database down",
         body: "Scheduled refreshes opened more connections than the managed PostgreSQL allowed, and queries started timing out. One shared Prisma client behind PgBouncer, with a fixed connection limit, fixed it.",
+        figure: {
+          src: "/images/work/diagrams/carlister-connections.webp",
+          alt: "Code: one shared Prisma client per service behind PgBouncer, and the script used to diagnose active Postgres connections",
+          width: 1600,
+          height: 1000,
+        },
       },
     ],
     video: { id: "3rp6xjwwaK0", start: 19 },
@@ -641,7 +718,14 @@ export const WORK: CaseStudy[] = [
       "Added four cache layers with negative-result caching, and fixed PostgreSQL connection exhaustion with a shared Prisma client and PgBouncer.",
     ],
     stack: ["Next.js 15", "React 19", "TypeScript", "TanStack Query", "Express 5", "Prisma", "PostgreSQL", "SendGrid"],
-    shots: [],
+    shots: [
+      {
+        src: "/images/work/carlister-app.webp",
+        alt: "Good Deals page listing cars priced under their MMR and vAuto valuations, with the price difference for each",
+        width: 1400,
+        height: 900,
+      },
+    ],
   },
 ];
 

@@ -97,6 +97,18 @@ export default async function CaseStudyPage({ params }: Props) {
                   <div key={h.title} className="rounded-2xl border-l-2 border-accent bg-surface py-4 pr-5 pl-5">
                     <h3 className="text-lg font-semibold">{h.title}</h3>
                     <p className="mt-2 leading-relaxed text-muted">{h.body}</p>
+                    {h.figure && (
+                      <a href={h.figure.src} target="_blank" rel="noopener" className="mt-4 block">
+                        <Image
+                          src={h.figure.src}
+                          alt={h.figure.alt}
+                          width={h.figure.width}
+                          height={h.figure.height}
+                          sizes="(min-width: 1024px) 640px, 100vw"
+                          className="h-auto w-full rounded-xl border border-line bg-white"
+                        />
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
