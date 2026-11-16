@@ -7,7 +7,7 @@ import type { CaseStudy } from "./work";
 // Person and business objects.
 export const PERSON_ID = absoluteUrl("/#person");
 export const BUSINESS_ID = absoluteUrl("/#business");
-export const WEBSITE_ID = absoluteUrl("/#website");
+const WEBSITE_ID = absoluteUrl("/#website");
 
 type Node = Record<string, unknown>;
 

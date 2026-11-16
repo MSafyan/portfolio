@@ -13,7 +13,7 @@ type PageMeta = {
 const TITLE_MAX = 60;
 const SUFFIX = ` | ${SITE.name}`;
 
-export function pageTitle(subject: string) {
+function pageTitle(subject: string) {
   return subject.length + SUFFIX.length <= TITLE_MAX ? subject + SUFFIX : subject;
 }
 

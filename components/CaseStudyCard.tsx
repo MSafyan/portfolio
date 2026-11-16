@@ -4,8 +4,7 @@ import { getService } from "@/lib/services";
 import type { CaseStudy } from "@/lib/work";
 import { Arrow } from "./ui";
 
-export function CaseStudyCard({ study, headingLevel = "h3" }: { study: CaseStudy; headingLevel?: "h2" | "h3" }) {
-  const Heading = headingLevel;
+export function CaseStudyCard({ study }: { study: CaseStudy }) {
   const shot = study.shots[0];
   const lead = study.metrics[0];
   // Phone screenshots: show the whole screen centred instead of cropping the top.
@@ -36,11 +35,11 @@ export function CaseStudyCard({ study, headingLevel = "h3" }: { study: CaseStudy
         <p className="text-xs font-semibold tracking-wider text-muted uppercase">
           {study.client} · {getService(study.service)?.name}
         </p>
-        <Heading className="mt-2 font-serif text-2xl leading-snug font-medium tracking-tight text-balance">
+        <h3 className="mt-2 font-serif text-2xl leading-snug font-medium tracking-tight text-balance">
           <Link href={`/work/${study.slug}`} className="after:absolute after:inset-0">
             {study.name}
           </Link>
-        </Heading>
+        </h3>
         <dl className="mt-5 grid grid-cols-2 gap-4 border-t border-line pt-5">
           {study.metrics.slice(shot ? 0 : 1, shot ? 2 : 3).map((m) => (
             <div key={m.label}>
