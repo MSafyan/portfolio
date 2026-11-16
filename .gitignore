@@ -11,3 +11,6 @@ next-env.d.ts
 .idea
 .vscode/*
 !.vscode/extensions.json
+
+# Credentials — never commit (repo is public)
+keys/
