@@ -180,6 +180,46 @@ export const WORK: CaseStudy[] = [
     shots: [],
   },
   {
+    slug: "the-gala-events-marketplace",
+    client: "The Gala",
+    name: "An events marketplace in Saudi Arabia, payments to payouts",
+    title: "The Gala: Laravel Marketplace with BNPL Payments and Payouts",
+    description:
+      "Taking over and extending a Saudi events marketplace: Laravel API, React (Inertia) dashboards, two Flutter apps, card and buy-now-pay-later payments, payouts and refunds.",
+    service: "full-stack-development",
+    role: "Back-end developer",
+    region: "Saudi Arabia",
+    published: "2026-11-16",
+    period: "2025 – present",
+    metrics: [
+      { value: "867", label: "automated tests, all passing" },
+      { value: "680", label: "commits shipped" },
+      { value: "3", label: "payment providers integrated" },
+    ],
+    challenge:
+      "The Gala connects customers with singers, decorators and event managers. It had been built by a previous team: the core worked, but there were bugs, an interface that needed reskinning, and a database whose structure existed only in production — the migration files were missing.",
+    approach: [
+      "Recreated the missing database migrations so every environment can be rebuilt to match, on AWS Elastic Beanstalk with MySQL on RDS and files on S3, deployed automatically.",
+      "Rebuilt checkout around card payments through MyFatoorah and Tabby and Tamara buy-now-pay-later, with the server — never the app — deciding the amount and confirming payment.",
+      "Added the money side a marketplace needs: provider payouts per booking, a hold when a provider's bank account changes, and refunds as records with a status and a full history.",
+      "Built booking rules for real events: one confirmed booking per offer and time slot, provider unavailable days, home-visit addresses and reminders the day before.",
+      "Reskinned the provider and admin dashboards in React through Laravel and Inertia, serving two Flutter apps from the same API, with 867 automated tests guarding every change.",
+    ],
+    stack: ["Laravel", "PHP", "React", "Inertia.js", "MySQL", "Flutter", "MyFatoorah", "Tabby", "Tamara", "AWS"],
+    video: { id: "3rp6xjwwaK0", start: 648 },
+    hardParts: [
+      {
+        title: "A database nobody could rebuild",
+        body: "Previous developers had changed the database by hand, so the migration files no longer described it. A new environment could come out with missing tables or different column limits from production. Writing the missing migrations made every environment reproducible again.",
+      },
+      {
+        title: "Money that has to add up",
+        body: "Between the customer's payment and the provider's payout sit service fees, refunds, complaints and changed bank details. Each payout and refund is a record with a status and history, and a payout is held while a complaint is under review or for three days after a bank account change.",
+      },
+    ],
+    shots: [],
+  },
+  {
     slug: "wesion-ai-matching",
     video: { id: "YMJ4e0TEcTU", start: 209 },
     client: "Wesion (Abundance Movement)",

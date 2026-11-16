@@ -143,7 +143,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {WORK.slice(0, 4).map((w) => (
+            {WORK.slice(0, 6).map((w) => (
               <CaseStudyCard key={w.slug} study={w} />
             ))}
           </div>

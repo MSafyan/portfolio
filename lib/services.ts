@@ -71,7 +71,7 @@ export const SERVICES: Service[] = [
       "Docker",
       "Stripe",
     ],
-    work: ["brickdistrict-seo-ecommerce", "insurance-lead-gen-sites", "helpicon-marketplace", "carlister-pricing-platform"],
+    work: ["brickdistrict-seo-ecommerce", "insurance-lead-gen-sites", "the-gala-events-marketplace", "helpicon-marketplace", "carlister-pricing-platform", "cvr-sports-analytics"],
     faqs: [
       {
         q: "Can you take over an existing codebase?",
