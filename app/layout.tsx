@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <Clarity />
+        <Clarity enabled={process.env.VERCEL_ENV === "production"} />
       </body>
     </html>
   );
