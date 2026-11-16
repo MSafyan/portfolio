@@ -1,5 +1,10 @@
 export type Shot = { src: string; alt: string; width: number; height: number };
 
+type Point = { value: number; display: string };
+export type Chart =
+  | { type: "beforeAfter"; title: string; before: Point; after: Point; change?: string; source?: string }
+  | { type: "series"; title: string; points: (Point & { label: string })[]; source?: string };
+
 export type CaseStudy = {
   slug: string;
   client: string;
@@ -18,6 +23,9 @@ export type CaseStudy = {
   approach: string[];
   stack: string[];
   shots: Shot[];
+  /** The hard problems, in the order they came up: what went wrong and what fixed it. */
+  hardParts?: { title: string; body: string }[];
+  charts?: Chart[];
   /** Walkthrough video and the second its section starts. */
   video?: { id: string; start: number };
 };
@@ -25,6 +33,56 @@ export type CaseStudy = {
 export const WORK: CaseStudy[] = [
   {
     slug: "brickdistrict-seo-ecommerce",
+    charts: [
+      {
+        type: "series",
+        title: "Google impressions per week",
+        points: [
+          { label: "20 Sep", value: 137, display: "137" },
+          { label: "12 Oct", value: 154, display: "154" },
+          { label: "2 Nov", value: 5280, display: "5,280" },
+          { label: "13 Nov", value: 8020, display: "8,020" },
+        ],
+        source: "Google Search Console, 2026. The new theme went live on 13 October.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Mobile Lighthouse performance, home page",
+        before: { value: 60, display: "60" },
+        after: { value: 98, display: "98" },
+        change: "+38 points",
+        source: "Lighthouse mobile, before and after the theme switch on 13 Oct 2026.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Largest Contentful Paint, home page (mobile)",
+        before: { value: 9.1, display: "9.1 s" },
+        after: { value: 2.2, display: "2.2 s" },
+        change: "4x faster",
+      },
+      {
+        type: "beforeAfter",
+        title: "Saving one product to WooCommerce",
+        before: { value: 34, display: "~34 s" },
+        after: { value: 1.87, display: "1.87 s" },
+        change: "18x faster",
+        source: "Measured 30 Aug 2026, after removing the caching plugin's save hooks.",
+      },
+    ],
+    hardParts: [
+      {
+        title: "We started with spreadsheets, and should have started with an app",
+        body: "The first brief was to automate the inventory spreadsheets. After one or two weeks, a proper meeting about how the shop actually ran showed the spreadsheets were the problem. We switched to one app — scan, list, sell — with a two-way sync to WooCommerce: a sale in the shop updates the app, a change in the app updates the shop. It's why I now start every project with a meeting.",
+      },
+      {
+        title: "A 30-second save that wasn't our code",
+        body: "Every product update took about half a minute. The cause was a caching plugin that rebuilt its cache on every save. Without its save hooks the same write takes 1.87 s, which turned a two-hour catalogue pass into about eleven minutes.",
+      },
+      {
+        title: "Search traffic came from answering real questions",
+        body: "Speed and clean structured data got pages indexed, but impressions took off with buying guides written for what collectors actually search — is a set retiring, what it's worth, which sets are rare. Guides now earn most of the store's impressions, and click-through is the next thing to work on.",
+      },
+    ],
     video: { id: "d364a4WmzAg", start: 14 },
     client: "BrickDistrict",
     name: "58x more Google impressions for a LEGO e-commerce store",
@@ -63,6 +121,37 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "insurance-lead-gen-sites",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Search impressions per week, across the sites",
+        before: { value: 533, display: "533" },
+        after: { value: 6271, display: "6,271" },
+        change: "12x in one week",
+        source: "Google Search Console, week to 13 Nov 2026.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Sitemap pages indexed by Google",
+        before: { value: 1914, display: "1,914 submitted" },
+        after: { value: 1233, display: "1,233 indexed (64%)" },
+        source: "Google Search Console, 9 Nov 2026.",
+      },
+    ],
+    hardParts: [
+      {
+        title: "One codebase, nineteen brands",
+        body: "Every site has its own domain, colours, offices and content, but they all render from one Next.js template backed by Supabase. A fix or a new feature lands on all nineteen at once — the only way a small team can keep that many sites current.",
+      },
+      {
+        title: "AI content you can publish without reading every word",
+        body: "Pages are generated one section at a time, and each section is validated and corrected before it is saved. A separate pass repairs broken links and stray markdown in published content, because generated text fails in small, boring ways at scale.",
+      },
+      {
+        title: "SEO data in one place",
+        body: "Search Console, SE Ranking, BrightLocal, GA4, Bing and Clarity each told part of the story. Pulling them into one pipeline made it possible to see which pages rank on page two and which keywords are worth a new page.",
+      },
+    ],
     client: "US marketing agency",
     name: "19 insurance lead-generation sites from one Next.js codebase",
     title: "Multi-Site Next.js Lead-Gen Platform with Programmatic SEO",
@@ -132,6 +221,41 @@ export const WORK: CaseStudy[] = [
     video: { id: "3rp6xjwwaK0", start: 166 },
     client: "Helpicon",
     name: "A Swedish services marketplace with 99.8% payment success",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Monthly LLM spend (relative)",
+        before: { value: 100, display: "100%" },
+        after: { value: 5, display: "5%" },
+        change: "95% lower",
+        source: "After moving tasks from o1-mini to gpt-4o-mini with per-feature token limits.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Saving a member's assessment",
+        before: { value: 20, display: "20 s" },
+        after: { value: 2, display: "2 s" },
+        change: "10x faster",
+      },
+    ],
+    hardParts: [
+      {
+        title: "Match keywords, not paragraphs",
+        body: "Feeding whole bios into a vector database matches people on filler words. Instead an LLM extracts keywords from each profile first — \"I like cricket\" becomes \"cricket\" — and only those go into Pinecone, in separate namespaces for strengths, weaknesses, interests and values.",
+      },
+      {
+        title: "A score people can trust",
+        body: "Vector search always returns something, even for a bad match, so anything under 40 out of 100 is dropped. The final score weights semantic similarity at 40%, strength-to-weakness pairing at 50% (someone strong at public speaking matched with someone who wants to improve it) and engagement at 10%.",
+      },
+      {
+        title: "A chatbot that never touches the database directly",
+        body: "General questions about the platform are answered from documentation through RAG. Questions about a member's own data go through one narrow function per question type, so the model can never compose its own queries against production.",
+      },
+      {
+        title: "The cheapest model that does the job",
+        body: "One day of unexpected API cost led to measuring every feature on its own. Most tasks didn't need a reasoning model; moving them to a smaller one with token limits cut spend by 95% without a drop in output quality.",
+      },
+    ],
     title: "Helpicon: Marketplace Back End, Payments and DevOps on AWS",
     description:
       "Back end, Stripe and Swish payments, and AWS DevOps for a Swedish services marketplace with 10,000+ users: 99.8% payment success and 2–3x faster APIs.",
@@ -167,6 +291,43 @@ export const WORK: CaseStudy[] = [
         alt: "Helpicon mobile app screen from the App Store listing",
         width: 1290,
         height: 2796,
+      },
+    ],
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Deployment time",
+        before: { value: 45, display: "45 min" },
+        after: { value: 11, display: "11 min" },
+        change: "75% faster",
+      },
+      {
+        type: "beforeAfter",
+        title: "Time to recover from an incident",
+        before: { value: 120, display: "2 h" },
+        after: { value: 15, display: "15 min" },
+        change: "8x faster",
+      },
+      {
+        type: "beforeAfter",
+        title: "Docker image size",
+        before: { value: 1200, display: "1.2 GB" },
+        after: { value: 180, display: "180 MB" },
+        change: "85% smaller",
+      },
+    ],
+    hardParts: [
+      {
+        title: "Never take the price from the browser",
+        body: "Anyone with developer tools can change a price before it is sent. Every amount comes from the server and is confirmed by a Stripe or Swish webhook that is verified with its signing secret — the webhook, not the redirect back to the app, decides whether a booking is paid.",
+      },
+      {
+        title: "Moderation with an LLM, and the prompt that blocked real posts",
+        body: "Users were posting tasks the platform doesn't allow, phone numbers to move off-platform, and \"hire me\" ads in the wrong place. An LLM validator checks each task and question. The first prompt rejected plenty of legitimate tasks; it took several rounds of testing to tune — and needs re-checking whenever the model behind the same name changes.",
+      },
+      {
+        title: "Send only what the screen needs",
+        body: "Lists that were fine with a few hundred users slowed down with thousands. The API now returns only the fields and relations each screen asks for, with pagination and composite indexes — responses dropped from around three seconds to under 200 ms.",
       },
     ],
   },
@@ -212,6 +373,25 @@ export const WORK: CaseStudy[] = [
       },
     ],
   },
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Manual reporting effort",
+        before: { value: 100, display: "100%" },
+        after: { value: 30, display: "30%" },
+        change: "70% less",
+      },
+    ],
+    hardParts: [
+      {
+        title: "Schema changes without an empty table",
+        body: "The source databases were still being developed, so columns and tables changed under the pipelines. Each load compares schemas first; when they differ it builds a staging table, loads it, then swaps it in — the warehouse never has a moment without the table.",
+      },
+      {
+        title: "Incremental loads need two things from the source",
+        body: "Millions of rows a day can't be reloaded in full. Continuous sync only works when tables have an updated_at column and soft deletes; a hard-deleted row simply vanishes and the warehouse never learns it is gone. Tables were sorted into daily or weekly loads by size.",
+      },
+    ],
   {
     slug: "pink-chicken-retail-data",
     video: { id: "qYOXeFOOdjY", start: 165 },
@@ -254,6 +434,37 @@ export const WORK: CaseStudy[] = [
     video: { id: "qYOXeFOOdjY", start: 684 },
     client: "E-commerce intelligence platform",
     name: "From 15% to 75% catalogue coverage on Snowflake",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Nightly load procedure",
+        before: { value: 240, display: "4 h" },
+        after: { value: 30, display: "~30 min" },
+        change: "8x faster",
+        source: "After splitting one procedure into six or seven steps, each logging its progress.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Azure Monitor cost per month",
+        before: { value: 1000, display: "$1,000" },
+        after: { value: 0.1, display: "$0.10" },
+        change: "~$12,000 a year saved",
+      },
+    ],
+    hardParts: [
+      {
+        title: "The 1–3% that took four months",
+        body: "Gift cards and test orders explained part of the gap between Shopify's reports and the warehouse, but not all of it, and Shopify support couldn't say why. The answer was in GraphQL's order-change history, which the REST API doesn't expose: gift cards issued as refunds and then spent were being counted twice.",
+      },
+      {
+        title: "A four-hour procedure",
+        body: "One procedure loaded products, sales, refunds, tags, vendors and pricing at once. It grew from 30 minutes to four hours as tables were added. Split into six or seven procedures over a shared base table, each logging which step it reached, it runs in about 30 minutes.",
+      },
+      {
+        title: "Columns you can't index",
+        body: "Data Factory writes text as nvarchar(max), which SQL Server can't index. Each column was profiled for its real length and resized; product tags, up to 40 per product in two different formats, moved into their own table so they could be indexed and searched.",
+      },
+    ],
     title: "Snowflake and Snowpark ETL for E-commerce Product Data",
     description:
       "An idempotent Snowflake and Snowpark ETL enriching 50k–100k+ products per run from Keepa and ScaleSERP — 5x the catalogue coverage and 10–20x faster loads.",
@@ -291,6 +502,29 @@ export const WORK: CaseStudy[] = [
     region: "Australia",
     published: "2026-11-16",
     period: "2022 – 2026",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Catalogue coverage per run",
+        before: { value: 15, display: "~15%" },
+        after: { value: 75, display: "75%+" },
+        change: "5x coverage",
+      },
+    ],
+    hardParts: [
+      {
+        title: "An API that stops at page ten",
+        body: "Keepa returns at most ten pages per query, so one query sees a fraction of a brand's catalogue. Running six different sort orders and de-duplicating the results lifted coverage from about 15% to over 75%.",
+      },
+      {
+        title: "Is this seller legitimate?",
+        body: "For each product the platform lists who is selling it, then checks each seller against Google results and a verified address (ScaleSERP and SmartyStreets) and ranks them — helping brands find unauthorised sellers.",
+      },
+      {
+        title: "Debugging code you can't step into",
+        body: "Python running inside a Snowflake procedure has no console. Every procedure writes its progress — started, 10% done, rows loaded, finished — to a log table, which made failures traceable.",
+      },
+    ],
     metrics: [
       { value: "3", label: "competitions covered" },
       { value: "9 → 17", label: "Angular versions upgraded" },
@@ -320,6 +554,16 @@ export const WORK: CaseStudy[] = [
       },
     ],
   },
+    hardParts: [
+      {
+        title: "Thousands of events per match file",
+        body: "Each match arrives as a ~3 MB XML file with 3,000–4,000 events. Re-reading hundreds of files for every report isn't possible, so the useful statistics are computed once, at upload, and stored — reports read the results, not the raw events.",
+      },
+      {
+        title: "Excel reports to automatic ones",
+        body: "Analysts used to build team and player reports by hand in spreadsheets. They now come from the platform directly, filterable by competition, season, team and match, with PDF export for every view.",
+      },
+    ],
   {
     slug: "carlister-pricing-platform",
     video: { id: "3rp6xjwwaK0", start: 19 },
@@ -358,3 +602,13 @@ export function getCaseStudy(slug: string) {
 export function workForService(slugs: string[]) {
   return slugs.map((s) => getCaseStudy(s)).filter((w): w is CaseStudy => Boolean(w));
 }
+    hardParts: [
+      {
+        title: "An unlimited API needs your own limits",
+        body: "The listings provider allowed unlimited calls, so a bug could loop millions of times and run up thousands of dollars. The system has its own circuit breakers: a cap on calls per run, a stop after repeated failures, and an email alert when either trips.",
+      },
+      {
+        title: "Cron jobs that took the database down",
+        body: "Scheduled refreshes opened more connections than the managed PostgreSQL allowed, and queries started timing out. One shared Prisma client behind PgBouncer, with a fixed connection limit, fixed it.",
+      },
+    ],

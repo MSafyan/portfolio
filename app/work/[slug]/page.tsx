@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
+import { ChartCard } from "@/components/Charts";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
@@ -62,6 +63,17 @@ export default async function CaseStudyPage({ params }: Props) {
         </dl>
       </Container>
 
+      {study.charts && (
+        <Container className="mt-6">
+          <h2 className="sr-only">Results in charts</h2>
+          <div className={`grid gap-5 ${study.charts.length > 1 ? "md:grid-cols-2" : ""}`}>
+            {study.charts.map((c) => (
+              <ChartCard key={c.title} chart={c} />
+            ))}
+          </div>
+        </Container>
+      )}
+
       <Container className="mt-16 grid gap-14 lg:grid-cols-[1fr_18rem]">
         <article className="max-w-2xl">
           <h2 className="font-serif text-3xl font-medium tracking-tight">The problem</h2>
@@ -76,6 +88,20 @@ export default async function CaseStudyPage({ params }: Props) {
               </li>
             ))}
           </ol>
+
+          {study.hardParts && (
+            <>
+              <h2 className="mt-14 font-serif text-3xl font-medium tracking-tight">The hard parts</h2>
+              <div className="mt-6 space-y-5">
+                {study.hardParts.map((h) => (
+                  <div key={h.title} className="rounded-2xl border-l-2 border-accent bg-surface py-4 pr-5 pl-5">
+                    <h3 className="text-lg font-semibold">{h.title}</h3>
+                    <p className="mt-2 leading-relaxed text-muted">{h.body}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
 
           {video && (
             <>

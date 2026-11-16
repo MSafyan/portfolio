@@ -11,6 +11,9 @@
   --accent: #b23c0d;
   --accent-ink: #ffffff;
   --accent-soft: #fbeee6;
+  /* Chart pair, validated (CVD-safe) against the light surface. */
+  --chart-strong: #b23c0d;
+  --chart-muted: #e8946a;
   color-scheme: light;
 }
 
@@ -23,6 +26,9 @@
   --accent: #f08a55;
   --accent-ink: #17171b;
   --accent-soft: #2a1d16;
+  /* Chart pair, validated (CVD-safe) against the dark surface. */
+  --chart-strong: #d96f36;
+  --chart-muted: #98461e;
   color-scheme: dark;
 }
 
