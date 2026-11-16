@@ -221,6 +221,41 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "wesion-ai-matching",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Monthly LLM spend (relative)",
+        before: { value: 100, display: "100%" },
+        after: { value: 5, display: "5%" },
+        change: "95% lower",
+        source: "After moving tasks from o1-mini to gpt-4o-mini with per-feature token limits.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Saving a member's assessment",
+        before: { value: 20, display: "20 s" },
+        after: { value: 2, display: "2 s" },
+        change: "10x faster",
+      },
+    ],
+    hardParts: [
+      {
+        title: "Match keywords, not paragraphs",
+        body: "Feeding whole bios into a vector database matches people on filler words. Instead an LLM extracts keywords from each profile first — \"I like cricket\" becomes \"cricket\" — and only those go into Pinecone, in separate namespaces for strengths, weaknesses, interests and values.",
+      },
+      {
+        title: "A score people can trust",
+        body: "Vector search always returns something, even for a bad match, so anything under 40 out of 100 is dropped. The final score weights semantic similarity at 40%, strength-to-weakness pairing at 50% (someone strong at public speaking matched with someone who wants to improve it) and engagement at 10%.",
+      },
+      {
+        title: "A chatbot that never touches the database directly",
+        body: "General questions about the platform are answered from documentation through RAG. Questions about a member's own data go through one narrow function per question type, so the model can never compose its own queries against production.",
+      },
+      {
+        title: "The cheapest model that does the job",
+        body: "One day of unexpected API cost led to measuring every feature on its own. Most tasks didn't need a reasoning model; moving them to a smaller one with token limits cut spend by 95% without a drop in output quality.",
+      },
+    ],
     video: { id: "YMJ4e0TEcTU", start: 209 },
     client: "Wesion (Abundance Movement)",
     name: "AI matching and recommendations at 5% of the cost",
@@ -258,81 +293,6 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "helpicon-marketplace",
-    video: { id: "3rp6xjwwaK0", start: 166 },
-    client: "Helpicon",
-    name: "A Swedish services marketplace with 99.8% payment success",
-    charts: [
-      {
-        type: "beforeAfter",
-        title: "Monthly LLM spend (relative)",
-        before: { value: 100, display: "100%" },
-        after: { value: 5, display: "5%" },
-        change: "95% lower",
-        source: "After moving tasks from o1-mini to gpt-4o-mini with per-feature token limits.",
-      },
-      {
-        type: "beforeAfter",
-        title: "Saving a member's assessment",
-        before: { value: 20, display: "20 s" },
-        after: { value: 2, display: "2 s" },
-        change: "10x faster",
-      },
-    ],
-    hardParts: [
-      {
-        title: "Match keywords, not paragraphs",
-        body: "Feeding whole bios into a vector database matches people on filler words. Instead an LLM extracts keywords from each profile first — \"I like cricket\" becomes \"cricket\" — and only those go into Pinecone, in separate namespaces for strengths, weaknesses, interests and values.",
-      },
-      {
-        title: "A score people can trust",
-        body: "Vector search always returns something, even for a bad match, so anything under 40 out of 100 is dropped. The final score weights semantic similarity at 40%, strength-to-weakness pairing at 50% (someone strong at public speaking matched with someone who wants to improve it) and engagement at 10%.",
-      },
-      {
-        title: "A chatbot that never touches the database directly",
-        body: "General questions about the platform are answered from documentation through RAG. Questions about a member's own data go through one narrow function per question type, so the model can never compose its own queries against production.",
-      },
-      {
-        title: "The cheapest model that does the job",
-        body: "One day of unexpected API cost led to measuring every feature on its own. Most tasks didn't need a reasoning model; moving them to a smaller one with token limits cut spend by 95% without a drop in output quality.",
-      },
-    ],
-    title: "Helpicon: Marketplace Back End, Payments and DevOps on AWS",
-    description:
-      "Back end, Stripe and Swish payments, and AWS DevOps for a Swedish services marketplace with 10,000+ users: 99.8% payment success and 2–3x faster APIs.",
-    service: "full-stack-development",
-    role: "Senior back-end and DevOps engineer",
-    region: "Sweden",
-    published: "2026-11-16",
-    period: "2023 – 2026",
-    metrics: [
-      { value: "99.8%", label: "payment success rate" },
-      { value: "10,000+", label: "active users" },
-      { value: "<200 ms", label: "API response time" },
-    ],
-    challenge:
-      "Helpicon matches people with vetted local helpers. The platform had to take payments in two systems, split commissions automatically, keep chat private between parties and deploy safely — with a small team.",
-    approach: [
-      "Integrated Stripe and Swish (Nordic mobile payments) with automatic commission splits, subscription tiers and webhook handlers for payments, subscriptions and refunds.",
-      "Cut Twilio messaging costs by 90% with a shared Conversations service, multi-tenant isolation and S3 attachments.",
-      "Made the API 2–3x faster — under 200 ms — with field projection, caching and composite indexes; database queries under 50 ms.",
-      "Ran ECS with auto-scaling (2 to 10 tasks at 70% CPU) and Multi-AZ RDS PostgreSQL with automated backups.",
-      "Deployed the payment microservice on EKS with Jenkins and Kaniko across three AWS accounts (DevOps, staging, production), all in Terraform, with Prisma migrations on every deploy.",
-    ],
-    stack: ["Node.js", "PostgreSQL", "Prisma", "Stripe", "Swish", "Twilio", "AWS ECS", "AWS EKS", "Terraform", "Jenkins", "Docker"],
-    shots: [
-      {
-        src: "/images/work/helpicon1.webp",
-        alt: "Helpicon mobile app home screen with helper categories and popular helpers",
-        width: 1290,
-        height: 2796,
-      },
-      {
-        src: "/images/work/helpicon2.webp",
-        alt: "Helpicon mobile app screen from the App Store listing",
-        width: 1290,
-        height: 2796,
-      },
-    ],
     charts: [
       {
         type: "beforeAfter",
@@ -370,9 +330,68 @@ export const WORK: CaseStudy[] = [
         body: "Lists that were fine with a few hundred users slowed down with thousands. The API now returns only the fields and relations each screen asks for, with pagination and composite indexes — responses dropped from around three seconds to under 200 ms.",
       },
     ],
+    video: { id: "3rp6xjwwaK0", start: 166 },
+    client: "Helpicon",
+    name: "A Swedish services marketplace with 99.8% payment success",
+    title: "Helpicon: Marketplace Back End, Payments and DevOps on AWS",
+    description:
+      "Back end, Stripe and Swish payments, and AWS DevOps for a Swedish services marketplace with 10,000+ users: 99.8% payment success and 2–3x faster APIs.",
+    service: "full-stack-development",
+    role: "Senior back-end and DevOps engineer",
+    region: "Sweden",
+    published: "2026-11-16",
+    period: "2023 – 2026",
+    metrics: [
+      { value: "99.8%", label: "payment success rate" },
+      { value: "10,000+", label: "active users" },
+      { value: "<200 ms", label: "API response time" },
+    ],
+    challenge:
+      "Helpicon matches people with vetted local helpers. The platform had to take payments in two systems, split commissions automatically, keep chat private between parties and deploy safely — with a small team.",
+    approach: [
+      "Integrated Stripe and Swish (Nordic mobile payments) with automatic commission splits, subscription tiers and webhook handlers for payments, subscriptions and refunds.",
+      "Cut Twilio messaging costs by 90% with a shared Conversations service, multi-tenant isolation and S3 attachments.",
+      "Made the API 2–3x faster — under 200 ms — with field projection, caching and composite indexes; database queries under 50 ms.",
+      "Ran ECS with auto-scaling (2 to 10 tasks at 70% CPU) and Multi-AZ RDS PostgreSQL with automated backups.",
+      "Deployed the payment microservice on EKS with Jenkins and Kaniko across three AWS accounts (DevOps, staging, production), all in Terraform, with Prisma migrations on every deploy.",
+    ],
+    stack: ["Node.js", "PostgreSQL", "Prisma", "Stripe", "Swish", "Twilio", "AWS ECS", "AWS EKS", "Terraform", "Jenkins", "Docker"],
+    shots: [
+      {
+        src: "/images/work/helpicon1.webp",
+        alt: "Helpicon mobile app home screen with helper categories and popular helpers",
+        width: 1290,
+        height: 2796,
+      },
+      {
+        src: "/images/work/helpicon2.webp",
+        alt: "Helpicon mobile app screen from the App Store listing",
+        width: 1290,
+        height: 2796,
+      },
+    ],
   },
   {
     slug: "palmetto-data-warehouse",
+    charts: [
+      {
+        type: "beforeAfter",
+        title: "Manual reporting effort",
+        before: { value: 100, display: "100%" },
+        after: { value: 30, display: "30%" },
+        change: "70% less",
+      },
+    ],
+    hardParts: [
+      {
+        title: "Schema changes without an empty table",
+        body: "The source databases were still being developed, so columns and tables changed under the pipelines. Each load compares schemas first; when they differ it builds a staging table, loads it, then swaps it in — the warehouse never has a moment without the table.",
+      },
+      {
+        title: "Incremental loads need two things from the source",
+        body: "Millions of rows a day can't be reloaded in full. Continuous sync only works when tables have an updated_at column and soft deletes; a hard-deleted row simply vanishes and the warehouse never learns it is gone. Tables were sorted into daily or weekly loads by size.",
+      },
+    ],
     video: { id: "qYOXeFOOdjY", start: 10 },
     client: "Palmetto Air Balance",
     name: "One warehouse for a $40M project portfolio",
@@ -413,27 +432,39 @@ export const WORK: CaseStudy[] = [
       },
     ],
   },
+  {
+    slug: "pink-chicken-retail-data",
     charts: [
       {
         type: "beforeAfter",
-        title: "Manual reporting effort",
-        before: { value: 100, display: "100%" },
-        after: { value: 30, display: "30%" },
-        change: "70% less",
+        title: "Nightly load procedure",
+        before: { value: 240, display: "4 h" },
+        after: { value: 30, display: "~30 min" },
+        change: "8x faster",
+        source: "After splitting one procedure into six or seven steps, each logging its progress.",
+      },
+      {
+        type: "beforeAfter",
+        title: "Azure Monitor cost per month",
+        before: { value: 1000, display: "$1,000" },
+        after: { value: 0.1, display: "$0.10" },
+        change: "~$12,000 a year saved",
       },
     ],
     hardParts: [
       {
-        title: "Schema changes without an empty table",
-        body: "The source databases were still being developed, so columns and tables changed under the pipelines. Each load compares schemas first; when they differ it builds a staging table, loads it, then swaps it in — the warehouse never has a moment without the table.",
+        title: "The 1–3% that took four months",
+        body: "Gift cards and test orders explained part of the gap between Shopify's reports and the warehouse, but not all of it, and Shopify support couldn't say why. The answer was in GraphQL's order-change history, which the REST API doesn't expose: gift cards issued as refunds and then spent were being counted twice.",
       },
       {
-        title: "Incremental loads need two things from the source",
-        body: "Millions of rows a day can't be reloaded in full. Continuous sync only works when tables have an updated_at column and soft deletes; a hard-deleted row simply vanishes and the warehouse never learns it is gone. Tables were sorted into daily or weekly loads by size.",
+        title: "A four-hour procedure",
+        body: "One procedure loaded products, sales, refunds, tags, vendors and pricing at once. It grew from 30 minutes to four hours as tables were added. Split into six or seven procedures over a shared base table, each logging which step it reached, it runs in about 30 minutes.",
+      },
+      {
+        title: "Columns you can't index",
+        body: "Data Factory writes text as nvarchar(max), which SQL Server can't index. Each column was profiled for its real length and resized; product tags, up to 40 per product in two different formats, moved into their own table so they could be indexed and searched.",
       },
     ],
-  {
-    slug: "pink-chicken-retail-data",
     video: { id: "qYOXeFOOdjY", start: 165 },
     client: "Pink Chicken",
     name: "Retail numbers that finally match",
@@ -471,40 +502,32 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "ecommerce-intelligence-etl",
-    video: { id: "qYOXeFOOdjY", start: 684 },
-    client: "E-commerce intelligence platform",
-    name: "From 15% to 75% catalogue coverage on Snowflake",
     charts: [
       {
         type: "beforeAfter",
-        title: "Nightly load procedure",
-        before: { value: 240, display: "4 h" },
-        after: { value: 30, display: "~30 min" },
-        change: "8x faster",
-        source: "After splitting one procedure into six or seven steps, each logging its progress.",
-      },
-      {
-        type: "beforeAfter",
-        title: "Azure Monitor cost per month",
-        before: { value: 1000, display: "$1,000" },
-        after: { value: 0.1, display: "$0.10" },
-        change: "~$12,000 a year saved",
+        title: "Catalogue coverage per run",
+        before: { value: 15, display: "~15%" },
+        after: { value: 75, display: "75%+" },
+        change: "5x coverage",
       },
     ],
     hardParts: [
       {
-        title: "The 1–3% that took four months",
-        body: "Gift cards and test orders explained part of the gap between Shopify's reports and the warehouse, but not all of it, and Shopify support couldn't say why. The answer was in GraphQL's order-change history, which the REST API doesn't expose: gift cards issued as refunds and then spent were being counted twice.",
+        title: "An API that stops at page ten",
+        body: "Keepa returns at most ten pages per query, so one query sees a fraction of a brand's catalogue. Running six different sort orders and de-duplicating the results lifted coverage from about 15% to over 75%.",
       },
       {
-        title: "A four-hour procedure",
-        body: "One procedure loaded products, sales, refunds, tags, vendors and pricing at once. It grew from 30 minutes to four hours as tables were added. Split into six or seven procedures over a shared base table, each logging which step it reached, it runs in about 30 minutes.",
+        title: "Is this seller legitimate?",
+        body: "For each product the platform lists who is selling it, then checks each seller against Google results and a verified address (ScaleSERP and SmartyStreets) and ranks them — helping brands find unauthorised sellers.",
       },
       {
-        title: "Columns you can't index",
-        body: "Data Factory writes text as nvarchar(max), which SQL Server can't index. Each column was profiled for its real length and resized; product tags, up to 40 per product in two different formats, moved into their own table so they could be indexed and searched.",
+        title: "Debugging code you can't step into",
+        body: "Python running inside a Snowflake procedure has no console. Every procedure writes its progress — started, 10% done, rows loaded, finished — to a log table, which made failures traceable.",
       },
     ],
+    video: { id: "qYOXeFOOdjY", start: 684 },
+    client: "E-commerce intelligence platform",
+    name: "From 15% to 75% catalogue coverage on Snowflake",
     title: "Snowflake and Snowpark ETL for E-commerce Product Data",
     description:
       "An idempotent Snowflake and Snowpark ETL enriching 50k–100k+ products per run from Keepa and ScaleSERP — 5x the catalogue coverage and 10–20x faster loads.",
@@ -531,6 +554,16 @@ export const WORK: CaseStudy[] = [
   },
   {
     slug: "cvr-sports-analytics",
+    hardParts: [
+      {
+        title: "Thousands of events per match file",
+        body: "Each match arrives as a ~3 MB XML file with 3,000–4,000 events. Re-reading hundreds of files for every report isn't possible, so the useful statistics are computed once, at upload, and stored — reports read the results, not the raw events.",
+      },
+      {
+        title: "Excel reports to automatic ones",
+        body: "Analysts used to build team and player reports by hand in spreadsheets. They now come from the platform directly, filterable by competition, season, team and match, with PDF export for every view.",
+      },
+    ],
     video: { id: "3rp6xjwwaK0", start: 283 },
     client: "CVR Sports Analytics",
     name: "Rugby league analytics that answer in seconds",
@@ -542,29 +575,6 @@ export const WORK: CaseStudy[] = [
     region: "Australia",
     published: "2026-11-16",
     period: "2022 – 2026",
-    charts: [
-      {
-        type: "beforeAfter",
-        title: "Catalogue coverage per run",
-        before: { value: 15, display: "~15%" },
-        after: { value: 75, display: "75%+" },
-        change: "5x coverage",
-      },
-    ],
-    hardParts: [
-      {
-        title: "An API that stops at page ten",
-        body: "Keepa returns at most ten pages per query, so one query sees a fraction of a brand's catalogue. Running six different sort orders and de-duplicating the results lifted coverage from about 15% to over 75%.",
-      },
-      {
-        title: "Is this seller legitimate?",
-        body: "For each product the platform lists who is selling it, then checks each seller against Google results and a verified address (ScaleSERP and SmartyStreets) and ranks them — helping brands find unauthorised sellers.",
-      },
-      {
-        title: "Debugging code you can't step into",
-        body: "Python running inside a Snowflake procedure has no console. Every procedure writes its progress — started, 10% done, rows loaded, finished — to a log table, which made failures traceable.",
-      },
-    ],
     metrics: [
       { value: "3", label: "competitions covered" },
       { value: "9 → 17", label: "Angular versions upgraded" },
@@ -594,18 +604,18 @@ export const WORK: CaseStudy[] = [
       },
     ],
   },
-    hardParts: [
-      {
-        title: "Thousands of events per match file",
-        body: "Each match arrives as a ~3 MB XML file with 3,000–4,000 events. Re-reading hundreds of files for every report isn't possible, so the useful statistics are computed once, at upload, and stored — reports read the results, not the raw events.",
-      },
-      {
-        title: "Excel reports to automatic ones",
-        body: "Analysts used to build team and player reports by hand in spreadsheets. They now come from the platform directly, filterable by competition, season, team and match, with PDF export for every view.",
-      },
-    ],
   {
     slug: "carlister-pricing-platform",
+    hardParts: [
+      {
+        title: "An unlimited API needs your own limits",
+        body: "The listings provider allowed unlimited calls, so a bug could loop millions of times and run up thousands of dollars. The system has its own circuit breakers: a cap on calls per run, a stop after repeated failures, and an email alert when either trips.",
+      },
+      {
+        title: "Cron jobs that took the database down",
+        body: "Scheduled refreshes opened more connections than the managed PostgreSQL allowed, and queries started timing out. One shared Prisma client behind PgBouncer, with a fixed connection limit, fixed it.",
+      },
+    ],
     video: { id: "3rp6xjwwaK0", start: 19 },
     client: "CarLister",
     name: "Automotive pricing intelligence from six data providers",
@@ -642,16 +652,6 @@ export function getCaseStudy(slug: string) {
 export function workForService(slugs: string[]) {
   return slugs.map((s) => getCaseStudy(s)).filter((w): w is CaseStudy => Boolean(w));
 }
-    hardParts: [
-      {
-        title: "An unlimited API needs your own limits",
-        body: "The listings provider allowed unlimited calls, so a bug could loop millions of times and run up thousands of dollars. The system has its own circuit breakers: a cap on calls per run, a stop after repeated failures, and an email alert when either trips.",
-      },
-      {
-        title: "Cron jobs that took the database down",
-        body: "Scheduled refreshes opened more connections than the managed PostgreSQL allowed, and queries started timing out. One shared Prisma client behind PgBouncer, with a fixed connection limit, fixed it.",
-      },
-    ],
 
 // Earlier and smaller projects, shown as a list on /work.
 export const MORE_PROJECTS: {
