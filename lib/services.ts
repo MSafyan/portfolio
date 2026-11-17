@@ -92,6 +92,70 @@ export const SERVICES: Service[] = [
     ],
   },
   {
+    slug: "technical-seo",
+    name: "Technical SEO",
+    title: "Technical SEO Developer for Hire — Speed, Schema, Indexing",
+    description:
+      "Technical SEO from a developer: faster pages, structured data, indexing fixes and content people want. One store went from 137 to 8,020 weekly impressions.",
+    h1: "Technical SEO, fixed in the code",
+    summary: "Faster pages, structured data and indexing fixed in the code, then content people actually search for.",
+    intro:
+      "Most SEO problems are code problems: slow pages, pages Google won't index, product details it can't read. I fix them where they live, then help you publish what people actually search for. One LEGO store went from 137 to 8,020 weekly Google impressions.",
+    forYouIf: [
+      "Google has indexed only part of your site.",
+      "Your pages are slow on mobile and your speed scores are in the red.",
+      "You are moving to a new site or platform and can't afford to lose rankings.",
+      "You run many sites or locations and need pages created at scale.",
+      "Nobody can tell you which pages bring visitors and which don't.",
+    ],
+    deliverables: [
+      {
+        title: "Speed and Core Web Vitals",
+        body: "Lighter pages that load fast on a phone. On one store the home page went from 60 to 98 on Google's mobile speed test, with its main content showing in 2.2 s instead of 9.1 s.",
+      },
+      {
+        title: "Indexing and site structure",
+        body: "Sitemaps, canonical URLs, a redirect for every old link, and near-empty pages kept out of the index, so Google spends its time on the pages that matter.",
+      },
+      {
+        title: "Structured data",
+        body: "Product, FAQ, article and breadcrumb data that tells Google exactly what each page is, and makes it eligible for rich results.",
+      },
+      {
+        title: "Content at scale",
+        body: "Product descriptions, buying guides and location pages created from your own data, and checked before they go live.",
+      },
+      {
+        title: "Tracking and reporting",
+        body: "Search Console, Bing, Google Analytics and Merchant Center set up properly, with search data from several tools in one dashboard.",
+      },
+    ],
+    stack: ["Search Console", "Schema.org", "Lighthouse", "Next.js", "WordPress", "GA4", "Bing Webmaster Tools", "IndexNow"],
+    work: ["brickdistrict-seo-ecommerce", "insurance-lead-gen-sites"],
+    faqs: [
+      {
+        q: "How is technical SEO different from regular SEO?",
+        a: "Regular SEO is mostly content and links. Technical SEO makes sure Google can find, load and understand every page: speed, indexing, redirects and structured data. Without it, good content can still fail to rank.",
+      },
+      {
+        q: "How long until I see results?",
+        a: "Speed and indexing fixes show up in Search Console within weeks. On one store, weekly Google impressions went from 154 to 5,280 in the three weeks after the new site went live, and kept climbing.",
+      },
+      {
+        q: "Can you move my site without losing rankings?",
+        a: "Yes. Every old URL gets a single redirect to its new page, the old and new sites are compared page by page before launch, and Search Console is watched afterwards. BrickDistrict moved off its page builder with all 519 pages checked.",
+      },
+      {
+        q: "Do you work on WordPress or only on custom code?",
+        a: "Both. I have done technical SEO on a WooCommerce store with a custom WordPress theme, and on a Next.js platform that runs 19 sites from one codebase.",
+      },
+      {
+        q: "Do you write the content too?",
+        a: "I build what makes content work at scale — descriptions generated from source data, buying guides and location pages — and check it before it is published. Your team or a writer can own the voice.",
+      },
+    ],
+  },
+  {
     slug: "ai-integration",
     name: "AI integration",
     title: "AI Integration Developer — OpenAI, LangChain, RAG",

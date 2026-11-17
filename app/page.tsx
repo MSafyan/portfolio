@@ -101,10 +101,10 @@ export default function Home() {
           <SectionHeading
             id="services-heading"
             eyebrow="Services"
-            title="Three things I do well, and do every week"
+            title="Four things I do well, and do every week"
             intro="Hire me for one, or for the whole product. Each service page explains what you get and shows the projects behind it."
           />
-          <ul className="mt-12 grid gap-5 md:grid-cols-3">
+          <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s, i) => (
               <li key={s.slug} className="group relative flex flex-col rounded-3xl border border-line bg-surface p-7 transition hover:-translate-y-0.5 hover:border-ink hover:shadow-xl hover:shadow-black/5">
                 <span className="flex size-10 items-center justify-center rounded-full bg-accent-soft font-serif text-lg text-accent tabular-nums">{i + 1}</span>

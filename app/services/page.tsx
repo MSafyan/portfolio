@@ -8,9 +8,9 @@ import { buildMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
 export const metadata = buildMetadata({
-  title: "Services: Full-Stack, AI Integration and Data Engineering",
+  title: "Services: Full-Stack, Technical SEO, AI and Data Engineering",
   description:
-    "Freelance software engineering services: full-stack SaaS development in Next.js and Node.js, OpenAI and LangChain integration, and Azure data engineering.",
+    "Freelance engineering services: full-stack development in Next.js and Node.js, technical SEO, OpenAI and LangChain integration, and Azure data engineering.",
   path: "/services",
 });
 
@@ -27,7 +27,7 @@ export default function ServicesPage() {
         crumbs={CRUMBS}
         eyebrow="Services"
         title="Software engineering services for SaaS teams"
-        intro="Three services, one engineer. Each is backed by production projects with measured results — follow the links for the detail."
+        intro="Four services, one engineer. Each is backed by production projects with measured results — follow the links for the detail."
       />
       <Container className="mt-16">
         <ul className="divide-y divide-line border-y border-line">

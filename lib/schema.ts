@@ -41,6 +41,7 @@ export function siteGraph() {
         "NestJS",
         "AWS",
         "Terraform",
+        "Technical SEO",
         "AI integration",
         "OpenAI",
         "LangChain",
