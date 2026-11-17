@@ -6,8 +6,8 @@ slug: shopify-sales-dont-match-warehouse
 target_query: "shopify sales don't match data warehouse gift card refunds"
 service: data-engineering
 case_study: pink-chicken-retail-data
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

@@ -6,8 +6,8 @@ slug: ukg-hours-dont-match-power-bi
 target_query: ukg hours don't match power bi report
 service: data-engineering
 case_study: palmetto-data-warehouse
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

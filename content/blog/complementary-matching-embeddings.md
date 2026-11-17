@@ -6,8 +6,8 @@ slug: complementary-matching-embeddings
 target_query: complementary matching strengths weaknesses embeddings
 service: ai-integration
 case_study: wesion-ai-matching
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

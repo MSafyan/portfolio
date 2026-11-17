@@ -6,8 +6,8 @@ slug: shopify-to-azure-sql-data-factory
 target_query: shopify to azure sql
 service: data-engineering
 case_study: pink-chicken-retail-data
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**
@@ -108,7 +108,7 @@ query getInventoryLevels($locationId: ID!, $first: Int!, $after: String) {
 
 GraphQL pages with a cursor in the response body, not in a header, so the REST pagination switch doesn't help here. The inventory pipeline gets every location first, then runs a child pipeline per location. That child pipeline is an `Until` loop: post the query, save the response to storage, read `hasNextPage` and `endCursor`, and repeat. A data flow then merges the GraphQL quantities into the same tables the REST data feeds, and the staged files are deleted at the end.
 
-**Order changes and gift cards.** Monthly sales in the warehouse were 1–3% off Shopify's own reports. The cause was gift cards issued as refunds and then spent, and the only record of it was the order-change history, which REST doesn't expose. That story has enough detail for its own post, so here is the lesson for the pipeline: if your numbers have to match Shopify's reports, plan for GraphQL from day one.
+**Order changes and gift cards.** Monthly sales in the warehouse were 1–3% off Shopify's own reports. The cause was gift cards issued as refunds and then spent, and the only record of it was the order-change history, which REST doesn't expose. That story has [its own post](/blog/shopify-sales-dont-match-warehouse), so here is the lesson for the pipeline: if your numbers have to match Shopify's reports, plan for GraphQL from day one.
 
 ## Why do Data Factory's nvarchar(max) columns slow down Shopify reports?
 

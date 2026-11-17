@@ -6,8 +6,8 @@ slug: beaver-builder-to-custom-theme
 target_query: replace beaver builder custom theme seo
 service: technical-seo
 case_study: brickdistrict-seo-ecommerce
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

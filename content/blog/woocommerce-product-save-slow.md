@@ -6,8 +6,8 @@ slug: woocommerce-product-save-slow
 target_query: woocommerce product update takes 30 seconds
 service: technical-seo
 case_study: brickdistrict-seo-ecommerce
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

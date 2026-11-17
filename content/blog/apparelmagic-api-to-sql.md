@@ -6,8 +6,8 @@ slug: apparelmagic-api-to-sql
 target_query: "apparelmagic api data warehouse power bi"
 service: data-engineering
 case_study: pink-chicken-retail-data
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**

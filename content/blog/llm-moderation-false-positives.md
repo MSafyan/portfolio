@@ -6,8 +6,8 @@ slug: llm-moderation-false-positives
 target_query: llm moderation rejecting legitimate posts
 service: ai-integration
 case_study: helpicon-marketplace
-status: draft
-published: null
+status: published
+published: 2026-11-17
 ---
 
 > **Short answer**
