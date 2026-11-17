@@ -67,6 +67,38 @@ All under `~/archive/palmetto/palmetto-data-warehouse/`:
 - **Keepa 10-page limit** — Keepa's Product Finder docs allow 10,000 ASINs, so the claim reads wrong
   unless the post names the exact endpoint that caps at 10 pages. Check before writing; low priority.
 
+## Writing rules (adapted from BrickDistrict's guides)
+
+BrickDistrict's guides are 88% of that store's search impressions; the rules that made them work,
+from `~/dev/brickdistrict/bd-theme/knowledge-base/refined/guides.md` and the "Content rules" in
+`~/dev/brickdistrict/legobrick/knowledge-base/plans/seo-and-growth.md`:
+
+- **One question per post.** Narrow single-question pages ranked best (positions 3–5); broad ones
+  sat at 7–10. No two posts share a primary keyword or answer the same question.
+- **Short answer first.** A boxed 2–4 bullet answer under the byline that only restates the post
+  (every number in it appears again below). Clarity showed readers stop right after it — so the
+  next thing they see is the call to action: the case study and "work with me".
+- **Search title ≠ H1.** `seo_title` ≤60 uses the words people search; the H1 is the human title.
+  Description 150–160, answering in the snippet where possible.
+- **Every claim has a source that was read.** Each post gets `sources/<slug>.md` mapping each fact
+  and number to a file, commit or transcript. Not in a source → not written.
+- **Specific, not reusable.** The opening can't be pasted onto another post; at least four facts
+  specific to this case (numbers, field names, error text).
+- **Keyword in most H2s, varied**; H2s phrased as the follow-up questions searchers ask; a table of
+  contents with 3+ H2s.
+- **Callouts** for tip / note / warning; tables that collapse to cards on a phone.
+- **No time-relative text** ("last month", "ten weeks left") — write dates.
+- **Links:** service page (the pillar) first, then the case study, then 0–3 sibling posts that are
+  live. Never a link to a page that doesn't exist yet.
+- **A real byline:** Muhammad Safyan, Person schema by `@id`.
+- **Client names:** drafts are anonymous ("a US children's clothing brand") until the client is
+  asked; never the client's customers, staff or personal data.
+
+## Drafts
+
+`knowledge-base/drafts/blog/<slug>.md` (frontmatter + Markdown body) with
+`knowledge-base/drafts/blog/sources/<slug>.md`. Status `draft` until Safyan has checked the facts.
+
 ## How each post is built to rank
 
 **On the page**
