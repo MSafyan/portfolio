@@ -109,13 +109,13 @@ export const WORK: CaseStudy[] = [
       { value: "9 → 116", label: "weekly clicks from Google" },
     ],
     challenge:
-      "BrickDistrict sells rare and retired LEGO sets. In September 2026 the page-builder site scored 56 on mobile Lighthouse with a 9.7-second LCP and 14 MB home page, only 6 of 402 products had a description, Google had indexed 175 of 507 sitemap URLs, and the store had about 19 organic clicks in two months.",
+      "BrickDistrict sells rare and retired LEGO sets. In September 2026 the site was slow: the home page weighed 14 MB, scored 56 out of 100 on Google's mobile speed test and took almost 10 seconds to show its main content. Only 6 of 402 products had a description, Google had indexed about a third of the pages, and the store got about 19 clicks from Google in two months.",
     approach: [
-      "Replaced the Beaver Builder site with a custom WordPress theme: mobile Lighthouse went from 60 to 98 on the home page (LCP 9.1 s to 2.2 s, 5.2 MB to 0.83 MB), 62 to 100 on categories and 71 to 99 on products — with a clean before-and-after SEO comparison across 519 pages.",
-      "Extended Product, Offer and BreadcrumbList structured data with brand, GTIN and return policy, wrote search titles that carry each set's status, and kept thin category pages out of the index.",
+      "Replaced the page-builder site with a custom WordPress theme. On mobile, the home page's speed score went from 60 to 98 and its main content now appears in 2.2 s instead of 9.1 s. Category and product pages now score 99–100, and a check across all 519 pages confirmed nothing was lost for search.",
+      "Gave Google richer product details (brand, barcode, price, return policy), wrote search titles that say whether a set is retired, and kept near-empty category pages out of Google's index.",
       "Wrote a real description for all 402 products, generated from LEGO's own set text, and published 21 buying guides that now earn most of the store's search impressions.",
-      "Set up Search Console, GA4 e-commerce events, Bing Webmaster Tools, IndexNow, a Google Merchant Center feed and single-hop 301 redirects for every old URL.",
-      "Built the catalogue back end in Python and FastAPI on AWS (EC2, DynamoDB, CloudFront, SSM): retirement dates from Brickset, a daily site-health alarm, and product writes cut from about 34 s to 1.9 s.",
+      "Set up Google and Bing webmaster tools, sales tracking in Google Analytics, a Google Shopping feed, and redirects so every old link still works.",
+      "Built the catalogue back end in Python on AWS: it pulls each set's retirement date, checks the site's health every day, and saves a product in 1.9 s instead of about 34 s.",
       "Built a Flutter barcode-scanning app the team uses to receive, list and sell stock directly against WooCommerce.",
     ],
     stack: ["WordPress", "WooCommerce", "PHP", "Schema.org", "Search Console", "GA4", "Python", "FastAPI", "AWS", "Flutter"],
@@ -179,10 +179,10 @@ export const WORK: CaseStudy[] = [
     challenge:
       "A US marketing agency builds lead-generation websites for local insurance agencies. Each new site meant hand-built pages and content, and there was no shared view of how the sites performed in search.",
     approach: [
-      "Redesigned the multi-tenant Next.js template that renders every agency's site on its own domain: quote forms, a mobile call bar, estimate calculators, lead tracking and new site types.",
-      "Built AI page generation that writes one section at a time and validates and corrects its own output, plus automatic repair of broken links in published content.",
-      "Generated location and policy pages programmatically, with a queue that rewrites internal links when a page changes and redirects for retired URLs.",
-      "Pulled Search Console, SE Ranking, BrightLocal, GA4, Bing and Clarity data into one pipeline behind a site-performance dashboard, and submitted 2,342 URLs to Bing through IndexNow.",
+      "Redesigned the single Next.js template that runs every agency's site on its own domain: quote forms, a tap-to-call bar on mobile, estimate calculators, lead tracking and new site types.",
+      "Built AI page writing that drafts one section at a time and checks and corrects each section before saving it, plus an automatic fix for broken links in published pages.",
+      "Created location and policy pages automatically from data, with links between pages updated when one changes and redirects when a page is removed.",
+      "Brought data from six SEO and analytics tools into one dashboard that shows how each site performs in search, and sent 2,342 pages to Bing for indexing.",
       "Shipped it as 128 pull requests across 15 repositories; as of 15 November 27 of 142 tracked keywords rank on page one, including one at #1.",
     ],
     stack: ["Next.js", "TypeScript", "Supabase", "Vercel", "Express", "OpenAI", "Search Console API", "IndexNow", "Stripe"],
@@ -209,11 +209,11 @@ export const WORK: CaseStudy[] = [
     challenge:
       "The Gala connects customers with singers, decorators and event managers. It had been built by a previous team: the core worked, but there were bugs, an interface that needed reskinning, and a database whose structure existed only in production — the migration files were missing.",
     approach: [
-      "Recreated the missing database migrations so every environment can be rebuilt to match, on AWS Elastic Beanstalk with MySQL on RDS and files on S3, deployed automatically.",
-      "Rebuilt checkout around card payments through MyFatoorah and Tabby and Tamara buy-now-pay-later, with the server — never the app — deciding the amount and confirming payment.",
+      "Wrote the missing database setup files, so a new copy of the system now matches production exactly. It runs on AWS and deploys automatically.",
+      "Rebuilt checkout for card payments (MyFatoorah) and pay-later plans (Tabby and Tamara). The server, never the app, sets the price and confirms the payment.",
       "Added the money side a marketplace needs: provider payouts per booking, a hold when a provider's bank account changes, and refunds as records with a status and a full history.",
       "Built booking rules for real events: one confirmed booking per offer and time slot, provider unavailable days, home-visit addresses and reminders the day before.",
-      "Reskinned the provider and admin dashboards in React through Laravel and Inertia, serving two Flutter apps from the same API, with 867 automated tests guarding every change.",
+      "Redesigned the provider and admin dashboards in React, served the two mobile apps from the same back end, and added 867 automated tests that run on every change.",
     ],
     stack: ["Laravel", "PHP", "React", "Inertia.js", "MySQL", "Flutter", "MyFatoorah", "Tabby", "Tamara", "AWS"],
     video: { id: "3rp6xjwwaK0", start: 648 },
@@ -320,11 +320,11 @@ export const WORK: CaseStudy[] = [
     challenge:
       "Wesion connects members by goals, strengths and values. It needed matching, video recommendations and conversation summaries that understood meaning — and the first AI prototype was too expensive to run for every member.",
     approach: [
-      "Designed and built the NestJS back end from scratch on TypeORM and PostgreSQL, deployed on AWS, with a Python Lambda compressing uploaded images and video on S3.",
-      "Built 11 AI services — semantic matching, video recommendations, goal suggestions, content analysis and chat summarisation — on OpenAI GPT and LangChain.",
-      "Stored each member's strengths, weaknesses, interests, values and keywords in separate Pinecone namespaces, so matches compare like with like.",
-      "Measured cost per feature, moved tasks that did not need a reasoning model from o1-mini to gpt-4o-mini, and set token limits of 300–2,000 per use case — 95% cheaper with output quality held.",
-      "Added a weekly NestJS cron that summarises each 7-day conversation window into a narrative and action items, with REST endpoints for on-demand digests.",
+      "Designed and built the back end from scratch in NestJS and PostgreSQL on AWS, including a small service that compresses every uploaded image and video.",
+      "Built 11 AI features on OpenAI and LangChain: matching members by meaning, video recommendations, goal suggestions, content checks and chat summaries.",
+      "Stored each member's strengths, weaknesses, interests and values separately in a vector database (Pinecone), so strengths are compared with strengths, not with hobbies.",
+      "Measured what each AI feature cost, moved the ones that didn't need a large model (o1-mini) to a smaller one (gpt-4o-mini), and capped how much each may write — 95% cheaper with the same quality.",
+      "Added a weekly job that turns each week of conversation into a short summary with action items, which members can also request at any time.",
     ],
     stack: ["NestJS", "TypeScript", "TypeORM", "PostgreSQL", "OpenAI", "LangChain", "Pinecone", "AWS Lambda", "S3"],
     shots: [
@@ -395,11 +395,11 @@ export const WORK: CaseStudy[] = [
     challenge:
       "Helpicon matches people with vetted local helpers. The platform had to take payments in two systems, split commissions automatically, keep chat private between parties and deploy safely — with a small team.",
     approach: [
-      "Integrated Stripe and Swish (Nordic mobile payments) with automatic commission splits, subscription tiers and webhook handlers for payments, subscriptions and refunds.",
-      "Cut Twilio messaging costs by 90% with a shared Conversations service, multi-tenant isolation and S3 attachments.",
-      "Made the API 2–3x faster — under 200 ms — with field projection, caching and composite indexes; database queries under 50 ms.",
-      "Ran ECS with auto-scaling (2 to 10 tasks at 70% CPU) and Multi-AZ RDS PostgreSQL with automated backups.",
-      "Deployed the payment microservice on EKS with Jenkins and Kaniko across three AWS accounts (DevOps, staging, production), all in Terraform, with Prisma migrations on every deploy.",
+      "Connected Stripe and Swish (Sweden's mobile payment app), with the platform's commission split off automatically, paid subscription tiers, and refunds handled end to end.",
+      "Cut chat messaging costs (Twilio) by 90% by moving every conversation onto one shared service, while keeping each chat private to its two parties.",
+      "Made the app's server responses 2–3x faster, to under 200 ms, by sending only the data each screen needs, caching, and better database indexes.",
+      "Set the servers to grow from 2 to 10 copies when traffic rises, and ran the database across two data centres with automatic backups.",
+      "Deployed the payment service on Kubernetes with automatic builds, kept testing and live systems in separate AWS accounts, and wrote all the infrastructure as code in Terraform.",
     ],
     stack: ["Node.js", "PostgreSQL", "Prisma", "Stripe", "Swish", "Twilio", "AWS ECS", "AWS EKS", "Terraform", "Jenkins", "Docker"],
     shots: [
@@ -463,9 +463,9 @@ export const WORK: CaseStudy[] = [
     challenge:
       "Revenue lived in NetSuite, projects in Air1 and labour in UKG. Leadership waited days for backlog and utilisation reports that were assembled by hand and rarely agreed.",
     approach: [
-      "Built an Azure SQL warehouse fed by 50+ Azure Data Factory pipelines, with key mapping and financial reconciliation across the three systems.",
-      "Wrote dynamic MERGE procedures that detect primary keys, catch and categorise errors, log at pipeline and database level and email alerts.",
-      "Processed 1M+ records a day with sub-second queries using composite indexes, partitioning and materialised views.",
+      "Built a central Azure SQL database fed by 50+ automated Data Factory pipelines, matching projects, invoices and hours across the three systems so the money adds up.",
+      "Wrote one reusable update procedure that works for any table, records what failed and why, and emails an alert when a load breaks.",
+      "Handles over a million records a day, and reports still load in under a second.",
       "Delivered Power BI dashboards for revenue, backlog and utilisation, with automated weekly backlog snapshots for trends.",
     ],
     stack: ["Azure Data Factory", "Azure SQL", "T-SQL", "Power BI", "NetSuite", "UKG", "REST APIs"],
@@ -526,7 +526,7 @@ export const WORK: CaseStudy[] = [
       },
       {
         title: "Columns you can't index",
-        body: "Data Factory writes text as nvarchar(max), which SQL Server can't index. Each column was profiled for its real length and resized; product tags, up to 40 per product in two different formats, moved into their own table so they could be indexed and searched.",
+        body: "Data Factory stores all text in a column type SQL Server can't index, so searches were slow. Each column was resized to the longest value it really holds, and product tags — up to 40 per product, in two formats — moved into their own table so they can be searched quickly.",
         figure: {
           src: "/images/work/diagrams/data-tags.webp",
           alt: "Diagram: product tags moved from one long text column into a table with one row per tag, indexed on tag and product",
@@ -552,13 +552,13 @@ export const WORK: CaseStudy[] = [
       { value: "$12K", label: "saved a year on monitoring" },
     ],
     challenge:
-      "A fashion brand selling through 10+ retail stores, e-commerce and wholesale could not reconcile Shopify with its Apparel Magic warehouse system, and monthly sales were off by 1–3%.",
+      "A children's clothing brand sells through 10+ shops, online and wholesale. Its shop and online sales (Shopify) and its warehouse system (Apparel Magic) never agreed, and monthly sales figures were off by 1–3%.",
     approach: [
-      "Built an Azure warehouse unifying Shopify and Apparel Magic, with virtual-warehouse logic that stops inventory being counted twice.",
-      "Traced the sales gap to gift-card refunds that Shopify's REST and GraphQL APIs classify differently, and rebuilt reconciliation on the GraphQL order-changes API.",
-      "Found that incoming stock exists only in Shopify's GraphQL API and merged both endpoints without breaking incremental loads.",
-      "Cut Azure Monitor from about $1,000 a month to $0.10 by replacing redundant rules with one essential failure alert.",
-      "Added daily incremental loads, inventory snapshots and a dimensional model valuing stock at cost, retail and wholesale.",
+      "Built one Azure database holding both Shopify and Apparel Magic data, with rules that stop online stock being counted twice.",
+      "Traced the sales gap to gift-card refunds that Shopify's two APIs report differently, and rebuilt the sales figures on the one that records every change to an order.",
+      "Found that stock on its way to the shops is only available from Shopify's newer API, and combined the two without breaking the daily updates.",
+      "Cut the monitoring bill from about $1,000 a month to $0.10 by replacing a pile of duplicate alerts with one that fires when a pipeline fails.",
+      "Added daily updates, a daily stock snapshot for trends, and stock valued three ways: at cost for finance, at retail price for online, and at wholesale price.",
     ],
     stack: ["Azure Data Factory", "Azure SQL", "Shopify GraphQL", "Apparel Magic", "Python", "T-SQL", "Power BI"],
     shots: [
@@ -618,12 +618,12 @@ export const WORK: CaseStudy[] = [
       { value: "100k+", label: "products per run" },
     ],
     challenge:
-      "Keepa's API returns a limited window of results per query, so a single ingestion strategy saw only about 15% of each catalogue — and row-by-row inserts made every run slow.",
+      "Keepa's API returns only a limited number of results per search, so the pipeline saw about 15% of each brand's catalogue — and saving one row at a time made every run slow.",
     approach: [
-      "Built a pagination engine with six configurable sort strategies and a global de-duplication set, lifting coverage to 75%+ per run.",
-      "Replaced row-by-row inserts with batched INSERT … UNION ALL statements for a 10–20x faster load.",
-      "Modelled semi-structured API payloads as canonical entities and attributes, with token-based rate limiting.",
-      "Made every procedure idempotent so runs can be repeated safely, and versioned the Snowflake schema in git.",
+      "Ran each search six ways, sorted differently, and removed the duplicates — coverage rose to over 75% per run.",
+      "Saved rows in large batches instead of one at a time, making loads 10–20x faster.",
+      "Stored the API's loosely structured data in one consistent shape, and kept within the API's usage limits.",
+      "Made every run safe to repeat without creating duplicates, and kept the database structure in version control.",
     ],
     stack: ["Snowflake", "Snowpark", "Python", "Keepa API", "ScaleSERP", "pytest"],
     shots: [],
@@ -659,10 +659,10 @@ export const WORK: CaseStudy[] = [
     challenge:
       "Coaches and analysts needed team and player reports across NRL, Super League and NSW Cup. Recomputing metrics from raw match events on every report made queries slow and complex.",
     approach: [
-      "Moved to a CQRS-style design: KPIs are computed once when a match XML file is ingested and stored at player, team, quarter and 10-minute grain.",
-      "Tuned MongoDB with compound indexes on real access patterns, parallel reads, lean queries and guarded aggregation pipelines.",
-      "Led the Angular 9 to 17 upgrade, removing the legacy OpenSSL dependency and fixing AG Grid regressions.",
-      "Built PDF export for every report view, and asynchronous XML uploads with background processing.",
+      "Calculated each match's statistics once, when the match file is uploaded, and stored them per player, team, quarter and 10-minute window — reports read the results instead of recalculating.",
+      "Sped up the database (MongoDB) with indexes that match how reports really read data, and time limits on the heaviest queries.",
+      "Led the upgrade from Angular 9 to 17, removed an outdated security workaround, and fixed the data tables the upgrade broke.",
+      "Added PDF export to every report, and match uploads that process in the background so nobody waits.",
     ],
     stack: ["Node.js", "Express", "MongoDB", "Angular 17", "AG Grid", "jsPDF"],
     shots: [
@@ -718,9 +718,9 @@ export const WORK: CaseStudy[] = [
       "Dealers were checking MarketCheck, vAuto, MMR, Carfax and others by hand to decide whether a car was a good deal — one search at a time.",
     approach: [
       "Joined six providers (MarketCheck, vAuto, AccuTrade, MMR, Carfax, SendGrid) into one search, valuation and alert flow.",
-      "Built a deal engine whose pricing source and thresholds are switched in the database, without a redeploy.",
-      "Turned saved searches into scheduled pipelines: refresh listings, enrich with pricing, score deals and email alerts.",
-      "Added four cache layers with negative-result caching, and fixed PostgreSQL connection exhaustion with a shared Prisma client and PgBouncer.",
+      "Built a deal finder whose price source and rules can be changed in settings, without releasing new code.",
+      "Turned saved searches into scheduled jobs: fetch new listings, add prices, score each deal and email the good ones.",
+      "Added four layers of caching so the same paid data isn't fetched twice, and fixed the database running out of connections.",
     ],
     stack: ["Next.js 15", "React 19", "TypeScript", "TanStack Query", "Express 5", "Prisma", "PostgreSQL", "SendGrid"],
     shots: [
