@@ -70,8 +70,8 @@ export default function Home() {
             <Image
               src={SITE.image}
               alt={`${SITE.name}, full-stack, AI and data engineer`}
-              width={300}
-              height={400}
+              width={225}
+              height={300}
               priority
               sizes="256px"
               className="aspect-[3/4] w-64 rounded-3xl object-cover"

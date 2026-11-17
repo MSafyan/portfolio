@@ -10,7 +10,7 @@ export const SITE = {
   locality: "Gujranwala",
   country: "PK",
   countryName: "Pakistan",
-  image: "/images/me/muhammad-safyan.png",
+  image: "/images/me/muhammad-safyan-portrait.png",
   yearsExperience: 5,
   profiles: {
     github: "https://github.com/MSafyan",

@@ -44,8 +44,8 @@ export default function AboutPage() {
           <Image
             src={SITE.image}
             alt={`Portrait of ${SITE.name}`}
-            width={300}
-            height={400}
+            width={225}
+            height={300}
             sizes="(min-width: 1024px) 288px, 60vw"
             className="aspect-[3/4] w-full max-w-72 rounded-3xl object-cover"
           />
