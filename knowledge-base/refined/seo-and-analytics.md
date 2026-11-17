@@ -21,6 +21,9 @@ How the site is found and measured, as of 2026-11-16. Rewrite in place when it c
   parts (key moments) wherever a video is embedded. Expired certifications are left out of Person.
 - `sitemap.xml` and `robots.txt` built from the same data as the routes; robots disallows everything
   outside Vercel production.
+- Blog (`/blog`, `lib/blog.ts`, posts in `content/blog/*.md`): `BlogPosting` + `BreadcrumbList`,
+  per-post OG image, sitemap entries with lastmod; posts go live on their `published` date via hourly
+  revalidation. Details and schedule: `../plans/blog-plan.md`.
 - IndexNow: key file in `public/<key>.txt`; all sitemap URLs submitted 2026-11-16 (HTTP 202).
 
 ## Search engines

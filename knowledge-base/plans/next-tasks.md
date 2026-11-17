@@ -16,9 +16,10 @@ that day's log. Current setup is described in [../refined/seo-and-analytics.md](
 
 Plan, researched topic list and on-page checklist: **[blog-plan.md](blog-plan.md)**.
 
-- [ ] Build `/blog` (index, post page, Article + BreadcrumbList schema, sitemap with lastmod, RSS, OG images).
+- [x] Build `/blog` (index, post page, BlogPosting + BreadcrumbList schema, sitemap with lastmod, OG images) — 2026-11-17. RSS still to do.
 - [ ] Confirm with each named client that a deeper write-up is fine, or write it anonymously.
-- [ ] Publish the first ten from the plan, one every 1–2 weeks.
+- [~] First batch of eight scheduled 17 Nov – 8 Dec (see blog-plan.md); two Gala posts held.
+- [ ] Weekly: Search Console → which posts get impressions; Request indexing on each release day.
 
 ## 3. Analytics gaps (do once traffic starts)
 

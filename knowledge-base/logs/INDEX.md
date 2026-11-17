@@ -8,6 +8,7 @@
 - 🔍 Technical SEO service page added.
 - 📝 Blog plan researched (`plans/blog-plan.md`); portrait re-cropped.
 - ✍️ Ten blog drafts (eight committed, two Gala drafts held back).
+- 📰 `/blog` live; eight posts scheduled 17 Nov – 8 Dec, first two published.
 
 ## 2026-11-16 — [session_2026-11-16.md](session_2026-11-16.md)
 - 🔁 Vite SPA → static Next.js 16 site: services, 10 case studies, videos, about, contact.

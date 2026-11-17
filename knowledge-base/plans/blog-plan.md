@@ -99,15 +99,34 @@ from `~/dev/brickdistrict/bd-theme/knowledge-base/refined/guides.md` and the "Co
   of the same shape. Internal figures (hours, row counts, amounts) → rounded approximations.
   Headline results already published in a case study may stay as published.
 
+## Release schedule (first batch)
+
+| Date (UTC) | Post |
+|---|---|
+| 17 Nov 2026 | shopify-sales-dont-match-warehouse, woocommerce-product-save-slow |
+| 20 Nov | beaver-builder-to-custom-theme |
+| 24 Nov | complementary-matching-embeddings |
+| 27 Nov | ukg-hours-dont-match-power-bi |
+| 1 Dec | llm-moderation-false-positives |
+| 4 Dec | apparelmagic-api-to-sql |
+| 8 Dec | shopify-to-azure-sql-data-factory |
+
+Held (`status: held`, git-ignored): tabby-tamara-myfatoorah-laravel, taking-over-a-laravel-app —
+revisit ~1 Dec (client security details; Tabby/Tamara code by another developer).
+
+On each release day: Search Console → URL Inspection → Request indexing for that post. IndexNow is
+not sent automatically for scheduled posts (Bing finds them through the sitemap).
+
 ## Drafts and publishing
 
 - Posts: `content/blog/<slug>.md` — frontmatter (`title`, `seo_title`, `seo_description`, `slug`,
   `target_query`, `service`, `case_study`, `status`, `published`, `updated`) + Markdown body.
   Committed, disguised. Rendered by `lib/blog.ts` at `/blog/<slug>`.
-- `status: draft` shows under `pnpm dev` only (badge "Draft preview"); `held` never shows;
-  `published` + a `published: YYYY-MM-DD` date goes live, into the sitemap with lastmod.
-- `/blog` is `noindex` and out of the sitemap until the first post is published. Add "Blog" to
-  `NAV` in `lib/site.ts` at the same time.
+- `status: draft` shows under `pnpm dev` only (badge "Draft"); `held` never shows.
+- `status: published` + `published: YYYY-MM-DD` goes live **on that date** (UTC), automatically:
+  blog pages, the sitemap and the service/case-study pages that list posts re-render hourly
+  (`revalidate = 3600`), and post pages not pre-built render on first request. A post appears
+  within about an hour after midnight UTC. To delay one, move its date. Locally it shows as "Scheduled".
 - Real values behind the disguised ones: `knowledge-base/drafts/blog/sources/<slug>.md` —
   **git-ignored, local only** (the repo is public). Publish only after Safyan has answered the
   questions at the end of that file.
