@@ -8,6 +8,8 @@ export type Chart =
 export type CaseStudy = {
   slug: string;
   client: string;
+  /** The client's live site, linked from the case study. */
+  site?: string;
   /** Headline used for the H1 and the card. */
   name: string;
   title: string;
@@ -91,6 +93,7 @@ export const WORK: CaseStudy[] = [
     ],
     video: { id: "d364a4WmzAg", start: 14 },
     client: "BrickDistrict",
+    site: "https://brickdistrict.net/",
     name: "58x more Google impressions for a LEGO e-commerce store",
     title: "BrickDistrict: WooCommerce SEO, Speed and Automation",
     description:
@@ -188,6 +191,7 @@ export const WORK: CaseStudy[] = [
   {
     slug: "the-gala-events-marketplace",
     client: "The Gala",
+    site: "https://thegala.com.sa/",
     name: "An events marketplace in Saudi Arabia, payments to payouts",
     title: "The Gala: Laravel Marketplace with BNPL Payments and Payouts",
     description:
@@ -373,6 +377,7 @@ export const WORK: CaseStudy[] = [
     ],
     video: { id: "3rp6xjwwaK0", start: 166 },
     client: "Helpicon",
+    site: "https://helpicon.se/",
     name: "A Swedish services marketplace with 99.8% payment success",
     title: "Helpicon: Marketplace Back End, Payments and DevOps on AWS",
     description:

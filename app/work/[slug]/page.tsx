@@ -154,6 +154,13 @@ export default async function CaseStudyPage({ params }: Props) {
             <div>
               <dt className="text-muted">Client</dt>
               <dd className="mt-1 font-semibold">{study.client}</dd>
+              {study.site && (
+                <dd className="mt-1">
+                  <a href={study.site} target="_blank" rel="noopener" className="inline-flex items-center gap-1 font-semibold text-accent">
+                    Visit {new URL(study.site).hostname} <Arrow />
+                  </a>
+                </dd>
+              )}
             </div>
             <div>
               <dt className="text-muted">Role</dt>
