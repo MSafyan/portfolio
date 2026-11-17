@@ -30,6 +30,10 @@ How the site is found and measured, as of 2026-11-16. Rewrite in place when it c
 
 - Google Search Console: domain property verified, sitemap submitted (Safyan, 2026-11-16).
 - Bing Webmaster Tools: imported from Search Console (Safyan, 2026-11-16).
+- Search Console API, read-only: `pnpm gsc [--days 7]` (`scripts/search-console.mjs`, no deps) prints
+  top pages, top searches and the index status of every blog post in the sitemap. Service account in
+  Safyan's `portfolio-seo` Google Cloud project; key in `keys/` (see `keys/CREDENTIALS.md`).
+  Request indexing stays manual — the API cannot do it.
 
 ## Analytics (`components/Analytics.tsx`, `lib/track.ts`)
 
