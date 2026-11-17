@@ -3,7 +3,7 @@ import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
-import { ButtonLink, Container, SectionHeading, Tag } from "@/components/ui";
+import { BAND, ButtonLink, Container, SectionHeading, Tag } from "@/components/ui";
 import { VideoBlock } from "@/components/VideoBlock";
 import { breadcrumbs, faqNode, graph, serviceNode, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -69,12 +69,12 @@ export default async function ServicePage({ params }: Props) {
         </Container>
       </section>
 
-      <section aria-labelledby="deliver-heading" className="mt-24">
+      <section aria-labelledby="deliver-heading" className={`mt-24 ${BAND}`}>
         <Container>
           <SectionHeading id="deliver-heading" eyebrow="What you get" title={`What ${service.name.toLowerCase()} covers`} />
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             {service.deliverables.map((d) => (
-              <div key={d.title} className="rounded-3xl border border-line p-7">
+              <div key={d.title} className="rounded-3xl border border-line bg-surface p-7">
                 <h3 className="font-serif text-2xl font-medium tracking-tight">{d.title}</h3>
                 <p className="mt-3 leading-relaxed text-muted">{d.body}</p>
               </div>
@@ -111,7 +111,7 @@ export default async function ServicePage({ params }: Props) {
         </section>
       )}
 
-      <section aria-labelledby="faq-heading" className="mt-24">
+      <section aria-labelledby="faq-heading" className={`mt-24 ${BAND}`}>
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeading id="faq-heading" eyebrow="FAQ" title="Common questions" />
           <div className="divide-y divide-line border-y border-line">

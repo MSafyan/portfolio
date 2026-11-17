@@ -2,7 +2,7 @@ import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
-import { Container } from "@/components/ui";
+import { BAND, Container } from "@/components/ui";
 import { breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
@@ -43,10 +43,10 @@ export default function WorkPage() {
         title="Production work, with the results measured"
         intro={`${WORK.length} case studies from projects that shipped to real users — the problem, what I built, the hard parts and what changed, in numbers — plus ${MORE_PROJECTS.length} earlier builds.`}
       />
-      {SERVICES.map((s) => {
+      {SERVICES.map((s, i) => {
         const items = WORK.filter((w) => w.service === s.slug);
         return (
-          <section key={s.slug} aria-labelledby={`${s.slug}-heading`} className="mt-20">
+          <section key={s.slug} aria-labelledby={`${s.slug}-heading`} className={i % 2 ? `mt-20 ${BAND}` : "mt-20"}>
             <Container>
               <h2 id={`${s.slug}-heading`} className="font-serif text-3xl font-medium tracking-tight">
                 {s.name}

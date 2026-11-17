@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
-import { Container, SectionHeading, Tag } from "@/components/ui";
+import { BAND, Container, SectionHeading, Tag } from "@/components/ui";
 import { CERTIFICATIONS, EXPERIENCE, SKILLS } from "@/lib/profile";
 import { PERSON_ID, breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -87,7 +87,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="certs-heading" className="mt-24">
+      <section aria-labelledby="certs-heading" className={`mt-24 ${BAND}`}>
         <Container>
           <SectionHeading id="certs-heading" eyebrow="Certifications" title="Verified on Credly" />
           <ul className="mt-10 grid gap-5 md:grid-cols-3">

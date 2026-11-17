@@ -6,7 +6,7 @@ import { ChartCard } from "@/components/Charts";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
-import { Arrow, Container, Tag } from "@/components/ui";
+import { Arrow, BAND, Container, Tag } from "@/components/ui";
 import { YouTube } from "@/components/YouTube";
 import { breadcrumbs, caseStudyNode, graph, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -195,7 +195,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </Container>
 
       {related.length > 0 && (
-        <section aria-labelledby="related-heading" className="mt-24">
+        <section aria-labelledby="related-heading" className={`mt-24 ${BAND}`}>
           <Container>
             <h2 id="related-heading" className="font-serif text-3xl font-medium tracking-tight">
               More {service.name.toLowerCase()} work
