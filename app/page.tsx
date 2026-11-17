@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { VideoBlock } from "@/components/VideoBlock";
 import { ContactCta } from "@/components/ContactCta";
-import { Arrow, ButtonLink, Container, Eyebrow, SectionHeading } from "@/components/ui";
+import { Arrow, BAND, ButtonLink, Container, Eyebrow, SectionHeading } from "@/components/ui";
 import { CERTIFICATIONS, REVIEWS } from "@/lib/profile";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
@@ -44,7 +44,7 @@ const STEPS = [
 export default function Home() {
   return (
     <>
-      <section className="border-b border-line">
+      <section className="glow border-b border-line">
         <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_auto]">
           <div className="max-w-3xl">
             <Eyebrow>Available for new projects</Eyebrow>
@@ -106,8 +106,8 @@ export default function Home() {
           />
           <ul className="mt-12 grid gap-5 md:grid-cols-3">
             {SERVICES.map((s, i) => (
-              <li key={s.slug} className="group relative flex flex-col rounded-3xl border border-line bg-surface p-7 transition-colors hover:border-ink">
-                <span className="font-serif text-sm text-muted tabular-nums">0{i + 1}</span>
+              <li key={s.slug} className="group relative flex flex-col rounded-3xl border border-line bg-surface p-7 transition hover:-translate-y-0.5 hover:border-ink hover:shadow-xl hover:shadow-black/5">
+                <span className="flex size-10 items-center justify-center rounded-full bg-accent-soft font-serif text-lg text-accent tabular-nums">{i + 1}</span>
                 <h3 className="mt-6 font-serif text-2xl font-medium tracking-tight">
                   <Link href={`/services/${s.slug}`} className="after:absolute after:inset-0">
                     {s.name}
@@ -130,7 +130,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section aria-labelledby="work-heading" className="mt-28">
+      <section aria-labelledby="work-heading" className={`mt-24 ${BAND}`}>
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
@@ -151,7 +151,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section aria-labelledby="intro-video-heading" className="mt-28">
+      <section aria-labelledby="intro-video-heading" className="mt-24">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
@@ -170,7 +170,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section aria-labelledby="process-heading" className="mt-28">
+      <section aria-labelledby="process-heading" className={`mt-24 ${BAND}`}>
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <Eyebrow>How I work</Eyebrow>
@@ -195,7 +195,7 @@ export default function Home() {
           </div>
           <ol className="grid gap-5">
             {STEPS.map((step, i) => (
-              <li key={step.title} className="flex gap-5 rounded-3xl border border-line p-6">
+              <li key={step.title} className="flex gap-5 rounded-3xl border border-line bg-surface p-6">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent-soft font-serif text-lg text-accent">
                   {i + 1}
                 </span>
@@ -209,14 +209,15 @@ export default function Home() {
         </Container>
       </section>
 
-      <section aria-labelledby="reviews-heading" className="mt-28">
+      <section aria-labelledby="reviews-heading" className="mt-24">
         <Container>
           <SectionHeading id="reviews-heading" eyebrow="Client reviews" title="What clients say after the project" />
           <ul className="mt-12 columns-1 gap-5 md:columns-2 lg:columns-3">
             {REVIEWS.map((r) => (
               <li key={r.author} className="mb-5 break-inside-avoid rounded-3xl border border-line bg-surface p-6">
                 <figure>
-                  <blockquote className="font-serif text-lg leading-relaxed">&ldquo;{r.quote}&rdquo;</blockquote>
+                  <span aria-hidden="true" className="block font-serif text-5xl leading-none text-accent">&ldquo;</span>
+                  <blockquote className="mt-1 font-serif text-lg leading-relaxed">{r.quote}</blockquote>
                   <figcaption className="mt-5 text-sm">
                     <span className="font-semibold">{r.author}</span>
                     <span className="text-muted">
