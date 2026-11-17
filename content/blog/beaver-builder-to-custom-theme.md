@@ -7,7 +7,7 @@ target_query: replace beaver builder custom theme seo
 service: technical-seo
 case_study: brickdistrict-seo-ecommerce
 status: published
-published: 2026-11-17
+published: 2026-11-20
 ---
 
 > **Short answer**

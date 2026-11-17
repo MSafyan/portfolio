@@ -7,7 +7,7 @@ target_query: complementary matching strengths weaknesses embeddings
 service: ai-integration
 case_study: wesion-ai-matching
 status: published
-published: 2026-11-17
+published: 2026-11-24
 ---
 
 > **Short answer**

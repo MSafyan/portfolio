@@ -7,7 +7,7 @@ target_query: llm moderation rejecting legitimate posts
 service: ai-integration
 case_study: helpicon-marketplace
 status: published
-published: 2026-11-17
+published: 2026-12-01
 ---
 
 > **Short answer**

@@ -7,7 +7,7 @@ target_query: shopify to azure sql
 service: data-engineering
 case_study: pink-chicken-retail-data
 status: published
-published: 2026-11-17
+published: 2026-12-08
 ---
 
 > **Short answer**

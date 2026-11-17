@@ -7,7 +7,7 @@ target_query: "apparelmagic api data warehouse power bi"
 service: data-engineering
 case_study: pink-chicken-retail-data
 status: published
-published: 2026-11-17
+published: 2026-12-04
 ---
 
 > **Short answer**
