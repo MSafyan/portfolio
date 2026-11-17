@@ -34,16 +34,16 @@ Safyan did **not** call the UKG API: the Air1 vendor imported a UKG "Detailed Ca
 (Counters)" CSV into their Postgres, and ADF copied it to Azure SQL. The work was reconciliation.
 All under `~/archive/palmetto/palmetto-data-warehouse/`:
 
-- **Reconcile to the cent first.** The raw table matched UKG exactly for 2023, 2024 and 2025 YTD
-  (229,570.04 / 329,388.48 / 293,302.59 h); the view was low because it dropped rows without a job
-  number — overhead/admin, 25–31% of hours (`queries/analysis_ukg_totals_discrepancy.sql`).
-- **One project: 81 h on the dashboard vs 787.67 h in UKG** (an 89.7% gap behind a "1746%
-  over-performance" figure). Sync ruled out (171,259 rows both sides); cause was job numbers
-  rebuilt from separate fields, with leading zeros lost (`FTW24-4-25` vs `FTW024-04-25`, same
-  322.48 h on another project) (`INVESTIGATION_SUMMARY.md`, `get_ftw024_raw_records.sql`).
-- **Premium Pay counted twice** — extra counter rows in the UKG export; split into their own
-  columns (commit c249229, 5 Dec 2025).
-- **Edited timecards not re-imported** — an 8.5 h row-level gap (inferred).
+Real values and file references live in the git-ignored `drafts/blog/sources/` file, not here.
+
+- **Reconcile to the cent first.** The raw table matched UKG exactly for each year; the view was
+  low because it dropped rows without a job number — overhead/admin, roughly a quarter to a third
+  of all hours.
+- **One project showed about a tenth of its UKG hours** on the dashboard. The sync was ruled out
+  (same row count on both sides); job numbers were rebuilt from separate fields and lost their
+  leading zeros (shape: `ABC12-3-25` vs `ABC012-03-25`).
+- **Premium Pay counted twice** — extra counter rows in the UKG export; split into their own columns.
+- **Edited timecards not re-imported** — a small row-level gap (inferred).
 - Never name the client's customer projects (they appear in the files); office codes and hours only.
 - `INVESTIGATION_SUMMARY.md` names client staff and was written with Claude; keep both out.
 
@@ -94,10 +94,17 @@ from `~/dev/brickdistrict/bd-theme/knowledge-base/refined/guides.md` and the "Co
 - **Client names:** drafts are anonymous ("a US children's clothing brand") until the client is
   asked; never the client's customers, staff or personal data.
 
+- **Client identifiers and internal figures are disguised (Safyan, 2026-11-17).** Job numbers,
+  order/record IDs, office codes, client table and resource names, commit hashes → made-up values
+  of the same shape. Internal figures (hours, row counts, amounts) → rounded approximations.
+  Headline results already published in a case study may stay as published.
+
 ## Drafts
 
-`knowledge-base/drafts/blog/<slug>.md` (frontmatter + Markdown body) with
-`knowledge-base/drafts/blog/sources/<slug>.md`. Status `draft` until Safyan has checked the facts.
+`knowledge-base/drafts/blog/<slug>.md` (frontmatter + Markdown body) — committed, disguised.
+`knowledge-base/drafts/blog/sources/<slug>.md` maps each published value to the real one and its
+source — **git-ignored, local only** (the repo is public). Status `draft` until Safyan has checked
+the facts.
 
 ## How each post is built to rank
 

@@ -14,3 +14,6 @@ next-env.d.ts
 
 # Credentials — never commit (repo is public)
 keys/
+
+# Blog sources: real client IDs and figures behind the disguised drafts
+knowledge-base/drafts/blog/sources/
