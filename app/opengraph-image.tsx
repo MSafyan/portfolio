@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogImage({ eyebrow: "Available for new projects", title: "Full-stack, AI and data engineer for teams that need it shipped." });
+  return ogImage({ eyebrow: "Available for new projects", title: "I build web apps, AI features and data systems that ship." });
 }

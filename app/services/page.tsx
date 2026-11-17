@@ -10,7 +10,7 @@ import { SERVICES } from "@/lib/services";
 export const metadata = buildMetadata({
   title: "Services: Full-Stack, AI Integration and Data Engineering",
   description:
-    "Freelance software engineering services: full-stack SaaS development in Next.js and Node.js, OpenAI and LangChain integration, and Azure or Snowflake data engineering.",
+    "Freelance software engineering services: full-stack SaaS development in Next.js and Node.js, OpenAI and LangChain integration, and Azure data engineering.",
   path: "/services",
 });
 

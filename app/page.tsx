@@ -14,7 +14,7 @@ import { WORK } from "@/lib/work";
 export const metadata = buildMetadata({
   title: "Muhammad Safyan — Full-Stack, AI & Data Engineer for Hire",
   description:
-    "Freelance full-stack, AI and data engineer with 5+ years shipping SaaS products: Next.js and Node.js apps, OpenAI integrations and Azure or Snowflake data warehouses.",
+    "Freelance full-stack, AI and data engineer with 5+ years of experience: React, Next.js and Node.js apps, OpenAI features, Azure data pipelines and AWS hosting.",
   path: "/",
   type: "profile",
 });
@@ -49,12 +49,12 @@ export default function Home() {
           <div className="max-w-3xl">
             <Eyebrow>Available for new projects</Eyebrow>
             <h1 className="mt-5 font-serif text-[2.6rem] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              Full-stack, AI and data engineer for teams that need it <span className="text-accent">shipped</span>.
+              I build web apps, AI features and data systems that <span className="text-accent">ship</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted text-pretty sm:text-xl">
-              I&rsquo;m {SITE.name}. I build SaaS products end to end — Next.js and Node.js apps, AI features on
-              OpenAI, and data warehouses on Azure and Snowflake — with the cloud, payments and pipelines that keep
-              them running.
+              I&rsquo;m {SITE.name}, a freelance engineer with 5+ years of experience. I build web apps in React,
+              Next.js and Node.js, add AI features with OpenAI, and bring a company&rsquo;s data together on Azure so
+              the reports agree. I also set up the AWS hosting, payments and deploys, so it keeps running after launch.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/contact">
