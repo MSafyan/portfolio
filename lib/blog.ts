@@ -119,5 +119,16 @@ export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug)
 /** Posts a search engine may see: published ones only. */
 export const publishedPosts = () => getPosts().filter((p) => p.status === "published");
 
+/** Published posts for a service page or case study, newest first. */
+export const postsFor = ({ service, caseStudy }: { service?: string; caseStudy?: string }) =>
+  publishedPosts().filter((p) => (service && p.service === service) || (caseStudy && p.caseStudy === caseStudy));
+
+/** Up to three other published posts: same case study first, then same service. */
+export function relatedPosts(post: Post) {
+  const others = publishedPosts().filter((p) => p.slug !== post.slug);
+  const score = (p: Post) => (p.caseStudy === post.caseStudy ? 2 : 0) + (p.service === post.service ? 1 : 0);
+  return others.filter((p) => score(p) > 0).sort((a, b) => score(b) - score(a)).slice(0, 3);
+}
+
 export const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });

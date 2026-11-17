@@ -4,9 +4,11 @@ import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { BAND, ButtonLink, Container, SectionHeading, Tag } from "@/components/ui";
+import { PostList } from "@/components/PostList";
 import { VideoBlock } from "@/components/VideoBlock";
 import { breadcrumbs, faqNode, graph, serviceNode, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
+import { postsFor } from "@/lib/blog";
 import { SERVICES, getService } from "@/lib/services";
 import { midSentence } from "@/lib/text";
 import { videoForService } from "@/lib/videos";
@@ -36,6 +38,7 @@ export default async function ServicePage({ params }: Props) {
     { name: service.name, path: `/services/${service.slug}` },
   ];
   const work = workForService(service.work);
+  const posts = postsFor({ service: service.slug });
   const others = SERVICES.filter((s) => s.slug !== service.slug);
   const video = videoForService(service.slug);
   const path = `/services/${service.slug}`;
@@ -98,6 +101,14 @@ export default async function ServicePage({ params }: Props) {
               <CaseStudyCard key={w.slug} study={w} />
             ))}
           </div>
+          {posts.length > 0 && (
+            <>
+              <h3 className="mt-14 font-serif text-2xl font-medium tracking-tight">Articles</h3>
+              <div className="mt-6">
+                <PostList posts={posts} />
+              </div>
+            </>
+          )}
         </Container>
       </section>
 

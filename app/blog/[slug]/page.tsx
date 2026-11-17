@@ -4,8 +4,9 @@ import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
+import { PostList } from "@/components/PostList";
 import { Arrow, BAND, Container } from "@/components/ui";
-import { formatDate, getPost, getPosts } from "@/lib/blog";
+import { formatDate, getPost, getPosts, relatedPosts } from "@/lib/blog";
 import { blogPostNode, breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getService } from "@/lib/services";
@@ -38,6 +39,7 @@ export default async function PostPage({ params }: Props) {
 
   const service = getService(post.service);
   const study = post.caseStudy ? getCaseStudy(post.caseStudy) : undefined;
+  const related = relatedPosts(post);
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
@@ -100,6 +102,19 @@ export default async function PostPage({ params }: Props) {
             </h2>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               <CaseStudyCard study={study} />
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <section aria-labelledby="related-heading" className="mt-20">
+          <Container>
+            <h2 id="related-heading" className="font-serif text-3xl font-medium tracking-tight">
+              Related articles
+            </h2>
+            <div className="mt-8">
+              <PostList posts={related} />
             </div>
           </Container>
         </section>
