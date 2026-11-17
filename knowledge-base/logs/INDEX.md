@@ -1,5 +1,10 @@
 # Logs index — newest first
 
+## 2026-11-17 — [session_2026-11-17.md](session_2026-11-17.md)
+- 🔗 Live-site links on BrickDistrict, The Gala and Helpicon case studies.
+- ✍️ Homepage intro rewritten around the main stacks; Snowflake no longer leads.
+- 📖 Plain-language pass on case studies and service deliverables.
+
 ## 2026-11-16 — [session_2026-11-16.md](session_2026-11-16.md)
 - 🔁 Vite SPA → static Next.js 16 site: services, 10 case studies, videos, about, contact.
 - 🔍 SEO layer (metadata builder, JSON-LD graph, sitemap/robots, OG images, IndexNow).
