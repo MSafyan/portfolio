@@ -25,8 +25,27 @@ Write in clusters so each post links to the others, its case study and its servi
 | 6 | Beaver Builder to Custom Theme: Lighthouse 60→98 | replace beaver builder custom theme seo | Business owner | Beaver-specific results are only "best themes" listicles | brickdistrict, technical-seo |
 | 7 | Our LLM Moderator Blocked Real Posts. The Fix | llm moderation rejecting legitimate posts | Marketplace CTO/founder | Only an OpenAI forum thread and papers; no practitioner write-up | helpicon, ai-integration |
 | 8 | Shopify to Azure SQL: A Production ADF Pipeline | shopify to azure sql | IT lead deciding build vs buy | Connector landing pages own it but explain nothing; add REST vs GraphQL traps | pink-chicken, data-engineering |
-| 9 | UKG Pro to Azure SQL: Automated Loads for Power BI | ukg pro api export to sql server | HR/finance/IT lead | Red Three's answer is CSV export; nobody shows scheduled incremental loads | palmetto, data-engineering |
+| 9 | Dashboard Hours Don't Match UKG? Reconcile First | ukg hours don't match power bi report | Finance/ops lead | UKG reporting results are thin (Red Three, connector pages); nobody tells a reconciliation story. **SERP not yet checked for this phrasing** | palmetto, data-engineering |
 | 10 | Taking Over a Laravel App: The First Two Weeks | taking over a laravel project from another developer | Owner whose developer left | Agency checklists, few first-person accounts; this one sells the service | the-gala, full-stack |
+
+### Source material for #9 (Palmetto, from the archived repo, checked 2026-11-17)
+
+Safyan did **not** call the UKG API: the Air1 vendor imported a UKG "Detailed Calculated Time
+(Counters)" CSV into their Postgres, and ADF copied it to Azure SQL. The work was reconciliation.
+All under `~/archive/palmetto/palmetto-data-warehouse/`:
+
+- **Reconcile to the cent first.** The raw table matched UKG exactly for 2023, 2024 and 2025 YTD
+  (229,570.04 / 329,388.48 / 293,302.59 h); the view was low because it dropped rows without a job
+  number — overhead/admin, 25–31% of hours (`queries/analysis_ukg_totals_discrepancy.sql`).
+- **One project: 81 h on the dashboard vs 787.67 h in UKG** (an 89.7% gap behind a "1746%
+  over-performance" figure). Sync ruled out (171,259 rows both sides); cause was job numbers
+  rebuilt from separate fields, with leading zeros lost (`FTW24-4-25` vs `FTW024-04-25`, same
+  322.48 h on another project) (`INVESTIGATION_SUMMARY.md`, `get_ftw024_raw_records.sql`).
+- **Premium Pay counted twice** — extra counter rows in the UKG export; split into their own
+  columns (commit c249229, 5 Dec 2025).
+- **Edited timecards not re-imported** — an 8.5 h row-level gap (inferred).
+- Never name the client's customer projects (they appear in the files); office codes and hours only.
+- `INVESTIGATION_SUMMARY.md` names client staff and was written with Claude; keep both out.
 
 ## Next batch
 
