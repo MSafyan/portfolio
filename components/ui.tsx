@@ -5,8 +5,16 @@ export function Container({ className = "", children }: { className?: string; ch
   return <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>{children}</div>;
 }
 
+/** A full-width tinted band, used on every other section so sections read as separate. */
+export const BAND = "border-y border-line bg-band py-20 sm:py-24";
+
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="text-xs font-semibold tracking-[0.14em] text-accent uppercase">{children}</p>;
+  return (
+    <p className="flex items-center gap-2.5 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+      <span aria-hidden="true" className="h-px w-6 bg-accent" />
+      {children}
+    </p>
+  );
 }
 
 export function SectionHeading({

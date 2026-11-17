@@ -16,7 +16,7 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="border-b border-line">
+    <section className="glow border-b border-line">
       <Container className="py-14 sm:py-20">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted">
