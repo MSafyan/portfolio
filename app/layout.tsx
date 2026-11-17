@@ -26,8 +26,9 @@ export const viewport: Viewport = {
   ],
 };
 
-// Runs before first paint so a stored dark preference never flashes light.
-const themeScript = `try{if(localStorage.getItem("theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}`;
+// Runs before first paint, so the page never flashes the wrong theme. A choice made with the toggle
+// wins; otherwise the system setting, followed live; light if the browser reports neither.
+const themeScript = `(function(){var d=document.documentElement,m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");function s(){try{return localStorage.getItem("theme")}catch(e){}}function a(){var t=s();d.dataset.theme=t==="dark"||t==="light"?t:m&&m.matches?"dark":"light"}a();m&&m.addEventListener&&m.addEventListener("change",a)})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

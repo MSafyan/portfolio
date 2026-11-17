@@ -8,7 +8,13 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    // The head script sets the theme, and changes it when the system setting changes; mirror it.
+    const root = document.documentElement;
+    const sync = () => setTheme(root.dataset.theme === "dark" ? "dark" : "light");
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
   }, []);
 
   function toggle() {
