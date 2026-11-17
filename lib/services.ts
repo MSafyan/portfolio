@@ -39,23 +39,23 @@ export const SERVICES: Service[] = [
     deliverables: [
       {
         title: "Web apps in Next.js and React",
-        body: "Server-rendered, fast and accessible front ends with TypeScript, TanStack Query and a design system that scales.",
+        body: "Fast, accessible web apps that Google can read, built in TypeScript with a consistent design system.",
       },
       {
         title: "APIs and back ends",
-        body: "Node.js, NestJS and Express services on PostgreSQL with Prisma or TypeORM, role-based access and audit trails.",
+        body: "Node.js, NestJS and Express back ends on PostgreSQL, with user roles and a record of who changed what.",
       },
       {
         title: "Payments and integrations",
-        body: "Stripe, Swish and PayPal flows with webhooks, commission splits and subscriptions; Twilio, SendGrid and partner APIs.",
+        body: "Stripe, Swish and PayPal checkouts with subscriptions and commission splits, plus chat, email and partner integrations.",
       },
       {
         title: "Technical SEO and Core Web Vitals",
-        body: "Server-rendered pages, structured data, sitemaps and Lighthouse scores in the high 90s — one store went from 137 to 8,020 weekly Google impressions.",
+        body: "Pages Google can read and rank, with speed scores in the high 90s — one store went from 137 to 8,020 weekly views in Google search.",
       },
       {
         title: "Cloud, CI/CD and DevOps",
-        body: "AWS (ECS, EKS, RDS, S3, Lambda) with Terraform, Docker and automated pipelines — repeatable deploys and real monitoring.",
+        body: "Hosting on AWS or Vercel, set up as code with Terraform and Docker, with automatic deploys and alerts when something breaks.",
       },
     ],
     stack: [
@@ -110,11 +110,11 @@ export const SERVICES: Service[] = [
     deliverables: [
       {
         title: "LLM features in your product",
-        body: "OpenAI GPT and LangChain features wired into your back end with prompt versioning, guardrails, retries and logging.",
+        body: "OpenAI and LangChain features built into your back end, with checks on what the AI returns, retries when it fails and a log of every call.",
       },
       {
         title: "Semantic search and matching",
-        body: "Embeddings and vector databases such as Pinecone for recommendations, matching and retrieval-augmented generation (RAG).",
+        body: "Search, matching and recommendations that understand meaning, and chatbots that answer from your own documents (RAG).",
       },
       {
         title: "Cost and quality control",
@@ -153,7 +153,7 @@ export const SERVICES: Service[] = [
     description:
       "Freelance data engineer for warehouses and ETL: Azure Data Factory, Azure SQL, Snowflake and Power BI. One trusted source of numbers across Shopify, NetSuite and more.",
     h1: "Data engineering: one source of truth for your numbers",
-    summary: "Warehouses and ETL on Azure Data Factory and Snowflake, so every team reads the same numbers.",
+    summary: "Data pipelines and warehouses on Azure, so every team reads the same numbers.",
     intro:
       "I build data warehouses and ETL pipelines that pull your ERP, e-commerce and operations systems into one model — so finance, operations and leadership read the same numbers, refreshed automatically.",
     forYouIf: [
@@ -165,11 +165,11 @@ export const SERVICES: Service[] = [
     deliverables: [
       {
         title: "Data warehouses",
-        body: "Dimensional models (facts, dimensions, snapshots) on Azure SQL or Snowflake, designed around the questions the business asks.",
+        body: "One central database on Azure SQL or Snowflake, organised around the questions the business asks, with history kept for trends.",
       },
       {
         title: "ETL and ELT pipelines",
-        body: "Azure Data Factory and Snowpark pipelines with incremental loads, MERGE logic, schema-drift handling and alerting.",
+        body: "Azure Data Factory and Python pipelines that load only what changed, cope when source systems change, and alert you when a run fails.",
       },
       {
         title: "Integrations",
@@ -189,7 +189,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Can you fix numbers that do not match between systems?",
-        a: "Yes. On one retail project I traced a 1–3% monthly sales gap to gift-card refunds that Shopify's REST and GraphQL APIs classify differently, and rebuilt the pipeline to reconcile them.",
+        a: "Yes. On one retail project I traced a 1–3% monthly sales gap to gift-card refunds that Shopify's two APIs report differently, and rebuilt the pipeline so the numbers match.",
       },
       {
         q: "How long does a data warehouse take?",
