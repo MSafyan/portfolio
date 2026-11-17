@@ -14,18 +14,11 @@ that day's log. Current setup is described in [../refined/seo-and-analytics.md](
 
 ## 2. Blog: problem-solution articles (highest ranking value)
 
-Build `/blog` with the same SEO layer (Article + BreadcrumbList schema, index page, RSS), then one
-article every 1–2 weeks, each linking to its case study and service page. Cross-post to dev.to /
-Hashnode / LinkedIn with the canonical pointing here. Source material: the video transcripts.
+Plan, researched topic list and on-page checklist: **[blog-plan.md](blog-plan.md)**.
 
-- [ ] Why Shopify sales don't match your data warehouse (gift-card refunds) — Pink Chicken
-- [ ] How we cut OpenAI costs by 95% without losing quality — Wesion
-- [ ] Never trust the price from the browser: Stripe webhooks done right — Helpicon
-- [ ] Prisma + PgBouncer: fixing "too many connections" on Postgres — CarLister
-- [ ] Azure Data Factory nvarchar(max): making columns indexable — Pink Chicken
-- [ ] Getting past Keepa's 10-page API limit — e-commerce ETL
-- [ ] Taking over a Laravel app with missing migrations — The Gala
-- [ ] Why WooCommerce product saves take 30 seconds — BrickDistrict
+- [ ] Build `/blog` (index, post page, Article + BreadcrumbList schema, sitemap with lastmod, RSS, OG images).
+- [ ] Confirm with each named client that a deeper write-up is fine, or write it anonymously.
+- [ ] Publish the first ten from the plan, one every 1–2 weeks.
 
 ## 3. Analytics gaps (do once traffic starts)
 

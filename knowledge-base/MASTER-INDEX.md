@@ -2,6 +2,8 @@
 
 - [plans/next-tasks.md](plans/next-tasks.md) — the backlog: getting found, blog articles, analytics
   gaps, GA settings, later work.
+- [plans/blog-plan.md](plans/blog-plan.md) — researched blog topics (first ten in order), and how each post
+  is built to rank.
 - [refined/seo-and-analytics.md](refined/seo-and-analytics.md) — current truth: domain and DNS,
   on-page SEO, search engines, GA4/Clarity, contact form, latest Lighthouse.
 - [logs/INDEX.md](logs/INDEX.md) — one line per significant change, newest first; session logs in `logs/`.
