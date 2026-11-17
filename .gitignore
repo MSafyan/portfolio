@@ -17,3 +17,7 @@ keys/
 
 # Blog sources: real client IDs and figures behind the disguised drafts
 knowledge-base/drafts/blog/sources/
+
+# Held back pending the client decision (security details, authorship)
+content/blog/tabby-tamara-myfatoorah-laravel.md
+content/blog/taking-over-a-laravel-app.md

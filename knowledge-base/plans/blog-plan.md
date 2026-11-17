@@ -99,12 +99,19 @@ from `~/dev/brickdistrict/bd-theme/knowledge-base/refined/guides.md` and the "Co
   of the same shape. Internal figures (hours, row counts, amounts) → rounded approximations.
   Headline results already published in a case study may stay as published.
 
-## Drafts
+## Drafts and publishing
 
-`knowledge-base/drafts/blog/<slug>.md` (frontmatter + Markdown body) — committed, disguised.
-`knowledge-base/drafts/blog/sources/<slug>.md` maps each published value to the real one and its
-source — **git-ignored, local only** (the repo is public). Status `draft` until Safyan has checked
-the facts.
+- Posts: `content/blog/<slug>.md` — frontmatter (`title`, `seo_title`, `seo_description`, `slug`,
+  `target_query`, `service`, `case_study`, `status`, `published`, `updated`) + Markdown body.
+  Committed, disguised. Rendered by `lib/blog.ts` at `/blog/<slug>`.
+- `status: draft` shows under `pnpm dev` only (badge "Draft preview"); `held` never shows;
+  `published` + a `published: YYYY-MM-DD` date goes live, into the sitemap with lastmod.
+- `/blog` is `noindex` and out of the sitemap until the first post is published. Add "Blog" to
+  `NAV` in `lib/site.ts` at the same time.
+- Real values behind the disguised ones: `knowledge-base/drafts/blog/sources/<slug>.md` —
+  **git-ignored, local only** (the repo is public). Publish only after Safyan has answered the
+  questions at the end of that file.
+- Callouts: a blockquote starting `**Short answer**`, `**Tip:**`, `**Note:**` or `**Warning:**`.
 
 ## How each post is built to rank
 
