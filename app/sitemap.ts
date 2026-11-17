@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { publishedPosts } from "@/lib/blog";
 import { SERVICES } from "@/lib/services";
 import { absoluteUrl } from "@/lib/site";
 import { WORK } from "@/lib/work";
@@ -17,5 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/contact",
   ];
-  return paths.map((path) => ({ url: absoluteUrl(path) }));
+  const posts = publishedPosts();
+  return [
+    ...paths.map((path) => ({ url: absoluteUrl(path) })),
+    // Posts have real dates, so they carry lastmod. The index joins once there is something in it.
+    ...(posts.length ? [{ url: absoluteUrl("/blog") }] : []),
+    ...posts.map((p) => ({ url: absoluteUrl(`/blog/${p.slug}`), lastModified: p.updated ?? p.published ?? undefined })),
+  ];
 }

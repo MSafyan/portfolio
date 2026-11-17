@@ -1,6 +1,7 @@
 import { SAME_AS, SITE, absoluteUrl } from "./site";
 import { CERTIFICATIONS } from "./profile";
 import { SERVICES, type Faq, type Service } from "./services";
+import type { Post } from "./blog";
 import type { CaseStudy } from "./work";
 import { type Video, thumb } from "./videos";
 
@@ -141,6 +142,23 @@ export function caseStudyNode(study: CaseStudy) {
     author: { "@id": PERSON_ID },
     publisher: { "@id": PERSON_ID },
     about: study.stack,
+    inLanguage: "en",
+  };
+}
+
+export function blogPostNode(post: Post) {
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  return {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: url,
+    image: absoluteUrl(`/blog/${post.slug}/opengraph-image`),
+    ...(post.published ? { datePublished: post.published, dateModified: post.updated ?? post.published } : {}),
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": PERSON_ID },
     inLanguage: "en",
   };
 }
