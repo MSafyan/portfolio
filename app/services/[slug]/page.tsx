@@ -8,6 +8,7 @@ import { VideoBlock } from "@/components/VideoBlock";
 import { breadcrumbs, faqNode, graph, serviceNode, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { SERVICES, getService } from "@/lib/services";
+import { midSentence } from "@/lib/text";
 import { videoForService } from "@/lib/videos";
 import { workForService } from "@/lib/work";
 
@@ -71,7 +72,7 @@ export default async function ServicePage({ params }: Props) {
 
       <section aria-labelledby="deliver-heading" className={`mt-24 ${BAND}`}>
         <Container>
-          <SectionHeading id="deliver-heading" eyebrow="What you get" title={`What ${service.name.toLowerCase()} covers`} />
+          <SectionHeading id="deliver-heading" eyebrow="What you get" title={`What ${midSentence(service.name)} covers`} />
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             {service.deliverables.map((d) => (
               <div key={d.title} className="rounded-3xl border border-line bg-surface p-7">
@@ -147,7 +148,7 @@ export default async function ServicePage({ params }: Props) {
         </Container>
       </section>
 
-      <ContactCta title={`Need help with ${service.name.toLowerCase()}?`} />
+      <ContactCta title={`Need help with ${midSentence(service.name)}?`} />
     </>
   );
 }

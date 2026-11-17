@@ -3,6 +3,7 @@ import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { BAND, Container, SectionHeading, Tag } from "@/components/ui";
+import { midSentence } from "@/lib/text";
 import { CERTIFICATIONS, EXPERIENCE, SKILLS } from "@/lib/profile";
 import { PERSON_ID, breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
@@ -35,7 +36,7 @@ export default function AboutPage() {
         crumbs={CRUMBS}
         eyebrow="About"
         title="Engineer first, with the whole system in view"
-        intro={`I'm ${SITE.name}, a ${SITE.jobTitle.toLowerCase()} based in ${SITE.locality}, ${SITE.countryName}. For over five years I have owned products end to end for clients in the US, UK, Sweden and Australia — from the interface and the API to the data warehouse and the cloud underneath.`}
+        intro={`I'm ${SITE.name}, a ${midSentence(SITE.jobTitle)} based in ${SITE.locality}, ${SITE.countryName}. For over five years I have owned products end to end for clients in the US, UK, Sweden and Australia — from the interface and the API to the data warehouse and the cloud underneath.`}
       />
 
       <Container className="mt-16 grid gap-14 lg:grid-cols-[18rem_1fr]">

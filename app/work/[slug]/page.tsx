@@ -11,6 +11,7 @@ import { YouTube } from "@/components/YouTube";
 import { breadcrumbs, caseStudyNode, graph, videoNode } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getService } from "@/lib/services";
+import { midSentence } from "@/lib/text";
 import { fmt, getVideo } from "@/lib/videos";
 import { WORK, getCaseStudy } from "@/lib/work";
 
@@ -198,7 +199,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <section aria-labelledby="related-heading" className={`mt-24 ${BAND}`}>
           <Container>
             <h2 id="related-heading" className="font-serif text-3xl font-medium tracking-tight">
-              More {service.name.toLowerCase()} work
+              More {midSentence(service.name)} work
             </h2>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {related.map((w) => (
