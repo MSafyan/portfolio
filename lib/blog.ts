@@ -102,22 +102,35 @@ function load(file: string): Post {
 
 let cache: Post[] | null = null;
 
-export function getPosts(): Post[] {
+function allPosts(): Post[] {
   if (!cache || process.env.NODE_ENV !== "production") {
     cache = readdirSync(DIR)
       .filter((f) => f.endsWith(".md"))
       .map(load)
-      .filter((p) => p.status === "published" || (SHOW_DRAFTS && p.status === "draft"))
-      // Newest first; drafts (no date) after published posts, by title.
+      // Newest first; undated drafts last, by title.
       .sort((a, b) => (b.published ?? "").localeCompare(a.published ?? "") || a.title.localeCompare(b.title));
   }
   return cache;
 }
 
+const today = () => new Date().toISOString().slice(0, 10);
+
+/**
+ * Live: published, and its date has arrived (UTC). A published post with a future date is
+ * scheduled — pages revalidate hourly, so it appears on its day without a deploy.
+ * Evaluated per call, never cached, because the answer changes at midnight.
+ */
+export const isLive = (p: Post) => p.status === "published" && !!p.published && p.published <= today();
+
+/** What a page lists: live posts, plus drafts and scheduled posts when previewing locally. */
+export function getPosts(): Post[] {
+  return allPosts().filter((p) => isLive(p) || (SHOW_DRAFTS && p.status !== "held"));
+}
+
 export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug);
 
-/** Posts a search engine may see: published ones only. */
-export const publishedPosts = () => getPosts().filter((p) => p.status === "published");
+/** Posts a search engine may see: live ones only. */
+export const publishedPosts = () => allPosts().filter(isLive);
 
 /** Published posts for a service page or case study, newest first. */
 export const postsFor = ({ service, caseStudy }: { service?: string; caseStudy?: string }) =>

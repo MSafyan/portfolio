@@ -3,19 +3,24 @@ import { ContactCta } from "@/components/ContactCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { Arrow, Container } from "@/components/ui";
-import { formatDate, getPosts, publishedPosts } from "@/lib/blog";
+import { formatDate, getPosts, isLive, publishedPosts } from "@/lib/blog";
 import { breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getService } from "@/lib/services";
 
-export const metadata = buildMetadata({
-  title: "Blog: Real Problems from Production Projects",
-  description:
-    "Articles on problems solved in real client projects: Shopify and ERP data that won't reconcile, slow WooCommerce stores, AI features and payment integrations.",
-  path: "/blog",
-  // Kept out of the index until the first article is published.
-  noindex: publishedPosts().length === 0,
-});
+export function generateMetadata() {
+  return buildMetadata({
+    title: "Blog: Real Problems from Production Projects",
+    description:
+      "Articles on problems solved in real client projects: Shopify and ERP data that won't reconcile, slow WooCommerce stores, AI features and payment integrations.",
+    path: "/blog",
+    // Kept out of the index until the first article is published.
+    noindex: publishedPosts().length === 0,
+  });
+}
+
+// Re-rendered hourly, so a scheduled post appears on its date without a deploy.
+export const revalidate = 3600;
 
 const CRUMBS = [
   { name: "Home", path: "/" },
@@ -45,7 +50,11 @@ export default function BlogPage() {
               >
                 <p className="text-xs font-semibold tracking-wider text-muted uppercase">
                   {getService(p.service)?.name ?? "Article"} · {p.minutes} min read
-                  {p.status !== "published" && <span className="ml-2 rounded-full bg-accent-soft px-2 py-0.5 text-accent normal-case">Draft</span>}
+                  {!isLive(p) && (
+                    <span className="ml-2 rounded-full bg-accent-soft px-2 py-0.5 text-accent normal-case">
+                      {p.status === "published" ? "Scheduled" : "Draft"}
+                    </span>
+                  )}
                 </p>
                 <h2 className="mt-3 font-serif text-2xl leading-snug font-medium tracking-tight text-balance">
                   <Link href={`/blog/${p.slug}`} className="after:absolute after:inset-0">

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Blog posts are read from disk at render time (hourly revalidation, scheduled posts).
+  outputFileTracingIncludes: { "/**": ["./content/blog/*.md"] },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" }],

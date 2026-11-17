@@ -7,6 +7,9 @@ import { WORK } from "@/lib/work";
 // Built from the same data as the routes, so a page can't exist without a
 // sitemap entry or the other way round. No lastmod: we have no real per-page
 // timestamp, and a fake one teaches search engines to ignore it.
+// Re-rendered hourly, so a scheduled post appears on its date without a deploy.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",

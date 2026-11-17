@@ -16,6 +16,9 @@ import { workForService } from "@/lib/work";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Re-rendered hourly, so a scheduled post appears on its date without a deploy.
+export const revalidate = 3600;
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {

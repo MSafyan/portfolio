@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { PostList } from "@/components/PostList";
 import { Arrow, BAND, Container } from "@/components/ui";
-import { formatDate, getPost, getPosts, relatedPosts } from "@/lib/blog";
+import { formatDate, getPost, getPosts, isLive, relatedPosts } from "@/lib/blog";
 import { blogPostNode, breadcrumbs, graph } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 import { getService } from "@/lib/services";
@@ -15,7 +15,11 @@ import { getCaseStudy } from "@/lib/work";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
+// Scheduled posts are not pre-rendered; they render on request once their date arrives.
+export const dynamicParams = true;
+// Re-rendered hourly, so a scheduled post appears on its date without a deploy.
+export const revalidate = 3600;
+
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -29,7 +33,7 @@ export async function generateMetadata({ params }: Props) {
     description: post.description,
     path: `/blog/${post.slug}`,
     type: "article",
-    noindex: post.status !== "published",
+    noindex: !isLive(post),
   });
 }
 
@@ -57,9 +61,11 @@ export default async function PostPage({ params }: Props) {
           <span aria-hidden="true">·</span>
           <span>{post.minutes} min read</span>
         </p>
-        {post.status !== "published" && (
+        {!isLive(post) && (
           <p className="mt-5 inline-block rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">
-            Draft preview — not published, only visible locally
+            {post.status === "published" && post.published
+              ? `Scheduled for ${formatDate(post.published)} — only visible locally until then`
+              : "Draft preview — not published, only visible locally"}
           </p>
         )}
       </PageHeader>
