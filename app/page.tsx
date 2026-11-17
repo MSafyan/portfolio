@@ -14,7 +14,7 @@ import { WORK } from "@/lib/work";
 export const metadata = buildMetadata({
   title: "Muhammad Safyan — Full-Stack, AI & Data Engineer for Hire",
   description:
-    "Freelance full-stack, AI and data engineer with 5+ years of experience: React, Next.js and Node.js apps, OpenAI features, Azure data pipelines and AWS hosting.",
+    "Freelance full-stack, AI and data engineer with 5+ years of experience: React, Next.js and Node.js apps, technical SEO, OpenAI features and Azure data.",
   path: "/",
   type: "profile",
 });
@@ -53,8 +53,9 @@ export default function Home() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted text-pretty sm:text-xl">
               I&rsquo;m {SITE.name}, a freelance engineer with 5+ years of experience. I build web apps in React,
-              Next.js and Node.js, add AI features with OpenAI, and bring a company&rsquo;s data together on Azure so
-              the reports agree. I also set up the AWS hosting, payments and deploys, so it keeps running after launch.
+              Next.js and Node.js and get them found on Google, add AI features with OpenAI, and bring a
+              company&rsquo;s data together on Azure so the reports agree. I often take over code another team left
+              behind, and I set up the hosting, payments and deploys so it keeps running after launch.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/contact">
