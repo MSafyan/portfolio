@@ -7,6 +7,7 @@
 - 🎨 Alternating section bands, header glow; theme follows the system setting.
 - 🔍 Technical SEO service page added.
 - 📝 Blog plan researched (`plans/blog-plan.md`); portrait re-cropped.
+- ✍️ Ten blog drafts (eight committed, two Gala drafts held back).
 
 ## 2026-11-16 — [session_2026-11-16.md](session_2026-11-16.md)
 - 🔁 Vite SPA → static Next.js 16 site: services, 10 case studies, videos, about, contact.
