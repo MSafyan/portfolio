@@ -4,14 +4,14 @@ export const EXPERIENCE = [
     region: "USA",
     role: "Data engineer",
     period: "Mar 2025 – Jan 2026",
-    summary: "Azure warehouse unifying Shopify and Apparel Magic; closed a 1–3% monthly sales gap.",
+    summary: "50+ Data Factory pipelines unifying Shopify and Apparel Magic; closed a 1–3% monthly sales gap.",
   },
   {
     company: "Palmetto Air Balance",
     region: "USA",
     role: "Data engineer",
     period: "Dec 2024 – Jan 2026",
-    summary: "50+ Data Factory pipelines across NetSuite, UKG and Air1; $40M+ portfolio visibility.",
+    summary: "Azure warehouse across NetSuite, UKG and Air1; $40M+ portfolio visibility, 70% less manual reporting.",
   },
   {
     company: "Helpicon",

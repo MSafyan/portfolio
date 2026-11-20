@@ -449,7 +449,7 @@ export const WORK: CaseStudy[] = [
     name: "One warehouse for a $40M project portfolio",
     title: "Palmetto: Azure Data Warehouse for NetSuite, UKG and Air1",
     description:
-      "An Azure data warehouse joining NetSuite, UKG and Air1 with 50+ Data Factory pipelines — real-time visibility into a $40M+ portfolio and 70% less manual reporting.",
+      "An Azure data warehouse joining NetSuite, UKG and Air1 that gives leadership real-time visibility into a $40M+ portfolio, with 70% less manual reporting.",
     service: "data-engineering",
     role: "Data engineer",
     region: "United States",
@@ -457,13 +457,13 @@ export const WORK: CaseStudy[] = [
     period: "2024 – 2026",
     metrics: [
       { value: "$40M+", label: "portfolio made visible" },
-      { value: "50+", label: "Data Factory pipelines" },
+      { value: "1M+", label: "records loaded a day" },
       { value: "70%", label: "less manual reporting" },
     ],
     challenge:
       "Revenue lived in NetSuite, projects in Air1 and labour in UKG. Leadership waited days for backlog and utilisation reports that were assembled by hand and rarely agreed.",
     approach: [
-      "Built a central Azure SQL database fed by 50+ automated Data Factory pipelines, matching projects, invoices and hours across the three systems so the money adds up.",
+      "Built a central Azure SQL database fed by about 10 automated Data Factory pipelines, matching projects, invoices and hours across the three systems so the money adds up.",
       "Wrote one reusable update procedure that works for any table, records what failed and why, and emails an alert when a load breaks.",
       "Handles over a million records a day, and reports still load in under a second.",
       "Delivered Power BI dashboards for revenue, backlog and utilisation, with automated weekly backlog snapshots for trends.",
@@ -554,7 +554,7 @@ export const WORK: CaseStudy[] = [
     challenge:
       "A children's clothing brand sells through 10+ shops, online and wholesale. Its shop and online sales (Shopify) and its warehouse system (Apparel Magic) never agreed, and monthly sales figures were off by 1–3%.",
     approach: [
-      "Built one Azure database holding both Shopify and Apparel Magic data, with rules that stop online stock being counted twice.",
+      "Built one Azure database, fed by 50+ Data Factory pipelines, holding both Shopify and Apparel Magic data, with rules that stop online stock being counted twice.",
       "Traced the sales gap to gift-card refunds that Shopify's two APIs report differently, and rebuilt the sales figures on the one that records every change to an order.",
       "Found that stock on its way to the shops is only available from Shopify's newer API, and combined the two without breaking the daily updates.",
       "Cut the monitoring bill from about $1,000 a month to $0.10 by replacing a pile of duplicate alerts with one that fires when a pipeline fails.",
