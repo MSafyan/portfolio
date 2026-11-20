@@ -38,7 +38,7 @@ How the site is found and measured, as of 2026-11-16. Rewrite in place when it c
   indexed"**, last crawled 17–20 Nov. The "Crawled – currently not indexed" page report (dated
   16 Nov) was stale. First searches: "muhammad safyan" → `/about`, position 2.
 
-## Dashboard (stats.muhammadsafyan.com)
+## Dashboard (app.muhammadsafyan.com)
 
 Private, installable dashboard in the sibling repo `../site-stats` (Vercel project `site-stats`,
 private GitHub repo `MSafyan/site-stats`). Daily snapshot of Search Console, URL inspection
