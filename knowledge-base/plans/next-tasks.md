@@ -29,7 +29,7 @@ Plan, researched topic list and on-page checklist: **[blog-plan.md](blog-plan.md
 - [ ] Confirm with each named client that a deeper write-up is fine, or write it anonymously.
 - [~] First batch of eight scheduled 17 Nov – 8 Dec (see blog-plan.md); two Gala posts held.
 - [ ] Weekly: Search Console → which posts get impressions; Request indexing on each release day.
-      Pending: `/blog/beaver-builder-to-custom-theme` ("unknown to Google" on 2026-11-20).
+      `/blog/beaver-builder-to-custom-theme` indexed 2026-11-20. Index state per page: the dashboard, step 1.
 
 ## 3. Analytics gaps (do once traffic starts)
 
@@ -53,6 +53,7 @@ GA settings (Safyan's login, ~5 min):
 - [ ] Admin → Events → mark `generate_lead` as a **key event**.
 - [ ] Admin → Data filters → internal-traffic filter for own IP.
 - [ ] Admin → Product links → link **Search Console**.
+- [x] GA4 Data API access for the dashboard (service account as Viewer) — 2026-11-21.
 
 ## 4. Later
 
