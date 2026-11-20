@@ -31,7 +31,7 @@ export const EXPERIENCE = [
     company: "CVR Sports Analytics",
     region: "Australia",
     role: "Full-stack and data engineer",
-    period: "2022 – 2026",
+    period: "2022 – present",
     summary: "Rugby league analytics on Node.js and MongoDB; Angular 9 to 17 upgrade.",
   },
   {

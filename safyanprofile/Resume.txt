@@ -42,7 +42,7 @@ ECS auto-scaling (min 2 → max 10 at 70% CPU); Multi-AZ RDS PostgreSQL; RDS bac
 Deployed payment microservice on AWS EKS with Jenkins CI/CD across 3 isolated AWS accounts (DevOps / Staging / Production); Terraform IaC for RDS, ECR, S3, VPC; automated Prisma migrations
 
 
-CVR Sports Analytics  (AUS)                                                                                                             2022 – 2026
+CVR Sports Analytics  (AUS)                                                                                                             2022 – Present
 Full-Stack + Data Engineer  |  Node.js · MongoDB · Angular 17 · Express
 
 Designed analytics platform for NRL, Super League, and NSW Cup with a CQRS-like architecture: materialized read models at player/team/quarter/10-min grains. Event-derived KPIs computed once at XML ingestion, eliminating repeated recalculation on every report query
