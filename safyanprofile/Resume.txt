@@ -11,7 +11,7 @@ EXPERIENCE
 Pink Chicken (USA)                                                                                                                          Mar 2025 – Jan 2026
 Data Engineer  |  Azure · ADF · Shopify · Apparel Magic · Python · MsSQL · Dataflow
 
-Architected enterprise data warehouse on Azure integrating Shopify (10+ retail + e-commerce locations) with Apparel Magic WMS; designed virtual warehouse reconciliation logic to eliminate inventory double-counting
+Architected enterprise data warehouse on Azure (50+ ADF pipelines) integrating Shopify (10+ retail + e-commerce locations) with Apparel Magic WMS; designed virtual warehouse reconciliation logic to eliminate inventory double-counting
 Diagnosed 1–3% monthly sales divergence on multi-million-dollar revenue. Root cause: gift card refunds classified inconsistently across Shopify REST vs GraphQL; built reconciliation pipeline using GraphQL order changes API with explicit transaction classification logic; fixed discrepancy permanently
 Discovered incoming stock only exposed in Shopify GraphQL (not REST); redesigned inventory pipeline to merge both endpoints, resolving schema drift without disrupting existing incremental loads
 Reduced Azure Monitor costs by 99.99%, from ~$1,000/month to $0.10/month (~$12,000/year saved) by eliminating redundant alert rules and consolidating to a single essential pipeline failure alert
@@ -20,7 +20,7 @@ Implemented daily incremental loads, daily inventory snapshots, and dimensional 
 Palmetto Air Balance (USA)                                                                                                                   Dec 2024 – Jan 2026
 Data Engineer  |  Azure · ADF · NetSuite · UKG · Air1 · T-SQL
 
-Architected Azure-based enterprise warehouse: 50+ ADF pipelines integrating NetSuite (ERP), Air1 (project management), and UKG (workforce) with complex cross-system key mapping and financial reconciliation
+Architected Azure-based enterprise warehouse: ~10 ADF pipelines integrating NetSuite (ERP), Air1 (project management), and UKG (workforce) with complex cross-system key mapping and financial reconciliation
 Delivered real-time visibility into $40M+ project portfolio (revenue, backlog, utilization dashboards); reduced manual reporting effort by 70% across the business
 Built dynamic MERGE stored procedures with intelligent primary key detection, TRY-CATCH error handling, pipeline-level + database-level logging, email alerts with failure categorization, and audit trails
 Processed 1M+ records daily with sub-second query latency using composite indexing, table partitioning, and materialized views; implemented weekly automated backlog snapshots for historical trending

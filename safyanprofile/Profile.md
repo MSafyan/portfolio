@@ -11,7 +11,7 @@ GitHub: github.com/MSafyan · Email: msafyan080@gmail.com · LinkedIn: linkedin.
 | **Abundance AI** | 95% AI cost reduction via model selection; 11 specialized AI services; chat summarization across 7-day windows via NestJS cron |
 | **Helpicon Platform** | 10,000+ active users · 500+ verified providers · 99.8% payment success rate · API p50 <200ms · DB queries <50ms |
 | **Helpicon DevOps** | Deployment time cut 75% (45 min → 11 min) · Uptime 99.7% → 99.95% · MTTR 2h → 15 min · Docker image 1.2 GB → 180 MB · 30% AWS cost saving |
-| **Palmetto Air Balance** | 50+ ADF pipelines · $40M+ portfolio visibility · 60% less manual processing · days-to-minutes reporting · 1M+ records/day at sub-second latency |
+| **Palmetto Air Balance** | ~10 ADF pipelines · $40M+ portfolio visibility · 60% less manual processing · days-to-minutes reporting · 1M+ records/day at sub-second latency |
 | **Pink Chicken** | Azure Monitor cost $1,000/mo → $0.10/mo (~$12K/year saved) · 10+ retail locations unified · Resolved 1–3% sales-data divergence via GraphQL root-cause analysis |
 | **EcomInvestigator** | 50k–100k+ products/run · catalog coverage ~15% → ~75%+ with multi-strategy pagination · 10–20x faster DB loads · idempotent Snowpark ETL |
 | **CarLister** | 112 TS/TSX files · 21 API endpoints · 6 external integrations · 4 cache layers · cron-driven good-deal engine with configurable pricing-source switching |
@@ -93,7 +93,7 @@ Full‑stack engineer with end‑to‑end ownership across frontend, backend, da
 ### Palmetto Air Balance — Enterprise Data Warehouse (Azure)
 
 - Architected an enterprise Azure data warehouse integrating NetSuite, Air1, and UKG, providing real-time visibility into a $40M+ project portfolio
-- Designed and deployed 50+ Azure Data Factory pipelines with dynamic MERGE stored procedures, self-healing schema-change detection, and automated email alerting
+- Designed and deployed about 10 Azure Data Factory pipelines with dynamic MERGE stored procedures, self-healing schema-change detection, and automated email alerting
 - Reduced manual reporting effort by 60% and cut reporting time from days to minutes; achieved 99.95% data quality score with automated validation
 - Processed 1M+ records daily at sub-second query latency using optimized T-SQL, indexed star-schema models, and parallel ADF execution
 - Delivered real-time Power BI dashboards for revenue, backlog, and resource utilization with weekly automated snapshots for historical trending

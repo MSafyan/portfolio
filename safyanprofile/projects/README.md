@@ -25,7 +25,7 @@
 - Business intelligence dashboards (Power BI)
 - NetSuite or ERP integrations
 
-**Key metrics:** 50+ pipelines, 2M+ records daily, 99.9% reliability
+**Key metrics:** ~10 pipelines, 2M+ records daily, 99.9% reliability
 
 ---
 
