@@ -650,7 +650,7 @@ export const WORK: CaseStudy[] = [
     role: "Full-stack and data engineer",
     region: "Australia",
     published: "2026-11-16",
-    period: "2022 – present",
+    period: "2023 – present",
     metrics: [
       { value: "3", label: "competitions covered" },
       { value: "9 → 17", label: "Angular versions upgraded" },
