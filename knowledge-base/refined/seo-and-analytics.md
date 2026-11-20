@@ -34,6 +34,22 @@ How the site is found and measured, as of 2026-11-16. Rewrite in place when it c
   top pages, top searches and the index status of every blog post in the sitemap. Service account in
   Safyan's `portfolio-seo` Google Cloud project; key in `keys/` (see `keys/CREDENTIALS.md`).
   Request indexing stays manual — the API cannot do it.
+- Index status 2026-11-20: 18 pages under "Crawled – currently not indexed" (report dated 16 Nov,
+  domain four days old). That is new-domain lag, not a defect; Google indexes the strongest pages
+  first. Two blog posts were already "Submitted and indexed" (17 Nov); first impression on
+  `/work/the-gala-events-marketplace` at position 5. "Validate fix" was started; it changes
+  nothing for this status. Recheck `pnpm gsc` around 1 Dec.
+
+## Profiles that link to the site
+
+| Profile | Where the link is |
+|---|---|
+| LinkedIn (`/in/safyanakram/`) | Contact info → Website (Portfolio); Featured link card |
+| GitHub (`MSafyan`) | Website field; bio; profile README (`MSafyan/MSafyan`) — banner, service links, case-study cards using each `opengraph-image` |
+| Upwork | **None, on purpose.** Upwork forbids outside links in profile text; the linked GitHub account is the route |
+
+The GitHub README's banner SVGs live in that repo's `assets/`; their URLs carry `?v=N` (bump it on
+change — GitHub caches raw files for 5 minutes). Figures on every profile must match `lib/work.ts`.
 
 ## Analytics (`components/Analytics.tsx`, `lib/track.ts`)
 

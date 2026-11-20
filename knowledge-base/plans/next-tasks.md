@@ -5,7 +5,16 @@ that day's log. Current setup is described in [../refined/seo-and-analytics.md](
 
 ## 1. Get found under the name (owner: Safyan)
 
-- [ ] Add `https://muhammadsafyan.com` to LinkedIn (website field + Featured), Upwork, CV, email signature.
+- [x] LinkedIn: Contact info → Website (type Portfolio) and a Featured link card — 2026-11-20.
+- [x] GitHub: website field, bio, profile README with a banner and case-study cards linking the
+      site (`MSafyan/MSafyan`) — 2026-11-20.
+- [x] Upwork: **no link in profile text** (Upwork forbids outside links and contact details);
+      clients reach the site through the linked GitHub account — decided 2026-11-20.
+- [ ] CV PDF and email signature. Re-export the CV first: it still has Palmetto 50+ pipelines,
+      CVR from 2022 and Wesion "Present" (correct: about 10, Feb 2023, ended Aug 2026).
+- [ ] LinkedIn Wesion entry: end Aug 2026 (shows "May 2023 – Present"); settle Apr vs May 2023.
+- [ ] GitHub: pin the `portfolio` repo; add LinkedIn under Social accounts.
+- [ ] GitHub README "Recent writing" is static — refresh it as posts release.
 - [ ] Make the six YouTube walkthroughs **public** (unlisted videos are not searchable) and link the
       matching case study in each description. Registry: `~/dev/_me/upwork/knowledge-base/videos/`.
 - [ ] BrickDistrict backlink: run the bd-theme prompt (portfolio link on `/site-credits/`, GA4
@@ -20,6 +29,7 @@ Plan, researched topic list and on-page checklist: **[blog-plan.md](blog-plan.md
 - [ ] Confirm with each named client that a deeper write-up is fine, or write it anonymously.
 - [~] First batch of eight scheduled 17 Nov – 8 Dec (see blog-plan.md); two Gala posts held.
 - [ ] Weekly: Search Console → which posts get impressions; Request indexing on each release day.
+      Pending: `/blog/beaver-builder-to-custom-theme` ("unknown to Google" on 2026-11-20).
 
 ## 3. Analytics gaps (do once traffic starts)
 
