@@ -311,7 +311,7 @@ export const WORK: CaseStudy[] = [
     role: "Full-stack and AI engineer",
     region: "United Kingdom",
     published: "2026-11-16",
-    period: "2023 – present",
+    period: "2023 – 2026",
     metrics: [
       { value: "95%", label: "lower LLM spend" },
       { value: "11", label: "AI services in production" },

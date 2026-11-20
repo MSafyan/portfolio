@@ -24,7 +24,7 @@ export const EXPERIENCE = [
     company: "Wesion (Abundance Movement)",
     region: "UK",
     role: "Full-stack and AI engineer",
-    period: "Apr 2023 – present",
+    period: "Apr 2023 – Aug 2026",
     summary: "NestJS back end and 11 AI services on OpenAI and Pinecone; 95% lower LLM spend.",
   },
   {

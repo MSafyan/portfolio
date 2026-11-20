@@ -25,7 +25,7 @@ Delivered real-time visibility into $40M+ project portfolio (revenue, backlog, u
 Built dynamic MERGE stored procedures with intelligent primary key detection, TRY-CATCH error handling, pipeline-level + database-level logging, email alerts with failure categorization, and audit trails
 Processed 1M+ records daily with sub-second query latency using composite indexing, table partitioning, and materialized views; implemented weekly automated backlog snapshots for historical trending
 
-Wesion World  (UK)                                                                                                                Apr 2023 – Present
+Wesion World  (UK)                                                                                                                Apr 2023 – Aug 2026
 Full-Stack + AI Engineer  |  NestJS · OpenAI · LangChain · Pinecone · TypeORM · PostgreSQL · AWS
 
 Owned full development lifecycle: designed and built NestJS backend from scratch with TypeORM + PostgreSQL, schema design, location-based indexes, ATM contract integration, and AWS deployment; Python Lambda for automated image/video compression on S3 with event triggers
