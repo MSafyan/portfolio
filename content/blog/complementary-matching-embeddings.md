@@ -1,9 +1,9 @@
 ---
 title: "Matching People by What They Lack, Not What They Share"
-seo_title: "Complementary Matching With Embeddings: Strength to Weakness"
+seo_title: "Mentor Matching Algorithm: Pair People by What They Lack"
 seo_description: "Embed each member's weaknesses and search them against everyone else's strengths. Weight it 0.5, similarity 0.4, engagement 0.1, and drop anything under 40/100."
 slug: complementary-matching-embeddings
-target_query: complementary matching strengths weaknesses embeddings
+target_query: mentor matching algorithm
 service: ai-integration
 case_study: wesion-ai-matching
 status: published
@@ -139,7 +139,7 @@ Vector search never comes back empty. Ask for the ten nearest neighbours and you
 
 So matches under **40 out of 100** aren't recommended. The query that builds introduction lists filters `score >= 40`, and a member can't unlock a match that scores less. We picked 40 for this app's member base. With a much larger pool you could afford a higher bar.
 
-Each kept match then gets a one- or two-sentence explanation written by the LLM from the score parts and the match reasons, so a member sees *why* someone was suggested, not just a number.
+Every saved match, including those under 40, then gets a one-sentence explanation (25 words at most) written by the LLM from the score parts and the match reasons, so a member sees *why* someone was suggested, not just a number.
 
 ## How often to recompute the matches
 
