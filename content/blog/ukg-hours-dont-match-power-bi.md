@@ -45,7 +45,7 @@ ORDER BY yr;
 
 The raw table matched UKG to two decimal places for 2023, 2024 and January to August 2025. That one query ruled out the import and the copy for the whole history, and it took minutes.
 
-> **Note:** Our first version added approved time off from a separate table and came out about 17,000 hours too high for 2024. UKG's figure was work hours only. Make sure you know exactly what the number you're matching includes before you call it a mismatch.
+> **Note:** Our first version added approved time off from a separate table and came out about 17,000 hours too high for 2024. UKG's figure didn't include that time off. Make sure you know exactly what the number you're matching includes before you call it a mismatch.
 
 ## Step 2: find the hours your view drops
 
