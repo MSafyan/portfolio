@@ -3,6 +3,7 @@
 ## 2026-11-21 — [session_2026-11-21.md](session_2026-11-21.md)
 
 - 🔎 Two posts indexed, one pending Request indexing; KB records which profiles link the site.
+- 📁 Research folder per blog post; 36 ideas researched with keyword lists for SE Ranking.
 
 ## 2026-11-20 — [session_2026-11-20.md](session_2026-11-20.md)
 
