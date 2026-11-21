@@ -115,7 +115,7 @@ Questions, answers and reviews have their own validator, tuned the same way in J
 
 Better prompts reduce false positives, but they never get them to zero. The rest of the fix was making each one cheap to undo:
 
-- **Don't make the user wait.** Checking the task while the user waited made posting take several seconds. Validation now runs in the background right after the task is saved, and the API answers in well under a second.
+- **Don't make the user wait.** Task checks ran in the background, but screening questions were checked while the poster waited, one model call per question, one after another. Check them in a single call, or after saving.
 - **A backup job.** An hourly cron re-checks any task from the last 24 hours that still has no verdict, and logs a warning, because that means the background check failed.
 - **Fail open.** If the AI service is down, the task counts as valid. An outage shouldn't cancel real posts.
 - **Record why.** A rejected task is cancelled with `cancel_reason = "Rejected by AI"` and the model's own explanation stored next to it. Before December 2025 that reason only went out in email and team-chat notifications, so you couldn't search past rejections.
