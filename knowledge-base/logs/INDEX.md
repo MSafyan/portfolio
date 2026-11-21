@@ -4,6 +4,7 @@
 
 - 🔎 Two posts indexed, one pending Request indexing; KB records which profiles link the site.
 - 📁 Research folder per blog post; 36 ideas researched with keyword lists for SE Ranking.
+- 📰 Five SE Ranking-picked posts published; claims corrected in eight written posts.
 
 ## 2026-11-20 — [session_2026-11-20.md](session_2026-11-20.md)
 
