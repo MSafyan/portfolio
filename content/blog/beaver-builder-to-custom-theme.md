@@ -52,7 +52,7 @@ A custom theme means WordPress still builds every page, through templates you wr
 drag-and-drop builder. Headless means WordPress only stores the data and a separate app builds the pages.
 
 We chose a custom PHP theme. It keeps every URL, Yoast's output and WooCommerce's own cart and checkout.
-Headless would have meant rebuilding checkout on a shop that had not yet completed a sale online. The
+Headless would have meant rebuilding checkout on a shop that had only just taken its first online orders. The
 theme was also cheap to host: it runs on the same managed WordPress hosting, with the same CDN.
 
 ## Before you replace Beaver Builder: take an SEO baseline
@@ -73,7 +73,7 @@ canonicals pointing to themselves). That set the rule: the new theme must keep i
 
 ## How we kept every URL and redirect when replacing Beaver Builder
 
-**No slug, permalink or category base changed.** That was a rule of the project, not a hope. Things to
+**No existing URL moved: no product, category or page slug changed.** That was a rule of the project, not a hope. Things to
 check:
 
 - **New sections must not move old URLs.** The theme added a blog at `/blog/<post-name>/`. We set that
@@ -141,6 +141,11 @@ On switch day, 13 October 2026, mobile Lighthouse on the live site:
 | Product | 71 | **99** | about 4.5 s → under 2 s |
 
 The home page went from about 5 MB to under 1 MB. SEO, accessibility and best-practice scores were 100.
+
+> **Note:** The "before" runs bypassed the cache, while the switch-day "after" runs were served from the
+> CDN cache, and the two used different Chrome versions. The fairer comparison is the theme measured
+> uncached through its preview: home **89** (main content in 3.2 s), category **98** and product **99**.
+> Most of the weight saved was images: the new home page simply loads fewer of them.
 
 Two things mattered as much as the templates:
 
