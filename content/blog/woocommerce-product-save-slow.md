@@ -30,8 +30,9 @@ updating the price tags on retired sets. A pass over the catalogue took **two ho
 long for a store that size. Each product update was taking about half a minute.
 
 WordPress runs a chain of hooks each time a post is saved, and a WooCommerce product is a post. The best
-known is `save_post`. Any plugin can attach work to that chain, and the save does not finish until all of
-that work is done. A slow save almost always means one plugin is doing heavy work there.
+known is `save_post`; another is `clean_post_cache`, which fires whenever a post's cache is cleared, even
+on an update that changes nothing. Any plugin can attach work to these hooks, and the save does not finish
+until all of that work is done. A slow save almost always means one plugin is doing heavy work there.
 
 ## How to measure a slow WooCommerce product save
 
@@ -93,13 +94,20 @@ It was the store owner who said to just deactivate WP Rocket and measure. That w
 
 ## WP Rocket and the WooCommerce save_post hook: what was going on
 
-The slow part was the cache clearing WP Rocket does after a product is updated. That work runs inside the
-save, so the save cannot finish until the clearing is done. Preload is a separate feature on top of it,
+The slow part was the cache clearing WP Rocket does after a product is updated. It hooks
+`clean_post_cache`, not `save_post`: an empty WooCommerce update never fires `save_post`, but it does
+clear the product's cache, and that is enough to start the purge. The work runs inside the request, so the
+save cannot finish until the clearing is done. On this host, WP Rocket's integration also flushed the whole
+object cache for every URL it purged, and one save purges about ten (the product, its categories, the home
+page and neighbouring products). We did not profile inside the plugin, so that is the likely cost, not a
+measured one. Preload is a separate feature on top of it,
 which is why turning preload off did not help. WP Rocket has no setting that switches off clearing on
 save, so on this store **deactivating the plugin was the only fix we found**.
 
 WP Rocket's knowledge base does describe a helper plugin that turns off automatic cache clearing, written
-for slow imports. We did not test it, because the next question made it unnecessary.
+for slow imports, and WP Rocket checks a filter, `rocket_is_importing`, that does the same for a script:
+`add_filter('rocket_is_importing', '__return_true');`. We did not test either, because the next question
+made it unnecessary.
 
 ## Was the caching plugin worth 34 seconds a save?
 
