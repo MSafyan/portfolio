@@ -49,6 +49,9 @@ Real values and file references live in the git-ignored `drafts/blog/sources/ukg
 
 ## Next batch
 
+Researched 2026-11-21 with 21 more ideas mined from recent sessions: 36 in all, one folder each, ranked in the
+git-ignored `drafts/blog/sources/ideas/IDEAS.md`, with keyword lists for SE Ranking beside it.
+
 - **Shopify Incoming Inventory: Why REST Doesn't Return It** (`shopify incoming inventory api`) — devs stuck in community.shopify.dev threads. Shopify cluster with #1 and #8.
 - **Swish + Stripe for a Marketplace: Webhooks Done Right** (`swish api integration node.js callback`) — no modern write-up; absorbs "never trust the price from the browser".
 - **How to Build AI Member Matching for a Community App** — results are agency cost pages with no technical content; founder intent.
