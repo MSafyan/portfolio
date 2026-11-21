@@ -34,7 +34,7 @@ Safyan did **not** call the UKG API: the Air1 vendor imported a UKG "Detailed Ca
 (Counters)" CSV into their Postgres, and ADF copied it to Azure SQL. The work was reconciliation.
 All under `~/archive/palmetto/palmetto-data-warehouse/`:
 
-Real values and file references live in the git-ignored `drafts/blog/sources/` file, not here.
+Real values and file references live in the git-ignored `drafts/blog/sources/ukg-hours-dont-match-power-bi/` folder, not here.
 
 - **Reconcile to the cent first.** The raw table matched UKG exactly for each year; the view was
   low because it dropped rows without a job number — overhead/admin, roughly a quarter to a third
@@ -80,8 +80,8 @@ from `~/dev/brickdistrict/bd-theme/knowledge-base/refined/guides.md` and the "Co
   next thing they see is the call to action: the case study and "work with me".
 - **Search title ≠ H1.** `seo_title` ≤60 uses the words people search; the H1 is the human title.
   Description 150–160, answering in the snippet where possible.
-- **Every claim has a source that was read.** Each post gets `sources/<slug>.md` mapping each fact
-  and number to a file, commit or transcript. Not in a source → not written.
+- **Every claim has a source that was read.** Each post gets a research folder `sources/<slug>/` whose
+  `facts.md` maps each fact and number to a file, commit or transcript. Not in a source → not written.
 - **Specific, not reusable.** The opening can't be pasted onto another post; at least four facts
   specific to this case (numbers, field names, error text).
 - **Keyword in most H2s, varied**; H2s phrased as the follow-up questions searchers ask; a table of
@@ -127,9 +127,13 @@ not sent automatically for scheduled posts (Bing finds them through the sitemap)
   blog pages, the sitemap and the service/case-study pages that list posts re-render hourly
   (`revalidate = 3600`), and post pages not pre-built render on first request. A post appears
   within about an hour after midnight UTC. To delay one, move its date. Locally it shows as "Scheduled".
-- Real values behind the disguised ones: `knowledge-base/drafts/blog/sources/<slug>.md` —
-  **git-ignored, local only** (the repo is public). Publish only after Safyan has answered the
-  questions at the end of that file.
+- Research per post: `knowledge-base/drafts/blog/sources/<slug>/` — **git-ignored, local only**
+  (the repo is public), so real values are allowed there. Layout in `sources/BRIEF.md`:
+  `README.md` (status, summary, open questions), `facts.md` (claim → real value → source),
+  `research.md` (SERP, keywords, follow-up questions, links, cross-posting), `images.md` + `images/`
+  (used, candidate and to-make images), `code/` (real, disguised and unused snippets),
+  `timeline.md`, `outtakes.md` (cut material, follow-up ideas). Publish only after Safyan has
+  answered the open questions in that folder's `README.md`.
 - Callouts: a blockquote starting `**Short answer**`, `**Tip:**`, `**Note:**` or `**Warning:**`.
 
 ## How each post is built to rank
