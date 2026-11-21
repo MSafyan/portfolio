@@ -37,6 +37,12 @@ How the site is found and measured, as of 2026-11-16. Rewrite in place when it c
 - Index status 2026-11-21 (URL inspection of every sitemap URL): **all 24 pages "Submitted and
   indexed"**, last crawled 17–20 Nov. The "Crawled – currently not indexed" page report (dated
   16 Nov) was stale. First searches: "muhammad safyan" → `/about`, position 2.
+- **Two views, two speeds.** Search Console → Pages (the Page indexing report) is a periodic
+  snapshot: on 21 Nov its chart still had a single bar (~16 Nov) with 18 pages under "Crawled –
+  currently not indexed", validation "Started". URL inspection (the API, the dashboard's step 1,
+  or the magnifier on a listed URL) is live and is the truth for a page. Expect the report to
+  catch up within days and the validation to end "Passed"; nothing to do. If it still shows 18
+  after ~28 Nov, investigate.
 
 ## Dashboard (app.muhammadsafyan.com)
 
@@ -44,7 +50,15 @@ Private, installable dashboard in the sibling repo `../site-stats` (Vercel proje
 private GitHub repo `MSafyan/site-stats`). Daily snapshot of Search Console, URL inspection
 (weekly), GA4 (property 564503664, the service account above is a Viewer) and Clarity — the same
 funnel and seven steps as the Coverage Creatives site-performance page. How it works: its
-`CLAUDE.md`. It uses one of Clarity's 10 daily API calls budget (2 calls/day).
+`CLAUDE.md`. It uses 2 of Clarity's 10 daily API calls.
+
+- Live since 2026-11-21; first refresh OK on all four sources. Rebuilds daily 06:00 UTC (11:00 PKT).
+- Login: one password (in `../site-stats/keys/CREDENTIALS.md`), cookie for a year. On iPhone, add to
+  Home Screen first and log in inside the installed app (it keeps its own cookies).
+- Production secrets are set with `bash scripts/push-env.sh` in a **normal terminal** (`vercel login`
+  is interactive; Claude's `!` cannot answer prompts and times out after 120 s).
+- `stats.muhammadsafyan.com` was the first subdomain; it is still attached to the project and
+  must be removed by hand (Vercel → site-stats → Settings → Domains).
 
 ## Profiles that link to the site
 

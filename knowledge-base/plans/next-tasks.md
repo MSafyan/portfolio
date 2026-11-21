@@ -57,6 +57,10 @@ GA settings (Safyan's login, ~5 min):
 
 ## 4. Later
 
+- [ ] ~28 Nov: Search Console → Pages should show the 18 "Crawled – currently not indexed" pages as
+      indexed and the validation as Passed (URL inspection already says all 24 are indexed).
+- [ ] Remove `stats.muhammadsafyan.com` from the Vercel project `site-stats` (Settings → Domains).
+
 - [ ] Narrow service pages, only where a case study backs them: Shopify data warehouse (Pink
       Chicken), Azure Data Factory consultant (Palmetto), WooCommerce SEO & speed (BrickDistrict).
 - [ ] Weekly: Search Console queries at positions 8–20 → improve those pages first.
