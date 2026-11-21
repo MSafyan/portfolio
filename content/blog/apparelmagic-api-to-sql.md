@@ -107,11 +107,11 @@ Two things make a time filter alone risky:
 - ApparelMagic warns that "it may take a few moments for newly created or updated records to appear in API responses". If your next filter starts exactly where the last one stopped, a record saved in those moments can be missed. Start each load a little earlier than the last one ended. Loading a row twice is harmless if you upsert on its ID.
 - A deleted record never shows up in a "changed since" filter.
 
-So on top of the daily loads, we ran a **weekly full sync** of invoices, orders and products every Saturday, as a safety net.
+So on top of the daily loads, we ran a **weekly full sync** every Saturday as a safety net: at first for invoices, orders and products, later for products only.
 
 ## ApparelMagic data types and dates in SQL
 
-Most values come back as JSON strings, numbers and yes/no flags included. A flag like `is_inventory_tracked` arrives as the text `"1"`. Copy that straight into SQL and you get text columns. Sums are wrong or fail, and joins on IDs are slow. Our first mapping files were corrected to proper whole-number, decimal and true/false types early on.
+Many values come back as JSON strings, yes/no flags included (invoice and order amounts do arrive as numbers). A flag like `is_inventory_tracked` arrives as the text `"1"`. Copy that straight into SQL and you get text columns. Sums are wrong or fail, and joins on IDs are slow. Our first mapping files were corrected to proper whole-number, decimal and true/false types early on.
 
 Dates need care too:
 
@@ -128,7 +128,7 @@ Getting the data in is half the job. These rules decided whether the reports wer
 
 - **Freight is not sales.** An invoice `amount` includes freight. Gross sales is `amount - amount_freight`.
 - **Leave out invoices to yourself.** Wholesale reports excluded invoices billed to the brand's own customer account, which are internal transfers. They were also limited to the wholesale division by `division_id`.
-- **Date orders by `closed_at`, not `updated_at`.** Any later edit moves `updated_at`, so an old order jumps into this month's sales.
+- **Date sales by the invoice date, not the date a record last changed.** Any later edit moves the change date, so an old order jumps into this month's sales.
 - **Choose which warehouses count as stock.** Stock comes from the SKU-per-warehouse data (`qty_avail_alloc`). We counted the main warehouse, the e-commerce warehouse and one marketplace warehouse, and left the virtual one out. If the same online stock also appears in Shopify, decide which system owns it, or it gets counted twice.
 - **Guard reference tables.** Stock views joined to the warehouse list. If that small table is ever missing its main row, all stock quietly disappears from the reports. A check before each refresh rebuilt it when the main row was missing.
 
@@ -144,7 +144,7 @@ WHERE i.division_id = @wholesale_division
 GROUP BY CAST(i.date_internal AS date);
 ```
 
-> **Note:** There are ready-made ApparelMagic connectors and an open-source Singer tap. They solve paging and limits. They don't decide your freight, division or warehouse rules, and those are what make Power BI match the finance team's numbers.
+> **Note:** There are ready-made ApparelMagic connectors and an open-source Singer tap, though the tap still pages with `page_number`, which ApparelMagic retired in February 2023. Check how any connector pages before trusting it. And no connector decides your freight, division or warehouse rules, and those are what make Power BI match the finance team's numbers.
 
 ## Want ApparelMagic and Shopify in one warehouse?
 
