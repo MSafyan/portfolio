@@ -156,7 +156,7 @@ Don't trust the fix until you have checked it. We used three checks:
 
 1. **Daily totals.** Shopify's sales report for one day next to the warehouse total for the same day. Look at the days that differ most.
 2. **Order by order.** For one month, compare gross sales, discounts, returns and net items sold for each order between a Shopify export and the warehouse. Save each run, so you can see whether a change helped.
-3. **Returns on their own.** Returns are where gift card refunds hide. While we moved returns onto agreements data, the number of orders whose returns didn't match fell from about 540 to about 20, out of roughly 8,400 orders checked.
+3. **Returns on their own.** Returns are where gift card refunds hide. While we moved returns onto agreements data, the number of orders whose returns didn't match fell from about 170 to about 20, out of roughly 8,400 orders checked.
 
 Once gift card lines were classified this way, the monthly totals matched Shopify's reports.
 
