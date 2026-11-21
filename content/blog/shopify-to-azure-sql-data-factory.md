@@ -106,7 +106,7 @@ query getInventoryLevels($locationId: ID!, $first: Int!, $after: String) {
 }
 ```
 
-GraphQL pages with a cursor in the response body, not in a header, so the REST pagination switch doesn't help here. The inventory pipeline gets every location first, then runs a child pipeline per location. That child pipeline is an `Until` loop: post the query, save the response to storage, read `hasNextPage` and `endCursor`, and repeat. A data flow then merges the GraphQL quantities into the same tables the REST data feeds, and the staged files are deleted at the end.
+GraphQL pages with a cursor in the response body, not in a header, so the REST pagination switch doesn't help here. The inventory pipeline gets every location first, then runs a child pipeline per location. That child pipeline is an `Until` loop: post the query, save the response to storage, read `hasNextPage` and `endCursor`, and repeat. A data flow then truncates the inventory table and reloads it from the GraphQL quantities, and the staged files are deleted at the end.
 
 **Order changes and gift cards.** Monthly sales in the warehouse were 1–3% off Shopify's own reports. The cause was gift cards issued as refunds and then spent, and the only record of it was the order-change history, which REST doesn't expose. That story has [its own post](/blog/shopify-sales-dont-match-warehouse), so here is the lesson for the pipeline: if your numbers have to match Shopify's reports, plan for GraphQL from day one.
 
@@ -152,7 +152,7 @@ WHERE ISJSON(a.tags) = 1 AND JSON_VALUE(j.value, '$.text') <> '';
 
 One stored procedure built the main reporting table. It loaded products, sales, refunds, tags, vendors and pricing in one go. It started at 30 minutes. Then it took 40 minutes, then an hour. After one more requested change added a table or two, it took four hours.
 
-The fix was to stop doing everything at once. One base table holds the core product and sales rows, and six or seven smaller procedures each fill in one or two things: first the Apparel Magic and Shopify base rows, then gift cards and locations, then stock and the remaining details. Each step writes a log row when it finishes:
+The fix was to stop doing everything at once. One base table holds the core product and sales rows, and 19 smaller procedures each fill in one or two things: first the Apparel Magic and Shopify base rows, then gift cards and locations, then stock and the remaining details. Each step writes a log row when it finishes:
 
 ```sql
 INSERT INTO proc_step_log (procedure_name, step_name, message, execution_time_ms, rows_affected, created_at)
